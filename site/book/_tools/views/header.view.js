@@ -23,7 +23,7 @@ module.exports = (par_version_dir, par_API_dir) => {
 
     let random_dir = textures_dirs[Math.floor(Math.random() * textures_dirs.length)];
 
-    if((fs.readdirSync(`${CONFIG.url}/logotype/${random_dir}`)).includes('all.png')) {
+    if((fs.readdirSync(`site/must-have/logotype/${random_dir}`)).includes('all.png')) {
         ['front', 'back', 'left', 'right', 'top', 'bottom'].forEach((side) => {
 
             view.logotype_cube_sides.push({
