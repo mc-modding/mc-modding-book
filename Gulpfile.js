@@ -47,7 +47,7 @@ gulp.task('move-must-have.handle-logotype', () => {
     return gulp.src('site/must-have/logotype/**/*.{png,gif,jpg,jpeg}')
         .pipe(plumber(function (error) { console.log(error); this.emit('end'); }))
         .pipe(imagemin())
-        .pipe(gulp.dest(`${(global.is_local ? 'compiled/' : '')}/logotype`));
+        .pipe(gulp.dest(`${(global.is_local ? 'compiled/' : '')}logotype`));
 });
 
 /* ------------------------------------------------------------------------------------------------------------------ */
