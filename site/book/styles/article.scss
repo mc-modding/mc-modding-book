@@ -1,0 +1,76 @@
+@import '../../must-have/g-styles/const';
+
+article {
+	position: absolute;
+	z-index: 1;
+
+	box-sizing: border-box;
+
+	background: #fff;
+
+	border: {
+		width: 0 0 map_get($site-parts-border, width) 0;
+		style: map_get($site-parts-border, style);
+		color: map_get($site-parts-border, color);
+	}
+
+	overflow: auto;
+
+	transition: filter 0.15s;
+
+	&.darker {
+		filter: brightness(50%);
+	}
+
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+	/* Article inner */
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+	.inner {
+		padding: 1.5em;
+
+		@include article-typo;
+
+		@import 'article-content';
+	}
+
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+	/* Layouts */
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+	@include layout-full {
+		top: map_get($header-height, full);
+		left: calc(50% - (#{map_get($layouts, stretch)}/2));
+		transform: translateX(map_get($nav-width, full));
+
+		width: calc(#{map_get($layouts, stretch)} - #{map_get($nav-width, full)});
+
+		border: {
+			width: 0 map_get($site-parts-border, width) map_get($site-parts-border, width) 0;
+			style: map_get($site-parts-border, style);
+			color: map_get($site-parts-border, color);
+		}
+	}
+
+	@include layout(stretch) {
+		top: map_get($header-height, full);
+		left: map_get($nav-width, stretch);
+
+		width: calc(100% - #{map_get($nav-width, stretch)});
+	}
+
+	@include layout(tablet) {
+		width: 100%;
+
+		top: map_get($header-height, mobile);
+		left: 0;
+	}
+
+	@include layout(mobile) {
+
+	}
+
+	@include layout(mini) {
+
+	}
+}

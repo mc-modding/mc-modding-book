@@ -1,0 +1,86 @@
+@import '../../must-have/g-styles/const';
+
+/* Resizing logotype cube when changing layout */
+@mixin logotype-cube-draw($size) {
+	//
+	// The cube is rotated at 45 degrees around Y axis so its
+	// width equals it's diagonal: width = sqrt(2) * side-size
+	//
+	width: calc(1.41421356237 * #{$size});
+
+	//
+	// The height of rotated cube is a linear function of it's side size.
+	// For 30 degree rotation around X axis the only coefficient is 1.58:
+	// height = f(side-size) = side-size * 1.58
+	//
+	height: calc(1.58 * #{$size});
+
+	.cube {
+		.side {
+			top: calc(50% - (#{$size}/2));
+			left: calc(50% - (#{$size}/2));
+
+			width: $size;
+			height: $size;
+
+			&.front  {  transform: translateZ($size/2);  }
+			&.back   {  transform: translateZ(-$size/2) rotateY(180deg);  }
+			&.left   {  transform: translateX(-$size/2) rotateY(-90deg);  }
+			&.right  {  transform: translateX($size/2) rotateY(90deg);  }
+			&.top    {  transform: translateY(-$size/2) rotateX(90deg);  }
+			&.bottom {  transform: translateY($size/2) rotateX(-90deg);  }
+		}
+	}
+}
+
+#logotype {
+	position: relative;
+
+	perspective: 9999999px;
+
+	//border: 1px solid red;
+
+	.cube {
+		position: absolute;
+
+		transform-style: preserve-3d;
+
+		transform: rotateX(-30deg) rotateY(-45deg);
+
+		animation: cube-spin 10s infinite;
+
+		@keyframes cube-spin {
+			0%    {transform: rotateX(-30deg) rotateY(-45deg);}
+			40%   {transform: rotateX(-30deg) rotateY(-45deg);}
+			60%   {transform: rotateX(-30deg) rotateY(-405deg);}
+			100%  {transform: rotateX(-30deg) rotateY(-405deg);}
+		}
+
+		width: 100%;
+		height: 100%;
+
+		.side {
+			position: absolute;
+
+			backface-visibility: visible;
+
+			image-rendering: pixelated;
+		}
+	}
+
+	@include layout-full {
+		@include logotype-cube-draw(map_get($logotype-cube-side, full));
+	}
+
+	@include layout(stretch) {
+		@include logotype-cube-draw(map_get($logotype-cube-side, full));
+	}
+
+	@include layout(tablet) {
+		@include logotype-cube-draw(map_get($logotype-cube-side, tablet));
+	}
+
+	@include layout(mini) {
+		display: none;
+	}
+}

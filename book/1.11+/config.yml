@@ -1,0 +1,8 @@
+# Version number
+number: 1.11+
+
+# Development state: Release, Beta, Alpha
+dev-state: Release
+
+# Default API directory
+default-api-dir: forge

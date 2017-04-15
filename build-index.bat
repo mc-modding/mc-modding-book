@@ -1,0 +1,1 @@
+node site/index/_tools/processes/build-index -local && gulp build-index -local

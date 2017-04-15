@@ -1,0 +1,74 @@
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+            {{#version_choose}}
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                            {{#release.show}}
+                                <optgroup label="Релиз">
+                                    {{#release.versions}}
+                                        {{{.}}}
+                                    {{/release.versions}}
+                                </optgroup>
+                            {{/release.show}}
+
+                            {{#beta.show}}
+                                <optgroup label="Бета">
+                                    {{#beta.versions}}
+                                        {{{.}}}
+                                    {{/beta.versions}}
+                                </optgroup>
+                            {{/beta.show}}
+
+                            {{#alpha.show}}
+                                <optgroup label="Альфа">
+                                    {{#alpha.versions}}
+                                        {{{.}}}
+                                    {{/alpha.versions}}
+                                </optgroup>
+                            {{/alpha.show}}
+
+                        </select>
+                    </label>
+                </div>
+
+            {{/version_choose}}
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                        {{#APIs}}
+                            {{{.}}}
+                        {{/APIs}}
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+            {{#categories}}
+                <div class="category">
+
+                    <a href="{{{link}}}" class="category-article {{#selected}}selected{{/selected}}">{{title}}</a>
+
+                    <div class="category-articles">
+                        {{#articles}}
+                            <a href="{{{link}}}" class="article {{#selected}}selected{{/selected}}">{{title}}</a>
+                        {{/articles}}
+                    </div>
+
+                </div>
+                {{#separator}}<hr>{{/separator}}
+            {{/categories}}
+        </div>
+
+    </div>
+
+</nav>

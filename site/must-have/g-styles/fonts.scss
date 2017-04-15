@@ -1,0 +1,41 @@
+/* Open-Sans */
+@font-face {
+	font-family: "Open Sans";
+	src: url(../fonts/Open-Sans/OpenSans-Regular.ttf);
+}
+@font-face {
+	font-family: "Open Sans";
+	src: url(../fonts/Open-Sans/OpenSans-Italic.ttf);
+	font-style: italic;
+}
+@font-face {
+	font-family: "Open Sans";
+	src: url(../fonts/Open-Sans/OpenSans-Semibold.ttf);
+	font-weight: bold;
+}
+@font-face {
+	font-family: "Open Sans";
+	src: url(../fonts/Open-Sans/OpenSans-SemiboldItalic.ttf);
+	font-weight: bold;
+	font-style: italic;
+}
+
+/* Myriad-Pro */
+@font-face {
+	font-family: "Myriad Pro";
+	src: url(../fonts/Myriad-Pro/MyriadPro-Bold.otf);
+}
+
+/* Helvetica */
+@font-face {
+	font-family: "Helvetica";
+	src: url(../fonts/Helvetica/HelveticaRegular.woff);
+}
+@font-face {
+	font-family: "Helvetica Light";
+	src: url(../fonts/Helvetica/HelveticaLight.woff);
+}
+@font-face {
+	font-family: "Helvetica Bold";
+	src: url(../fonts/Helvetica/HelveticaBold.woff);
+}

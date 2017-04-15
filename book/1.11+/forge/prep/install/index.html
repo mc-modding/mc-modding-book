@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Установка программ - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Установка необходимых программ, которые необходимы для разработки Minecraft модов.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Установка программ">
+<meta property="og:description" content="Установка необходимых программ, которые необходимы для разработки Minecraft модов.">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/prep/install">
+<meta property="og:image"       content="">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code, code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article selected">Подготовка</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article selected">Установка программ</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+    </div>
+
+</nav><article>
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/prep/install/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="установка-программ">Установка программ<a title="Ссылка на этот раздел" href="#установка-программ"><i class="material-icons">link</i></a></h1>
+<p>Minecraft написана на языке Java. Программы на этом языке могут выполняться только если у вас установлена виртуальная машина Java.</p>
+<p>Если вы хоть раз запускали Minecraft на данном компьютере, то Java у вас уже установлена. В противном случае, скачайте и установите <a href="https://java.com/ru/download/" target="_blank">последнюю версию Java</a>.</p>
+<h2 id="jdk">JDK<a title="Ссылка на этот раздел" href="#jdk"><i class="material-icons">link</i></a></h2>
+<p>Для запуска Minecraft необхадима лишь среда выполнения Java, которую вы установили выше.</p>
+<p>Но для разработки собственных модов нам потребуется писать программный код и пользоваться разными библиотеками. Это не входит в стандартный Java пакет,
+поэтому нам нужно установить JDK (Java Development Kit) (Комплект инструментов для разработки на Java).</p>
+<p>Скачайте <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">последнюю версию JDK</a> и следуйте инструкциям по установке. Ничего в настройках установки менять не надо.</p>
+<h2 id="forge">Forge<a title="Ссылка на этот раздел" href="#forge"><i class="material-icons">link</i></a></h2>
+<p>Установка Forge для конечных пользователей вашего мода и для вас, как разработчика различается.</p>
+<h3 id="forge-для-пользователей">Forge для пользователей<a title="Ссылка на этот раздел" href="#forge-для-пользователей"><i class="material-icons">link</i></a></h3>
+<p>Чтобы люди смогли играть с вашим модом, на их Minecraft должен быть установлен движок Forge.</p>
+<p>Скачайте установщик (Installer) с <a href="https://files.minecraftforge.net/" target="_blank">официального сайта Forge</a>:</p>
+<p><img src="images/download_installer.png" alt="Картинка скачивания установщика" /></p>
+<p>Запустите скачанный файл. Выберите пункт "Install client", укажите путь к Minecraft (если он не указан) и нажмите
+OK.</p>
+<p><img src="images/installer.png" alt="Картинка установщика" /></p>
+<p>Как понять, куда установлен Minecraft? По умолчанию он устанавливается по следующему пути:
+<code>C:\Users\*ПОЛЬЗОВАТЕЛЬ*\AppData\Roaming\.minecraft</code>, где <code>*ПОЛЬЗОВАТЕЛЬ*</code> имя текущего пользователя компьютера.</p>
+<h3 id="forge-для-разработки">Forge для разработки<a title="Ссылка на этот раздел" href="#forge-для-разработки"><i class="material-icons">link</i></a></h3>
+<p>Скачайте набор инструментов для разработки модификаций (MDK) с <a href="https://files.minecraftforge.net/" target="_blank">официального сайта Forge</a>:</p>
+<p><img src="images/download_mdk.png" alt="Картинка скачивания MDK" /></p>
+<p>Создайте в любом удобном для вас месте папку и распакуйте туда скачанный архив. Вы увидите много файлов.
+Не все из них вам нужны. Чтобы не захламлять рабочее пространство, удалите все файлы, кроме:</p>
+<ul>
+<li>build.gradle</li>
+<li>gradlew (.bat и .sh)</li>
+<li>папки gradle</li>
+<li>папки src</li>
+</ul>
+<h2 id="среда-разработки">Среда разработки<a title="Ссылка на этот раздел" href="#среда-разработки"><i class="material-icons">link</i></a></h2>
+<p>Моды можно писать и в блокноте, но это очень неудобно. Нам нужна специализированная программа, которая
+умеет подсвечивать код, выполнять авто-импорт и делать много других полезных вещей.</p>
+<p>Наболее популярными IDE на данный момент являются <a href="https://www.eclipse.org/downloads/" target="_blank">Eclipse</a> и <a href="https://www.jetbrains.com/idea/#chooseYourEdition">Intellij Idea</a>.</p>
+<p>Eclipse бесплатен. У Intellij Idea есть бесплатная Community версия. Никаких платных функций в этом учебнике нам
+не потребуется.</p>
+<p>Достаточно часто моды пишут на Eclipse, так как и сам Minecraft был написан с помощью этой IDE.
+С другой стороны, Idea выглядит посовременнее и пофункциональнее, но принципиальной разницы между ними нет.</p>
+<p>Выбирайте то, что нравится вам.</p>
+
+    </div>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/prep/install';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>
