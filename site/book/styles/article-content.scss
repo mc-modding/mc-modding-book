@@ -1,0 +1,99 @@
+@import '../../must-have/g-styles/const';
+
+.edit-article {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: inherit;
+
+	padding: 0.5em;
+	margin: 0.5em 0 0.5em 0.5em;
+
+	border: 1px solid #ebebeb;
+
+	width: 160px;
+
+	float: right;
+
+	span {
+		padding-left: 0.5em;
+	}
+
+	&:hover {
+		cursor: pointer;
+
+		color: #3366BB;
+	}
+
+	@include layout(mobile) {
+		span {
+			display: none;
+		}
+
+		width: auto;
+	}
+}
+
+pre code {
+	border-left: 2px solid #3366BB;
+	background: #F6FAFF;
+	padding: 1em;
+}
+
+code {
+	background: #EDF5FF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #3366BB;
+
+	a {
+		position: relative;
+		top: 5px;
+		left: 7px;
+		color: #bbbbbb;
+
+		opacity: 0;
+
+		transition: color 0.15s, opacity 0.15s;
+
+		&:hover {
+			background: transparent;
+
+			color: #3366BB;
+		}
+	}
+
+	&:hover a {
+		opacity: 1 !important;
+	}
+}
+
+a {
+	text-decoration: none;
+
+	color: #3366BB;
+
+	transition: background 0.15s;
+
+	background: transparent;
+
+	&:hover {
+		background: #E7F2FF;
+	}
+}
+
+img {
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+}
+
+section.ad-after-article {
+	overflow: hidden;
+}
+
+section.disqus {
+	padding: 1.5em;
+}

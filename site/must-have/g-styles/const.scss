@@ -1,0 +1,131 @@
+/* ================================================================================================================== */
+/* Layout */
+/* ================================================================================================================== */
+
+/* Used in media queries with 'max-width' */
+$layouts: (
+		stretch: 1100px,
+		tablet: 850px,
+		mobile: 650px,
+		mini: 445px
+);
+
+/* Shortcut for media 'max-width' query. Can only accept values listed in $layouts map! */
+@mixin layout($layout-key) {
+	@media (max-width: map_get($layouts, $layout-key)) {
+		@content;
+	}
+}
+
+/* Style rules for full site layout (with background visible) */
+@mixin layout-full {
+	@media (min-width: map_get($layouts, stretch)) {
+		@content;
+	}
+}
+
+/* ================================================================================================================== */
+/* Header */
+/* ================================================================================================================== */
+
+/* Different header height depending on site current layout */
+$header-height: (
+		full: 100px,
+		mobile: 55px
+);
+
+/* Different logotype cube sizes depending on site current layout */
+$logotype-cube-side: (
+		full: 50px,
+		tablet: 30px
+);
+
+/* ================================================================================================================== */
+/* Navigation */
+/* ================================================================================================================== */
+
+/* Different navigation widths depending on site current layout */
+$nav-width: (
+		full: 280px,
+		stretch: 25%,
+		mobile: 280px
+);
+
+/* ================================================================================================================== */
+/* Article */
+/* ================================================================================================================== */
+
+/* Article typography */
+@mixin article-typo {
+	font-family: "Open Sans", sans-serif;
+	text-align: justify;
+
+	color: #3a3a3a;
+
+	p {
+		margin: 1.5em 0;
+	}
+
+	h1, h2, h3, h3, h5, h6 {
+		font-weight: bold;
+
+		a {
+			color: #3a3a3a;
+		}
+
+		a:hover {
+			background: transparent;
+
+			text-decoration: underline;
+		}
+
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
+
+	h1, h2 {
+		border-bottom: 1px solid #EEEEEE;
+		padding-bottom: 0.5em;
+	}
+
+	h1 {
+		font-size: 200%;
+	}
+	h2 {
+		font-size: 160%;
+	}
+	h3 {
+		font-size: 140%;
+	}
+	h4 {
+		font-size: 110%;
+	}
+	h5 {
+		font-size: 105%;
+	}
+	h6 {
+		font-size: 100%;
+		color: #777777;
+	}
+}
+
+/* ================================================================================================================== */
+/* Colors and etc. */
+/* ================================================================================================================== */
+
+/* Background default color */
+$bg-color: #F7F7F7;
+
+/* Site parts border color */
+$site-parts-border: (
+		width: 1px,
+		style: solid,
+		color: #ebebeb
+);
+
+/* Site menu buttons */
+$site-menu-buttons: (
+		color: #3366BB,
+		bg-color: #E7F2FF
+);

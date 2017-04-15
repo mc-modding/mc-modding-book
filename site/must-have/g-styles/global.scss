@@ -1,0 +1,9 @@
+/* Resetting styles */
+html, body {
+	margin: 0; border: 0; padding: 0;
+}
+
+/* Removing outline */
+a, select, button {
+	outline: none;
+}
