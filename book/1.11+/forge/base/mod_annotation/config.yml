@@ -1,0 +1,13 @@
+# Title
+title: Аннотация @Mod
+
+# Description (~160 symbols)
+description: >
+  Разбор различных параметров аннотации
+  Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.
+
+# Authors
+authors:
+  -
+    name: CMTV
+    github: https://github.com/CMTV

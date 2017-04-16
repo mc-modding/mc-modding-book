@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Использование Idea - Minecraft Modding</title>
+<title>Сборка мода - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Настройка рабочего пространства для разраобтки модов с помощью IDE Idea.">
+<meta name="description" content="Все, что связано с процессом сборки мода в конечный .jar файл: описание процесса, сама сборка, полезные настройки.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Использование Idea">
-<meta property="og:description" content="Настройка рабочего пространства для разраобтки модов с помощью IDE Idea.">
+<meta property="og:title"       content="Сборка мода">
+<meta property="og:description" content="Все, что связано с процессом сборки мода в конечный .jar файл: описание процесса, сама сборка, полезные настройки.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/base/build_mod">
 <meta property="og:image"       content="">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -67,12 +67,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -144,11 +144,11 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article selected">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article selected">Использование Idea</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
                     </div>
@@ -157,13 +157,13 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article selected">Сборка мода</a>
                     </div>
 
                 </div>
@@ -175,39 +175,10 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/prep/setup_idea/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/base/build_mod/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="использование-idea">Использование Idea<a title="Ссылка на этот раздел" href="#использование-idea"><i class="material-icons">link</i></a></h1>
-<p>Итак, у нас есть папка со следующими файлами внутри:</p>
-<ul>
-<li>build.gradle</li>
-<li>gradlew (.bat и .sh)</li>
-<li>папка gradle</li>
-</ul>
-<p>Запустите Idea и в стартовом окне кликните по кнопке "Import Project". Импортируйте файл "build.gradle".</p>
-<p><img src="images/importing.png" alt="Демонстрация импорта" /></p>
-<p>Убедитесь, что у вас выбран пункт "Use default gradle wrapper (recommended)". Все остальные настройки оставьте
-по умолчанию и нажмите ОК.</p>
-<p><img src="images/import_settings.png" alt="Демонстрация настроек импорта" /></p>
-<p>Теперь откройте меню "View" в верхней части экрана и выберите пункты "Tools Windows &gt; Gradle".</p>
-<p>У вас откроется окно с Gradle задачами. Gradle — популярная система автоматической сборки, которая из исходников
-собирает готовые программы и делает еще много других необходимых, но <strong>рутинных</strong> дел. Эти самые дела называются
-задачами/заданиями/тасками — <strong>tasks</strong>. Мы как раз и открыли окно тасков.</p>
-<p>Выглядит оно примерно так:</p>
-<p><img src="images/gradle_tasks.png" alt="Демнострация Gradle тасков" /></p>
-<p>Выполните таск <code>setupDecompWorkspace</code> из группы <code>forgegradle</code>. После его завершения выполните таск <code>genIntellijRuns</code> из
-той же группы.</p>
-<p>Этими двумя командами мы автоматически и без лишних хлопот настроили рабочее пространство. Чувствуете мощь автоматических
-сборщиков?</p>
-<h3 id="для-idea-2016-или-старше">Для Idea 2016 или старше<a title="Ссылка на этот раздел" href="#для-idea-2016-или-старше"><i class="material-icons">link</i></a></h3>
-<p>Откройте меню "Run" в верхней части экрана и выберите пункт "Edit configurations...".</p>
-<p>В левой части появившегося окна откройте вкладку "Application". По очереди выберите "Minecraft Client" и в "Minecraft Server"
-и уже в правой части окна, в раскрывающемся списке "Use classpath of module" выберите тот пукт, который заканчивается на _main.</p>
-<p><img src="images/run_config.png" alt="Демонстрация найстройки конфигураций запуска" /></p>
-<h3 id="тестовый-запуск">Тестовый запуск<a title="Ссылка на этот раздел" href="#тестовый-запуск"><i class="material-icons">link</i></a></h3>
-<p>Вы только что настроили рабочее пространство для создания собственного мода. Если хотите, можете запустить
-клиент или сервер и удостовериться, что все работает, как надо.</p>
-<p>Для запуска опять откройте меню "Run" и выберите пункт "Run...". Появится окно с выбором, что запустить.</p>
+        <h1 id="сборка-мода">Сборка мода<a title="Ссылка на этот раздел" href="#сборка-мода"><i class="material-icons">link</i></a></h1>
+<p>TODO</p>
 
     </div>
 
@@ -232,7 +203,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/prep/setup_idea';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/base/build_mod';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

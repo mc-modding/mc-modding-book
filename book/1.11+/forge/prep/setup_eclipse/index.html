@@ -67,12 +67,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
             </div>
         </div>
 
@@ -155,6 +155,19 @@
 
                 </div>
                 <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
+                    </div>
+
+                </div>
+                <hr>
         </div>
 
     </div>
@@ -170,16 +183,24 @@
 <li>build.gradle</li>
 <li>gradlew (.bat и .sh)</li>
 <li>папка gradle</li>
-<li>папка src</li>
 </ul>
 <p>Теперь необходимо выполнить команду <code>gradlew eclipse</code>. Если у вас Windows, то вы можете кликнуть правой кнопкой
 по пустому пространству <strong>внутри</strong> этой папки с зажатой клавишей Shift. Тогда, в появившемся контекстном меню будет пункт
 "Открыть окно команд". Выберите этот пукт и сразу откроется консоль.</p>
-<p>В консоле введите <code>gradlew eclipse</code>.</p>
+<p>В консоли введите <code>gradlew eclipse</code>.</p>
 <p>Теперь откройте Eclipse. Нет особой разницы, где располагается рабочее пространство. В верхней части экрана откройте
-меню "File" и выберите пункт "Import". В появившемся списке выберите "General &gt; Existing Projects into Workspace".</p>
-<p>В очередном окне укажите путь к папке с нашими файлами. Нажмите кнопку "Finish".</p>
-<h3 id="тестовый-запуск">Тестовый запуск<a title="Ссылка на этот раздел" href="#тестовый-запуск"><i class="material-icons">link</i></a></h3>
+меню "File" и выберите пункт "Import". В появившемся списке выберите "Gradle &gt; Gradle Project".</p>
+<p>Пропустите вступительное окно Gradle нажатием на кнопку "Next &gt;", если оно появится.</p>
+<p>На следующем окне укажите папку с распакованными файлами. Нажмите "Finish".</p>
+<h2 id="gradle-таски">Gradle таски<a title="Ссылка на этот раздел" href="#gradle-таски"><i class="material-icons">link</i></a></h2>
+<p>Откройте меню "Window" в верхней части экрана и выберите пункты "Show View &gt; Other...".</p>
+<p>В появившемся окне выберите "Gradle &gt; Gradle Tasks".</p>
+<p>У вас откроется окно с Gradle задачами. Gradle — популярная система автоматической сборки, которая из исходников
+собирает готовые программы и делает еще много других необходимых, но <strong>рутинных</strong> дел. Эти самые дела называются
+задачами/заданиями/тасками — <strong>tasks</strong>. Мы как раз и открыли окно тасков.</p>
+<p>Выглядит оно примерно так:</p>
+<p><img src="images/gradle_tasks.png" alt="Демнострация Gradle тасков" /></p>
+<h2 id="тестовый-запуск">Тестовый запуск<a title="Ссылка на этот раздел" href="#тестовый-запуск"><i class="material-icons">link</i></a></h2>
 <p>Для тестового запуска в верхней части экрана октройте меню "Run" и выберите пункт "Run configurations". В появившемся
 окне слева откройте вкладку "Java Application" и выберите клиент или сервер. Затем, нажмите на кнопку "Run".</p>
 <p><img src="images/run.png" alt="Демонстрация тестового запуска" /></p>

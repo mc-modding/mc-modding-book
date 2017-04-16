@@ -16,6 +16,7 @@ module.exports = (par_version_dir, par_API_dir, par_category_dir, par_article_di
     let converter = new showdown.Converter({extensions: ['targetlink']});
 
     converter.setOption('ghCompatibleHeaderId', true);
+    converter.setOption('tables', true);
 
     return {
         link: `https://github.com/mc-modding/mc-modding-book/blob/master/book/${par_version_dir}/${par_API_dir}/${par_category_dir}/${par_article_dir}/article.md`,

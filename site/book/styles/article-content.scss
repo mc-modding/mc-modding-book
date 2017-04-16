@@ -90,6 +90,25 @@ img {
 	margin: 0 auto;
 }
 
+table {
+	border-collapse: collapse;
+
+	&, th, td {
+		border: 1px solid #ebebeb;
+		padding: 0.5em;
+
+		font-size: 94%;
+	}
+
+	th {
+		text-align: center;
+	}
+
+	tr:nth-child(2n) {
+		background: #f9f9f9;
+	}
+}
+
 section.ad-after-article {
 	overflow: hidden;
 }

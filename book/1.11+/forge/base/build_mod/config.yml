@@ -1,0 +1,12 @@
+# Title
+title: Сборка мода
+
+# Description (~160 symbols)
+description: >
+  Все, что связано с процессом сборки мода в конечный .jar файл: описание процесса, сама сборка, полезные настройки.
+
+# Authors
+authors:
+  -
+    name: CMTV
+    github: https://github.com/CMTV
