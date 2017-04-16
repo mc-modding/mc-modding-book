@@ -1,0 +1,9 @@
+# Category title
+category-title: Основы Forge
+
+# Articles order
+articles-order:
+  - mod_structure
+  - advanced_mcmod_info
+  - mod_annotation
+  - build_mod

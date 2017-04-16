@@ -1,0 +1,12 @@
+# Title
+title: Продвинутый mcmod.info
+
+# Description (~160 symbols)
+description: >
+  Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.
+
+# Authors
+authors:
+  -
+    name: CMTV
+    github: https://github.com/CMTV

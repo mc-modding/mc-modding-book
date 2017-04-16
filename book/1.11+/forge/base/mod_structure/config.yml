@@ -1,0 +1,12 @@
+# Title
+title: Структура мода
+
+# Description (~160 symbols)
+description: >
+  Основные файлы любого Minecraft мода. Для чего они нужны и как их настроить.
+
+# Authors
+authors:
+  -
+    name: CMTV
+    github: https://github.com/CMTV
