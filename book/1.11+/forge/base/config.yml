@@ -6,4 +6,6 @@ articles-order:
   - mod_structure
   - advanced_mcmod_info
   - mod_annotation
+  - loading_stages
+  - proxy
   - build_mod

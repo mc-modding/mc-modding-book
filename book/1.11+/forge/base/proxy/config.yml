@@ -1,0 +1,12 @@
+# Title
+title: Прокси
+
+# Description (~160 symbols)
+description: >
+  Объяснение того, как Forge загружает мод в Minecraft. Названия стадий загрузки и советы по их использованию.
+
+# Authors
+authors:
+  -
+    name: CMTV
+    github: https://github.com/CMTV

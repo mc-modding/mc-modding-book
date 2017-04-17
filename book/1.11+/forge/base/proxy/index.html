@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Собственный скин - Minecraft Modding</title>
+<title>Прокси - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Подключение скина своего оффициального аккаунта при разработке модов.">
+<meta name="description" content="Объяснение того, как Forge загружает мод в Minecraft. Названия стадий загрузки и советы по их использованию.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Собственный скин">
-<meta property="og:description" content="Подключение скина своего оффициального аккаунта при разработке модов.">
+<meta property="og:title"       content="Прокси">
+<meta property="og:description" content="Объяснение того, как Forge загружает мод в Minecraft. Названия стадий загрузки и советы по их использованию.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/prep/off_skin">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/base/proxy">
 <meta property="og:image"       content="">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -67,12 +67,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -144,27 +144,27 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article selected">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article selected">Собственный скин</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
                     </div>
 
                 </div>
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article selected">Прокси</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
                     </div>
 
@@ -177,25 +177,10 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/prep/off_skin/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/base/proxy/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="скин-с-оффициального-аккаунта">Скин с оффициального аккаунта<a title="Ссылка на этот раздел" href="#скин-с-оффициального-аккаунта"><i class="material-icons">link</i></a></h1>
-<p>Если у вас есть купленная Minecraft лицензия, то вы можете указать в параметрах
-запуска свою почту/пароль. В этом случае, ваш никнейм + скин автоматически загрузятся
-при запуске.</p>
-<h2 id="настройка-в-idea">Настройка в Idea<a title="Ссылка на этот раздел" href="#настройка-в-idea"><i class="material-icons">link</i></a></h2>
-<p>Откройте меню "Run" и выберите пункт "Edit Configurations...".</p>
-<p>В левой части открывшегося окна выберите пункт "Minecraft Client" и введите в поле "Program arguments" следующую строку:</p>
-<p><code>--username=test@mail.ru --password=***</code></p>
-<p>В строке выше укажите почту на которую была куплена копия Minecraft и пароль вместо звездочек.</p>
-<p><img src="images/off_skin_idea.png" alt="Настройка загрузки скина в Idea 2" /></p>
-<h2 id="настройка-в-eclipse">Настройка в Eclipse<a title="Ссылка на этот раздел" href="#настройка-в-eclipse"><i class="material-icons">link</i></a></h2>
-<p>Отройте меню "Run" и выберите пункт "Run Configurations...". В левой части появившегося окна откройте вкладку
-"Java Application". Выберите пункт "[название папки с файлами]_Client". В правой части окна откройте вкладку "Arguments" и
-в поле "Program arguments" вставьте строку:</p>
-<p><code>--username=test@mail.ru --password=***</code></p>
-<p>В строке выше укажите почту на которую была куплена копия Minecraft и пароль вместо звездочек.</p>
-<p><img src="images/off_skin_eclipse.png" alt="Настройка загрузки скина в Eclipse" /></p>
+        <h1 id="прокси">Прокси<a title="Ссылка на этот раздел" href="#прокси"><i class="material-icons">link</i></a></h1>
+<p>TODO</p>
 
     </div>
 
@@ -220,7 +205,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/prep/off_skin';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/base/proxy';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
