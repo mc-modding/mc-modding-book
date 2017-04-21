@@ -8,7 +8,7 @@
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Установка необходимых программ, которые необходимы для разработки Minecraft модов.">
+<meta name="description" content="Установка необходимых программ, которые необходимы для разработки Bukkit плагинов.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,9 +16,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <meta property="og:title"       content="Установка программ">
-<meta property="og:description" content="Установка необходимых программ, которые необходимы для разработки Minecraft модов.">
+<meta property="og:description" content="Установка необходимых программ, которые необходимы для разработки Bukkit плагинов.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/prep/install">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bukkit/prep/install">
 <meta property="og:image"       content="">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -93,7 +93,7 @@
                 <i class="material-icons">home</i><span>Главная</span>
             </a>
 
-            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+            <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" title="Учебник" class="menu-item">
                 <i class="material-icons">import_contacts</i><span>Учебник</span>
             </a>
 
@@ -134,8 +134,8 @@
             <div class="api-choose">
                 <label>API:
                     <select onChange="window.location.href=this.value">
-                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
-                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" selected>Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >Forge</option>
                     </select>
                 </label>
             </div>
@@ -145,28 +145,9 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article selected">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" class="category-article selected">Подготовка</a>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article selected">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
                     </div>
 
                 </div>
@@ -178,7 +159,7 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/prep/install/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/prep/install/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
         <h1 id="установка-программ">Установка программ<a title="Ссылка на этот раздел" href="#установка-программ"><i class="material-icons">link</i></a></h1>
 <p>Minecraft написана на языке Java. Программы на этом языке могут выполняться только если у вас установлена виртуальная машина Java.</p>
@@ -188,27 +169,6 @@
 <p>Но для разработки собственных модов нам потребуется писать программный код и пользоваться разными библиотеками. Это не входит в стандартный Java пакет,
 поэтому нам нужно установить JDK (Java Development Kit) (Комплект инструментов для разработки на Java).</p>
 <p>Скачайте <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">последнюю версию JDK</a> и следуйте инструкциям по установке. Ничего в настройках установки менять не надо.</p>
-<h2 id="forge">Forge<a title="Ссылка на этот раздел" href="#forge"><i class="material-icons">link</i></a></h2>
-<p>Установка Forge для конечных пользователей вашего мода и для вас, как разработчика различается.</p>
-<h3 id="forge-для-пользователей">Forge для пользователей<a title="Ссылка на этот раздел" href="#forge-для-пользователей"><i class="material-icons">link</i></a></h3>
-<p>Чтобы люди смогли играть с вашим модом, на их Minecraft должен быть установлен движок Forge.</p>
-<p>Скачайте установщик (Installer) с <a href="https://files.minecraftforge.net/" target="_blank">официального сайта Forge</a>:</p>
-<p><img src="images/download_installer.png" alt="Картинка скачивания установщика" /></p>
-<p>Запустите скачанный файл. Выберите пункт "Install client", укажите путь к Minecraft (если он не указан) и нажмите
-OK.</p>
-<p><img src="images/installer.png" alt="Картинка установщика" /></p>
-<p>Как понять, куда установлен Minecraft? По умолчанию он устанавливается по следующему пути:
-<code>C:\Users\*ПОЛЬЗОВАТЕЛЬ*\AppData\Roaming\.minecraft</code>, где <code>*ПОЛЬЗОВАТЕЛЬ*</code> имя текущего пользователя компьютера.</p>
-<h3 id="forge-для-разработки">Forge для разработки<a title="Ссылка на этот раздел" href="#forge-для-разработки"><i class="material-icons">link</i></a></h3>
-<p>Скачайте набор инструментов для разработки модификаций (MDK) с <a href="https://files.minecraftforge.net/" target="_blank">официального сайта Forge</a>:</p>
-<p><img src="images/download_mdk.png" alt="Картинка скачивания MDK" /></p>
-<p>Создайте в любом удобном для вас месте папку и распакуйте туда скачанный архив. Вы увидите много файлов.
-Не все из них вам нужны. Чтобы не захламлять рабочее пространство, удалите все файлы, кроме:</p>
-<ul>
-<li>build.gradle</li>
-<li>gradlew.bat</li>
-<li>папки gradle</li>
-</ul>
 <h2 id="среда-разработки">Среда разработки<a title="Ссылка на этот раздел" href="#среда-разработки"><i class="material-icons">link</i></a></h2>
 <p>Моды можно писать и в блокноте, но это очень неудобно. Нам нужна специализированная программа, которая
 умеет подсвечивать код, выполнять авто-импорт и делать много других полезных вещей.</p>
@@ -218,6 +178,28 @@ OK.</p>
 <p>Достаточно часто моды пишут на Eclipse, так как и сам Minecraft был написан с помощью этой IDE.
 С другой стороны, Idea выглядит посовременнее и пофункциональнее, но принципиальной разницы между ними нет.</p>
 <p>Выбирайте то, что нравится вам.</p>
+<h2 id="настройка-intellij-idea">Настройка Intellij Idea<a title="Ссылка на этот раздел" href="#настройка-intellij-idea"><i class="material-icons">link</i></a></h2>
+<p>В самой среде разработки открываем File -&gt; New -&gt; New Project. Выбираем систему автоматической сборки Gradle(Если вы разбираетесь в других системах, то можете выбрать их)
+в самом окне ставим галочку напротив "Java" и нажимаем "Next".
+<img src="images/newproject.png" alt="New Project Настройка" /></p>
+<p>В следующем окне заполняем поля GroupID - TuTPlugin, ArtifactsID - TuTPlugin и нажимаем "Next" пока не появится кнопка "Finish". Всё, установка рабочей среды
+окончена! Теперь осталось дождаться загрузки модуля Gradle.</p>
+<p>Создадим две папки: libs и src, в нашем рабочем пространстве. В libs мы будем помещать плагины которые хотим использоваться как библиотеки. В src будут храниться исходники
+нашего плагина. Папка src должна иметь такой вид:</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        ├── java
+        └── resources
+</code></pre>
+<p>В java находятся сами исходники, а в resources конфиги, папки и прочее. Открываем настройки проекта с плагином(F4) и в категории Project Setting выбираем Modules.
+Выбираем наш модуль TuTPlugin открываем папку src и в папки main выделяем java и resources и нажимаем на Sources.
+<img src="images/projsettings.png" alt="Project Settings Настройка" />
+И теперь добавляем папку libs как библиотеку:
+<img src="images/libssettings.png" alt="Project Settings Настройка" /></p>
+<h2 id="использование-bukkit-api">Использование Bukkit API<a title="Ссылка на этот раздел" href="#использование-bukkit-api"><i class="material-icons">link</i></a></h2>
+<p>Чтобы избежать трудность в начале и не использовать непонятный(для новичков) BuildTools перейдём на сайт <a href="https://getbukkit.org/spigot" target="_blank">GetBukkit</a> и загрузим актуальную версию ядра. 
+После того как Вы скачали Spigot-<ver>.jar переместим его в папку libs в нашем проекте.</p>
+<p>На этом основные настройки закончены!</p>
 
     </div>
 
@@ -242,7 +224,7 @@ OK.</p>
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/prep/install';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bukkit/prep/install';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
