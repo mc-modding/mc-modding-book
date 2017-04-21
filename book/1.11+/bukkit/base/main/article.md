@@ -31,8 +31,6 @@ public class TuTPlugin extends JavaPlugin
 }
 ```
 
-На этом главный класс готов!
-
 ## plugin.yml
 
 Этот файл отвечает за регистрацию плагина. Примерно как @Mod в forge api. Создадим в папке:
