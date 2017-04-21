@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Создание предмета - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Создание собственного предмета, присвоение текстуры и добавление его в игру. Добавление в креативную вкладку.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Создание предмета">
+<meta property="og:description" content="Создание собственного предмета, присвоение текстуры и добавление его в игру. Добавление в креативную вкладку.">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/item/creating_item">
+<meta property="og:image"       content="">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code, code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article selected">Предмет</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+    </div>
+
+</nav><article>
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/item/creating_item/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="создание-предмета">Создание предмета<a title="Ссылка на этот раздел" href="#создание-предмета"><i class="material-icons">link</i></a></h1>
+<p>Для начала в пакете мода создадим пакет item. Таким образом все, что связано с предметами нашего мода, будет находиться
+в этом пакете. Есть и еще одна причина. Такой иерархии пакетов придерживаются и разработчики Minecraft.</p>
+<h2 id="класс-предметов">Класс предметов<a title="Ссылка на этот раздел" href="#класс-предметов"><i class="material-icons">link</i></a></h2>
+<p>Теперь нам нужен файл, в котором мы будем объявлять и регистрировать все предметы. Можно конечно делать это в CommonProxy, но
+если у нас в моде будут предметы, блоки, моби и т.д., то очень скоро файл разрастется и работать с ним будет очень трудно.</p>
+<p>Создадим в пакете item файл Items.java (или ModItems.java). Название может быть любым. В классе создадим два метода:</p>
+<ul>
+<li>registerItems — для регистрации предметов на клиенте и сервере. Ведь обе стороны должны знать, что такой предмет существует</li>
+<li>registerItemsRender — для регистрации рендера предметов на клиенте</li>
+</ul>
+<pre><code class="java language-java">package ru.mcmodding.testmod.item;
+
+public class Items {
+
+    public static void registerItems() {
+
+    }
+
+    public static void registerItemsRender() {
+
+    }
+
+}
+</code></pre>
+<p>Теперь перейдем в CommonProxy и в метод <code>preInit</code> добавим вызов метода <code>registerItems</code>:</p>
+<pre><code class="java language-java">// CommonProxy.java
+
+public void preInit(FMLPreInitializationEvent event) {
+    Items.registerItems();
+}
+</code></pre>
+<p>А регистрацию рендера добавим в метод <code>init</code> в файл ClientProxy:</p>
+<pre><code class="java language-java">// ClientProxy.java
+
+@Override
+public void preInit(FMLPreInitializationEvent event) {
+    super.preInit(event);
+
+    Items.registerItemsRender();
+}
+</code></pre>
+<p>Заметьте, что сначала мы регистрируем предметы (в <code>preInit</code>), а только потом назначаем рендер (в <code>init</code>).</p>
+<h2 id="файл-предмета">Файл предмета<a title="Ссылка на этот раздел" href="#файл-предмета"><i class="material-icons">link</i></a></h2>
+<p>Теперь пора создать файл самого предмета.</p>
+<p>В Minecraft применяется следующий способ именования предметов: <code>Item...</code>. Если наш предмет называется <code>Test</code>, то название файла:
+<code>ItemTest.java</code>, а не <code>TestItem.java</code>.</p>
+<p>Никакой принципиальной роли это не играет.</p>
+<p>Создадим файл <code>ItemTest.java</code>, который наследует класс <code>Item</code>.</p>
+<pre><code class="java language-java">package ru.mcmodding.testmod.item;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+
+public class ItemTest extends Item {
+    public ItemTest() {
+        this.setRegistryName("item_test");
+        this.setUnlocalizedName("itemTest");
+
+        this.setCreativeTab(CreativeTabs.MATERIALS);
+    }
+}
+</code></pre>
+<p>Разберем код конструктора:</p>
+<ul>
+<li><code>this.setRegistryName("item_test");</code> — установка уникального имени нашего предмета. <strong>Не используйте буквы в верхнем регистре!</strong>
+Только английские маленькие буквы, цифры и нижние подчеркивания!</li>
+<li><code>this.setUnlocalizedName("itemTest");</code> — установка имени предмета для последующей локализации. Можно использовать буквы в верхнем регистре.</li>
+<li><code>this.setCreativeTab(CreativeTabs.MATERIALS);</code> — добавление нашего предмета во вкладку "Материалы" в креативе.</li>
+</ul>
+<h2 id="регистрация-предмета">Регистрация предмета<a title="Ссылка на этот раздел" href="#регистрация-предмета"><i class="material-icons">link</i></a></h2>
+<p>Если вы сейчас запустите Minecraft, то не увидите никакого предмета. Нужно сообщить Forge, что мы добавляем в игру новый предмет.</p>
+<p>Для этого перейдем в класс предметов и добавим новую переменную в тело класса:</p>
+<pre><code class="java language-java">public static ItemTest testItem = new ItemTest();
+</code></pre>
+<p>Теперь зарегистрируем наш предмет в игре с помощью метода <code>registerItems()</code>:</p>
+<pre><code class="java language-java">public static void registerItems() {
+    GameRegistry.register(testItem);
+}
+</code></pre>
+<p>Теперь игра знает о нашем предмете. Можете запустить клиент и найти во вкладке "Материалы" созданный предмет.</p>
+<p><img src="images/itemWithoutTexture.png" alt="Демонстрация зарегистрированного предмета 1" /></p>
+<p><img src="images/itemWithoutModel.png" alt="Демонстрация зарегистрированного предмета 2" /></p>
+<h2 id="модель-и-текстура-предмета">Модель и текстура предмета<a title="Ссылка на этот раздел" href="#модель-и-текстура-предмета"><i class="material-icons">link</i></a></h2>
+<p>В классе предметов в методе <code>registerItemsRender()</code> впишите:</p>
+<pre><code class="java language-java">public static void registerItemsRender() {
+    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(testItem, 0, new ModelResourceLocation(testItem.getRegistryName(), "inventory"));
+}
+</code></pre>
+<p>С помощью этого кода мы зарегистрировали модель для нашего предмета. Теперь эту модель необходимо создать.</p>
+<p>Создайте файл <code>item_test.json</code> по пути <code>resources/assets/*ваш modid*/models/item</code>. Имя этого файла
+должно <strong>полностью</strong> совпадать со значением, которое вы указали в строке <code>this.setRegistryName("item_test");</code>. Для самого простого
+предмета содержимое этого файла должно быть следующим:</p>
+<pre><code class="json language-json">{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "testmod:items/item_test"
+  }
+}
+</code></pre>
+<p>Здесь параметр <code>"parent"</code> указыват, откуда унаследовать параметры отображения модели. Массив текстур <code>"textures</code> указывает
+пути к текстурам. Базовая текстура указывается через параметр <code>"layer0"</code>, значение которого указывает путь к текстуре.</p>
+<p>Более подробно о настройках модели и отображения предмета есть отдельная статья.</p>
+<p>Обратите внимание, что путь выглядит следующим образом: <code>testmod:items/item_test</code>. Первая часть этой строчки "testmod" должна
+равняться modid вашего мода. Затем идет путь. В данном случае текстура с именем <code>item_test.png</code> должна лежать по следующему пути:</p>
+<p><code>resources/assets/*ваш modid*/textures/items/</code></p>
+<p><img src="images/item_test.png" alt="Текстура предмета" /></p>
+<p>Название файла — <code>item_test.png</code> — должно быть таким же, какое значение было указано в методе <code>this.setRegistryName("item_test");</code>.</p>
+<p><img src="images/itemWithTexture.png" alt="Демонстрация предмета с текстурой" /></p>
+<h2 id="локализация">Локализация<a title="Ссылка на этот раздел" href="#локализация"><i class="material-icons">link</i></a></h2>
+<p>Создадим папку <code>lang</code> в ассетах мода (<code>resources/assets/*ваш modid*/</code>).</p>
+<p>В папке lang создадим файл <code>en_US.lang</code>. Внутри запишем следующее:</p>
+<pre><code class="markdown language-markdown">item.itemTest.name=Test item
+</code></pre>
+<p>Слева записывается название, которые мы переводим. Для предметов формат следующий: <code>item.*ИМЯ*.name</code>, где *Имя* — то, что
+мы указали в <code>this.setUnlocalizedName("itemTest");</code>.</p>
+<p>Заметьте, что пробелов до знака равенства и после него <strong>не</strong> должно быть.</p>
+<p>Для добавления русского перевода создадим в папке lang файл <code>ru_RU.lang</code>:</p>
+<pre><code class="markdown language-markdown">item.itemTest.name=Тестовый предмет
+</code></pre>
+<p>Остальные коды для других языков можно <a href="http://minecraft.gamepedia.com/Language" target="_blank">найти</a> на официальной Minecraft вики.</p>
+
+    </div>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/item/creating_item';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>
