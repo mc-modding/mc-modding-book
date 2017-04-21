@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Главный класс - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Основной класс в котором будет происходить регистрация команд, событий и т.д.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Главный класс">
+<meta property="og:description" content="Основной класс в котором будет происходить регистрация команд, событий и т.д.">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bukkit/base/main">
+<meta property="og:image"       content="">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code, code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" selected>Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" class="category-article ">Подготовка</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="category-article selected">Основное</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+    </div>
+
+</nav><article>
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/main/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h2 id="главный-класс">Главный класс<a title="Ссылка на этот раздел" href="#главный-класс"><i class="material-icons">link</i></a></h2>
+<p>В главном классе будет происходить регистрация команд, событий и т.п. вещей.
+Создадим главный класс по пути:</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        └── java
+            └── ru
+                └── ivasik
+                    └── tutplugin
+                        └── TuTPlugin.java
+</code></pre>
+<p>И теперь пропишем в главный класс родительский класс JavaPlugin.</p>
+<pre><code class="java language-java">public class TuTPlugin extends JavaPlugin
+{
+    @Override
+    public void onEnable()
+    {
+        Bukkit.getLogger().info("Im enabled!:D");
+    }
+
+    @Override
+    public void onDisable()
+    {
+        Bukkit.getLogger().info("Im disabled! :C");
+    }
+}
+</code></pre>
+<p>На этом главный класс готов!</p>
+<h2 id="pluginyml">plugin.yml<a title="Ссылка на этот раздел" href="#pluginyml"><i class="material-icons">link</i></a></h2>
+<p>Этот файл отвечает за регистрацию плагина. Примерно как @Mod в forge api. Создадим в папке:</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        └── resources
+</code></pre>
+<p>файл plugin.yml и впишем туда такие значения:</p>
+<pre><code class="YAML language-YAML">name: TuTPlugin
+main: ru.ivasik.tutplugin.TuTPlugin
+version: 1.0
+</code></pre>
+<blockquote>
+  <p>Примечание! Вы можете добавить так же и другие параметры которые приведены в таблице ниже, но если отсутсвует хотя бы один из обязательных параметров, плагин не запуститься!</p>
+</blockquote>
+<h3 id="таблица-с-доступными-параметрами">Таблица с доступными параметрами<a title="Ссылка на этот раздел" href="#таблица-с-доступными-параметрами"><i class="material-icons">link</i></a></h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+<th>Обязателен</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>Задаёт название плагину.</td>
+<td>Да</td>
+<td>name: TuTPlugin</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Задаёт версию плагина.</td>
+<td>Да</td>
+<td>version: 1.0</td>
+</tr>
+<tr>
+<td>main</td>
+<td>Задаёт путь до класс TuTPlugin.</td>
+<td>Да</td>
+<td>main: ru.ivasik.tutplugin.TuTPlugin</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Задаёт описание плагина.</td>
+<td>Нет</td>
+<td>description: My Test Plugin</td>
+</tr>
+<tr>
+<td>load</td>
+<td>Задаёт когда нужно загрузиться плагину. По стандарту postworld.</td>
+<td>Нет</td>
+<td>load: STARTUP</td>
+</tr>
+<tr>
+<td>author</td>
+<td>Задаёт автора плагина.</td>
+<td>Нет</td>
+<td>author: Ivasik</td>
+</tr>
+<tr>
+<td>authors</td>
+<td>Задаёт авторов плагина.</td>
+<td>Нет</td>
+<td>authors: [Ivasik, CMTV, Dahaka]</td>
+</tr>
+<tr>
+<td>website</td>
+<td>Задаёт ссылку на сайт автора.</td>
+<td>Нет</td>
+<td>website: http://mcmodding.ru</td>
+</tr>
+<tr>
+<td>database</td>
+<td>Использовать ли базу данных.</td>
+<td>Нет</td>
+<td>database: false</td>
+</tr>
+<tr>
+<td>depend</td>
+<td>Задаёт зависимости для плагина. Если плагин из списка отсутствует, плагин не загрузится.</td>
+<td>Нет</td>
+<td>depend: [ProtocolLib, WorldEdit]</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td>Задаёт префикс для плагина в консоли.</td>
+<td>Нет</td>
+<td>prefix: [MCModding]</td>
+</tr>
+<tr>
+<td>softdepend</td>
+<td>Задаёт зависимости для плагина без которых плагин не сможет нормально функционировать.</td>
+<td>Нет</td>
+<td>softdepend: [WorldGuard, PermissionsEx]</td>
+</tr>
+<tr>
+<td>loadbefore</td>
+<td>Задаёт плагины которые будут загружены после нашего плагина.</td>
+<td>Нет</td>
+<td>loadbefore: [WorldGurad, WorldEdit]</td>
+</tr>
+<tr>
+<td>commands</td>
+<td>Задаёт командам сокращение, описание т.д. Подробнее ниже.</td>
+<td>Нет</td>
+<td>commands:     super_command:         description: Это крутая команда!         aliases: [sp, super]</td>
+</tr>
+<tr>
+<td>permissions</td>
+<td>Задаёт права на использование того или иного действия. Подробнее ниже.</td>
+<td>Нет</td>
+<td>permissions:          inferno.*:                  description: Право на всё         default: false</td>
+</tr>
+</tbody>
+</table>
+<h4 id="таблица-с-доступными-атрибутами-для-параметра-commands">Таблица с доступными атрибутами для параметра commands<a title="Ссылка на этот раздел" href="#таблица-с-доступными-атрибутами-для-параметра-commands"><i class="material-icons">link</i></a></h4>
+<table>
+<thead>
+<tr>
+<th>Атрибут</th>
+<th>Описание</th>
+<th>Обязателен</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>description</td>
+<td>Задаёт описание команде.</td>
+<td>Нет</td>
+<td>description: Супер Команда</td>
+</tr>
+<tr>
+<td>aliases</td>
+<td>Задаёт сокращение комадны.</td>
+<td>Нет</td>
+<td>aliases: sp  или aliases: [sp, super]</td>
+</tr>
+<tr>
+<td>permission</td>
+<td>Задаёт право на использование команды.</td>
+<td>Нет</td>
+<td>permission: inferno.super</td>
+</tr>
+<tr>
+<td>permission-message</td>
+<td>Задаёт сообщение если у игрока нет прав на эту команду.</td>
+<td>Нет</td>
+<td>permission-message: У вас нет права /<permission></td>
+</tr>
+<tr>
+<td>usage</td>
+<td>Задаёт описание о том, как использовать команду.</td>
+<td>Нет</td>
+<td>usage: Неверный аргумент! Используйте /<command> [Игрок]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="таблица-с-доступными-атрибутами-для-параметра-permissions">Таблица с доступными атрибутами для параметра permissions<a title="Ссылка на этот раздел" href="#таблица-с-доступными-атрибутами-для-параметра-permissions"><i class="material-icons">link</i></a></h4>
+<table>
+<thead>
+<tr>
+<th>Атрибут</th>
+<th>Описание</th>
+<th>Обязателен</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>description</td>
+<td>Задаёт описание для права.</td>
+<td>Нет</td>
+<td>description: Позволяет ходить</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Задаёт значение по умолчанию для не опнутых.</td>
+<td>Нет</td>
+<td>default: true</td>
+</tr>
+<tr>
+<td>children</td>
+<td>Задаёт наследников права.</td>
+<td>Нет</td>
+<td>children:     inferno.super: true     inferno.*: true</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bukkit/base/main';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>
