@@ -1,0 +1,7 @@
+# API name
+api-name: Bukkit
+
+# Categories order
+categories-order:
+  - prep
+  - base
