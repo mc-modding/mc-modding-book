@@ -67,12 +67,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
             </div>
         </div>
 
@@ -253,12 +253,10 @@ public class ItemTest extends Item {
 }
 </code></pre>
 <p>Разберем код конструктора:</p>
-<ul>
-<li><code>this.setRegistryName("item_test");</code> — установка уникального имени нашего предмета. <strong>Не используйте буквы в верхнем регистре!</strong>
-Только английские маленькие буквы, цифры и нижние подчеркивания!</li>
-<li><code>this.setUnlocalizedName("itemTest");</code> — установка имени предмета для последующей локализации. Можно использовать буквы в верхнем регистре.</li>
-<li><code>this.setCreativeTab(CreativeTabs.MATERIALS);</code> — добавление нашего предмета во вкладку "Материалы" в креативе.</li>
-</ul>
+<p><code>this.setRegistryName("item_test");</code> — установка уникального имени нашего предмета. <strong>Не используйте буквы в верхнем регистре!</strong>
+Только английские маленькие буквы, цифры и нижние подчеркивания!</p>
+<p><code>this.setUnlocalizedName("itemTest");</code> — установка имени предмета для последующей локализации. Можно использовать буквы в верхнем регистре.</p>
+<p><code>this.setCreativeTab(CreativeTabs.MATERIALS);</code> — добавление нашего предмета во вкладку "Материалы" в креативе.</p>
 <h2 id="регистрация-предмета">Регистрация предмета<a title="Ссылка на этот раздел" href="#регистрация-предмета"><i class="material-icons">link</i></a></h2>
 <p>Если вы сейчас запустите Minecraft, то не увидите никакого предмета. Нужно сообщить Forge, что мы добавляем в игру новый предмет.</p>
 <p>Для этого перейдем в класс предметов и добавим новую переменную в тело класса:</p>
