@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>События - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Использование событий в плагине">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="События">
+<meta property="og:description" content="Использование событий в плагине">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bukkit/base/events">
+<meta property="og:image"       content="">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code, code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" selected>Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" class="category-article ">Подготовка</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="category-article selected">Основное</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="article ">Главный класс</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/events" class="article selected">События</a>
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+    </div>
+
+</nav><article>
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/events/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h2 id="события">События<a title="Ссылка на этот раздел" href="#события"><i class="material-icons">link</i></a></h2>
+<p>События - это то же, что случается с нами в повседневной жизни, но только в minecraft и мы можем предотвратить это событие.</p>
+<p>Чтобы отменить событие нужно прописать в методе с событием e.setCancelled(true); Если хотим проверить, отменено ли событие то пропишем e.isCancelled() что вернёт нам true или false.</p>
+<p>Для начала создадим класс EventsHandler:</p>
+<pre><code class="Java language-Java">public class EventsHandler implements Listener
+{
+    @EventHandler
+    /** Данное событие сработает при ломании блока. */
+    public void onBreak(BlockBreakEvent e)
+    {
+        Player player = e.getPlayer();
+
+        /** Если блок который мы ломаем "Земля", то отменяем событие и выводим сообщение */
+        if(e.getBlock().getType() == Material.DIRT)
+        {
+            e.setCancelled(true);
+            player.sendMessage("Блок запривачен!");
+        }
+    }
+
+    @EventHandler
+    /** Данное событие сработает при взаимодействии с блоком */
+    public void onInteract(PlayerInteractEvent e)
+    {
+        Player player = e.getPlayer();
+
+        /** Если тип блока на который мы нажали "Песок" ты выводим сообщение. */
+        if(e.getClickedBlock().getType() == Material.SAND)
+        {
+            player.sendMessage(ChatColor.YELLOW.BOLD + "Это песок!");
+        }
+    }
+}
+</code></pre>
+<p>Основной класс готов. Теперь нам нужно зарегистрировать наши события. Перейдём в главный класс и в методе onEnable пропишем такой код:</p>
+<pre><code class="Java language-Java">/** EventsHandler это наш класс, this указывает на то, что это главный класс. В противном случаи нужно прописать TuTPlugin.instance(), но об этом позднее. */
+Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
+</code></pre>
+<h3 id="таблица-всех-событий">Таблица всех событий<a title="Ссылка на этот раздел" href="#таблица-всех-событий"><i class="material-icons">link</i></a></h3>
+<h2 id="-блоки">##### Блоки<a title="Ссылка на этот раздел" href="#-блоки"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BlockBreakEvent</td>
+<td>Срабатывает когда игрок сломал блок.</td>
+</tr>
+<tr>
+<td>BlockBurnEvent</td>
+<td>Срабатывает когда блок сгорел.</td>
+</tr>
+<tr>
+<td>BlockCanBuildEvent</td>
+<td>Срабатывает когда блок ставится.</td>
+</tr>
+<tr>
+<td>BlockDamageEvent</td>
+<td>Срабатывает когда блок повреждён игроком.</td>
+</tr>
+<tr>
+<td>BlockDispenseEvent</td>
+<td>Срабатывает когда из блока, что-то вытащили.</td>
+</tr>
+<tr>
+<td>BlockExpEvent</td>
+<td>Срабатывает когда блок дал опыт.</td>
+</tr>
+<tr>
+<td>BlockExplodeEvent</td>
+<td>Срабатывает когда блок взрывается/взорвался.</td>
+</tr>
+<tr>
+<td>BlockFadeEvent</td>
+<td>Срабатывает когда блок исчез/растаял.</td>
+</tr>
+<tr>
+<td>BlockFormEvent</td>
+<td>Срабатывает когда блок формируется.</td>
+</tr>
+<tr>
+<td>BlockFromToEvent</td>
+<td>Срабатывает когда жидкость/поршень/яйцо дракона перемещается.</td>
+</tr>
+<tr>
+<td>BlockGrowEvent</td>
+<td>Срабатывает когда блок вырастает/растёт.</td>
+</tr>
+<tr>
+<td>BlockIgniteEvent</td>
+<td>Срабатывает когда блок поджигается.</td>
+</tr>
+<tr>
+<td>BlockMultiPlaceEvent</td>
+<td>Срабатывает когда блок был поставлен. Формирует дополнительные блоки. (пример: кровать)</td>
+</tr>
+<tr>
+<td>BlockPhysicsEvent</td>
+<td>Срабатывает когда на блоке применяется физика. (пример: песок, гравий, бетон)</td>
+</tr>
+<tr>
+<td>BlockPistonEvent</td>
+<td>Срабатывает когда поршень активируется.</td>
+</tr>
+<tr>
+<td>BlockPistonExtendEvent</td>
+<td>Срабатывает когда поршень "расширяется".</td>
+</tr>
+<tr>
+<td>BlockPistonRetractEvent</td>
+<td>Срабатывает когда поршень задвигается.</td>
+</tr>
+<tr>
+<td>BlockPlaceEvent</td>
+<td>Срабатывает когда игрок поставил блок.</td>
+</tr>
+<tr>
+<td>BlockRedstoneEvent</td>
+<td>Срабатывает когда красный камень изменяется.</td>
+</tr>
+<tr>
+<td>BlockSpreadEvent</td>
+<td>Срабатывает когда блок распространяется. (пример: гриб, огонь)</td>
+</tr>
+<tr>
+<td>CauldronLevelChangeEvent</td>
+<td>Срабатывает когда уровень воды в котле изменяется.</td>
+</tr>
+<tr>
+<td>EntityBlockFormEvent</td>
+<td>Срабатывает когда блок поставила сущность. (пример: житель в деревне посадил морковь)</td>
+</tr>
+<tr>
+<td>LeavesDecayEvent</td>
+<td>Срабатывает когда листья "опадают".</td>
+</tr>
+<tr>
+<td>NotePlayEvent</td>
+<td>Срабатывает когда нотный блок используется игроком или активирован красным камнем.</td>
+</tr>
+<tr>
+<td>SignChangeEvent</td>
+<td>Срабатывает когда игрок изменяет табличку.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-чары">##### Чары<a title="Ссылка на этот раздел" href="#-чары"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EnchantItemEvent</td>
+<td>Срабатывает когда предмет был зачарован.</td>
+</tr>
+<tr>
+<td>PrepareItemEnchantEvent</td>
+<td>Срабатывает когда ItemStack вставляется в стол зачарования. Может быть вызван несколько раз.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-сущность">##### Сущность<a title="Ссылка на этот раздел" href="#-сущность"><i class="material-icons">link</i></a></h2>
+<p>Cooming Soon...</p>
+<h2 id="-висящий-блоктолько-картина-и-рамка">##### Висящий блок(Только картина и рамка!)<a title="Ссылка на этот раздел" href="#-висящий-блоктолько-картина-и-рамка"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HangingBreakByEntityEvent</td>
+<td>Срабатывает когда картина/рамка была разрушена сущностью.</td>
+</tr>
+<tr>
+<td>HangingBreakEvent</td>
+<td>Срабатывает когда картина/рамка была разрушена.</td>
+</tr>
+<tr>
+<td>HangingPlaceEvent</td>
+<td>Срабатывает когда картина/рамка была установлена.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-инвентарь">##### Инвентарь<a title="Ссылка на этот раздел" href="#-инвентарь"><i class="material-icons">link</i></a></h2>
+<p>Cooming Soon...</p>
+<h2 id="-игрок">##### Игрок<a title="Ссылка на этот раздел" href="#-игрок"><i class="material-icons">link</i></a></h2>
+<p>Cooming Soon...</p>
+<h2 id="-сервер">##### Сервер<a title="Ссылка на этот раздел" href="#-сервер"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MapInitializeEvent</td>
+<td>Срабатывает когда карта инициализировалась.</td>
+</tr>
+<tr>
+<td>PluginDisableEvent</td>
+<td>Срабатывает когда плагин отключен.</td>
+</tr>
+<tr>
+<td>PluginEnableEvent</td>
+<td>Срабатывает когда плагин включен.</td>
+</tr>
+<tr>
+<td>RemoteServerCommandEvent</td>
+<td>Срабатывает когда команда идёт за RCON данными.</td>
+</tr>
+<tr>
+<td>ServerCommandEvent</td>
+<td>Срабатывает когда команда введена через консоль.</td>
+</tr>
+<tr>
+<td>ServerListPingEvent</td>
+<td>Срабатывает когда в список серверов отправляется пинг.</td>
+</tr>
+<tr>
+<td>ServiceRegisterEvent</td>
+<td>Срабатывает когда служба зарегистрирована.</td>
+</tr>
+<tr>
+<td>ServiceUnregisterEvent</td>
+<td>Срабатывает когда служба не зарегистрирована.</td>
+</tr>
+<tr>
+<td>TabCompleteEvent</td>
+<td>Срабатывает когда игроком (или в консоли) нажимается TAB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-транспорт">##### Транспорт<a title="Ссылка на этот раздел" href="#-транспорт"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VehicleBlockCollisionEvent</td>
+<td>Срабатывает когда транспорт сталкивается с блоком.</td>
+</tr>
+<tr>
+<td>VehicleCollisionEvent</td>
+<td>Срабатывает когда транспорт сталкивается.</td>
+</tr>
+<tr>
+<td>VehicleCreateEvent</td>
+<td>Срабатывает когда транспорт создан.</td>
+</tr>
+<tr>
+<td>VehicleDamageEvent</td>
+<td>Срабатывает когда транспорт получает урон.</td>
+</tr>
+<tr>
+<td>VehicleDestroyEvent</td>
+<td>Срабатывает когда транспорт уничтожен.</td>
+</tr>
+<tr>
+<td>VehicleEnterEvent</td>
+<td>Срабатывает когда сущность села в транспорт.</td>
+</tr>
+<tr>
+<td>VehicleEntityCollisionEvent</td>
+<td>Срабатывает когда транспорт сталкивается с сущностью.</td>
+</tr>
+<tr>
+<td>VehicleExitEvent</td>
+<td>Срабатывает когда сущность вышла из транспорта.</td>
+</tr>
+<tr>
+<td>VehicleMoveEvent</td>
+<td>Срабатывает когда транспорт движется.</td>
+</tr>
+<tr>
+<td>VehicleUpdateEvent</td>
+<td>Срабатывает когда транспорт обновился.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-погода">##### Погода<a title="Ссылка на этот раздел" href="#-погода"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LightningStrikeEvent</td>
+<td>Хранит данные для удара молнии.</td>
+</tr>
+<tr>
+<td>ThunderChangeEvent</td>
+<td>Хранит данные для изменения грозы в мире.</td>
+</tr>
+<tr>
+<td>WeatherChangeEvent</td>
+<td>Хранит данные для изменения погоды в мире.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-мир">##### Мир<a title="Ссылка на этот раздел" href="#-мир"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChunkLoadEvent</td>
+<td>Срабатывает когда чанк загружается.</td>
+</tr>
+<tr>
+<td>ChunkPopulateEvent</td>
+<td>Срабатывает когда чанк закончил заполнение.</td>
+</tr>
+<tr>
+<td>ChunkUnloadEvent</td>
+<td>Срабатывает когда чанк выгрузился.</td>
+</tr>
+<tr>
+<td>PortalCreateEvent</td>
+<td>Срабатывает когда портал создан.</td>
+</tr>
+<tr>
+<td>SpawnChangeEvent</td>
+<td>Срабатывает когда место спавна в мире изменяться.</td>
+</tr>
+<tr>
+<td>StructureGrowEvent</td>
+<td>Срабатывает когда структура вырастает. (пример: саженец -&gt; дерево)</td>
+</tr>
+<tr>
+<td>WorldInitEvent</td>
+<td>Срабатывает когда мир инициализировался.</td>
+</tr>
+<tr>
+<td>WorldLoadEvent</td>
+<td>Срабатывает когда мир загрузился.</td>
+</tr>
+<tr>
+<td>WorldSaveEvent</td>
+<td>Срабатывает когда мир сохранился.</td>
+</tr>
+<tr>
+<td>WorldUnloadEvent</td>
+<td>Срабатывает когда мир выгрузился.</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bukkit/base/events';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>
