@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Продвинутый mcmod.info - Minecraft Modding</title>
+<title>Команды - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.">
+<meta name="description" content="Создаём свои команды">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Продвинутый mcmod.info">
-<meta property="og:description" content="Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.">
+<meta property="og:title"       content="Команды">
+<meta property="og:description" content="Создаём свои команды">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bukkit/base/commands">
 <meta property="og:image"       content="">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -67,12 +67,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -93,7 +93,7 @@
                 <i class="material-icons">home</i><span>Главная</span>
             </a>
 
-            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+            <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" title="Учебник" class="menu-item">
                 <i class="material-icons">import_contacts</i><span>Учебник</span>
             </a>
 
@@ -134,8 +134,8 @@
             <div class="api-choose">
                 <label>API:
                     <select onChange="window.location.href=this.value">
-                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
-                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" selected>Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >Forge</option>
                     </select>
                 </label>
             </div>
@@ -145,37 +145,21 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" class="category-article ">Подготовка</a>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
                     </div>
 
                 </div>
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="category-article selected">Основное</a>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article selected">Продвинутый mcmod.info</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article ">Предмет</a>
-
-                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="article ">Главный класс</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/events" class="article ">События</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/commands" class="article selected">Команды</a>
                     </div>
 
                 </div>
@@ -187,10 +171,77 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/base/advanced_mcmod_info/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/commands/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="продвинутый-mcmodinfo">Продвинутый mcmod.info<a title="Ссылка на этот раздел" href="#продвинутый-mcmodinfo"><i class="material-icons">link</i></a></h1>
-<p>TODO</p>
+        <h2 id="команды">Команды<a title="Ссылка на этот раздел" href="#команды"><i class="material-icons">link</i></a></h2>
+<p>Команды, каждый хотел бы хоть раз да сделать свою команду, которая даёт ту или иную способность, преимущество.</p>
+<p>Создадим класс CommandFly:</p>
+<pre><code class="Java language-Java">public class CommandFly implements CommandExecutor
+{
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings)
+    {
+        /** Если отправитель игрок. Если убрать то команду можно будет вводить и через консоль. */
+        if(commandSender instanceof Player)
+        {
+            Player player = (Player) commandSender;
+            /** Игрок летает, то после ввода команды он перестанет летать. Если же нет, то ему будет выдан fly. */
+            if(player.isFlying()) {
+                player.setFlying(false);
+            } else {
+                player.setFlying(true);
+            }
+            return true;
+        }
+        /** Если false то будет выводиться сообщение о том, что неверно введена команда. См. статью "Главный класс", чтобы узнать о сообщениях для команд. */
+        return false;
+    }
+}
+</code></pre>
+<p>Вы так же можете добавить аргументы для команды.</p>
+<pre><code class="Java language-Java">public class CommandFly implements CommandExecutor
+{
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings)
+    {
+        /*
+         * Если аргуметов больше или равен одному, то запускаем проверку.
+         */
+        if(strings.length &gt;= 1)
+        {
+            /*
+             * Если введена команда /fly arg_1 то выводим сообщение об этом.
+             */
+            if(strings[0] == "arg_1")
+            {
+                player.sendMessage("/fly arg_1");
+
+                /*
+                 * Если введена команда /fly arg_1 arg_2 то выводим сообщение об этом.
+                 */
+                if(strings[1] == "arg_2")
+                {
+                    player.sendMessage("/fly arg_1 arg_2");
+                    return true;
+                }
+            }
+            return true;
+        }
+        /*
+         * Если аргуметов нет, то выводим сообщение.
+         */
+        else if(strings.length == 0)
+        {
+            player.sendMessage("Вы не ввели аргумент для команды /fly !");
+            return true;
+        }
+        return false;
+    }
+}
+</code></pre>
+<p>Теперь перейдём в главный класс и добавим в метод onEnable такой код:</p>
+<pre><code class="Java language-Java">getCommand("fly").setExecutor(new CommandFly());
+</code></pre>
 
     </div>
 
@@ -215,7 +266,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bukkit/base/commands';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
