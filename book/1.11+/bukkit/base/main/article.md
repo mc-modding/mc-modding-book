@@ -33,7 +33,7 @@ public class TuTPlugin extends JavaPlugin
     }
     
     @Override
-    /** Срабатывает когда плагин загружается. В данном уроке, данный метод не будет рассматриваться. */
+    /** Срабатывает когда плагин загружается */
     public void onLoad() 
     {
         Bukkit.getLogger().info("Im load! :P");
