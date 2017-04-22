@@ -18,15 +18,25 @@
 public class TuTPlugin extends JavaPlugin
 {
     @Override
+    /** Срабатывает когда сервер включается. */
     public void onEnable()
     {
+        /** Лучше использовать логер от Bukkit, так как там можно настроить цветовую схему, нежели в обычном логере. */
         Bukkit.getLogger().info("Im enabled!:D");
     }
 
     @Override
+    /** Срабатывает когда сервер выключается. */
     public void onDisable()
     {
         Bukkit.getLogger().info("Im disabled! :C");
+    }
+    
+    @Override
+    /** Срабатывает когда плагин загружается */
+    public void onLoad() 
+    {
+        Bukkit.getLogger().info("Im load! :P");
     }
 }
 ```
