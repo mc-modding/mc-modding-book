@@ -60,12 +60,12 @@ let view = Object.assign({},
     },
     {
         // Head view
-        title: 'Главная',
+        title: 'Учебник по созданию модов для Minecraft',
         description: 'Подробный и понятный учебник по созданию своего мода для Minecraft. Научитесь создавать все: от блока до целого измерения!',
         site_root: `${CONFIG.url}`,
         book_root: `${CONFIG.url}/book`,
         url: `${CONFIG.url}`,
-        og_img: ''
+        og_img: `${CONFIG.url}/favicon_standart.png`
     }
 );
 

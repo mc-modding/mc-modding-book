@@ -17,12 +17,12 @@ module.exports = (par_version_dir, par_API_dir, par_category_dir, par_article_di
         site_root: `${CONFIG.url}`,
         book_root: `${CONFIG.url}/book`,
         url: `${CONFIG.url}/book/${par_version_dir}/${par_API_dir}/${par_category_dir}/${par_article_dir}`,
-        og_img: ''
+        og_img: `${CONFIG.url}/favicon_standart.png`
     };
 
     let article_config = utils.get_config(`book/${par_version_dir}/${par_API_dir}/${par_category_dir}/${par_article_dir}`);
 
-    view.title = article_config.title;
+    view.title = article_config.title + ' - Minecraft Modding';
     view.description = (article_config.description).replace(/(\r\n|\n|\r)/gm,'');
 
     return view;
