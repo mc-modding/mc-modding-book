@@ -29,6 +29,12 @@
 <script src="{{{site_root}}}/libs/magnific-popup/magnific-popup.min.js"></script>
 <script>
     $(() => {
-        $('article img').magnificPopup({ type: 'image' });
+        $('article').magnificPopup({
+            delegate: 'img',
+            type: 'image',
+            callbacks: {
+                elementParse: (item) => { item.src = item.el.attr('src'); }
+            }
+        });
     });
 </script>
