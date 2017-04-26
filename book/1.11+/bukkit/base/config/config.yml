@@ -5,8 +5,9 @@ title: Конфиг
 description: >
   Конфигурация нашего плагина
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: Ivasik
+    role: Автор
     github: https://github.com/YouTy6bl4

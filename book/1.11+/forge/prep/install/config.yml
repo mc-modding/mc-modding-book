@@ -5,8 +5,9 @@ title: Установка программ
 description: >
   Установка необходимых программ, которые необходимы для разработки Minecraft модов.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV

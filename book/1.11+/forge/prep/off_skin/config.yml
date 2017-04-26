@@ -5,8 +5,9 @@ title: Собственный скин
 description: >
   Подключение скина своего оффициального аккаунта при разработке модов.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV

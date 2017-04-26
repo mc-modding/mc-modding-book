@@ -42,7 +42,11 @@ nav {
 	.inner {
 		direction: ltr;
 
-		@import 'nav-structure';
+		a {
+			text-decoration: none;
+		}
+
+		@import 'partials/_nav-structure';
 
 		/*padding: 0 1em;
 

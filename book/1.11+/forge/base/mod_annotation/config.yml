@@ -6,8 +6,9 @@ description: >
   Разбор различных параметров аннотации
   Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV

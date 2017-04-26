@@ -44,13 +44,15 @@ title: Создание моба
 description: >
   Создание и настройка собственного моба. Генерация моба в мире.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV
   -
     name: OneMoreAuthor
+    role: Перевод
     github: https://github.com/sampleAuthor
 ```
 

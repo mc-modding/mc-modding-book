@@ -5,8 +5,9 @@ title: Главный класс
 description: >
   Основной класс в котором будет происходить регистрация команд, событий и т.д.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: Ivasik
+    role: Автор
     github: https://github.com/YouTy6bl4

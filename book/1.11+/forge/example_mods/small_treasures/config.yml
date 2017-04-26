@@ -5,8 +5,9 @@ title: Small Treasures
 description: >
   Создание модификации, которая добавляет сокровищницы с запертыми сундуками и ключи, которые их открывают.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV

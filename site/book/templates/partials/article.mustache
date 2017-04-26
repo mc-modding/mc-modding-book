@@ -7,6 +7,28 @@
 
     </div>
 
+    <section class="contributors">
+
+        {{#contributors}}
+
+            <a href="{{{github}}}" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="{{{github}}}.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">{{name}}</div>
+
+                    <div class="role">{{role}}</div>
+
+                </div>
+
+            </a>
+
+        {{/contributors}}
+
+    </section>
+
     <section class="ad-after-article">
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

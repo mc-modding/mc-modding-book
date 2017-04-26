@@ -5,8 +5,9 @@ title: Создание предмета
 description: >
   Создание собственного предмета, присвоение текстуры и добавление его в игру. Добавление в креативную вкладку.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV

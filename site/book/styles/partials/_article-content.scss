@@ -1,4 +1,4 @@
-@import '../../must-have/g-styles/const';
+@import '../../../must-have/g-styles/const';
 
 .edit-article {
 	display: flex;
@@ -88,6 +88,10 @@ img {
 	max-width: 100%;
 	display: block;
 	margin: 0 auto;
+
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 table {
@@ -107,12 +111,4 @@ table {
 	tr:nth-child(2n) {
 		background: #f9f9f9;
 	}
-}
-
-section.ad-after-article {
-	overflow: hidden;
-}
-
-section.disqus {
-	padding: 1.5em;
 }

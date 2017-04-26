@@ -5,8 +5,9 @@ title: Стадии загрузки мода
 description: >
   Объяснение того, как Forge загружает мод в Minecraft. Названия стадий загрузки и советы по их использованию.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV
