@@ -1,1 +1,1 @@
-site/must-have/libs/*/** linguist-vendored=false
+site/must-have/libs/*.css linguist-vendored=false

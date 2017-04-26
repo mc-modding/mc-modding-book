@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Прокси - Minecraft Modding</title>
+<title>Импорт 3D модели - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Объяснение того, как Forge загружает мод в Minecraft. Названия стадий загрузки и советы по их использованию.">
+<meta name="description" content="Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Прокси - Minecraft Modding">
-<meta property="og:description" content="Объяснение того, как Forge загружает мод в Minecraft. Названия стадий загрузки и советы по их использованию.">
+<meta property="og:title"       content="Импорт 3D модели - Minecraft Modding">
+<meta property="og:description" content="Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/base/proxy">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/item/importing_model">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -173,14 +173,14 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article selected">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
                     </div>
 
@@ -188,12 +188,12 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article ">Предмет</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article selected">Предмет</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="article ">Создание предмета</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article ">JSON файл модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article ">Импорт 3D модели</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article selected">Импорт 3D модели</a>
                     </div>
 
                 </div>
@@ -214,165 +214,10 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/base/proxy/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/item/importing_model/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="прокси">Прокси<a title="Ссылка на этот раздел" href="#прокси"><i class="material-icons">link</i></a></h1>
-<p>Перед началом создания модов надо понять и правильно использовать очень важную вещь.</p>
-<p>Дело в том, что Minecraft стостит из нескольких частей:</p>
-<ul>
-<li><strong>Физический клиент</strong> — это программа, которую вы запускаете с помощью лаунчера.</li>
-<li><strong>Физический сервер</strong>, который частно называется выделенным сервером — программа, которая запускается с помощью файлов типа
-<code>minecraft_server.jar</code>.</li>
-<li><strong>Логический клиент</strong> отвечает за отображение моделей и текстур, за прием данных от мышки и клавиатуры, за отображение GUI.</li>
-<li><strong>Логический сервер</strong> отвечает за всю игровую логику: спавн мобов, погоду, обновление инвентарей, AI и все другие механики игры.</li>
-</ul>
-<p>Зачем надо это знать? А затем, что при попытке выполнить отрисовку текстуры блока на стороне <strong>сервера</strong> он незамедлительно крашнется!
-И наоборот, попытка реализовывать игровую механику (открытие GUI, создание взрывов) на стороне <strong>клиента</strong> может привести к
-непредсказуемым багам, появлению пустых твердых блоков, рассинхронизации и так далее...</p>
-<p>Именно поэтому так важно еще до создания блоков/мобов/предметов и т.д. настроить прокси, для удобного указания, какие
-части мода должны выполняться на стороне клиента, сервера, а может и на обеих сторонах.</p>
-<h2 id="commonproxy">CommonProxy<a title="Ссылка на этот раздел" href="#commonproxy"><i class="material-icons">link</i></a></h2>
-<p>Для начала нам надо создать класс для выполнения действий, которые должны выполняться на стороне и клиента, и сервера.</p>
-<p>Для этого создайте пакет proxy внутри пакета нашего мода и класс CommonProxy внутри него. Объявите внутри класса три уже знакомых вам
-метода:</p>
-<ul>
-<li>preInit</li>
-<li>init</li>
-<li>postInit</li>
-</ul>
-<pre><code class="java language-java">public class CommonProxy {
-
-    public void preInit(FMLPreInitializationEvent event) {
-
-    }
-
-    public void init(FMLInitializationEvent event) {
-
-    }
-
-    public void postInit(FMLPostInitializationEvent event) {
-
-    }
-
-}
-</code></pre>
-<h2 id="clientproxy">ClientProxy<a title="Ссылка на этот раздел" href="#clientproxy"><i class="material-icons">link</i></a></h2>
-<p>Теперь создадим класс для действий, которые должны выполняться только на стороне клиента, а именно:</p>
-<ul>
-<li>Регистрация моделей блоков/мобов/предметов</li>
-<li>Регистрация рендеров этих самых моделей</li>
-<li>...</li>
-</ul>
-<p>Для этого создадим класс ClientProxy, наследующий класс CommonProxy в пакете proxy:</p>
-<pre><code class="java language-java">public class ClientProxy extends CommonProxy {
-    @Override
-    public void preInit(FMLPreInitializationEvent event) {
-        super.preInit(event);
-
-    }
-
-    @Override
-    public void init(FMLInitializationEvent event) {
-        super.init(event);
-
-    }
-
-    @Override
-    public void postInit(FMLPostInitializationEvent event) {
-        super.postInit(event);
-
-    }
-}
-</code></pre>
-<p>Заметьте, что мы вызываем все три метода из CommonProxy с помощью <code>super</code>, чтобы они обязательно выполнились на стороне клиента.</p>
-<h2 id="serverproxy">ServerProxy<a title="Ссылка на этот раздел" href="#serverproxy"><i class="material-icons">link</i></a></h2>
-<p>Теперь создадим класс для действий, которые должны выполняться только на стороне сервера, а именно:</p>
-<ul>
-<li>Открытие GUI</li>
-<li>Обработка кликов по блокам</li>
-<li>Работа с поведением мобов</li>
-<li>...</li>
-</ul>
-<p>Для этого создадим класс ServerProxy, наследующий класс CommonProxy в пакете proxy:</p>
-<pre><code class="java language-java">public class ServerProxy extends CommonProxy {
-    @Override
-    public void preInit(FMLPreInitializationEvent event) {
-        super.preInit(event);
-
-    }
-
-    @Override
-    public void init(FMLInitializationEvent event) {
-        super.init(event);
-
-    }
-
-    @Override
-    public void postInit(FMLPostInitializationEvent event) {
-        super.postInit(event);
-
-    }
-}
-</code></pre>
-<p>Заметьте, что мы вызываем все три метода из CommonProxy с помощью <code>super</code>, чтобы они обязательно выполнились на стороне клиента.</p>
-<h2 id="регистрация-в-главном-файле">Регистрация в главном файле<a title="Ссылка на этот раздел" href="#регистрация-в-главном-файле"><i class="material-icons">link</i></a></h2>
-<p>Теперь мы полностью можем управлять, какие части нашего мода должны выполняться на сервере, клиенте, или вообще на обеих сторонах.</p>
-<p>Теперь вернемся в главный файл нашего мода и скажем Forge об этом. Для того, чтобы это сделать, создадим переменную proxy типа CommonProxy
-и добавим к ней аннотацию <code>@SidedProxy</code>:</p>
-<pre><code class="java language-java">@SidedProxy(clientSide = "ru.mcmodding.testmod.proxy.ClientProxy", serverSide = "ru.mcmodding.testmod.proxy.ServerProxy")
-public static CommonProxy proxy;
-</code></pre>
-<p>Эта аннотация содержит два поля, которые обознают пути до классов ClientProxy и ServerProxy. При запуске, Forge будет
-автоматически определять нужную сторону (клиент/сервер) и создавать объект класса ClientProxy или ServerProxy.</p>
-<p>Последнее, что нам нужно сделать: выполнить три метода (preInit, init, postInit) в нашем главном файле мода:</p>
-<pre><code class="java language-java">@EventHandler
-public void preInit(FMLPreInitializationEvent event) {
-    proxy.preInit(event);
-}
-
-@EventHandler
-public void init(FMLInitializationEvent event) {
-    proxy.init(event);
-}
-
-@EventHandler
-public void postInit(FMLPostInitializationEvent event) {
-    proxy.postInit(event);
-}
-</code></pre>
-<p>Полный код главного файла мода:</p>
-<pre><code class="java language-java">package ru.mcmodding.testmod;
-
-import ru.mcmodding.testmod.proxy.CommonProxy;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-@Mod(modid = "testmod")
-public class TestMod {
-
-    @SidedProxy(clientSide = "ru.mcmodding.testmod.proxy.ClientProxy", serverSide = "ru.mcmodding.testmod.proxy.ServerProxy")
-    public static CommonProxy proxy;
-
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        proxy.preInit(event);
-    }
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        proxy.init(event);
-    }
-
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        proxy.postInit(event);
-    }
-}
-</code></pre>
+        <h1 id="импорт-3d-модели">Импорт 3D модели<a title="Ссылка на этот раздел" href="#импорт-3d-модели"><i class="material-icons">link</i></a></h1>
+<p>TODO</p>
 
     </div>
 
@@ -417,7 +262,7 @@ public class TestMod {
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/base/proxy';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/item/importing_model';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

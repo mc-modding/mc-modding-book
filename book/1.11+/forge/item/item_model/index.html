@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Продвинутый mcmod.info - Minecraft Modding</title>
+<title>JSON файл модели - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.">
+<meta name="description" content="Создание собственной модели предмета. Настройка текстур и отображения. Наследование моделей.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Продвинутый mcmod.info - Minecraft Modding">
-<meta property="og:description" content="Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.">
+<meta property="og:title"       content="JSON файл модели - Minecraft Modding">
+<meta property="og:description" content="Создание собственной модели предмета. Настройка текстур и отображения. Наследование моделей.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/item/item_model">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -82,12 +82,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
             </div>
         </div>
 
@@ -173,11 +173,11 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article selected">Продвинутый mcmod.info</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
@@ -188,11 +188,11 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article ">Предмет</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article selected">Предмет</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="article ">Создание предмета</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article ">JSON файл модели</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article selected">JSON файл модели</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article ">Импорт 3D модели</a>
                     </div>
 
@@ -214,9 +214,29 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/base/advanced_mcmod_info/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/item/item_model/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="продвинутый-mcmodinfo">Продвинутый mcmod.info<a title="Ссылка на этот раздел" href="#продвинутый-mcmodinfo"><i class="material-icons">link</i></a></h1>
+        <h1 id="json-файл-модели">JSON файл модели<a title="Ссылка на этот раздел" href="#json-файл-модели"><i class="material-icons">link</i></a></h1>
+<p>За отображение предмета в руках, от третьего лица и во всех остальных состояниях отвечает JSON файл, который должен
+находиться по пути <code>src/resources/assets/*ваш modid*/models/item/item_test.json</code>.</p>
+<p>Название файла <code>item_test</code> должно совпадать с регистрационным именем предмета (см. предыдущую статью).</p>
+<h2 id="структура-файла">Структура файла<a title="Ссылка на этот раздел" href="#структура-файла"><i class="material-icons">link</i></a></h2>
+<p>Для начала пройдемся по тегам верхнего уровня.</p>
+<h3 id="parent">parent<a title="Ссылка на этот раздел" href="#parent"><i class="material-icons">link</i></a></h3>
+<pre><code class="json language-json">{
+  "parent": "item/generated"
+}
+</code></pre>
+<p>Этот тег используется для указания, какую модель предмета установить в качестве родителя. В таком случае, все неуказанные
+теги будут взяты от родителя.</p>
+<p>Например в данном случае мы устанавливаем в качестве родителя модель предмета, которая имеет название <code>generated.json</code>.
+Этот файл находится по пути <code>assets/minecraft/models/item</code>. Заметьте, что данный файл находится не в папке src (там только
+файлы вашего мода), а в .jar файле Minecraft.</p>
+<p>Вполне можно указать и другого родителя:</p>
+<pre><code class="json language-json">{
+  "parent": "item/generated"
+}
+</code></pre>
 <p>TODO</p>
 
     </div>
@@ -262,7 +282,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/item/item_model';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

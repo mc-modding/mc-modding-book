@@ -1,0 +1,13 @@
+# Title
+title: Импорт 3D модели
+
+# Description (~160 symbols)
+description: >
+  Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.
+
+# Contributors
+contributors:
+  -
+    name: CMTV
+    role: Автор
+    github: https://github.com/CMTV

@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Продвинутый mcmod.info - Minecraft Modding</title>
+<title>Исходники Minecraft - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.">
+<meta name="description" content="Для чего нужен исходный код и ресуры Minecraft? Где их найти?">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Продвинутый mcmod.info - Minecraft Modding">
-<meta property="og:description" content="Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.">
+<meta property="og:title"       content="Исходники Minecraft - Minecraft Modding">
+<meta property="og:description" content="Для чего нужен исходный код и ресуры Minecraft? Где их найти?">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/other/sources">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -82,12 +82,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -173,11 +173,11 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article selected">Продвинутый mcmod.info</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
@@ -200,7 +200,7 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article selected">Дополнительно</a>
 
                     <div class="category-articles">
                     </div>
@@ -214,10 +214,75 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/base/advanced_mcmod_info/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/other/sources/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="продвинутый-mcmodinfo">Продвинутый mcmod.info<a title="Ссылка на этот раздел" href="#продвинутый-mcmodinfo"><i class="material-icons">link</i></a></h1>
-<p>TODO</p>
+        <h1 id="исходники-minecraft">Исходники Minecraft<a title="Ссылка на этот раздел" href="#исходники-minecraft"><i class="material-icons">link</i></a></h1>
+<p>Мы разрабатываем моды для Minecraft, а значит находимся в очень тесной связи и с ним.</p>
+<p>Иногда возникают вопросы вида:</p>
+<ul>
+<li>Как сделать портал?</li>
+<li>Как отловить правый клик по блоку?</li>
+<li>Как добавить описание под названием предмета?</li>
+</ul>
+<p>Ответы на подобного вида вопросы <strong>ВСЕГДА</strong> нужно искать в исходном коде Minecraft. 99% того, что вы хотите создать в своем
+моде уже было реализовано в Minecraft. Можно просто посмотреть, как (правильно) сделано в игре, и, на основе готового
+примера, сделать что-то свое.</p>
+<p>Для этого нам нужно уметь обращаться к исходным кодам и ассетам (звукам, текстурам, моделям) Minecraft.</p>
+<h2 id="idea">Idea<a title="Ссылка на этот раздел" href="#idea"><i class="material-icons">link</i></a></h2>
+<p>В Intellij Idea исходники можно найти, открыв в проводнике слева вкладку External Libraries и найдя файл "forgeSrc-<em>версия Minecraft</em>-<em>версия Forge</em>.jar".</p>
+<p>Например, в моем случае .jar файл называется так: <code>forgeSrc-1.11.2-13.20.0.2228.jar</code>.</p>
+<p>Откройте его и увидите достаточно много папок:</p>
+<p><img src="images/sources_location.png" alt="Расположение Intellij Idea" /></p>
+<h2 id="eclipse">Eclipse<a title="Ссылка на этот раздел" href="#eclipse"><i class="material-icons">link</i></a></h2>
+<p>В Eclipse действия аналогичные. Вам необходимо открыть в проводнике слева вкладку "Project and External Dependencies", а в ней
+найти .jar файл "forgeSrc-<em>версия Minecraft</em>-<em>версия Forge</em>.jar", например  <code>forgeSrc-1.11.2-13.20.0.2228.jar</code>.</p>
+<h2 id="пояснение">Пояснение<a title="Ссылка на этот раздел" href="#пояснение"><i class="material-icons">link</i></a></h2>
+<p>В пакете <code>assets/minecraft</code> находятся все ресурсы Minecraft: текстуры, JSON описания моделей, файлы локализации и так далее.</p>
+<p>Кстати, именно потому что в Minecraft все ресурсы располагаются по пути <code>assets/minecraft</code>, мы и при разработке модов
+в папке resources создаем папку <code>assets/*modid*</code>. Так как модели самого Minecraft располагаются в папке <code>models</code>, то и
+мы в наших модах создаем папку <code>models</code> и так далее.</p>
+<p>В пакете <code>net.minecraft</code> находится исходный код игры. Файлов там очень много и именно там находятся ответы на 90%
+всех ваших вопросов.</p>
+<h2 id="пример">Пример<a title="Ссылка на этот раздел" href="#пример"><i class="material-icons">link</i></a></h2>
+<p><strong>Как сделать, чтобы блок взрывался при клике правой кнопкой на нем?</strong> Мы знаем, что сундук можно открыть правой кнопкой
+мыши. Находим в пакете <code>net.minecraft.block</code> файл <code>BlockChest.java</code>.</p>
+<p>Там есть следующий кусок кода:</p>
+<pre><code class="java language-java">/**
+ * Called when the block is right clicked by a player.
+ */
+public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+{
+    ...
+}
+</code></pre>
+<p>Вот мы и нашли метод, который надо записать в файле нашего блока. Он будет выполняться, когда по нашему блоку кликнут.</p>
+<p>Теперь про взрывы. Отличный пример — TNT. Все в том же пакете ищем файл <code>BlockTNT.java</code>. Там мы можем найти интересный метод
+<code>explose(...)</code>. Внутри него видем, что при активации TNT он превращается некую сущность <code>entity</code> под названием <code>EntityTNTPrimed</code>.</p>
+<p>Ищем этот файл в пакете <code>net.minecraft.entity</code>. Он будет находиться в пакете <code>net.minecraft.entity.item</code>.</p>
+<p>Внутри него видим следующий метод:</p>
+<pre><code class="java language-java">private void explode()
+{
+    float f = 4.0F;
+    this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 4.0F, true);
+}
+</code></pre>
+<p>Строчка <code>this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 4.0F, true);</code> как раз
+то, что нам нужно!</p>
+<p>В нашем блоке <code>BlockTest.java</code> осталось записать:</p>
+<pre><code class="java language-java">public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+{
+    if (!worldIn.isRemote)
+    {
+        this.world.createExplosion(this, pos.getX(), pos.getY(), pos.getZ(), 4.0F, true);
+    }
+
+    return true;
+}
+</code></pre>
+<h2 id="итог">Итог<a title="Ссылка на этот раздел" href="#итог"><i class="material-icons">link</i></a></h2>
+<p>Почти наверняка то, что вы хотите добавить в своем моде уже реализовано в игре в том или ином смысле.
+Старайтесь найти примеры в исходном коде и используйте их для реализации своих идей.</p>
+<p>К тому же, ориентируясь на исходники игры, вы будете лучше понимать их внутреннюю структуру, что сильно облегчает создание модов.</p>
 
     </div>
 
@@ -262,7 +327,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/other/sources';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
