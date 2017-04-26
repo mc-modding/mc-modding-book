@@ -82,12 +82,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -188,7 +188,7 @@
 
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/events/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h2 id="события">События<a title="Ссылка на этот раздел" href="#события"><i class="material-icons">link</i></a></h2>
+        <h1 id="события">События<a title="Ссылка на этот раздел" href="#события"><i class="material-icons">link</i></a></h1>
 <p>События - это то же, что случается с нами в повседневной жизни, но только в minecraft и мы можем предотвратить это событие.</p>
 <p>Чтобы отменить событие нужно прописать в методе с событием e.setCancelled(true); Если хотим проверить, отменено ли событие то пропишем e.isCancelled() что вернёт нам true или false.</p>
 <p>Для начала создадим класс EventsHandler:</p>
@@ -226,8 +226,8 @@
 <pre><code class="Java language-Java">/** EventsHandler это наш класс, this указывает на то, что это главный класс. В противном случаи нужно прописать TuTPlugin.instance(), но об этом позднее. */
 Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </code></pre>
-<h3 id="таблица-всех-событий">Таблица всех событий<a title="Ссылка на этот раздел" href="#таблица-всех-событий"><i class="material-icons">link</i></a></h3>
-<h2 id="-блоки">##### Блоки<a title="Ссылка на этот раздел" href="#-блоки"><i class="material-icons">link</i></a></h2>
+<h2 id="таблица-всех-событий">Таблица всех событий<a title="Ссылка на этот раздел" href="#таблица-всех-событий"><i class="material-icons">link</i></a></h2>
+<h3 id="блоки">Блоки<a title="Ссылка на этот раздел" href="#блоки"><i class="material-icons">link</i></a></h3>
 <table>
 <thead>
 <tr>
@@ -338,7 +338,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h2 id="-чары">##### Чары<a title="Ссылка на этот раздел" href="#-чары"><i class="material-icons">link</i></a></h2>
+<h3 id="чары">Чары<a title="Ссылка на этот раздел" href="#чары"><i class="material-icons">link</i></a></h3>
 <table>
 <thead>
 <tr>
@@ -357,9 +357,9 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h2 id="-сущность">##### Сущность<a title="Ссылка на этот раздел" href="#-сущность"><i class="material-icons">link</i></a></h2>
+<h3 id="сущность">Сущность<a title="Ссылка на этот раздел" href="#сущность"><i class="material-icons">link</i></a></h3>
 <p>Cooming Soon...</p>
-<h2 id="-висящий-блоктолько-картина-и-рамка">##### Висящий блок(Только картина и рамка!)<a title="Ссылка на этот раздел" href="#-висящий-блоктолько-картина-и-рамка"><i class="material-icons">link</i></a></h2>
+<h3 id="висящий-блоктолько-картина-и-рамка">Висящий блок(Только картина и рамка!)<a title="Ссылка на этот раздел" href="#висящий-блоктолько-картина-и-рамка"><i class="material-icons">link</i></a></h3>
 <table>
 <thead>
 <tr>
@@ -382,11 +382,11 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h2 id="-инвентарь">##### Инвентарь<a title="Ссылка на этот раздел" href="#-инвентарь"><i class="material-icons">link</i></a></h2>
+<h3 id="инвентарь">Инвентарь<a title="Ссылка на этот раздел" href="#инвентарь"><i class="material-icons">link</i></a></h3>
 <p>Cooming Soon...</p>
-<h2 id="-игрок">##### Игрок<a title="Ссылка на этот раздел" href="#-игрок"><i class="material-icons">link</i></a></h2>
+<h3 id="игрок">Игрок<a title="Ссылка на этот раздел" href="#игрок"><i class="material-icons">link</i></a></h3>
 <p>Cooming Soon...</p>
-<h2 id="-сервер">##### Сервер<a title="Ссылка на этот раздел" href="#-сервер"><i class="material-icons">link</i></a></h2>
+<h3 id="сервер">Сервер<a title="Ссылка на этот раздел" href="#сервер"><i class="material-icons">link</i></a></h3>
 <table>
 <thead>
 <tr>
@@ -433,7 +433,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h2 id="-транспорт">##### Транспорт<a title="Ссылка на этот раздел" href="#-транспорт"><i class="material-icons">link</i></a></h2>
+<h3 id="транспорт">Транспорт<a title="Ссылка на этот раздел" href="#транспорт"><i class="material-icons">link</i></a></h3>
 <table>
 <thead>
 <tr>
@@ -484,7 +484,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h2 id="-погода">##### Погода<a title="Ссылка на этот раздел" href="#-погода"><i class="material-icons">link</i></a></h2>
+<h3 id="погода">Погода<a title="Ссылка на этот раздел" href="#погода"><i class="material-icons">link</i></a></h3>
 <table>
 <thead>
 <tr>
@@ -507,7 +507,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h2 id="-мир">##### Мир<a title="Ссылка на этот раздел" href="#-мир"><i class="material-icons">link</i></a></h2>
+<h3 id="мир">Мир<a title="Ссылка на этот раздел" href="#мир"><i class="material-icons">link</i></a></h3>
 <table>
 <thead>
 <tr>
