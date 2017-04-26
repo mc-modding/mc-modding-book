@@ -4,3 +4,5 @@ category-title: Предмет
 # Articles order
 articles-order:
   - creating_item
+  - item_model
+  - importing_model

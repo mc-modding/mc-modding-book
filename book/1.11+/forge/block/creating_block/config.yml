@@ -1,0 +1,13 @@
+# Title
+title: Создание блока
+
+# Description (~160 symbols)
+description: >
+  Создание собственного блока, присвоение текстуры и добавление его в игру. Добавление в креативную вкладку.
+
+# Contributors
+contributors:
+  -
+    name: CMTV
+    role: Автор
+    github: https://github.com/CMTV

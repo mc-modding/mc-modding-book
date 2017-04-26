@@ -1,0 +1,13 @@
+# Title
+title: JSON файл модели
+
+# Description (~160 symbols)
+description: >
+  Создание собственной модели предмета. Настройка текстур и отображения. Наследование моделей.
+
+# Contributors
+contributors:
+  -
+    name: CMTV
+    role: Автор
+    github: https://github.com/CMTV
