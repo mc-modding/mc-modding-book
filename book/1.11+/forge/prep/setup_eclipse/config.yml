@@ -5,8 +5,9 @@ title: Использование Eclipse
 description: >
   Настройка рабочего пространства для разраобтки модов с помощью IDE Eclipse.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV

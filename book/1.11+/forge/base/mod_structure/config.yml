@@ -5,8 +5,9 @@ title: Структура мода
 description: >
   Основные файлы любого Minecraft мода. Для чего они нужны и как их настроить.
 
-# Authors
-authors:
+# Contributors
+contributors:
   -
     name: CMTV
+    role: Автор
     github: https://github.com/CMTV

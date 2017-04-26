@@ -27,11 +27,93 @@ article {
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 	.inner {
-		padding: 1.5em;
+		padding: 1.5em 1.5em 0;
 
 		@include article-typo;
 
-		@import 'article-content';
+		@import 'partials/_article-content';
+
+		&:last-child {
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+	}
+
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+	/* Contributors */
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+	.contributors {
+		display: flex;
+		flex-wrap: wrap;
+
+		font-family: "Open Sans", sans-serif;
+
+		margin: 0 1em 1em;
+
+		.contributor {
+			display: flex;
+			align-items: center;
+
+			min-width: 200px;
+
+			border: 1px solid #ebebeb;
+			border-radius: 3px;
+
+			margin: 0.25em;
+
+			&:first-of-type {
+				margin-left: 0;
+			}
+
+			padding: 0.5em;
+
+			transition: border-color 0.15s;
+
+			&:hover {
+				border-color: #3366BB;
+			}
+
+			.avatar {
+				width: 40px;
+				height: 40px;
+				border-radius: 3px;
+			}
+
+			.info {
+				flex: 1;
+				padding-left: 0.5em;
+
+				.name {
+					color: #3366BB;
+				}
+
+				.role {
+					color: #939393;
+					font-size: 80%;
+				}
+			}
+		}
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+	/* Ad */
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+	section.ad-after-article {
+		overflow: hidden;
+	}
+
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+	/* Disqus comments */
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+	section.disqus {
+		padding: 1.5em;
 	}
 
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */

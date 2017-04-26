@@ -81,7 +81,7 @@ gulp.task('move-must-have.handle-scripts', () => {
 /* Compressing and moving styles */
 /* ------------------------------------------------------------------------------------------------------------------ */
 gulp.task('move-must-have.handle-styles', () => {
-    return gulp.src('site/must-have/g-styles/**/*.scss')
+    return gulp.src(['site/must-have/g-styles/**/*.scss', '!site/must-have/g-styles/**/_*.scss'])
         .pipe(plumber(function (error) { console.log(error); this.emit('end'); }))
         .pipe(scss_css())
         .pipe(concat('global.min.css', {newLine: ''}))
@@ -143,7 +143,7 @@ gulp.task('build-books.handle-scripts', () => {
 /* Compressing and moving styles */
 /* ------------------------------------------------------------------------------------------------------------------ */
 gulp.task('build-books.handle-styles', () => {
-    return gulp.src('site/book/styles/**/*.scss')
+    return gulp.src(['site/book/styles/**/*.scss', '!site/book/styles/**/_*.scss'])
         .pipe(plumber(function (error) { console.log(error); this.emit('end'); }))
         .pipe(scss_css())
         .pipe(concat('book.min.css', {newLine: ''}))
