@@ -1,0 +1,13 @@
+# Title
+title: Инструменты
+
+# Description (~160 symbols)
+description: >
+  Создание собственной кирки, топора, меча или мотыги. Создание своего типа материала для инструментов.
+
+# Contributors
+contributors:
+  -
+    name: CMTV
+    role: Автор
+    github: https://github.com/CMTV
