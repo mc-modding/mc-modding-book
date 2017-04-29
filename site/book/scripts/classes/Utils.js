@@ -6,6 +6,7 @@ class Utils {
      * @param value Число для проверки
      * @param range_a Граница 1
      * @param range_b Граница 2
+     *
      * @returns {boolean}
      */
     static between(value, range_a, range_b) {
