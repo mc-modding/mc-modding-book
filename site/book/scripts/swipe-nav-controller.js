@@ -22,7 +22,7 @@ $(() => {
                 $('article').addClass('darker');
             }
         },
-        threshold: 60
+        threshold: 25
     });
 
     nav.swipe({
@@ -32,6 +32,6 @@ $(() => {
             $('article').removeClass('darker');
             call_nav_button.removeClass('active');
         },
-        threshold: 60
+        threshold: 25
     });
 });
