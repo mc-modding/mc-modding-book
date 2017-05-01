@@ -117,6 +117,8 @@ nav {
 		width: map_get($nav-width, mobile);
 		height: calc(100% - #{map_get($header-height, mobile)});
 
+		transition: left 0.15s;
+
 		top: map_get($header-height, mobile);
 		left: -1 * map_get($nav-width, mobile);
 
@@ -124,7 +126,9 @@ nav {
 			left: 0;
 		}
 
-		transition: left 0.15s;
+		&.moving {
+			transition: none;
+		}
 	}
 
 	@include layout(mobile) {
