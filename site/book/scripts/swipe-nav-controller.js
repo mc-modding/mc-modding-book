@@ -14,8 +14,14 @@ $(() => {
 
     nav_width = nav.outerWidth();
 
-    let hammer_article = new Hammer(article.get(0));
-    let hammer_nav = new Hammer(nav.get(0));
+    let hammer_article = new Hammer(article.get(0), {
+        dragLockToAxis: true,
+        dragBlockHorizontal: true
+    });
+    let hammer_nav = new Hammer(nav.get(0), {
+        dragLockToAxis: true,
+        dragBlockHorizontal: true
+    });
 
     /* -------------------------------------------------------------------------------------------------------------- */
     /* Обработка свайпов */
@@ -61,6 +67,12 @@ $(() => {
         if(!nav.hasClass('shown')) {
             return;
         }
+
+        if(e.isFinal) {
+            return;
+        }
+
+        console.log(e);
 
         nav.addClass('moving');
 
