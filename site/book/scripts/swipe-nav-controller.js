@@ -1,6 +1,6 @@
 let nav, article;
 
-let tolerance = 10;
+let tolerance = 20;
 
 let nav_width;
 
