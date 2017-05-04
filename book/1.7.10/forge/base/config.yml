@@ -1,0 +1,8 @@
+# Category title
+category-title: Основы Forge
+
+# Articles order
+articles-order:
+  - first_steps
+  - proxy
+  - setup
