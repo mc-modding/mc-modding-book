@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Импорт 3D модели - Minecraft Modding</title>
+<title>Установка forge src - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.">
+<meta name="description" content="Объяснение того, как установить forge src, чтобы начать писать моды">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Импорт 3D модели - Minecraft Modding">
-<meta property="og:description" content="Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.">
+<meta property="og:title"       content="Установка forge src - Minecraft Modding">
+<meta property="og:description" content="Объяснение того, как установить forge src, чтобы начать писать моды">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/item/importing_model">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.7.10/forge/base/setup">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -111,7 +111,7 @@
                 <i class="material-icons">home</i><span>Главная</span>
             </a>
 
-            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+            <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" title="Учебник" class="menu-item">
                 <i class="material-icons">import_contacts</i><span>Учебник</span>
             </a>
 
@@ -139,8 +139,8 @@
                         <select onChange="window.location.href=this.value">
 
                                 <optgroup label="Релиз">
-                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
-                                        <option value="http://mcmodding.ru/book/1.7.10/forge/prep/install" >1.7.10</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/base/first_steps" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" selected>1.7.10</option>
                                 </optgroup>
 
 
@@ -153,8 +153,7 @@
             <div class="api-choose">
                 <label>API:
                     <select onChange="window.location.href=this.value">
-                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
-                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                            <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" selected>Forge</option>
                     </select>
                 </label>
             </div>
@@ -164,51 +163,12 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" class="category-article selected">Основы Forge</a>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article selected">Предмет</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="article ">Создание предмета</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article ">JSON файл модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/tools" class="article ">Инструменты</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article selected">Импорт 3D модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/rarity" class="article ">Редкость предметов</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
-
-                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" class="article ">Первые шаги</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/proxy" class="article ">Клиент и сервер</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/setup" class="article selected">Установка forge src</a>
                     </div>
 
                 </div>
@@ -220,23 +180,59 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/item/importing_model/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.7.10/forge/base/setup/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="импорт-3d-модели">Импорт 3D модели<a title="Ссылка на этот раздел" href="#импорт-3d-модели"><i class="material-icons">link</i></a></h1>
-<p>TODO</p>
+        <h1 id="установка-forge-src">Установка forge src<a title="Ссылка на этот раздел" href="#установка-forge-src"><i class="material-icons">link</i></a></h1>
+<p>Чтобы писать моды нам нужен пакет forge src. Скачаем его: http://files.minecraftforge.net/
+Теперь распакуем архив в удобное место.
+На каждый мод нужно будет отдульную папку с экземпляром forge src, поэтому рекомендую сначала создать общую папку, а потом в ней для конкретного мода.
+Путь до папки не должен содержать русские символы.
+Допустим, мы создали в корне диска папку modding и в ней папку mymod, куда и распаковали архив.</p>
+<p>В качестве системы сборки используется gradle.</p>
+<p>Откроем консоль в mymod  и впишем команду:
+windows: gradlew setupDecompWorkspace
+linux: ./gradlew setupDecompWorkspace</p>
+<p>Далее, в зависимости от вашей ide:</p>
+<h3 id="для-intellij-idea">Для IntelliJ IDEA:<a title="Ссылка на этот раздел" href="#для-intellij-idea"><i class="material-icons">link</i></a></h3>
+<p>Открываем mymod/build.gradle, импортируем
+Закрываем проект</p>
+<p>Выполняем
+windows: gradlew gIR
+linux: ./gradlew gIR</p>
+<p>Заново открываем наш проект и видм, что теперь мы можем запустить клиент и сервер.</p>
+<h3 id="для-eclipse">Для Eclipse:<a title="Ссылка на этот раздел" href="#для-eclipse"><i class="material-icons">link</i></a></h3>
+<p>Выполняем 
+windows: gradlew eclipse
+linux: ./gradlew eclipse</p>
+<p>Открываем Eclipse и выбираем modding/mymod/eclipse как workspace</p>
+<p>Отлично! Мы смогли уставить forge src.</p>
+<h2 id="сборка-мода">Сборка мода<a title="Ссылка на этот раздел" href="#сборка-мода"><i class="material-icons">link</i></a></h2>
+<p>Допустим, вы уже что-то написали и хотите собрать мод в jar-файл.
+Выполняем
+gradlew build</p>
+<p>И забираем мод из mymod/build/lib/</p>
+<h2 id="режим-gui">Режим gui<a title="Ссылка на этот раздел" href="#режим-gui"><i class="material-icons">link</i></a></h2>
+<p>Со сборщиком gradle можно работать в режиме пользовательского интерфейса.
+Ввыполняем
+gradlew --gui</p>
+<p>При каждом запуске сначала выполняется команда tasks.
+После этого в центральной панели появится список команд.
+Нажмите по одной из них пкм и выберите в контекстном меню "Execute". Команда выполнится.
+Также можно добавлять команды в "любимые", если вы их часто используете и не хотите ждать окончания tasks или искать по длинному списку.
+Выберите в контекстном меню "Add To Favorites" и вы сможете найти выбранные команды вол вкладке Favorites.</p>
 
     </div>
 
     <section class="contributors">
 
 
-            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+            <a href="https://github.com/hohserg" target="_blank" title="К профилю GitHub" class="contributor">
 
-                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+                <img class="avatar" src="https://github.com/hohserg.png?size=40">
 
                 <div class="info">
 
-                    <div class="name">CMTV</div>
+                    <div class="name">hohserg</div>
 
                     <div class="role">Автор</div>
 
@@ -268,7 +264,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/item/importing_model';
+                this.page.identifier = 'http://mcmodding.ru/book/1.7.10/forge/base/setup';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

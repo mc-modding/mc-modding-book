@@ -1,0 +1,13 @@
+# Title
+title: Установка forge src
+
+# Description (~160 symbols)
+description: >
+  Объяснение того, как установить forge src, чтобы начать писать моды
+
+# Contributors
+contributors:
+  -
+    name: hohserg
+    role: Автор
+    github: https://github.com/hohserg

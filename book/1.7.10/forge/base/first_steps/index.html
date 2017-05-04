@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Импорт 3D модели - Minecraft Modding</title>
+<title>Первые шаги - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.">
+<meta name="description" content="Объяснение того, как начать писать мод для forge.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Импорт 3D модели - Minecraft Modding">
-<meta property="og:description" content="Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.">
+<meta property="og:title"       content="Первые шаги - Minecraft Modding">
+<meta property="og:description" content="Объяснение того, как начать писать мод для forge.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/item/importing_model">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.7.10/forge/base/first_steps">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -111,7 +111,7 @@
                 <i class="material-icons">home</i><span>Главная</span>
             </a>
 
-            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+            <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" title="Учебник" class="menu-item">
                 <i class="material-icons">import_contacts</i><span>Учебник</span>
             </a>
 
@@ -139,8 +139,8 @@
                         <select onChange="window.location.href=this.value">
 
                                 <optgroup label="Релиз">
-                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
-                                        <option value="http://mcmodding.ru/book/1.7.10/forge/prep/install" >1.7.10</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/base/first_steps" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" selected>1.7.10</option>
                                 </optgroup>
 
 
@@ -153,8 +153,7 @@
             <div class="api-choose">
                 <label>API:
                     <select onChange="window.location.href=this.value">
-                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
-                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                            <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" selected>Forge</option>
                     </select>
                 </label>
             </div>
@@ -164,51 +163,12 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" class="category-article selected">Основы Forge</a>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article selected">Предмет</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="article ">Создание предмета</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article ">JSON файл модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/tools" class="article ">Инструменты</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article selected">Импорт 3D модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/rarity" class="article ">Редкость предметов</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
-
-                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" class="article selected">Первые шаги</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/proxy" class="article ">Клиент и сервер</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/setup" class="article ">Установка forge src</a>
                     </div>
 
                 </div>
@@ -220,23 +180,51 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/item/importing_model/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.7.10/forge/base/first_steps/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="импорт-3d-модели">Импорт 3D модели<a title="Ссылка на этот раздел" href="#импорт-3d-модели"><i class="material-icons">link</i></a></h1>
-<p>TODO</p>
+        <h1 id="первые-шаги">Первые шаги<a title="Ссылка на этот раздел" href="#первые-шаги"><i class="material-icons">link</i></a></h1>
+<p>Итак, мы распаковали и установили forge src. Давайте откроем наш проект в ide и заглянем в папку src/main.
+Перед нами две папки: java и resources. 
+В первой будет лежать исходный код нашего мода, а во второй ресурсы(текстуры, звуки, модели, локализация).
+Создадим новый пакет в java. Пусть имя его будет соответствовать имени мода.
+И в пакете создадим класс Main. Это будет главный класс нашего мода.
+Далее нужно указать forge, что это главный класс при помощи аннотации @Mod</p>
+<pre><code class="java language-java">@Mod(modid="testMod" /*идентификатор мода*/,name="Test Mod" /*имя мода*/,version="1.0")
+public class Main {
+}
+</code></pre>
+<p>Далее, нам нужно создать в главном классе несколько методов, отвечающих за инициализацию мода.</p>
+<pre><code class="java language-java">@Mod(modid="testMod",name="Test Mod",version="1.0")
+public class Main {
+    @EventHandler //Вспомогательная аннотация
+    public void preInit(FMLPreInitializationEvent event) {
+        //Тут можно регистрировать предметы, блоки, слушатели событий, сущности
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        //Рецепты, достижения и прочее, что требует уже инициализированные предметы, блоки
+    }
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        //Для интеграции с другими модами. Например, регистрация вкладки для таумкрафта
+    }
+}
+</code></pre>
+<p>Теперь давайте запустим майнкрафт и в списке модов увидим наш:D.</p>
 
     </div>
 
     <section class="contributors">
 
 
-            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+            <a href="https://github.com/hohserg" target="_blank" title="К профилю GitHub" class="contributor">
 
-                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+                <img class="avatar" src="https://github.com/hohserg.png?size=40">
 
                 <div class="info">
 
-                    <div class="name">CMTV</div>
+                    <div class="name">hohserg</div>
 
                     <div class="role">Автор</div>
 
@@ -268,7 +256,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/item/importing_model';
+                this.page.identifier = 'http://mcmodding.ru/book/1.7.10/forge/base/first_steps';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
