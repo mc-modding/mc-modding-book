@@ -41,8 +41,8 @@ module.exports = (par_version_dir, par_API_dir, par_category_dir, par_article_di
 
         let version_config = utils.get_config(`book/${version_dir}`);
 
-        let index_category = utils.index_category(par_version_dir, version_config['default-api-dir']);
-        let index_article = utils.index_article(par_version_dir, version_config['default-api-dir'], index_category);
+        let index_category = utils.index_category(version_dir, version_config['default-api-dir']);
+        let index_article = utils.index_article(version_dir, version_config['default-api-dir'], index_category);
 
         let version_link = `${CONFIG.url}/book/${version_dir}/${version_config['default-api-dir']}/${index_category}/${index_article}`;
 

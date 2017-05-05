@@ -1,11 +1,57 @@
-let nav, article;
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Переменные */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
-let tolerance = 20;
+/**
+ * Открыто ли меню в данный момент
+ *
+ * @type {boolean}
+ */
+let is_opened = false;
 
+/**
+ * Происходит ли перемещение меню пальцем в данный момент
+ *
+ * @type {boolean}
+ */
+let is_moving = false;
+
+/**
+ * jQuery DOM элемент навигации
+ */
+let nav;
+
+/**
+ * jQuery DOM элемент тела сайта
+ */
+let article;
+
+/**
+ * jQuery DOM элемент шапки сайта
+ */
+let header;
+
+/**
+ * Ширина области в пикселях от начала экрана, в которой возможно открыть навигацию
+ *
+ * @type {number}
+ */
+let open_tolerance = 20;
+
+/**
+ * Ширина навигации
+ *
+ * @type {number}
+ */
 let nav_width;
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Обработка событий */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* Изменение размеров окна браузера */
 $(window).resize(() => {
-    nav_width = nav.outerWidth();
+    nav_width = $(nav).outerWidth();
 });
 
 $(() => {
@@ -23,15 +69,15 @@ $(() => {
         dragBlockHorizontal: true
     });
 
-    /* -------------------------------------------------------------------------------------------------------------- */
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
     /* Обработка свайпов */
-    /* -------------------------------------------------------------------------------------------------------------- */
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
     /* Открытие навигации свайпом */
     hammer_article.on('swiperight', e => {
         let start_X = e.changedPointers[0].clientX - e.deltaX;
 
-        if(Utils.between(start_X, 0, tolerance)) {
+        if(Utils.between(start_X, 0, open_tolerance)) {
             open_nav();
         }
     });
@@ -41,49 +87,43 @@ $(() => {
         close_nav();
     });
 
-    /* -------------------------------------------------------------------------------------------------------------- */
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
     /* Обработка перемещений */
-    /* -------------------------------------------------------------------------------------------------------------- */
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
     /* Открытие навигации перемещением */
     hammer_article.on('panleft panright', e => {
-        if(nav.hasClass('shown')) {
+        if(is_opened) {
             return;
         }
 
-        let start_X = e.changedPointers[0].clientX - e.deltaX;
-
-        if(Utils.between(start_X, 0, tolerance)) {
-            nav.addClass('moving');
-        }
-
-        if(nav.hasClass('moving') && nav_right() <= nav_width) {
+        if(!is_moving) {
+            if(Utils.between(e.changedPointers[0].clientX - e.deltaX, 0, open_tolerance)) {
+                enable_moving();
+            }
+        } else {
+            darker_step();
             nav_right((e.changedPointers[0].clientX > nav_width ? nav_width : e.changedPointers[0].clientX));
         }
     });
 
     /* Закрытие навигации перемещением */
     hammer_nav.on('panleft panright', e => {
-        if(!nav.hasClass('shown')) {
-            return;
-        }
-
         if(e.isFinal) {
             return;
         }
 
-        console.log(e);
-
-        nav.addClass('moving');
-
-        if(nav_right() <= nav_width) {
+        if(!is_moving) {
+            enable_moving();
+        } else {
+            darker_step();
             nav_right((nav_width + e.deltaX > nav_width ? nav_width : nav_width + e.deltaX));
         }
     });
 
-    /* Отмена перемещения */
+    /* Прекращение открытия навигации */
     hammer_article.on('panend pancancel', () => {
-        nav.removeClass('moving');
+        disable_moving();
 
         if(nav.hasClass('shown')) {
             return;
@@ -95,8 +135,10 @@ $(() => {
             close_nav();
         }
     });
+
+    /* Прекращение закрытия навигации */
     hammer_nav.on('panend pancancel', () => {
-        nav.removeClass('moving');
+        disable_moving();
 
         if(!nav.hasClass('shown')) {
             return;
@@ -108,20 +150,66 @@ $(() => {
             open_nav();
         }
     });
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+    /* Остальные обработчики */
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+    /* Вызов навигации по клику */
+    $('.menu-button').click(() => {
+        open_nav();
+    });
+
+    /* Закрытие навигации по клику вне меню */
+    $('article, header').click(e => {
+        if(!$(e.target).hasClass('menu-button') && is_opened) {
+            close_nav();
+        }
+    });
 });
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Функции */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/** Открытие навигации */
 function open_nav() {
     clean_nav();
     nav.addClass('shown');
+    article.addClass('darker');
+    is_opened = true;
 }
 
+/** Закрытие навигации */
 function close_nav() {
     clean_nav();
+    article.removeClass('darker');
+    is_opened = false;
+}
+
+/** Включение перемещения пальцем */
+function enable_moving() {
+    nav.addClass('moving');
+    is_moving = true;
+}
+
+/** Выключение перемещения пальцем */
+function disable_moving() {
+    nav.removeClass('moving');
+    is_moving = false;
 }
 
 /** Полная очистка навигации от любых стилей */
 function clean_nav() {
+    article.css('filter', '');
     nav.removeClass().css('left', '');
+}
+
+/** Затемнение фона при открытии/закрытии навигации */
+function darker_step() {
+    let brightness = 1-(nav_right()/(2*nav_width));
+
+    article.css('filter', `brightness(${brightness})`);
 }
 
 /**
