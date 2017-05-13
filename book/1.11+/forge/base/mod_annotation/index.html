@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -223,11 +223,133 @@
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/base/mod_annotation/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
         <h1 id="аннотация-mod">Аннотация @Mod<a title="Ссылка на этот раздел" href="#аннотация-mod"><i class="material-icons">link</i></a></h1>
-<p>TODO</p>
+<table>
+<thead>
+<tr>
+<th>Переменная</th>
+<th>Описание</th>
+<th>Обязателен</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>modid</td>
+<td>Задаёт уникальное идентификатор для мода.</td>
+<td>Да</td>
+<td>modid = "mcmodding"</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Задаёт имя для мода.</td>
+<td>Нет</td>
+<td>name = "My MC Mod"</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Задаёт версию для мода.</td>
+<td>Да</td>
+<td>version = "1.0 Beta"</td>
+</tr>
+<tr>
+<td>dependencies</td>
+<td>Задаёт зависимости для мода без которых мод не запуститься.</td>
+<td>Нет</td>
+<td>dependencies = "required-after:mylib" или dependencies="required-before:mylib"</td>
+</tr>
+<tr>
+<td>useMetadata</td>
+<td>При значение true данные о версии, id, имени мода будут браться из файла mcmod.info</td>
+<td>Нет</td>
+<td>useMetadata = true</td>
+</tr>
+<tr>
+<td>clientSideOnly</td>
+<td>При значении true мод будет загружаться только на клиенте. На сервере будет краш/ошибка.</td>
+<td>Нет</td>
+<td>clientSideOnly = true</td>
+</tr>
+<tr>
+<td>serverSideOnly</td>
+<td>При значении true мод будет загружаться только на сервере. На клиенте будет краш/ошибка.</td>
+<td>Нет</td>
+<td>serverSideOnly = true</td>
+</tr>
+<tr>
+<td>acceptedMinecraftVersions</td>
+<td>Если прописанная версия не совпадает с mc версией, то мод выдаст ошибку и не запуститься.</td>
+<td>Нет</td>
+<td>acceptedMinecraftVersions = "[1.11]"</td>
+</tr>
+<tr>
+<td>acceptableRemoteVersions</td>
+<td>Если прописанная версия не совпадает с серверной, то мод выдаст ошибку.</td>
+<td>Нет</td>
+<td>acceptableRemoteVersions = "[1.63.2]"</td>
+</tr>
+<tr>
+<td>acceptableSaveVersions</td>
+<td>Задаёт диапазон версий которые будут храниться. Должны следовать правильному тону! <a href="http://semver.org/" target="_blank">Тык</a></td>
+<td>Нет</td>
+<td>acceptableSaveVersions = "[1.10.beta.2]"</td>
+</tr>
+<tr>
+<td>certificateFingerprint</td>
+<td>Задаёт цифровую подпись для мода, без которой мод не будет запускаться.</td>
+<td>Нет</td>
+<td>certificateFingerprint = "mcmodding-certificate"</td>
+</tr>
+<tr>
+<td>modLanguage</td>
+<td>Задаёт язык на котором был написан мод для управления поведением совместимости.</td>
+<td>Нет</td>
+<td>modLanguage = "java"</td>
+</tr>
+<tr>
+<td>modLanguageAdapter</td>
+<td>Задаёт язык к которому будет адаптирован fml.</td>
+<td>Нет</td>
+<td>modLanguageAdapter = "kotlin"</td>
+</tr>
+<tr>
+<td>canBeDeactivated</td>
+<td>Если значение true, то мод можно будет выключить. При отключении на сервере, изменения войдут в силу только после перезагрузки!</td>
+<td>Нет</td>
+<td>canBeDeactivated = true</td>
+</tr>
+<tr>
+<td>guiFactory</td>
+<td>Задаёт класс для графического интерфейса конфига.</td>
+<td>Нет</td>
+<td>guiFactory = "ru.mcmodding.gui.ConfigGuiFactory"</td>
+</tr>
+<tr>
+<td>updateJSON</td>
+<td>Задаёт ссылку на проверку обновлений для мода. Если версия мода не совпадает с той, что в файле, то кнопка mods будет мигать.</td>
+<td>Нет</td>
+<td>updateJSON = "http://mcmodding.ru/updateurl.json"</td>
+</tr>
+</tbody>
+</table>
 
     </div>
 
     <section class="contributors">
+
+
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">Ivasik</div>
+
+                    <div class="role">Автор</div>
+
+                </div>
+
+            </a>
 
 
             <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
