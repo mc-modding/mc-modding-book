@@ -45,8 +45,8 @@ public void preInit(FMLPreInitializationEvent event) {
 // ClientProxy.java
 
 @Override
-public void preInit(FMLPreInitializationEvent event) {
-    super.preInit(event);
+public void init(FMLInitializationEvent event) {
+    super.init(event);
 
     Items.registerItemsRender();
 }
