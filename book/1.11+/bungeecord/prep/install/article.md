@@ -50,9 +50,10 @@ Eclipse бесплатен. У Intellij Idea есть бесплатная Commu
 И теперь добавляем папку libs как библиотеку:
 ![Project Settings Настройка](images/libssettings.png)
 
-## Использование Bukkit API
+## Использование BungeeCord API
 
-Чтобы избежать трудность в начале и не использовать непонятный(для новичков) BuildTools перейдём на сайт [GetBukkit](https://getbukkit.org/spigot) и загрузим актуальную версию ядра.
-После того как Вы скачали Spigot-<ver>.jar переместим его в папку libs в нашем проекте.
+Перейдём в репозиторию [BungeeCord](https://ci.md-5.net/job/BungeeCord/) с ядрами BungeeCord и загрузим актуальную версию ядра.
+
+После того как Вы скачали BungeeCord.jar переместим его в папку libs в нашем проекте.
 
 На этом основные настройки закончены!

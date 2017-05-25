@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
             </div>
         </div>
 
@@ -154,6 +154,7 @@
                 <label>API:
                     <select onChange="window.location.href=this.value">
                             <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" selected>Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" >BungeeCord</option>
                             <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >Forge</option>
                     </select>
                 </label>
@@ -223,7 +224,7 @@
 
     @Override
     /** Срабатывает когда плагин загружается. В данном уроке, данный метод не будет рассматриваться. */
-    public void onLoad() 
+    public void onLoad()
     {
         Bukkit.getLogger().info("Im load! :P");
     }
@@ -241,7 +242,7 @@ main: ru.ivasik.tutplugin.TuTPlugin
 version: 1.0
 </code></pre>
 <blockquote>
-  <p>Примечание! Вы можете добавить так же и другие параметры которые приведены в таблице ниже, но если отсутсвует хотя бы один из обязательных параметров, плагин не запуститься!</p>
+  <p>Примечание! Вы можете добавить так же и другие параметры которые приведены в таблице ниже, но если отсутствует хотя бы один из обязательных параметров, плагин не запуститься!</p>
 </blockquote>
 <h3 id="таблица-с-доступными-параметрами">Таблица с доступными параметрами<a title="Ссылка на этот раздел" href="#таблица-с-доступными-параметрами"><i class="material-icons">link</i></a></h3>
 <table>
@@ -365,7 +366,7 @@ version: 1.0
 </tr>
 <tr>
 <td>aliases</td>
-<td>Задаёт сокращение комадны.</td>
+<td>Задаёт сокращение команды.</td>
 <td>Нет</td>
 <td>aliases: sp  или aliases: [sp, super]</td>
 </tr>

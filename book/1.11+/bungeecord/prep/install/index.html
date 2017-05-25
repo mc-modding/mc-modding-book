@@ -8,7 +8,7 @@
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Установка необходимых программ, которые необходимы для разработки Bukkit плагинов.">
+<meta name="description" content="Установка необходимых программ, которые необходимы для разработки BungeeCord плагинов.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,9 +16,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <meta property="og:title"       content="Установка программ - Minecraft Modding">
-<meta property="og:description" content="Установка необходимых программ, которые необходимы для разработки Bukkit плагинов.">
+<meta property="og:description" content="Установка необходимых программ, которые необходимы для разработки BungeeCord плагинов.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bukkit/prep/install">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bungeecord/prep/install">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -111,7 +111,7 @@
                 <i class="material-icons">home</i><span>Главная</span>
             </a>
 
-            <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" title="Учебник" class="menu-item">
+            <a href="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" title="Учебник" class="menu-item">
                 <i class="material-icons">import_contacts</i><span>Учебник</span>
             </a>
 
@@ -153,8 +153,8 @@
             <div class="api-choose">
                 <label>API:
                     <select onChange="window.location.href=this.value">
-                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" selected>Bukkit</option>
-                            <option value="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" >BungeeCord</option>
+                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" selected>BungeeCord</option>
                             <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >Forge</option>
                     </select>
                 </label>
@@ -165,21 +165,9 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" class="category-article selected">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" class="category-article selected">Подготовка</a>
 
                     <div class="category-articles">
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="category-article ">Основное</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="article ">Главный класс</a>
-                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/events" class="article ">События</a>
-                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/commands" class="article ">Команды</a>
                     </div>
 
                 </div>
@@ -191,7 +179,7 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/prep/install/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bungeecord/prep/install/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
         <h1 id="установка-программ">Установка программ<a title="Ссылка на этот раздел" href="#установка-программ"><i class="material-icons">link</i></a></h1>
 <p>Minecraft написана на языке Java. Программы на этом языке могут выполняться только если у вас установлена виртуальная машина Java.</p>
@@ -227,9 +215,9 @@
 <img src="images/projsettings.png" alt="Project Settings Настройка" />
 И теперь добавляем папку libs как библиотеку:
 <img src="images/libssettings.png" alt="Project Settings Настройка" /></p>
-<h2 id="использование-bukkit-api">Использование Bukkit API<a title="Ссылка на этот раздел" href="#использование-bukkit-api"><i class="material-icons">link</i></a></h2>
-<p>Чтобы избежать трудность в начале и не использовать непонятный(для новичков) BuildTools перейдём на сайт <a href="https://getbukkit.org/spigot" target="_blank">GetBukkit</a> и загрузим актуальную версию ядра.
-После того как Вы скачали Spigot-<ver>.jar переместим его в папку libs в нашем проекте.</p>
+<h2 id="использование-bungeecord-api">Использование BungeeCord API<a title="Ссылка на этот раздел" href="#использование-bungeecord-api"><i class="material-icons">link</i></a></h2>
+<p>Перейдём в репозиторию <a href="https://ci.md-5.net/job/BungeeCord/" target="_blank">BungeeCord</a> с ядрами BungeeCord и загрузим актуальную версию ядра.</p>
+<p>После того как Вы скачали BungeeCord.jar переместим его в папку libs в нашем проекте.</p>
 <p>На этом основные настройки закончены!</p>
 
     </div>
@@ -275,7 +263,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bukkit/prep/install';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bungeecord/prep/install';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -154,6 +154,7 @@
                 <label>API:
                     <select onChange="window.location.href=this.value">
                             <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" selected>Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" >BungeeCord</option>
                             <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >Forge</option>
                     </select>
                 </label>
@@ -192,7 +193,7 @@
 
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/events/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="события">События<a title="Ссылка на этот раздел" href="#события"><i class="material-icons">link</i></a></h1>
+        <h2 id="события">События<a title="Ссылка на этот раздел" href="#события"><i class="material-icons">link</i></a></h2>
 <p>События - это то же, что случается с нами в повседневной жизни, но только в minecraft и мы можем предотвратить это событие.</p>
 <p>Чтобы отменить событие нужно прописать в методе с событием e.setCancelled(true); Если хотим проверить, отменено ли событие то пропишем e.isCancelled() что вернёт нам true или false.</p>
 <p>Для начала создадим класс EventsHandler:</p>
@@ -230,8 +231,8 @@
 <pre><code class="Java language-Java">/** EventsHandler это наш класс, this указывает на то, что это главный класс. В противном случаи нужно прописать TuTPlugin.instance(), но об этом позднее. */
 Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </code></pre>
-<h2 id="таблица-всех-событий">Таблица всех событий<a title="Ссылка на этот раздел" href="#таблица-всех-событий"><i class="material-icons">link</i></a></h2>
-<h3 id="блоки">Блоки<a title="Ссылка на этот раздел" href="#блоки"><i class="material-icons">link</i></a></h3>
+<h3 id="таблица-всех-событий">Таблица всех событий<a title="Ссылка на этот раздел" href="#таблица-всех-событий"><i class="material-icons">link</i></a></h3>
+<h2 id="-блоки">##### Блоки<a title="Ссылка на этот раздел" href="#-блоки"><i class="material-icons">link</i></a></h2>
 <table>
 <thead>
 <tr>
@@ -342,7 +343,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h3 id="чары">Чары<a title="Ссылка на этот раздел" href="#чары"><i class="material-icons">link</i></a></h3>
+<h2 id="-чары">##### Чары<a title="Ссылка на этот раздел" href="#-чары"><i class="material-icons">link</i></a></h2>
 <table>
 <thead>
 <tr>
@@ -361,9 +362,202 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h3 id="сущность">Сущность<a title="Ссылка на этот раздел" href="#сущность"><i class="material-icons">link</i></a></h3>
-<p>Cooming Soon...</p>
-<h3 id="висящий-блоктолько-картина-и-рамка">Висящий блок(Только картина и рамка!)<a title="Ссылка на этот раздел" href="#висящий-блоктолько-картина-и-рамка"><i class="material-icons">link</i></a></h3>
+<h2 id="-сущность">##### Сущность<a title="Ссылка на этот раздел" href="#-сущность"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AreaEffectCloudApplyEvent</td>
+<td>Срабатывает когда затяжное зелье применяет эффект. Срабатывает раз в 5 тиков!</td>
+</tr>
+<tr>
+<td>CreatureSpawnEvent</td>
+<td>Срабатывает когда сущность спавнится в мире.</td>
+</tr>
+<tr>
+<td>CreeperPowerEvent</td>
+<td>Срабатывает когда крипера ударила молния.</td>
+</tr>
+<tr>
+<td>EnderDragonChangePhaseEvent</td>
+<td>Срабатывает когда меняется контроллер фазы эндер дракона.</td>
+</tr>
+<tr>
+<td>EntityAirChangeEvent</td>
+<td>Срабатывает когда количество воздуха у сущности меняется.</td>
+</tr>
+<tr>
+<td>EntityBreakDoorEvent</td>
+<td>Срабатывает когда сущность ломает дверь.</td>
+</tr>
+<tr>
+<td>EntityBreedEvent</td>
+<td>Срабатывает когда одна порода сущности спаривается с другой.</td>
+</tr>
+<tr>
+<td>EntityChangeBlockEvent</td>
+<td>Срабатывает когда сущность изменяет блок. Не игрок!</td>
+</tr>
+<tr>
+<td>EntityCombustByBlockEvent</td>
+<td>Срабатывает когда блок поджигает сущность.</td>
+</tr>
+<tr>
+<td>EntityCombustByEntityEvent</td>
+<td>Срабатывает когда сущность поджигает другую сущность.</td>
+</tr>
+<tr>
+<td>EntityCombustEvent</td>
+<td>Срабатывает когда сущность сгорает.</td>
+</tr>
+<tr>
+<td>EntityCreatePortalEvent</td>
+<td>Срабатывает когда сущность создаёт портал в мире.</td>
+</tr>
+<tr>
+<td>EntityDamageByBlockEvent</td>
+<td>Срабатывает когда сущность наносит урон блоку.</td>
+</tr>
+<tr>
+<td>EntityDamageByEntityEvent</td>
+<td>Срабатывает когда сущность наносит урон другой сущности.</td>
+</tr>
+<tr>
+<td>EntityDeathEvent</td>
+<td>Срабатывает когда сущность погибает.</td>
+</tr>
+<tr>
+<td>EntityExplodeEvent</td>
+<td>Срабатывает когда сущность взрывается.</td>
+</tr>
+<tr>
+<td>EntityInteractEvent</td>
+<td>Срабатывает когда сущность взаимодействует с объектом.</td>
+</tr>
+<tr>
+<td>EntityPortalEnterEvent</td>
+<td>Срабатывает когда сущность вступает в контакт с порталом.</td>
+</tr>
+<tr>
+<td>EntityPortalEvent</td>
+<td>Срабатывает когда сущность собирается телепортироваться через портал.</td>
+</tr>
+<tr>
+<td>EntityPortalExitEvent</td>
+<td>Срабатывает когда сущность выходит из портала.</td>
+</tr>
+<tr>
+<td>EntityResurrectEvent</td>
+<td>Срабатывает когда сущность погибает и имеет возможность воскреснуть.</td>
+</tr>
+<tr>
+<td>EntityShootBowEvent</td>
+<td>Срабатывает когда сущность стреляет из лука.</td>
+</tr>
+<tr>
+<td>EntityTameEvent</td>
+<td>Срабатывает когда сущность приручается.</td>
+</tr>
+<tr>
+<td>EntityTargetEvent</td>
+<td>Срабатывает когда сущность целится на другую сущность.</td>
+</tr>
+<tr>
+<td>EntityTargetLivingEntityEvent</td>
+<td>Срабатывает когда сущность целится на другую сущность типа LivingEntity</td>
+</tr>
+<tr>
+<td>EntityTeleportEvent</td>
+<td>Срабатывает когда сущность пытается телепортироваться из одного места в другое. Не игрок!</td>
+</tr>
+<tr>
+<td>EntityToggleGlideEvent</td>
+<td>Срабатывает когда переключается режим "скольжения" с надкрыльями.</td>
+</tr>
+<tr>
+<td>EntityUnleashEvent</td>
+<td>Срабатывает когда сущность была "отвязана". (Пример: поводок порвался)</td>
+</tr>
+<tr>
+<td>ExpBottleEvent</td>
+<td>Срабатывает когда пузырёк опыта разбивается и создаёт опыт.</td>
+</tr>
+<tr>
+<td>ExplosionPrimeEvent</td>
+<td>Срабатывает когда сущность решила взорваться. (Пример: крипер подошёл к игроку, чтобы взорваться)</td>
+</tr>
+<tr>
+<td>FireworkExplodeEvent</td>
+<td>Срабатывает когда фейерверк взрывается.</td>
+</tr>
+<tr>
+<td>FoodLevelChangeEvent</td>
+<td>Срабатывает когда у игрока изменяется уровень голода.</td>
+</tr>
+<tr>
+<td>HorseJumpEvent</td>
+<td>Срабатывает когда лошадь прыгает.</td>
+</tr>
+<tr>
+<td>ItemDespawnEvent</td>
+<td>Срабатывает когда выброшенный предмет был удалён в мире спустя 5 минут.</td>
+</tr>
+<tr>
+<td>ItemMergeEvent</td>
+<td>Срабатывает когда предмет перемещается в мире.</td>
+</tr>
+<tr>
+<td>LingeringPotionSplashEvent</td>
+<td>Срабатывает когда затяжное зелье взрывается при контакте с объектом.</td>
+</tr>
+<tr>
+<td>PlayerDeathEvent</td>
+<td>Срабатывает когда игрок погиб.</td>
+</tr>
+<tr>
+<td>PlayerLeashEntityEvent</td>
+<td>Срабатывает когда игрок привязал сущность на поводок.</td>
+</tr>
+<tr>
+<td>PotionSplashEvent</td>
+<td>Срабатывает когда взрывное зелье взрывается при контакте с объектом.</td>
+</tr>
+<tr>
+<td>ProjectileHitEvent</td>
+<td>Срабатывает когда снаряд наносит урон.</td>
+</tr>
+<tr>
+<td>ProjectileLaunchEvent</td>
+<td>Срабатывает когда снаряд был выпущен.</td>
+</tr>
+<tr>
+<td>SheepDyeWoolEvent</td>
+<td>Срабатывает когда шерсть овцы была окрашена.</td>
+</tr>
+<tr>
+<td>SheepRegrowWoolEvent</td>
+<td>Срабатывает когда шерсть на овце восстановилась.</td>
+</tr>
+<tr>
+<td>SlimeSplitEvent</td>
+<td>Срабатывает когда слизень распадается на маленькие слизни.</td>
+</tr>
+<tr>
+<td>VillagerAcquireTradeEvent</td>
+<td>Срабатывает когда житель получает новую профессию.</td>
+</tr>
+<tr>
+<td>VillagerReplenishTradeEvent</td>
+<td>Срабатывает когда житель достигает максимум при продаже.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-висящий-блоктолько-картина-и-рамка">##### Висящий блок(Только картина и рамка!)<a title="Ссылка на этот раздел" href="#-висящий-блоктолько-картина-и-рамка"><i class="material-icons">link</i></a></h2>
 <table>
 <thead>
 <tr>
@@ -386,11 +580,11 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h3 id="инвентарь">Инвентарь<a title="Ссылка на этот раздел" href="#инвентарь"><i class="material-icons">link</i></a></h3>
+<h2 id="-инвентарь">##### Инвентарь<a title="Ссылка на этот раздел" href="#-инвентарь"><i class="material-icons">link</i></a></h2>
 <p>Cooming Soon...</p>
-<h3 id="игрок">Игрок<a title="Ссылка на этот раздел" href="#игрок"><i class="material-icons">link</i></a></h3>
+<h2 id="-игрок">##### Игрок<a title="Ссылка на этот раздел" href="#-игрок"><i class="material-icons">link</i></a></h2>
 <p>Cooming Soon...</p>
-<h3 id="сервер">Сервер<a title="Ссылка на этот раздел" href="#сервер"><i class="material-icons">link</i></a></h3>
+<h2 id="-сервер">##### Сервер<a title="Ссылка на этот раздел" href="#-сервер"><i class="material-icons">link</i></a></h2>
 <table>
 <thead>
 <tr>
@@ -437,7 +631,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h3 id="транспорт">Транспорт<a title="Ссылка на этот раздел" href="#транспорт"><i class="material-icons">link</i></a></h3>
+<h2 id="-транспорт">##### Транспорт<a title="Ссылка на этот раздел" href="#-транспорт"><i class="material-icons">link</i></a></h2>
 <table>
 <thead>
 <tr>
@@ -488,7 +682,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h3 id="погода">Погода<a title="Ссылка на этот раздел" href="#погода"><i class="material-icons">link</i></a></h3>
+<h2 id="-погода">##### Погода<a title="Ссылка на этот раздел" href="#-погода"><i class="material-icons">link</i></a></h2>
 <table>
 <thead>
 <tr>
@@ -511,7 +705,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 </tr>
 </tbody>
 </table>
-<h3 id="мир">Мир<a title="Ссылка на этот раздел" href="#мир"><i class="material-icons">link</i></a></h3>
+<h2 id="-мир">##### Мир<a title="Ссылка на этот раздел" href="#-мир"><i class="material-icons">link</i></a></h2>
 <table>
 <thead>
 <tr>
