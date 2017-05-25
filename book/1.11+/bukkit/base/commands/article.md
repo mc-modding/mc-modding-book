@@ -45,7 +45,7 @@ public class CommandFly implements CommandExecutor
             if(strings[0] == "arg_1")
             {
                 player.sendMessage("/fly arg_1");
-                    
+
                 /*
                  * Если введена команда /fly arg_1 arg_2 то выводим сообщение об этом.
                  */
@@ -58,7 +58,7 @@ public class CommandFly implements CommandExecutor
             return true;
         }
         /*
-         * Если аргуметов нет, то выводим сообщение.
+         * Если аргументов нет, то выводим сообщение.
          */
         else if(strings.length == 0)
         {
