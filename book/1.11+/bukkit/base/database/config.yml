@@ -1,6 +1,10 @@
-category-title: Базы данных
+title: База данных
 
-articles-order:
-  - mysql
-  - mongo
-  - nosql
+description: >
+  Работа с базой данных
+
+contributors:
+  -
+    name: Ivasik
+    role: Автор
+    github: https://github.com/YouTy6bl4
