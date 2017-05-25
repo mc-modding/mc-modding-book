@@ -4,3 +4,8 @@ articles-order:
   - main
   - events
   - commands
+  - config
+  - debug
+  - packets
+  - database
+  - export

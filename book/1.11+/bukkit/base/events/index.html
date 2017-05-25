@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -180,6 +180,11 @@
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="article ">Главный класс</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/events" class="article selected">События</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/commands" class="article ">Команды</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/config" class="article ">Конфигурация</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/debug" class="article ">Отладка плагина</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/packets" class="article ">Пакеты</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/database" class="article ">База данных</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/export" class="article ">Экспорт</a>
                     </div>
 
                 </div>
@@ -195,7 +200,7 @@
 
         <h2 id="события">События<a title="Ссылка на этот раздел" href="#события"><i class="material-icons">link</i></a></h2>
 <p>События - это то же, что случается с нами в повседневной жизни, но только в minecraft и мы можем предотвратить это событие.</p>
-<p>Чтобы отменить событие нужно прописать в методе с событием e.setCancelled(true); Если хотим проверить, отменено ли событие то пропишем e.isCancelled() что вернёт нам true или false.</p>
+<p>Чтобы отменить событие нужно прописать в методе с событием e.setCancelled(true); Если хотим проверить, отменено ли событие, то пропишем e.isCancelled() что вернёт нам true или false.</p>
 <p>Для начала создадим класс EventsHandler:</p>
 <pre><code class="Java language-Java">public class EventsHandler implements Listener
 {

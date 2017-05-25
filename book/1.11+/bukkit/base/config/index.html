@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Установка программ - Minecraft Modding</title>
+<title>Конфигурация - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Установка необходимых программ, которые необходимы для разработки Bukkit плагинов.">
+<meta name="description" content="Конфигурация нашего плагина">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Установка программ - Minecraft Modding">
-<meta property="og:description" content="Установка необходимых программ, которые необходимы для разработки Bukkit плагинов.">
+<meta property="og:title"       content="Конфигурация - Minecraft Modding">
+<meta property="og:description" content="Конфигурация нашего плагина">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bukkit/prep/install">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bukkit/base/config">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -165,7 +165,7 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" class="category-article selected">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" class="category-article ">Подготовка</a>
 
                     <div class="category-articles">
                     </div>
@@ -174,13 +174,13 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="category-article ">Основное</a>
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="category-article selected">Основное</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="article ">Главный класс</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/events" class="article ">События</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/commands" class="article ">Команды</a>
-                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/config" class="article ">Конфигурация</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/config" class="article selected">Конфигурация</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/debug" class="article ">Отладка плагина</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/packets" class="article ">Пакеты</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/database" class="article ">База данных</a>
@@ -196,46 +196,62 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/prep/install/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/config/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="установка-программ">Установка программ<a title="Ссылка на этот раздел" href="#установка-программ"><i class="material-icons">link</i></a></h1>
-<p>Minecraft написана на языке Java. Программы на этом языке могут выполняться только если у вас установлена виртуальная машина Java.</p>
-<p>Если вы хоть раз запускали Minecraft на данном компьютере, то Java у вас уже установлена. В противном случае, скачайте и установите <a href="https://java.com/ru/download/" target="_blank">последнюю версию Java</a>.</p>
-<h2 id="jdk">JDK<a title="Ссылка на этот раздел" href="#jdk"><i class="material-icons">link</i></a></h2>
-<p>Для запуска Minecraft необходима лишь среда выполнения Java, которую вы установили выше.</p>
-<p>Но для разработки собственных плагинов нам потребуется писать программный код и пользоваться разными библиотеками. Это не входит в стандартный Java пакет,
-поэтому нам нужно установить JDK (Java Development Kit) (Комплект инструментов для разработки на Java).</p>
-<p>Скачайте <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">последнюю версию JDK</a> и следуйте инструкциям по установке. Ничего в настройках установки менять не надо.</p>
-<h2 id="среда-разработки">Среда разработки<a title="Ссылка на этот раздел" href="#среда-разработки"><i class="material-icons">link</i></a></h2>
-<p>Моды можно писать и в блокноте, но это очень неудобно. Нам нужна специализированная программа, которая
-умеет подсвечивать код, выполнять авто-импорт и делать много других полезных вещей.</p>
-<p>Наиболее популярными IDE на данный момент являются <a href="https://www.eclipse.org/downloads/" target="_blank">Eclipse</a> и <a href="https://www.jetbrains.com/idea/#chooseYourEdition">Intellij Idea</a>.</p>
-<p>Eclipse бесплатен. У Intellij Idea есть бесплатная Community версия. Никаких платных функций в этом учебнике нам не потребуется.</p>
-<p>Достаточно часто моды пишут на Eclipse, так как и сам Minecraft был написан с помощью этой IDE.
-С другой стороны, Idea выглядит посовременнее и пофункциональнее, но принципиальной разницы между ними нет.</p>
-<p>Выбирайте то, что нравится вам.</p>
-<h2 id="настройка-intellij-idea">Настройка Intellij Idea<a title="Ссылка на этот раздел" href="#настройка-intellij-idea"><i class="material-icons">link</i></a></h2>
-<p>В самой среде разработки открываем File -&gt; New -&gt; New Project. Выбираем систему автоматической сборки Gradle(Если вы разбираетесь в других системах, то можете выбрать их)
-в самом окне ставим галочку напротив "Java" и нажимаем "Next".
-<img src="images/newproject.png" alt="New Project Настройка" /></p>
-<p>В следующем окне заполняем поля GroupID - TuTPlugin, ArtifactsID - TuTPlugin и нажимаем "Next" пока не появится кнопка "Finish". Всё, установка рабочей среды
-окончена! Теперь осталось дождаться загрузки модуля Gradle.</p>
-<p>Создадим две папки: libs и src, в нашем рабочем пространстве. В libs мы будем помещать плагины которые хотим использоваться как библиотеки. В src будут храниться исходники
-нашего плагина. Папка src должна иметь такой вид:</p>
-<pre><code class="md language-md">└── src    
-    └── main
-        ├── java
-        └── resources
+        <h2 id="конфигурация---простой-вариант">Конфигурация - Простой вариант<a title="Ссылка на этот раздел" href="#конфигурация---простой-вариант"><i class="material-icons">link</i></a></h2>
+<p>В конфигурации мы будем хранить данные доступные для обычных админов, которые не сильны в программировании, да и для более гибкой настройки самого плагина.</p>
+<p>Для начала добавим в главном классе, в метод onEnable такой код:</p>
+<pre><code class="Java language-Java">//Данный метод копирует данные из файла
+getConfig().options().copyDefaults(true);
+//Данный метод сохраняет данные конфигурации.
+saveConfig();
 </code></pre>
-<p>В java находятся сами исходники, а в resources конфиги, папки и прочее. Открываем настройки проекта с плагином(F4) и в категории Project Setting выбираем Modules.
-Выбираем наш модуль TuTPlugin открываем папку src и в папки main выделяем java и resources и нажимаем на Sources.
-<img src="images/projsettings.png" alt="Project Settings Настройка" />
-И теперь добавляем папку libs как библиотеку:
-<img src="images/libssettings.png" alt="Project Settings Настройка" /></p>
-<h2 id="использование-bukkit-api">Использование Bukkit API<a title="Ссылка на этот раздел" href="#использование-bukkit-api"><i class="material-icons">link</i></a></h2>
-<p>Чтобы избежать трудность в начале и не использовать непонятный(для новичков) BuildTools перейдём на сайт <a href="https://getbukkit.org/spigot" target="_blank">GetBukkit</a> и загрузим актуальную версию ядра.
-После того как Вы скачали Spigot-<ver>.jar переместим его в папку libs в нашем проекте.</p>
-<p>На этом основные настройки закончены!</p>
+<p>В папке resources создадим файл config.yml (Только такое название!) и добавим туда такие данные:</p>
+<pre><code class="YAML language-YAML">boolean_param: true
+int_param: 25
+string_param: 'This is text!'
+section:
+  param_1: 'Param 1'
+  param_2: 2
+  section_2:
+    param_1: 'Section 2 -&gt; param 1'
+    param_2: false
+array_param:
+- 'Hello, my friend!'
+- 'My name TuTPlugin'
+</code></pre>
+<p>А сейчас мы попробуем использовать данные из конфигурации. Пример использования:</p>
+<pre><code class="Java language-Java">    @EventHandler
+    public void onJoin(PlayerJoinEvent e)
+    {
+        //Получаем из конфигурации секцию
+        ConfigurationSection section = TuTPlugin.getInstance().getConfig().getConfigurationSection("section");
+        //Получаем из конфигурации секцию второго уровня. Уровней может быть много, но это уже на Ваше усмотрение.
+        ConfigurationSection section_two_level = section.getConfigurationSection("section_2");
+
+        //Игрок отправит сообщение с текстом из секции первого уровня из параметра 1
+        e.getPlayer().sendMessage(section.getString("param_1"));
+        //Игрок отправит сообщение с текстом из секции второго уровня из параметра 1
+        e.getPlayer().sendMessage(String.valueOf(section_two_level.getBoolean("param_1")));
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent e)
+    {
+        Player player = e.getPlayer();
+        //Получаем логическое значение из boolean_param.
+        boolean isCanceled = TuTPlugin.getInstance().getConfig().getBoolean("boolean_param");
+
+        if(e.getBlock().getType() == Material.DIRT)
+        {
+            //Если параметр isCanceled вернёт true, то событие будет отменено.
+            e.setCancelled(isCanceled);
+            player.sendMessage("Блок запривачен!");
+        }
+    }
+</code></pre>
+<h2 id="конфигурация---продвинутый-вариант">Конфигурация - Продвинутый вариант<a title="Ссылка на этот раздел" href="#конфигурация---продвинутый-вариант"><i class="material-icons">link</i></a></h2>
+<p>TODO</p>
 
     </div>
 
@@ -280,7 +296,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bukkit/prep/install';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bukkit/base/config';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
