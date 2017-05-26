@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -200,7 +200,7 @@
 
         <h2 id="команды">Команды<a title="Ссылка на этот раздел" href="#команды"><i class="material-icons">link</i></a></h2>
 <p>Команды, каждый хотел бы хоть раз да сделать свою команду, которая даёт ту или иную способность, преимущество.</p>
-<p>Создадим класс CommandFly:</p>
+<p>Создадим класс <code>CommandFly</code>:</p>
 <pre><code class="Java language-Java">public class CommandFly implements CommandExecutor
 {
     @Override
@@ -264,7 +264,7 @@
     }
 }
 </code></pre>
-<p>Теперь перейдём в главный класс и добавим в метод onEnable такой код:</p>
+<p>Теперь перейдём в главный класс и добавим в метод <code>onEnable</code> такой код:</p>
 <pre><code class="Java language-Java">getCommand("fly").setExecutor(new CommandFly());
 </code></pre>
 

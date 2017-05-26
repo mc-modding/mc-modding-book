@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
             </div>
         </div>
 
@@ -200,13 +200,13 @@
 
         <h2 id="конфигурация---простой-вариант">Конфигурация - Простой вариант<a title="Ссылка на этот раздел" href="#конфигурация---простой-вариант"><i class="material-icons">link</i></a></h2>
 <p>В конфигурации мы будем хранить данные доступные для обычных админов, которые не сильны в программировании, да и для более гибкой настройки самого плагина.</p>
-<p>Для начала добавим в главном классе, в метод onEnable такой код:</p>
+<p>Для начала добавим в главном классе, в метод <code>onEnable</code> такой код:</p>
 <pre><code class="Java language-Java">//Данный метод копирует данные из файла
 getConfig().options().copyDefaults(true);
 //Данный метод сохраняет данные конфигурации.
 saveConfig();
 </code></pre>
-<p>В папке resources создадим файл config.yml (Только такое название!) и добавим туда такие данные:</p>
+<p>В папке resources создадим файл <code>config.yml</code>(Только такое название!) и добавим туда такие данные:</p>
 <pre><code class="YAML language-YAML">boolean_param: true
 int_param: 25
 string_param: 'This is text!'

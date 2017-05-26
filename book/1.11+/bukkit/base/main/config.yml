@@ -1,11 +1,8 @@
-# Title
 title: Главный класс
 
-# Description (~160 symbols)
 description: >
   Основной класс в котором будет происходить регистрация команд, событий и т.д.
 
-# Contributors
 contributors:
   -
     name: Ivasik

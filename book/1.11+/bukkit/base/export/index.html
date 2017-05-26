@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -198,7 +198,17 @@
 
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/export/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h2 id="экспорт">Экспорт<a title="Ссылка на этот раздел" href="#экспорт"><i class="material-icons">link</i></a></h2>
+        <h2 id="экспорт-плагина-в-jar---intellij-idea">Экспорт плагина в jar - Intellij IDEA<a title="Ссылка на этот раздел" href="#экспорт-плагина-в-jar---intellij-idea"><i class="material-icons">link</i></a></h2>
+<p>Наш плагин готов, но как же его собрать? Build? Но он же только в папку собирает!
+Решение есть, нажимаем F4 или кликаем по проекту ПКМ и выбираем <code>Open Module Settings</code>.</p>
+<p><img src="images/intellij_moduleSettings.png" alt="Project Settings" /></p>
+<p>В открывшемся окне выбираем раздел <code>Artifacts</code> и нажимаем на <code>+</code>. В выпадающем меню выбираем <code>JAR -&gt; From modules with dependencies...</code>.</p>
+<p><img src="images/intellij_settings.png" alt="Artifacts" /></p>
+<p>В открывшемся окне выбираем наш проект и нажимаем на <code>Ok</code>.</p>
+<p><img src="images/intellij_jar.png" alt="Jar" /></p>
+<p>Теперь перейдём к настройке. Зададим путь, вы можете выбрать другую папку куда будет сохранён плагин. На данный момент путь указывается для папки <code>plugins</code> в папке с сервером, чтобы можно было провести отладку мода. Далее ставим галочку напротив <code>Include in project build</code>, чтобы нам было достаточно нажать на кнопку <code>build</code>. Нажимаем на <code>Apply</code>, а затем <code>Ok</code>. Настройка завершена!</p>
+<p><img src="images/intellij_final.png" alt="Final" /></p>
+<h2 id="экспорт-плагина-в-jar---eclipse">Экспорт плагина в jar - Eclipse<a title="Ссылка на этот раздел" href="#экспорт-плагина-в-jar---eclipse"><i class="material-icons">link</i></a></h2>
 <p>TODO</p>
 
     </div>

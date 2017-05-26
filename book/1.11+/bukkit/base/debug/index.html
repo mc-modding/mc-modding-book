@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
             </div>
         </div>
 
@@ -198,7 +198,19 @@
 
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/debug/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h2 id="отладка">Отладка<a title="Ссылка на этот раздел" href="#отладка"><i class="material-icons">link</i></a></h2>
+        <h2 id="отладка-плагина-в-intellij-idea">Отладка плагина в Intellij IDEA<a title="Ссылка на этот раздел" href="#отладка-плагина-в-intellij-idea"><i class="material-icons">link</i></a></h2>
+<p>Данная статья писалась с использованием Intellij IDEA 2017.1.1!</p>
+<p>Перейдём через меню навигации в меню настройки запуска <code>run -&gt; Edit Configurations</code></p>
+<p><img src="images/run.png" alt="Edit Configurations" /></p>
+<p>В открывшемся окне нажимаем на <code>+</code>, в выпадающем списке выбираем <code>Remote</code>.</p>
+<p><img src="images/remote.png" alt="Add" /></p>
+<p>Называем нашу конфигурацию <code>Debug</code> или как захотите сами и теперь нам надо скопировать всё из поля <code>Command line arguments for running remote JVM</code>. Нажимаем <code>Apply</code> и затем <code>Ok</code>.</p>
+<p><img src="images/configuration.png" alt="Configuration" /></p>
+<p>Скопированный код теперь нужно изменить на такой:</p>
+<p><code>java -Xmx2G -Xms2G -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar Spigot.jar</code></p>
+<p>Теперь перейдём в папку с нашим Spigot сервером и создадим там файл <code>start.bat</code> и в него пропишем наш изменённый код. Запускаем наш сервер и затем нажимаем на кнопку <code>Debug</code> в Intellij IDEA. Теперь после каждого изменения нужно будет нажимать кнопку <code>Build</code>.</p>
+<p><img src="images/start.png" alt="Start" /></p>
+<h2 id="отладка-плагина-в-eclipse">Отладка плагина в Eclipse<a title="Ссылка на этот раздел" href="#отладка-плагина-в-eclipse"><i class="material-icons">link</i></a></h2>
 <p>TODO</p>
 
     </div>
