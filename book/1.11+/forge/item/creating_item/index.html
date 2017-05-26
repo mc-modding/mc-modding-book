@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -207,6 +207,15 @@
                 <hr>
                 <div class="category">
 
+                    <a href="http://mcmodding.ru/book/1.11+/forge/block/creating_block" class="category-article ">Блок</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
                     <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
 
                     <div class="category-articles">
@@ -228,7 +237,7 @@
 в этом пакете. Есть и еще одна причина. Такой иерархии пакетов придерживаются и разработчики Minecraft.</p>
 <h2 id="класс-предметов">Класс предметов<a title="Ссылка на этот раздел" href="#класс-предметов"><i class="material-icons">link</i></a></h2>
 <p>Теперь нам нужен файл, в котором мы будем объявлять и регистрировать все предметы. Можно конечно делать это в CommonProxy, но
-если у нас в моде будут предметы, блоки, моби и т.д., то очень скоро файл разрастется и работать с ним будет очень трудно.</p>
+если у нас в моде будут предметы, блоки, мобы и т.д., то очень скоро файл разрастется и работать с ним будет очень трудно.</p>
 <p>Создадим в пакете item файл Items.java (или ModItems.java). Название может быть любым. В классе создадим два метода:</p>
 <ul>
 <li>registerItems — для регистрации предметов на клиенте и сервере. Ведь обе стороны должны знать, что такой предмет существует</li>

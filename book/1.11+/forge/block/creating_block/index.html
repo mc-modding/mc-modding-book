@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Собственный скин - Minecraft Modding</title>
+<title>Создание блока - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Подключение скина своего оффициального аккаунта при разработке модов.">
+<meta name="description" content="Создание собственного блока, присвоение текстуры и добавление его в игру. Добавление в креативную вкладку.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Собственный скин - Minecraft Modding">
-<meta property="og:description" content="Подключение скина своего оффициального аккаунта при разработке модов.">
+<meta property="og:title"       content="Создание блока - Minecraft Modding">
+<meta property="og:description" content="Создание собственного блока, присвоение текстуры и добавление его в игру. Добавление в креативную вкладку.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/prep/off_skin">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/block/creating_block">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
             </div>
         </div>
 
@@ -165,13 +165,13 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article selected">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article selected">Собственный скин</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
                     </div>
 
                 </div>
@@ -207,7 +207,7 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/block/creating_block" class="category-article ">Блок</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/block/creating_block" class="category-article selected">Блок</a>
 
                     <div class="category-articles">
                     </div>
@@ -230,38 +230,104 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/prep/off_skin/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/block/creating_block/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="скин-с-оффициального-аккаунта">Скин с оффициального аккаунта<a title="Ссылка на этот раздел" href="#скин-с-оффициального-аккаунта"><i class="material-icons">link</i></a></h1>
-<p>Если у вас есть купленная Minecraft лицензия, то вы можете указать в параметрах
-запуска свою почту/пароль. В этом случае, ваш никнейм + скин автоматически загрузятся
-при запуске.</p>
-<h2 id="настройка-в-idea">Настройка в Idea<a title="Ссылка на этот раздел" href="#настройка-в-idea"><i class="material-icons">link</i></a></h2>
-<p>Откройте меню "Run" и выберите пункт "Edit Configurations...".</p>
-<p>В левой части открывшегося окна выберите пункт "Minecraft Client" и введите в поле "Program arguments" следующую строку:</p>
-<p><code>--username=test@mail.ru --password=***</code></p>
-<p>В строке выше укажите почту на которую была куплена копия Minecraft и пароль вместо звездочек.</p>
-<p><img src="images/off_skin_idea.png" alt="Настройка загрузки скина в Idea 2" /></p>
-<h2 id="настройка-в-eclipse">Настройка в Eclipse<a title="Ссылка на этот раздел" href="#настройка-в-eclipse"><i class="material-icons">link</i></a></h2>
-<p>Отройте меню "Run" и выберите пункт "Run Configurations...". В левой части появившегося окна откройте вкладку
-"Java Application". Выберите пункт "[название папки с файлами]_Client". В правой части окна откройте вкладку "Arguments" и
-в поле "Program arguments" вставьте строку:</p>
-<p><code>--username=test@mail.ru --password=***</code></p>
-<p>В строке выше укажите почту на которую была куплена копия Minecraft и пароль вместо звездочек.</p>
-<p><img src="images/off_skin_eclipse.png" alt="Настройка загрузки скина в Eclipse" /></p>
+        <h1 id="создание-блока">Создание блока<a title="Ссылка на этот раздел" href="#создание-блока"><i class="material-icons">link</i></a></h1>
+<p>Для начала в пакете мода создадим пакет block. Таким образом всё, что связано с блоками нашего мода, будет находиться в этом пакете.</p>
+<h2 id="класс-блока">Класс блока<a title="Ссылка на этот раздел" href="#класс-блока"><i class="material-icons">link</i></a></h2>
+<p>Теперь нам нужен файл, в котором мы будем объявлять и регистрировать все предметы. Можно конечно делать это в CommonProxy, но
+если у нас в моде будут предметы, блоки, мобы и т.д., то очень скоро файл разрастется и работать с ним будет очень трудно.</p>
+<p>Создадим в пакете block файл Blocks.java (или ModBlocks.java). Название может быть любым. В классе создадим два метода:</p>
+<ul>
+<li>registerBlocks - для регистрации блоков на клиенте и сервере.</li>
+<li>registerBlocksRender - для регистрации рендера блоков на клиенте.</li>
+</ul>
+<pre><code class="java language-java">package ru.mcmodding.testmod.block;
+
+public class Blocks
+{
+    public static void registerBlocks()
+    {
+
+    }
+
+    public static void registerBlocksRender()
+    {
+
+    }
+}
+</code></pre>
+<p>Теперь перейдём в CommonProxy и в метод <code>preInit</code> добавим вызов метода <code>registerBlocks</code>:</p>
+<pre><code class="java language-java">// CommonProxy.java
+
+public void preInit(FMLPreInitializationEvent e)
+{
+    Blocks.registerBlocks();
+}
+</code></pre>
+<p>А регистрацию рендера добавим в метод <code>init</code> в файле ClientProxy:</p>
+<pre><code class="java language-java">// ClientProxy.java
+
+@Override
+public void init(FMLInitializationEvent e)
+{
+    super.init(e);
+
+    Blocks.registerBlocksRender();
+}
+</code></pre>
+<p>Заметьте, что сначала мы регистрируем блоки (в <code>preInit</code>), а только потом назначаем рендер (в <code>init</code>).</p>
+<h2 id="файл-блока">Файл блока<a title="Ссылка на этот раздел" href="#файл-блока"><i class="material-icons">link</i></a></h2>
+<p>Теперь пора создать файл самого блока.</p>
+<p>В Minecraft применяется следующий способ именования блоков: <code>Block...</code>.
+Если наш блок называется <code>Test</code>, то название файла будет <code>BlockTest.java</code>.</p>
+<p>Создадим файл <code>BlockTest.java</code>, который наследует класс <code>Block</code>.</p>
+<pre><code class="java language-java">package ru.mcmodding.testmod.block;
+
+public class BlockTest extends Block
+{
+    public BlockTest()
+    {
+        super(Material.STONE);
+        this.setRegistryName("block_test");
+        this.setUnlocalizedName("blockTest");
+        this.setCreativeTab(CreativeTabs.BLOCKS);
+    }
+}
+</code></pre>
+<p>Разберем код конструктора:</p>
+<p><code>super(Material.STONE);</code> — задаёт материал блока. <strong>Суперкласс для блоков обязателен!</strong></p>
+<p><code>this.setRegistryName("block_test");</code> — установка уникального имени нашего блока. <strong>Не используйте буквы в верхнем регистре!</strong>
+Только английские маленькие буквы, цифры и нижние подчеркивания!</p>
+<p><code>this.setUnlocalizedName("blockTest");</code> — установка имени предмета для последующей локализации. Можно использовать буквы в верхнем регистре.</p>
+<p><code>this.setCreativeTab(CreativeTabs.BLOCKS);</code> — добавление нашего предмета во вкладку "Блоки" в креативе.</p>
+<h2 id="регистрация-блока">Регистрация блока<a title="Ссылка на этот раздел" href="#регистрация-блока"><i class="material-icons">link</i></a></h2>
+<p>Если вы сейчас запустите Minecraft, то не увидите никакого блока. Нужно сообщить Forge, что мы добавляем в игру новый блок.</p>
+<p>Для этого перейдем в класс блоков и добавим новую переменную в тело класса:</p>
+<pre><code class="java language-java">public static BlockTest BLOCKTEST = new BlockTest();
+</code></pre>
+<p>Теперь зарегистрируем наш блок в игре с помощь метода <code>registerBlocks</code>:</p>
+<pre><code class="java language-java">public static void registerBlocks()
+{
+    GameRegistry.register(BLOCKTEST);
+    GameRegistry.register(new ItemBlock(BLOCKTEST).setRegistryName(BLOCKTEST.getRegistryName()));
+}
+</code></pre>
+<p>Теперь игра знает о нашем блоке. Можете запустить клиент и найти во вкладке "Блоки" созданный блок.</p>
+<p>TODO</p>
 
     </div>
 
     <section class="contributors">
 
 
-            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
 
-                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
 
                 <div class="info">
 
-                    <div class="name">CMTV</div>
+                    <div class="name">Ivasik</div>
 
                     <div class="role">Автор</div>
 
@@ -293,7 +359,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/prep/off_skin';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/block/creating_block';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
