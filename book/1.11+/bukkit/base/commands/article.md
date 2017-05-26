@@ -2,7 +2,7 @@
 
 Команды, каждый хотел бы хоть раз да сделать свою команду, которая даёт ту или иную способность, преимущество.
 
-Создадим класс CommandFly:
+Создадим класс `CommandFly`:
 ```Java
 public class CommandFly implements CommandExecutor
 {
@@ -70,7 +70,7 @@ public class CommandFly implements CommandExecutor
 }
 ```
 
-Теперь перейдём в главный класс и добавим в метод onEnable такой код:
+Теперь перейдём в главный класс и добавим в метод `onEnable` такой код:
 ```Java
 getCommand("fly").setExecutor(new CommandFly());
 ```

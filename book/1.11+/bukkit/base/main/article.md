@@ -36,14 +36,14 @@ public class TuTPlugin extends JavaPlugin
     /** Срабатывает когда плагин загружается. В данном уроке, данный метод не будет рассматриваться. */
     public void onLoad()
     {
-        Bukkit.getLogger().info("Im load! :P");
+        Bukkit.getLogger().info("Im loaded! :P");
     }
 }
 ```
 
 ## plugin.yml
 
-Этот файл отвечает за регистрацию плагина. Примерно как @Mod в forge api. Создадим в папке:
+Этот файл отвечает за регистрацию плагина. Примерно как аннотация `mod` в forge api. Создадим в папке:
 ```md
 └── src    
     └── main
