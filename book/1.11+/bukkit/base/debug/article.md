@@ -2,7 +2,7 @@
 
 Данная статья писалась с использованием Intellij IDEA 2017.1.1!
 
-Перейдём через меню навигации в меню настройки запуска `run -> Edit Configurations`
+Перейдём через меню навигации в меню настройки запуска `run -> Edit Configurations`.
 
 ![Edit Configurations](images/run.png)
 
@@ -14,7 +14,7 @@
 
 ![Configuration](images/configuration.png)
 
-Скопированный код теперь нужно изменить на такой:
+Скопированный ранее код теперь нужно изменить на такой:
 
 `java -Xmx2G -Xms2G -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar Spigot.jar`
 
@@ -24,4 +24,20 @@
 
 ## Отладка плагина в Eclipse
 
-TODO
+Данная статья писалась с использованием Eclipse Neon.3 Release (4.6.3)!
+
+Перейдём через меню навигации в меню настройки отладки `debug -> Debug Configurations...`.
+
+![Eclipse Debug](images/ecl_debug.png)
+
+В открывшемся окне выбираем `Remote Java Application` и нажимаем на `New launch configuration`.
+
+![Eclipse Debug](images/ecl_config.png)
+
+Создастся новая конфигурация, вписываем в поле `Name` название конфигурации (может быть любым). В поле `Port` вводим порт **5005**, нажимаем на `Apply` и `Close`.
+
+Теперь перейдём к настройки сервера. Для отладки нужно прописать:
+
+`java -Xmx2G -Xms2G -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -jar Spigot.jar`
+
+Запускаем сервер и включаем режим `Debug`.

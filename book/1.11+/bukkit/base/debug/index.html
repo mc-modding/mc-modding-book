@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -200,18 +200,26 @@
 
         <h2 id="отладка-плагина-в-intellij-idea">Отладка плагина в Intellij IDEA<a title="Ссылка на этот раздел" href="#отладка-плагина-в-intellij-idea"><i class="material-icons">link</i></a></h2>
 <p>Данная статья писалась с использованием Intellij IDEA 2017.1.1!</p>
-<p>Перейдём через меню навигации в меню настройки запуска <code>run -&gt; Edit Configurations</code></p>
+<p>Перейдём через меню навигации в меню настройки запуска <code>run -&gt; Edit Configurations</code>.</p>
 <p><img src="images/run.png" alt="Edit Configurations" /></p>
 <p>В открывшемся окне нажимаем на <code>+</code>, в выпадающем списке выбираем <code>Remote</code>.</p>
 <p><img src="images/remote.png" alt="Add" /></p>
 <p>Называем нашу конфигурацию <code>Debug</code> или как захотите сами и теперь нам надо скопировать всё из поля <code>Command line arguments for running remote JVM</code>. Нажимаем <code>Apply</code> и затем <code>Ok</code>.</p>
 <p><img src="images/configuration.png" alt="Configuration" /></p>
-<p>Скопированный код теперь нужно изменить на такой:</p>
+<p>Скопированный ранее код теперь нужно изменить на такой:</p>
 <p><code>java -Xmx2G -Xms2G -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar Spigot.jar</code></p>
 <p>Теперь перейдём в папку с нашим Spigot сервером и создадим там файл <code>start.bat</code> и в него пропишем наш изменённый код. Запускаем наш сервер и затем нажимаем на кнопку <code>Debug</code> в Intellij IDEA. Теперь после каждого изменения нужно будет нажимать кнопку <code>Build</code>.</p>
 <p><img src="images/start.png" alt="Start" /></p>
 <h2 id="отладка-плагина-в-eclipse">Отладка плагина в Eclipse<a title="Ссылка на этот раздел" href="#отладка-плагина-в-eclipse"><i class="material-icons">link</i></a></h2>
-<p>TODO</p>
+<p>Данная статья писалась с использованием Eclipse Neon.3 Release (4.6.3)!</p>
+<p>Перейдём через меню навигации в меню настройки отладки <code>debug -&gt; Debug Configurations...</code>.</p>
+<p><img src="images/ecl_debug.png" alt="Eclipse Debug" /></p>
+<p>В открывшемся окне выбираем <code>Remote Java Application</code> и нажимаем на <code>New launch configuration</code>.</p>
+<p><img src="images/ecl_config.png" alt="Eclipse Debug" /></p>
+<p>Создастся новая конфигурация, вписываем в поле <code>Name</code> название конфигурации (может быть любым). В поле <code>Port</code> вводим порт <strong>5005</strong>, нажимаем на <code>Apply</code> и <code>Close</code>.</p>
+<p>Теперь перейдём к настройки сервера. Для отладки нужно прописать:</p>
+<p><code>java -Xmx2G -Xms2G -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -jar Spigot.jar</code></p>
+<p>Запускаем сервер и включаем режим <code>Debug</code>.</p>
 
     </div>
 

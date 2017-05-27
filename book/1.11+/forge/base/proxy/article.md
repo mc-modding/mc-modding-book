@@ -2,10 +2,10 @@
 
 Перед началом создания модов надо понять и правильно использовать очень важную вещь.
 
-Дело в том, что Minecraft стостит из нескольких частей:
+Дело в том, что Minecraft состоит из нескольких частей:
 
 * **Физический клиент** — это программа, которую вы запускаете с помощью лаунчера.
-* **Физический сервер**, который частно называется выделенным сервером — программа, которая запускается с помощью файлов типа
+* **Физический сервер**, который часто называется выделенным сервером — программа, которая запускается с помощью файлов типа
 `minecraft_server.jar`.
 * **Логический клиент** отвечает за отображение моделей и текстур, за прием данных от мышки и клавиатуры, за отображение GUI.
 * **Логический сервер** отвечает за всю игровую логику: спавн мобов, погоду, обновление инвентарей, AI и все другие механики игры.
@@ -32,11 +32,11 @@
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
-        
+
     }
 
     public void init(FMLInitializationEvent event) {
-        
+
     }
 
     public void postInit(FMLPostInitializationEvent event) {
@@ -61,7 +61,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        
+
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
-        
+
     }
 }
 ```
@@ -96,19 +96,19 @@ public class ServerProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        
+
     }
 
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
-        
+
     }
 
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
-        
+
     }
 }
 ```
@@ -127,7 +127,7 @@ public class ServerProxy extends CommonProxy {
 public static CommonProxy proxy;
 ```
 
-Эта аннотация содержит два поля, которые обознают пути до классов ClientProxy и ServerProxy. При запуске, Forge будет
+Эта аннотация содержит два поля, которые обозначают пути до классов ClientProxy и ServerProxy. При запуске, Forge будет
 автоматически определять нужную сторону (клиент/сервер) и создавать объект класса ClientProxy или ServerProxy.
 
 Последнее, что нам нужно сделать: выполнить три метода (preInit, init, postInit) в нашем главном файле мода:

@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -234,10 +234,10 @@
 
         <h1 id="прокси">Прокси<a title="Ссылка на этот раздел" href="#прокси"><i class="material-icons">link</i></a></h1>
 <p>Перед началом создания модов надо понять и правильно использовать очень важную вещь.</p>
-<p>Дело в том, что Minecraft стостит из нескольких частей:</p>
+<p>Дело в том, что Minecraft состоит из нескольких частей:</p>
 <ul>
 <li><strong>Физический клиент</strong> — это программа, которую вы запускаете с помощью лаунчера.</li>
-<li><strong>Физический сервер</strong>, который частно называется выделенным сервером — программа, которая запускается с помощью файлов типа
+<li><strong>Физический сервер</strong>, который часто называется выделенным сервером — программа, которая запускается с помощью файлов типа
 <code>minecraft_server.jar</code>.</li>
 <li><strong>Логический клиент</strong> отвечает за отображение моделей и текстур, за прием данных от мышки и клавиатуры, за отображение GUI.</li>
 <li><strong>Логический сервер</strong> отвечает за всю игровую логику: спавн мобов, погоду, обновление инвентарей, AI и все другие механики игры.</li>
@@ -338,7 +338,7 @@
 <pre><code class="java language-java">@SidedProxy(clientSide = "ru.mcmodding.testmod.proxy.ClientProxy", serverSide = "ru.mcmodding.testmod.proxy.ServerProxy")
 public static CommonProxy proxy;
 </code></pre>
-<p>Эта аннотация содержит два поля, которые обознают пути до классов ClientProxy и ServerProxy. При запуске, Forge будет
+<p>Эта аннотация содержит два поля, которые обозначают пути до классов ClientProxy и ServerProxy. При запуске, Forge будет
 автоматически определять нужную сторону (клиент/сервер) и создавать объект класса ClientProxy или ServerProxy.</p>
 <p>Последнее, что нам нужно сделать: выполнить три метода (preInit, init, postInit) в нашем главном файле мода:</p>
 <pre><code class="java language-java">@EventHandler

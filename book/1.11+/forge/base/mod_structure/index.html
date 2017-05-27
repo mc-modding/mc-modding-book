@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
             </div>
         </div>
 
@@ -272,7 +272,7 @@
 <p>Где <code>modid</code> — идентификатор мода. Не используйте заглавные буквы, пробелы, подчеркивания и т.д. Только английские буквы
 в нижнем регистре.</p>
 <p>Параметр <code>name</code> отвечает за красивое название вашего мода. Тут можно использовать все, что угодно. Работать будут и <a href="http://minecraft.gamepedia.com/Formatting_codes">коды
-форматирования текста</a>. </p>
+форматирования текста</a>.</p>
 <table>
 <thead>
 <tr>
@@ -347,7 +347,7 @@
 </tr>
 </tbody>
 </table>
-<p>Вот пример умеренно заполненого файла:</p>
+<p>Вот пример умеренно заполненного файла:</p>
 <pre><code class="json language-json">[{
   "modid": "testmod",
   "name": "Test Mod",
@@ -359,17 +359,17 @@
   "credits": "I'd like to thank my mother and father."
 }]
 </code></pre>
-<p>Более подробно о настройке этого файла вы можете прочитать в отдельной статье. Рекомедную обязательно выделить время для этого,
+<p>Более подробно о настройке этого файла вы можете прочитать в отдельной статье. Рекомендую обязательно выделить время для этого,
 так как там есть несколько полезных хитростей.</p>
 <h2 id="главный-файл-мода">Главный файл мода<a title="Ссылка на этот раздел" href="#главный-файл-мода"><i class="material-icons">link</i></a></h2>
 <p>В предыдущем разделе мы создали файл <code>mcmod.info</code>. Но игра все еще не распознает наш мод, в чем можно убедиться, запустив
 клиент. Вы не найдете свой мод в списке установленных модов. Для того, чтобы все заработало, нам нужно создать главный файл мода.</p>
 <p>В папке "java" создайте базовый пакет вашего мода. Если у вас уже есть домен для вашего мода, то отличным названием для
-пакета будет что-то вроде <code>ru.mcmodding.testmod</code>. Если домена у вас нет, вполне подойдет использование вашего ника, как
+пакета будет что-то вроде <code>ru.mcmodding.testmod</code>. Если домена у вас нет, вполне подойдет использование вашего никнейма, как
 название пакета верхнего уровня: <code>cmtv.testmod</code>.</p>
 <p>В моем случае пакет будет называться так: <code>ru.mcmodding.testmod</code>.</p>
 <p>Теперь создадим в нем файл <code>TestMod.java</code>. Это и будет главным файлом нашего мода.</p>
-<p>Для того, чтобы Forge понял, что данный файл действительно является главным, мы должны добавить к опеределнию класса
+<p>Для того, чтобы Forge понял, что данный файл действительно является главным, мы должны добавить к определению класса
 аннотацию <code>@Mod</code>:</p>
 <pre><code class="java language-java">// TestMod.java
 
