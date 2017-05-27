@@ -59,7 +59,7 @@ public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, 
 Вот мы и нашли метод, который надо записать в файле нашего блока. Он будет выполняться, когда по нашему блоку кликнут.
 
 Теперь про взрывы. Отличный пример — TNT. Все в том же пакете ищем файл `BlockTNT.java`. Там мы можем найти интересный метод
-`explose(...)`. Внутри него видем, что при активации TNT он превращается некую сущность `entity` под названием `EntityTNTPrimed`.
+`explose(...)`. Внутри него видим, что при активации TNT он превращается некую сущность `entity` под названием `EntityTNTPrimed`.
 
 Ищем этот файл в пакете `net.minecraft.entity`. Он будет находиться в пакете `net.minecraft.entity.item`.
 

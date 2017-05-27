@@ -51,7 +51,7 @@ OK.
 Моды можно писать и в блокноте, но это очень неудобно. Нам нужна специализированная программа, которая
 умеет подсвечивать код, выполнять авто-импорт и делать много других полезных вещей.
 
-Наболее популярными IDE на данный момент являются [Eclipse](https://www.eclipse.org/downloads/) и [Intellij Idea](https://www.jetbrains.com/idea/#chooseYourEdition).
+Наиболее популярными IDE на данный момент являются [Eclipse](https://www.eclipse.org/downloads/) и [Intellij Idea](https://www.jetbrains.com/idea/#chooseYourEdition).
 
 Eclipse бесплатен. У Intellij Idea есть бесплатная Community версия. Никаких платных функций в этом учебнике нам
 не потребуется.
