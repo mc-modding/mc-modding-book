@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
             </div>
         </div>
 
@@ -329,7 +329,7 @@ public class ItemTest extends Item {
 }
 </code></pre>
 <p>С помощью этого кода мы зарегистрировали модель для нашего предмета. Теперь эту модель необходимо создать.</p>
-<p>Создайте файл <code>item_test.json</code> по пути <code>resources/assets/*ваш modid*/models/item</code>. Имя этого файла
+<p>Создайте файл <code>item_test.json</code> по пути <code>resources/assets/*ваш modid*/models/item/</code>. Имя этого файла
 должно <strong>полностью</strong> совпадать со значением, которое вы указали в строке <code>this.setRegistryName("item_test");</code>. Для самого простого
 предмета содержимое этого файла должно быть следующим:</p>
 <pre><code class="json language-json">{
@@ -339,8 +339,8 @@ public class ItemTest extends Item {
   }
 }
 </code></pre>
-<p>Здесь параметр <code>"parent"</code> указывает, откуда унаследовать параметры отображения модели. Массив текстур <code>"textures</code> указывает
-пути к текстурам. Базовая текстура указывается через параметр <code>"layer0"</code>, значение которого указывает путь к текстуре.</p>
+<p>Здесь параметр <code>parent</code> указывает, откуда унаследовать параметры отображения модели. Массив текстур <code>textures</code> указывает
+пути к текстурам. Базовая текстура указывается через параметр <code>layer0</code>, значение которого указывает путь к текстуре.</p>
 <p>Более подробно о настройках модели и отображения предмета есть отдельная статья.</p>
 <p>Обратите внимание, что путь выглядит следующим образом: <code>testmod:items/item_test</code>. Первая часть этой строчки "testmod" должна
 равняться modid вашего мода. Затем идет путь. В данном случае текстура с именем <code>item_test.png</code> должна лежать по следующему пути:</p>
@@ -361,6 +361,21 @@ public class ItemTest extends Item {
                 <div class="info">
 
                     <div class="name">CMTV</div>
+
+                    <div class="role">Автор</div>
+
+                </div>
+
+            </a>
+
+
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">Ivasik</div>
 
                     <div class="role">Автор</div>
 

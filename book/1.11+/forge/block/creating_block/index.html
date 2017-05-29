@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -297,19 +297,19 @@ public class BlockTest extends Block
 {
     public BlockTest()
     {
-        super(Material.STONE);
+        super(Material.WOOD);
         this.setRegistryName("block_test");
         this.setUnlocalizedName("blockTest");
-        this.setCreativeTab(CreativeTabs.BLOCKS);
+        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
 }
 </code></pre>
 <p>Разберем код конструктора:</p>
-<p><code>super(Material.STONE);</code> — задаёт материал блока. <strong>Суперкласс для блоков обязателен!</strong></p>
+<p><code>super(Material.WOOD);</code> — задаёт материал блока. <strong>Суперкласс для блоков обязателен!</strong></p>
 <p><code>this.setRegistryName("block_test");</code> — установка уникального имени нашего блока. <strong>Не используйте буквы в верхнем регистре!</strong>
 Только английские маленькие буквы, цифры и нижние подчеркивания!</p>
 <p><code>this.setUnlocalizedName("blockTest");</code> — установка имени предмета для последующей локализации. Можно использовать буквы в верхнем регистре.</p>
-<p><code>this.setCreativeTab(CreativeTabs.BLOCKS);</code> — добавление нашего предмета во вкладку "Блоки" в креативе.</p>
+<p><code>this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);</code> — добавление нашего предмета во вкладку "Строительные Блоки" в креативе.</p>
 <h2 id="регистрация-блока">Регистрация блока<a title="Ссылка на этот раздел" href="#регистрация-блока"><i class="material-icons">link</i></a></h2>
 <p>Если вы сейчас запустите Minecraft, то не увидите никакого блока. Нужно сообщить Forge, что мы добавляем в игру новый блок.</p>
 <p>Для этого перейдем в класс блоков и добавим новую переменную в тело класса:</p>
@@ -323,7 +323,41 @@ public class BlockTest extends Block
 }
 </code></pre>
 <p>Теперь игра знает о нашем блоке. Можете запустить клиент и найти во вкладке "Блоки" созданный блок.</p>
-<p>TODO</p>
+<p><img src="images/blockWithoutTexture.png" alt="Демонстрация зарегистрированного блока 1" /></p>
+<p><img src="images/blockWithoutModel.png" alt="Демонстрация зарегистрированного блока 2" /></p>
+<h2 id="модель-и-текстура-блока">Модель и текстура блока<a title="Ссылка на этот раздел" href="#модель-и-текстура-блока"><i class="material-icons">link</i></a></h2>
+<p>В классе <code>Blocks</code> в методе <code>registerBlocksRender()</code> впишите:</p>
+<pre><code class="java language-java">public static void registerItemsRender() {
+    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(BLOCKTEST, 0, new ModelResourceLocation(BLOCKTEST.getRegistryName(), "inventory"));
+}
+</code></pre>
+<p>С помощью этого кода мы зарегистрировали модель для нашего блока. Теперь эту модель необходимо создать.</p>
+<p>Создаём файл <code>block_test.json</code> по пути <code>resources/assets/testmod/blockstates/</code>. Имя этого файла должно <strong>полностью</strong> совпадать со значением, которое мы указали в строке <code>this.setRegistryName("block_test");</code>. Для блока без статов самое простое содержимое этого файла должно быть следующим:</p>
+<pre><code class="json language-json">{
+    "variants": {
+        "normal": { "model": "testmod:block_test" }
+    }
+}
+</code></pre>
+<p>Создадим файл <code>block_test.json</code> по пути <code>resources/assets/testmod/models/block/</code> и такой же в <code>resources/assets/testmod/models/item/</code>.
+Имя этого файла
+должно <strong>полностью</strong> совпадать со значением, которое вы указали в строке <code>this.setRegistryName("block_test");</code>. Для самого простого
+блока содержимое этого файла должно быть следующим:</p>
+<pre><code class="json language-json">{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "testmod:blocks/block_test"
+    }
+}
+</code></pre>
+<p>Здесь параметр <code>parent</code> указывает, откуда унаследовать параметры отображения модели. Массив текстур <code>textures</code> указывает
+пути к текстурам. Базовая текстура указывается через параметр <code>all</code>, значение которого указывает путь к текстуре.</p>
+<p>Обратите внимание, что путь выглядит следующим образом: <code>testmod:blocks/block_test</code>. Первая часть этой строчки <code>testmod</code> должна
+равняться modid вашего мода. Затем идет путь. В данном случае текстура с именем <code>block_test.png</code> должна лежать по следующему пути:</p>
+<p><code>resources/assets/testmod/textures/blocks/</code></p>
+<p><img src="images/block_test.png" alt="Текстура блока" /></p>
+<p>Название файла — <code>block_test.png</code> — должно быть таким же, какое значение было указано в методе <code>this.setRegistryName("block_test");</code>.</p>
+<p><img src="images/blockWithTexture.png" alt="Демонстрация блока с текстурой" /></p>
 
     </div>
 
