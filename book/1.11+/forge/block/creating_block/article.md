@@ -72,24 +72,24 @@ public class BlockTest extends Block
 {
     public BlockTest()
     {
-        super(Material.STONE);
+        super(Material.WOOD);
         this.setRegistryName("block_test");
         this.setUnlocalizedName("blockTest");
-        this.setCreativeTab(CreativeTabs.BLOCKS);
+        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
 }
 ```
 
 Разберем код конструктора:
 
-`super(Material.STONE);` — задаёт материал блока. **Суперкласс для блоков обязателен!**
+`super(Material.WOOD);` — задаёт материал блока. **Суперкласс для блоков обязателен!**
 
 `this.setRegistryName("block_test");` — установка уникального имени нашего блока. **Не используйте буквы в верхнем регистре!**
 Только английские маленькие буквы, цифры и нижние подчеркивания!
 
 `this.setUnlocalizedName("blockTest");` — установка имени предмета для последующей локализации. Можно использовать буквы в верхнем регистре.
 
-`this.setCreativeTab(CreativeTabs.BLOCKS);` — добавление нашего предмета во вкладку "Блоки" в креативе.
+`this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);` — добавление нашего предмета во вкладку "Строительные Блоки" в креативе.
 
 ## Регистрация блока
 
@@ -113,4 +113,56 @@ public static void registerBlocks()
 
 Теперь игра знает о нашем блоке. Можете запустить клиент и найти во вкладке "Блоки" созданный блок.
 
-TODO
+![Демонстрация зарегистрированного блока 1](images/blockWithoutTexture.png)
+
+![Демонстрация зарегистрированного блока 2](images/blockWithoutModel.png)
+
+## Модель и текстура блока
+
+В классе `Blocks` в методе `registerBlocksRender()` впишите:
+
+```java
+public static void registerItemsRender() {
+    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(BLOCKTEST, 0, new ModelResourceLocation(BLOCKTEST.getRegistryName(), "inventory"));
+}
+```
+
+С помощью этого кода мы зарегистрировали модель для нашего блока. Теперь эту модель необходимо создать.
+
+Создаём файл `block_test.json` по пути `resources/assets/testmod/blockstates/`. Имя этого файла должно **полностью** совпадать со значением, которое мы указали в строке `this.setRegistryName("block_test");`. Для блока без статов самое простое содержимое этого файла должно быть следующим:
+
+```json
+{
+    "variants": {
+        "normal": { "model": "testmod:block_test" }
+    }
+}
+```
+
+Создадим файл `block_test.json` по пути `resources/assets/testmod/models/block/` и такой же в `resources/assets/testmod/models/item/`.
+Имя этого файла
+должно **полностью** совпадать со значением, которое вы указали в строке `this.setRegistryName("block_test");`. Для самого простого
+блока содержимое этого файла должно быть следующим:
+
+```json
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "testmod:blocks/block_test"
+    }
+}
+```
+
+Здесь параметр `parent` указывает, откуда унаследовать параметры отображения модели. Массив текстур `textures` указывает
+пути к текстурам. Базовая текстура указывается через параметр `all`, значение которого указывает путь к текстуре.
+
+Обратите внимание, что путь выглядит следующим образом: `testmod:blocks/block_test`. Первая часть этой строчки `testmod` должна
+равняться modid вашего мода. Затем идет путь. В данном случае текстура с именем `block_test.png` должна лежать по следующему пути:
+
+`resources/assets/testmod/textures/blocks/`
+
+![Текстура блока](images/block_test.png)
+
+Название файла — `block_test.png` — должно быть таким же, какое значение было указано в методе `this.setRegistryName("block_test");`.
+
+![Демонстрация блока с текстурой](images/blockWithTexture.png)
