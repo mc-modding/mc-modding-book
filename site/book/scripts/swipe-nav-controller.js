@@ -45,6 +45,8 @@ let open_tolerance = 20;
  */
 let nav_width;
 
+let hammer_article = null, hammer_nav = null;
+
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* Обработка событий */
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -52,9 +54,37 @@ let nav_width;
 /* Изменение размеров окна браузера */
 $(window).resize(() => {
     nav_width = $(nav).outerWidth();
+
+    if (window.matchMedia("(max-width: 850px)").matches) {
+        console.log('ВКЛЮЧАЕМ');
+        enable_touch();
+    } else {
+        console.log('ВЫКЛЮЧАЕМ');
+        disable_touch();
+    }
 });
 
 $(() => {
+    if (window.matchMedia("(max-width: 850px)").matches) {
+        enable_touch();
+    } else {
+        disable_touch();
+    }
+});
+
+function disable_touch() {
+    if(hammer_article) {
+        hammer_article.destroy();
+    }
+
+    if(hammer_nav) {
+        hammer_nav.destroy();
+    }
+}
+
+function enable_touch() {
+    delete Hammer.defaults.cssProps.userSelect;
+
     nav = $('nav');
     article = $('article');
 
@@ -166,6 +196,12 @@ $(() => {
             close_nav();
         }
     });
+}
+
+$(() => {
+
+
+
 });
 
 /* ------------------------------------------------------------------------------------------------------------------ */
