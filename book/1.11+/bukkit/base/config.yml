@@ -6,6 +6,7 @@ articles-order:
   - commands
   - config
   - debug
+  - bundle
   - packets
   - database
   - export

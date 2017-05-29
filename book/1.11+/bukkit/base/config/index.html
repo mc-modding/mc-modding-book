@@ -182,6 +182,7 @@
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/commands" class="article ">Команды</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/config" class="article selected">Конфигурация</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/debug" class="article ">Отладка плагина</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/bundle" class="article ">Связка с BungeeCord</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/packets" class="article ">Пакеты</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/database" class="article ">База данных</a>
                             <a href="http://mcmodding.ru/book/1.11+/bukkit/base/export" class="article ">Экспорт</a>
@@ -251,7 +252,87 @@ array_param:
     }
 </code></pre>
 <h2 id="конфигурация---продвинутый-вариант">Конфигурация - Продвинутый вариант<a title="Ссылка на этот раздел" href="#конфигурация---продвинутый-вариант"><i class="material-icons">link</i></a></h2>
-<p>TODO</p>
+<p>Для начала создадим класс ConfigManager.</p>
+<pre><code class="Java language-Java">public class ConfigManager
+{
+    private TuTPlugin core;
+    private File configFile;
+    private FileConfiguration configuration;
+
+    public ConfigManager(TuTPlugin core)
+    {
+        this.core = core;
+        loadConfiguration();
+    }
+
+    public FileConfiguration getConfiguration()
+    {
+        return this.configuration;
+    }
+
+    public void loadConfiguration()
+    {
+        configFile = new File(new File(this.core.getDataFolder(), "/config"), "configuration.yml");
+        configuration = YamlConfiguration.loadConfiguration(checkpointFile);
+    }
+
+    public void saveConfig()
+    {
+        if(this.configuration == null || this.configFile == null) return;
+
+        try {
+            this.configuration.save(configFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<p>Конструктор будет загружать наш конфиг во время инициализации. Метод <code>loadConfiguration</code> будет загружать нашу конфигурацию, <code>saveConfig</code> будет сохранять нашу конфигурацию, а функция <code>getConfiguration</code> будет получать конфигурацию. Перейдём в главный класс плагина и пропишем туда переменную</p>
+<pre><code class="Java language-Java">private ConfigManager configManager;
+</code></pre>
+<p>в метод <code>onEnable</code> такой код:</p>
+<pre><code class="Java language-Java">//Инициализируем ConfigManger, чтобы он мог загрузить наш конфиг.
+configManager = new ConfigManager(this);
+//Сохраняем конфиг
+configManager.saveConfig();
+</code></pre>
+<p>в метод <code>onDisable</code> такой код:</p>
+<pre><code class="Java language-Java">configManager.saveConfig();
+</code></pre>
+<p>С настройкой закончено! А сейчас давайте создадим папку в <code>resources</code> под названием <code>config</code> и в ней файл <code>configuration</code>, и пропишем в него такие данные:</p>
+<pre><code class="YAML language-YAML">//Это логическое поле
+boolean_param: true
+
+//Это цело-численно поле
+int_param: 25
+
+//Это текстовое поле
+string_param: 'This is text!'
+
+section:
+  param_1: 'Param 1'
+  param_2: 2
+  section_2:
+    param_1: 'Section 2 -&gt; param 1'
+    param_2: false
+
+//Теперь мы может оставлять комментарии и ничего с ними не случится.
+array_param:
+- 'Hello, my friend!'
+- 'My name TuTPlugin'
+</code></pre>
+<p>Но как же теперь нам использовать нашу конфигурацию? Очень просто, так же как в прошлой статье, но только с небольшими изменениями. Выбираем нужный нам класс и создаём там переменную:</p>
+<pre><code class="Java language-Java">private ConfigManager configManager;
+</code></pre>
+<p>и в конструкторе добавляем параметр <code>ConfigManager manager</code> и прописываем такой код:</p>
+<pre><code class="Java language-Java">this.manager = manager;
+</code></pre>
+<p>Осталось дело за малым! В любом нужном нам месте этого класса прописываем:</p>
+<pre><code class="Java language-Java">this.manager.getConfiguration()
+</code></pre>
+<p>И теперь нам достаточно сделать всё так же как и с <code>getConfig</code> в предыдущей статье.
+P.s. Да, данный способ не очень хорош и довольно сложен, но таким способом вы сможете создать больше файлов для конфигурации, хранения информации и т.д. А так же все комментарии будут сохранятся и с конфигом ничего особо криминального не произойдёт, как это может случится с конфигом из первой статьи.</p>
 
     </div>
 

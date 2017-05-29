@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Продвинутый mcmod.info - Minecraft Modding</title>
+<title>Связка с BungeeCord - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.">
+<meta name="description" content="Отправляем пакеты на BungeeCord и получаем ответ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Продвинутый mcmod.info - Minecraft Modding">
-<meta property="og:description" content="Более подробная настройка mcmod.info файла с примерами. Пояснение некоторых неочевидных параметров.">
+<meta property="og:title"       content="Связка с BungeeCord - Minecraft Modding">
+<meta property="og:description" content="Отправляем пакеты на BungeeCord и получаем ответ">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/bukkit/base/bundle">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -111,7 +111,7 @@
                 <i class="material-icons">home</i><span>Главная</span>
             </a>
 
-            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+            <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" title="Учебник" class="menu-item">
                 <i class="material-icons">import_contacts</i><span>Учебник</span>
             </a>
 
@@ -153,9 +153,9 @@
             <div class="api-choose">
                 <label>API:
                     <select onChange="window.location.href=this.value">
-                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" selected>Bukkit</option>
                             <option value="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" >BungeeCord</option>
-                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >Forge</option>
                     </select>
                 </label>
             </div>
@@ -165,49 +165,7 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article selected">Продвинутый mcmod.info</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article ">Предмет</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="article ">Создание предмета</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article ">JSON файл модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/tools" class="article ">Инструменты</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article ">Импорт 3D модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/rarity" class="article ">Редкость предметов</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/block/creating_block" class="category-article ">Блок</a>
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/prep/install" class="category-article ">Подготовка</a>
 
                     <div class="category-articles">
                     </div>
@@ -216,9 +174,18 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
+                    <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="category-article selected">Основное</a>
 
                     <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/main" class="article ">Главный класс</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/events" class="article ">События</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/commands" class="article ">Команды</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/config" class="article ">Конфигурация</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/debug" class="article ">Отладка плагина</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/bundle" class="article selected">Связка с BungeeCord</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/packets" class="article ">Пакеты</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/database" class="article ">База данных</a>
+                            <a href="http://mcmodding.ru/book/1.11+/bukkit/base/export" class="article ">Экспорт</a>
                     </div>
 
                 </div>
@@ -230,9 +197,9 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/base/advanced_mcmod_info/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/bukkit/base/bundle/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="продвинутый-mcmodinfo">Продвинутый mcmod.info<a title="Ссылка на этот раздел" href="#продвинутый-mcmodinfo"><i class="material-icons">link</i></a></h1>
+        <h2 id="связка-плагина-с-bungeecord">Связка плагина с BungeeCord<a title="Ссылка на этот раздел" href="#связка-плагина-с-bungeecord"><i class="material-icons">link</i></a></h2>
 <p>TODO</p>
 
     </div>
@@ -240,13 +207,13 @@
     <section class="contributors">
 
 
-            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
 
-                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
 
                 <div class="info">
 
-                    <div class="name">CMTV</div>
+                    <div class="name">Ivasik</div>
 
                     <div class="role">Автор</div>
 
@@ -278,7 +245,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/bukkit/base/bundle';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
