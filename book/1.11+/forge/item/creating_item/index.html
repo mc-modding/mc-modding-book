@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
             </div>
         </div>
 
@@ -208,6 +208,15 @@
                 <div class="category">
 
                     <a href="http://mcmodding.ru/book/1.11+/forge/block/creating_block" class="category-article ">Блок</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.11+/forge/local/index" class="category-article ">Локализация</a>
 
                     <div class="category-articles">
                     </div>
@@ -339,18 +348,6 @@ public class ItemTest extends Item {
 <p><img src="images/item_test.png" alt="Текстура предмета" /></p>
 <p>Название файла — <code>item_test.png</code> — должно быть таким же, какое значение было указано в методе <code>this.setRegistryName("item_test");</code>.</p>
 <p><img src="images/itemWithTexture.png" alt="Демонстрация предмета с текстурой" /></p>
-<h2 id="локализация">Локализация<a title="Ссылка на этот раздел" href="#локализация"><i class="material-icons">link</i></a></h2>
-<p>Создадим папку <code>lang</code> в ассетах мода (<code>resources/assets/*ваш modid*/</code>).</p>
-<p>В папке lang создадим файл <code>en_US.lang</code>. Внутри запишем следующее:</p>
-<pre><code class="markdown language-markdown">item.itemTest.name=Test item
-</code></pre>
-<p>Слева записывается название, которые мы переводим. Для предметов формат следующий: <code>item.*ИМЯ*.name</code>, где *Имя* — то, что
-мы указали в <code>this.setUnlocalizedName("itemTest");</code>.</p>
-<p>Заметьте, что пробелов до знака равенства и после него <strong>не</strong> должно быть.</p>
-<p>Для добавления русского перевода создадим в папке lang файл <code>ru_RU.lang</code>:</p>
-<pre><code class="markdown language-markdown">item.itemTest.name=Тестовый предмет
-</code></pre>
-<p>Остальные коды для других языков можно <a href="http://minecraft.gamepedia.com/Language" target="_blank">найти</a> на официальной Minecraft вики.</p>
 
     </div>
 

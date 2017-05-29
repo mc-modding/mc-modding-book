@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Использование Eclipse - Minecraft Modding</title>
+<title>Локализация - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Настройка рабочего пространства для разраобтки модов с помощью IDE Eclipse.">
+<meta name="description" content="Локализация для вещей">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Использование Eclipse - Minecraft Modding">
-<meta property="og:description" content="Настройка рабочего пространства для разраобтки модов с помощью IDE Eclipse.">
+<meta property="og:title"       content="Локализация - Minecraft Modding">
+<meta property="og:description" content="Локализация для вещей">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/local/index">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -165,12 +165,12 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article selected">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article selected">Использование Eclipse</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
                             <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
                     </div>
 
@@ -216,7 +216,7 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/local/index" class="category-article ">Локализация</a>
+                    <a href="http://mcmodding.ru/book/1.11+/forge/local/index" class="category-article selected">Локализация</a>
 
                     <div class="category-articles">
                     </div>
@@ -239,35 +239,40 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/prep/setup_eclipse/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/local/index/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="использование-eclipse">Использование Eclipse<a title="Ссылка на этот раздел" href="#использование-eclipse"><i class="material-icons">link</i></a></h1>
-<p>Итак, у нас есть папка со следующими файлами внутри:</p>
-<ul>
-<li>build.gradle</li>
-<li>gradlew (.bat и .sh)</li>
-<li>папка gradle</li>
-</ul>
-<p>Теперь необходимо выполнить команду <code>gradlew eclipse</code>. Если у вас Windows, то вы можете кликнуть правой кнопкой
-по пустому пространству <strong>внутри</strong> этой папки с зажатой клавишей Shift. Тогда, в появившемся контекстном меню будет пункт
-"Открыть окно команд". Выберите этот пункт и сразу откроется консоль.</p>
-<p>В консоли введите <code>gradlew eclipse</code>.</p>
-<p>Теперь откройте Eclipse. Нет особой разницы, где располагается рабочее пространство. В верхней части экрана откройте
-меню "File" и выберите пункт "Import". В появившемся списке выберите "Gradle &gt; Gradle Project".</p>
-<p>Пропустите вступительное окно Gradle нажатием на кнопку "Next &gt;", если оно появится.</p>
-<p>На следующем окне укажите папку с распакованными файлами. Нажмите "Finish".</p>
-<h2 id="gradle-таски">Gradle таски<a title="Ссылка на этот раздел" href="#gradle-таски"><i class="material-icons">link</i></a></h2>
-<p>Откройте меню "Window" в верхней части экрана и выберите пункты "Show View &gt; Other...".</p>
-<p>В появившемся окне выберите "Gradle &gt; Gradle Tasks".</p>
-<p>У вас откроется окно с Gradle задачами. Gradle — популярная система автоматической сборки, которая из исходников
-собирает готовые программы и делает еще много других необходимых, но <strong>рутинных</strong> дел. Эти самые дела называются
-задачами/заданиями/тасками — <strong>tasks</strong>. Мы как раз и открыли окно тасков.</p>
-<p>Выглядит оно примерно так:</p>
-<p><img src="images/gradle_tasks.png" alt="Демнострация Gradle тасков" /></p>
-<h2 id="тестовый-запуск">Тестовый запуск<a title="Ссылка на этот раздел" href="#тестовый-запуск"><i class="material-icons">link</i></a></h2>
-<p>Для тестового запуска в верхней части экрана откройте меню "Run" и выберите пункт "Run configurations". В появившемся
-окне слева откройте вкладку "Java Application" и выберите клиент или сервер. Затем, нажмите на кнопку "Run".</p>
-<p><img src="images/run.png" alt="Демонстрация тестового запуска" /></p>
+        <h1 id="локализация">Локализация<a title="Ссылка на этот раздел" href="#локализация"><i class="material-icons">link</i></a></h1>
+<p>Создадим папку <code>lang</code> в ресурсах мода (<code>resources/assets/*ваш modid*/</code>). В папке <code>lang</code> создадим файл <code>ru_RU.lang</code> и внутри запишем:</p>
+<p>Для предмета:</p>
+<pre><code class="markdown language-markdown">item.*название предмета*.name=Мой предмет
+</code></pre>
+<p>Для блока:</p>
+<pre><code class="markdown language-markdown">tile.*название блока*.name=Мой блок
+</code></pre>
+<p>Для вкладки в творческом режиме:</p>
+<pre><code class="markdown language-markdown">itemGroup.*Название вкладки*
+</code></pre>
+<p>Так же если вы пишете свой текст внутри кода, например для подсказки</p>
+<pre><code class="java language-java">   @Override
+   public void addInformation(ItemStack stack, EntityPlayer playerIn, List&lt;String&gt; tooltip, boolean advanced)
+   {
+       tooltip.add("Все будут видеть этот русский текст");
+   }
+</code></pre>
+<p>то лучше не делать так. Спросите почему? Потому что ваш текст не смогут прочитать иностранные игроки и таким образом усложнится перевод мода(Если такой будет). Чтобы избежать данной проблемы лучше писать так:</p>
+<pre><code class="java language-java">   @Override
+   public void addInformation(ItemStack stack, EntityPlayer playerIn, List&lt;String&gt; tooltip, boolean advanced)
+   {
+       tooltip.add(I18n.format("tooltip.sphere"));
+   }
+</code></pre>
+<p>и теперь нам достаточно добавить в ru_RU.lang такой код:</p>
+<pre><code class="markdown language-markdown">tooltip.sphere=Этот текст могут видеть только русскоговорящие игроки.
+</code></pre>
+<p>или в en_US.lang:</p>
+<pre><code class="markdown language-markdown">tooltip.sphere=This text can see only English-speaking players.
+</code></pre>
+<p>Остальные коды для других языков можно <a href="http://minecraft.gamepedia.com/Language" target="_blank">найти</a> на официальной Minecraft вики.</p>
 
     </div>
 
@@ -281,6 +286,21 @@
                 <div class="info">
 
                     <div class="name">CMTV</div>
+
+                    <div class="role">Автор</div>
+
+                </div>
+
+            </a>
+
+
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">Ivasik</div>
 
                     <div class="role">Автор</div>
 
@@ -312,7 +332,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/local/index';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

@@ -216,8 +216,9 @@
 <p>Перейдём через меню навигации в меню настройки отладки <code>debug -&gt; Debug Configurations...</code>.</p>
 <p><img src="images/ecl_debug.png" alt="Eclipse Debug" /></p>
 <p>В открывшемся окне выбираем <code>Remote Java Application</code> и нажимаем на <code>New launch configuration</code>.</p>
-<p><img src="images/ecl_config.png" alt="Eclipse Debug" /></p>
+<p><img src="images/ecl_config.png" alt="Eclipse Remote" /></p>
 <p>Создастся новая конфигурация, вписываем в поле <code>Name</code> название конфигурации (может быть любым). В поле <code>Port</code> вводим порт <strong>5005</strong>, нажимаем на <code>Apply</code> и <code>Close</code>.</p>
+<p><img src="images/ecl_setting.png" alt="Eclipse Setting" /></p>
 <p>Теперь перейдём к настройки сервера. Для отладки нужно прописать:</p>
 <p><code>java -Xmx2G -Xms2G -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -jar Spigot.jar</code></p>
 <p>Запускаем сервер и включаем режим <code>Debug</code>.</p>

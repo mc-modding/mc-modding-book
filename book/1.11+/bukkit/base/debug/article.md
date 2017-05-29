@@ -32,9 +32,11 @@
 
 В открывшемся окне выбираем `Remote Java Application` и нажимаем на `New launch configuration`.
 
-![Eclipse Debug](images/ecl_config.png)
+![Eclipse Remote](images/ecl_config.png)
 
 Создастся новая конфигурация, вписываем в поле `Name` название конфигурации (может быть любым). В поле `Port` вводим порт **5005**, нажимаем на `Apply` и `Close`.
+
+![Eclipse Setting](images/ecl_setting.png)
 
 Теперь перейдём к настройки сервера. Для отладки нужно прописать:
 
