@@ -154,26 +154,3 @@ public static void registerItemsRender() {
 Название файла — `item_test.png` — должно быть таким же, какое значение было указано в методе `this.setRegistryName("item_test");`.
 
 ![Демонстрация предмета с текстурой](images/itemWithTexture.png)
-
-## Локализация
-
-Создадим папку `lang` в ассетах мода (`resources/assets/*ваш modid*/`).
-
-В папке lang создадим файл `en_US.lang`. Внутри запишем следующее:
-
-```markdown
-item.itemTest.name=Test item
-```
-
-Слева записывается название, которые мы переводим. Для предметов формат следующий: `item.*ИМЯ*.name`, где \*Имя\* — то, что
-мы указали в `this.setUnlocalizedName("itemTest");`.
-
-Заметьте, что пробелов до знака равенства и после него **не** должно быть.
-
-Для добавления русского перевода создадим в папке lang файл `ru_RU.lang`:
-
-```markdown
-item.itemTest.name=Тестовый предмет
-```
-
-Остальные коды для других языков можно [найти](http://minecraft.gamepedia.com/Language) на официальной Minecraft вики.
