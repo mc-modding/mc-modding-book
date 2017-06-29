@@ -8,7 +8,7 @@ Forge загружает моды в 3 стадии: Преинициализа�
 ## Использование стадий
 
 Все стадии загрузки мода могут использоваться **только** в главном файле мода! То есть в файле с аннотацией `@Mod`. Стадии
-загрузки можно использовать при помощи аннотации `@EventHandler`.
+загрузки можно использовать при помощи аннотации `@EvenHandler`.
 
 ### Преинициализация
 
@@ -76,7 +76,7 @@ public void postInit(FMLPostInitializationEvent event) {
 Учитывая 3 основные стадии загрузки Forge мода, наш главный файл мода должен выглядит приблизительно так:
 
 ```java
-package ru.mcmodding.testmod;
+package ru.ivasik.tutorial;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -84,27 +84,29 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "testmod")
-public class TestMod {
-
+@Mod(modid = "tut")
+public class Tutorial
+{
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent e)
+    {
         // Преинициализация
         System.out.println("\u001B[32m" + "[Starting Test Mod PRE-INITIALIZATION]" + "\u001B[0m");
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent e)
+    {
         // Инициализация
         System.out.println("\u001B[32m" + "[Starting Test Mod INITIALIZATION]" + "\u001B[0m");
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent event)
+    {
         // Инициализация
         System.out.println("\u001B[32m" + "[Starting Test Mod POST-INITIALIZATION]" + "\u001B[0m");
     }
-
 }
 ```
 

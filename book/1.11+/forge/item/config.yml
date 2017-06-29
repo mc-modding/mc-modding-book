@@ -7,4 +7,5 @@ articles-order:
   - item_model
   - tools
   - importing_model
+  - metadata
   - rarity
