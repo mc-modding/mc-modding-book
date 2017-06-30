@@ -4,9 +4,8 @@ articles-order:
   - base
   - food
   - tools
-#  - sword
-#  - repair
-#  - armor
+  - repair
+  - armor
 #  - metadata
 #  - nbt
 #  - loot
