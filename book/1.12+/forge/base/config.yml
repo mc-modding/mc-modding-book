@@ -1,0 +1,8 @@
+category-title: Основы Forge
+
+articles-order:
+  - mod_structure
+  - mod_annotation
+  - loading_stages
+  - proxy
+  - build_mod

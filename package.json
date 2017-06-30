@@ -10,7 +10,7 @@
   "author": "CMTV",
   "license": "ISC",
   "dependencies": {
-    "js-yaml": "^3.8.3",
+    "js-yaml": "^3.8.4",
     "mustache": "^2.3.0"
   },
   "devDependencies": {
@@ -19,14 +19,14 @@
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
     "gulp-cache": "^0.4.6",
-    "gulp-clean-css": "^3.0.4",
+    "gulp-clean-css": "^3.5.0",
     "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^3.2.0",
+    "gulp-imagemin": "^3.3.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.1",
-    "showdown": "^1.6.4"
+    "showdown": "^1.7.1"
   }
 }

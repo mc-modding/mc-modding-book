@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Стадии загрузки мода - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Объяснение того, как Forge загружает мод в Minecraft. Названия стадий загрузки и советы по их использованию.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Стадии загрузки мода - Minecraft Modding">
+<meta property="og:description" content="Объяснение того, как Forge загружает мод в Minecraft. Названия стадий загрузки и советы по их использованию.">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/base/loading_stages">
+<meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Hammer.js -->
+<script src="http://mcmodding.ru/libs/hammer/hammer.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code, code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.css">
+<script src="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.js"></script>
+<script>
+    $(() => {
+        $('article .inner').magnificPopup({
+            delegate: 'img',
+            type: 'image',
+            callbacks: {
+                elementParse: (item) => { item.src = item.el.attr('src'); }
+            }
+        });
+    });
+</script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
+                                </optgroup>
+
+                                <optgroup label="Бета">
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>1.12+</option>
+                                </optgroup>
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="article ">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/loading_stages" class="article selected">Стадии загрузки мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/build_mod" class="article ">Сборка мода</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article ">Предметы</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты</a>
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+    </div>
+
+</nav><article>
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/base/loading_stages/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="стадии-загрузки-мода">Стадии загрузки мода<a title="Ссылка на этот раздел" href="#стадии-загрузки-мода"><i class="material-icons">link</i></a></h1>
+<p>Forge загружает моды в 3 стадии: Преинициализация, Инициализация и Постинициализация или <code>preInit</code>, <code>init</code>, <code>postInit</code>.</p>
+<p>Есть и другие стадии, но эти три являются самыми главными. Все они выполняются в разные моменты загрузки мода и предназначены для
+разных целей.</p>
+<h2 id="использование-стадий">Использование стадий<a title="Ссылка на этот раздел" href="#использование-стадий"><i class="material-icons">link</i></a></h2>
+<p>Все стадии загрузки мода могут использоваться <strong>только</strong> в главном файле мода! То есть в файле с аннотацией <code>@Mod</code>. Стадии
+загрузки можно использовать при помощи аннотации <code>@EvenHandler</code>.</p>
+<h3 id="преинициализация">Преинициализация<a title="Ссылка на этот раздел" href="#преинициализация"><i class="material-icons">link</i></a></h3>
+<p>Стадия преинициализации используется для того, чтобы дать игре знать о том, что есть в вашем моде: блоках, предметах и так далее.</p>
+<p>Чаще всего в этой стадии выполняются следующие действия:</p>
+<ul>
+<li>Регистрация блоков и предметов.</li>
+<li>Регистрация Tile Entity</li>
+<li>Регистрация сущностей</li>
+<li>Присвоение имен в Ore Dictionary</li>
+</ul>
+<p>Событие этой стадии: <code>FMLPreInitializationEvent</code>. В главном файле его использование выглядит следующим образом:</p>
+<pre><code class="java language-java">// TestMod.java
+
+@EventHandler
+public void preInit(FMLPreInitializationEvent event) {
+    // Преинициализация
+    System.out.println("\u001B[32m" + "[Starting Test Mod PRE-INITIALIZATION]" + "\u001B[0m");
+}
+</code></pre>
+<h3 id="инициализация">Инициализация<a title="Ссылка на этот раздел" href="#инициализация"><i class="material-icons">link</i></a></h3>
+<p>Стадия инициализации предназначена для выполнения действий с объектами, зарегистрированными в преинициализации.</p>
+<p>Чаще всего в этой стадии выполняются следующие действия:</p>
+<ul>
+<li>Регистрация генераторов структур</li>
+<li>Регистрация рецептов</li>
+<li>Регистрация обработчиков действий</li>
+</ul>
+<p>Событие этой стадии: <code>FMLInitializationEvent</code>. В главном файле его использование выглядит следующим образом:</p>
+<pre><code class="java language-java">// TestMod.java
+
+@EventHandler
+public void init(FMLInitializationEvent event) {
+    // Инициализация
+    System.out.println("\u001B[32m" + "[Starting Test Mod INITIALIZATION]" + "\u001B[0m");
+}
+</code></pre>
+<h3 id="постинициализация">Постинициализация<a title="Ссылка на этот раздел" href="#постинициализация"><i class="material-icons">link</i></a></h3>
+<p>Стадия постинициализации рекомендуется выполнять действия, связанные с другими модами.</p>
+<p>Событие этой стадии: <code>FMLPostInitializationEvent</code>. В главном файле его использование выглядит следующим образом:</p>
+<pre><code class="java language-java">// TestMod.java
+
+@EventHandler
+public void postInit(FMLPostInitializationEvent event) {
+    // Инициализация
+    System.out.println("\u001B[32m" + "[Starting Test Mod POST-INITIALIZATION]" + "\u001B[0m");
+}
+</code></pre>
+<h2 id="итог">Итог<a title="Ссылка на этот раздел" href="#итог"><i class="material-icons">link</i></a></h2>
+<p>Учитывая 3 основные стадии загрузки Forge мода, наш главный файл мода должен выглядит приблизительно так:</p>
+<pre><code class="java language-java">package ru.ivasik.tutorial;
+
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+@Mod(modid = "tut")
+public class Tutorial
+{
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent e)
+    {
+        // Преинициализация
+        System.out.println("\u001B[32m" + "[Starting Test Mod PRE-INITIALIZATION]" + "\u001B[0m");
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent e)
+    {
+        // Инициализация
+        System.out.println("\u001B[32m" + "[Starting Test Mod INITIALIZATION]" + "\u001B[0m");
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        // Инициализация
+        System.out.println("\u001B[32m" + "[Starting Test Mod POST-INITIALIZATION]" + "\u001B[0m");
+    }
+}
+</code></pre>
+<p>Если вы запустите клиент с этим кодом загрузки стадий, то в консоли увидите следующее:</p>
+<p><img src="images/loading_stages.png" alt="Демонстрация стадий загрузки" /></p>
+<p>Можно отчетливо видеть, что эти стадии выполняются в разное время.</p>
+
+    </div>
+
+    <section class="contributors">
+
+
+            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">CMTV</div>
+
+                    <div class="role">Автор</div>
+
+                </div>
+
+            </a>
+
+
+    </section>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/base/loading_stages';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>

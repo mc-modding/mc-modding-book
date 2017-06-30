@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Структура мода - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Основные файлы любого Minecraft мода. Для чего они нужны и как их настроить.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Структура мода - Minecraft Modding">
+<meta property="og:description" content="Основные файлы любого Minecraft мода. Для чего они нужны и как их настроить.">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/base/mod_structure">
+<meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Hammer.js -->
+<script src="http://mcmodding.ru/libs/hammer/hammer.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code, code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.css">
+<script src="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.js"></script>
+<script>
+    $(() => {
+        $('article .inner').magnificPopup({
+            delegate: 'img',
+            type: 'image',
+            callbacks: {
+                elementParse: (item) => { item.src = item.el.attr('src'); }
+            }
+        });
+    });
+</script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
+                                </optgroup>
+
+                                <optgroup label="Бета">
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>1.12+</option>
+                                </optgroup>
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="article selected">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/build_mod" class="article ">Сборка мода</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article ">Предметы</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты</a>
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+    </div>
+
+</nav><article>
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/base/mod_structure/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="структура-мода">Структура мода<a title="Ссылка на этот раздел" href="#структура-мода"><i class="material-icons">link</i></a></h1>
+<p>Так как используемое нами Forge API использует автоматический сборщик Gradle, то мы должны придерживаться определенной
+структуры папок.</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        ├── java
+        └── resources
+</code></pre>
+<p>Создайте папку "src" и остальные в нашей рабочей директории, где мы ранее распаковывали архив MDK. Idea автоматически
+узнает названия папок и присвоит им нужное значение.</p>
+<h4 id="для-eclipse">Для Eclipse<a title="Ссылка на этот раздел" href="#для-eclipse"><i class="material-icons">link</i></a></h4>
+<p>Если вы используете Eclipse, то вам нужно пометить "src/main/java" и "src/main/resources" как "Source Folder" (папка исходников).</p>
+<p>Это можно сделать двумя разными способами:</p>
+<ol>
+<li>Создать эти папки через ПКМ &gt; New &gt; Source Folder</li>
+<li>Выделить уже созданные папки "java" и "resources" и ПКМ &gt; Build Path &gt; Use as Source Folder</li>
+</ol>
+<h4 id="смысл-папок">Смысл папок<a title="Ссылка на этот раздел" href="#смысл-папок"><i class="material-icons">link</i></a></h4>
+<p>"src" в полном варианте пишется source и переводится как "Источники/Исходники".</p>
+<p>Весь наш мод будет находится внутри этой папки.</p>
+<p>Далее идет "main", внутри которого находятся две папки: "java" и "resources".</p>
+<ul>
+<li>В "java" хранится исходный код нашего мода</li>
+<li>В "resources" хранятся все остальные доп. файлы: картинки, звуки, модели и так далее</li>
+</ul>
+<h2 id="mcmodinfo">mcmod.info<a title="Ссылка на этот раздел" href="#mcmodinfo"><i class="material-icons">link</i></a></h2>
+<p>Создадим в папке "resources" файл <code>mcmod.info</code>.</p>
+<p>Этот файл определяет метаданные нашего мода: идентификатор, название, авторов, зависимости и так далее.
+Это обычный JSON файл, хотя он и имеет расширение <code>.info</code>.</p>
+<p>Минимально правильный mcmod.info файл должен содержать следующее:</p>
+<pre><code class="json language-json">[
+{
+  "modid": "tut",
+  "name": "Tutorial mod"
+}
+]
+</code></pre>
+<p>Где <code>modid</code> — идентификатор мода. Не используйте заглавные буквы, пробелы, подчеркивания и т.д. Только английские буквы
+в нижнем регистре.</p>
+<p>Параметр <code>name</code> отвечает за красивое название вашего мода. Тут можно использовать все, что угодно. Работать будут и <a href="http://minecraft.gamepedia.com/Formatting_codes">коды
+форматирования текста</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>modid</td>
+<td>Идентификатор мода</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Название мода</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Описание мода в 1-2 абзаца</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Версия мода</td>
+</tr>
+<tr>
+<td>mcversion</td>
+<td>Версия Minecraft</td>
+</tr>
+<tr>
+<td>url</td>
+<td>Ссылка на сайт мода</td>
+</tr>
+<tr>
+<td>updateJSON</td>
+<td>Ссылка на JSON файл с данными обновлений мода</td>
+</tr>
+<tr>
+<td>authorList</td>
+<td>Массив имен авторов</td>
+</tr>
+<tr>
+<td>credits</td>
+<td>Строка с выражением благодарности кому-то</td>
+</tr>
+<tr>
+<td>logoFile</td>
+<td>Путь к логотипу мода</td>
+</tr>
+<tr>
+<td>screenshots</td>
+<td>Массив путей к скриншотам мода. В данный момент не поддерживается</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>modid родительского мода</td>
+</tr>
+<tr>
+<td>useDependencyInformation</td>
+<td>Если true, то следующие три параметра будут учитываться</td>
+</tr>
+<tr>
+<td>requiredMods</td>
+<td>Массив modid модов, которые требуются для работы данного мода. Если данные моды не установлены, то будет краш игры. Данный параметр не указывает <strong>порядок</strong> загрузки модов. Используйте для этой цели параметр dependencies</td>
+</tr>
+<tr>
+<td>dependencies</td>
+<td>Массив modid модов, которые должны быть загружены <strong>до</strong> загрузки данного мода</td>
+</tr>
+<tr>
+<td>dependants</td>
+<td>Массив modid модов, которые должны быть загружены <strong>после</strong> загрузки данного мода</td>
+</tr>
+</tbody>
+</table>
+<p>Вот пример умеренно заполненного файла:</p>
+<pre><code class="json language-json">[{
+  "modid": "tut",
+  "name": "Tutorial Mod",
+  "description": "This is my SUPER Test Mod. Like it!",
+  "version": "1.0.0.0",
+  "mcversion": "1.12+",
+  "url": "mcmodding.ru/",
+  "authorList": ["Ivasik", "Someone else"],
+  "credits": "I'd like to thank my mother and father."
+}]
+</code></pre>
+<p>Более подробно о настройке этого файла вы можете прочитать в отдельной статье. Рекомендую обязательно выделить время для этого,
+так как там есть несколько полезных хитростей.</p>
+<h2 id="главный-файл-мода">Главный файл мода<a title="Ссылка на этот раздел" href="#главный-файл-мода"><i class="material-icons">link</i></a></h2>
+<p>В предыдущем разделе мы создали файл <code>mcmod.info</code>. Но игра все еще не распознает наш мод, в чем можно убедиться, запустив
+клиент. Вы не найдете свой мод в списке установленных модов. Для того, чтобы все заработало, нам нужно создать главный файл мода.</p>
+<p>В папке "java" создайте базовый пакет вашего мода. Если у вас уже есть домен для вашего мода, то отличным названием для
+пакета будет что-то вроде <code>ru.ivasik.tutorial</code>. Если домена у вас нет, вполне подойдет использование вашего никнейма, как
+название пакета верхнего уровня: <code>ivasik.tutorial</code>.</p>
+<p>В моем случае пакет будет называться так: <code>ru.ivasik.tutorial</code>.</p>
+<p>Теперь создадим в нем файл <code>TestMod.java</code>. Это и будет главным файлом нашего мода.</p>
+<p>Для того, чтобы Forge понял, что данный файл действительно является главным, мы должны добавить к определению класса
+аннотацию <code>@Mod</code>:</p>
+<pre><code class="java language-java">// TestMod.java
+
+package ru.mcmodding.testmod;
+
+import net.minecraftforge.fml.common.Mod;
+
+@Mod(modid = "tut")
+public class Tutorial {}
+</code></pre>
+<p>Естественно, что поле <code>modid</code> в аннотации должно быть равно <code>modid</code> в <code>mcmod.info</code>. В противном случае мод будет распознан,
+но выведет сообщение о том, что <code>mcmod.info</code> не найден. Впрочем, на работу мода это никак не повлияет.</p>
+<p>Разбору полей аннотации <code>@Mod</code> посвящена отдельная статья.</p>
+<h2 id="итог">Итог<a title="Ссылка на этот раздел" href="#итог"><i class="material-icons">link</i></a></h2>
+<p>Мы создали базовую структуру любого мода для Minecraft. Выглядит она следующим образом:</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        ├── java
+        │   └── пакет.мода
+        │       └── ФайлМода.java
+        └── resources
+            └── mcmod.info
+</code></pre>
+
+    </div>
+
+    <section class="contributors">
+
+
+            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">CMTV</div>
+
+                    <div class="role">Автор</div>
+
+                </div>
+
+            </a>
+
+
+    </section>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/base/mod_structure';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>
