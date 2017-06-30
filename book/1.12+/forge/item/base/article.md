@@ -66,9 +66,42 @@ public class ItemsRegister
 
 Для начала добавим такой код в ItemsRegister, в метод setRender
 ```java
-ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 ```
 
-Вы могли заметить, что мы не стали использовать Minecraft.getMinecraft().etc для регистрации модели, спросите почему? Ответим! Данное усовершенствование будет полезно для регистрации большого количества моделей и их вариаций(подробнее в статье про метадату).
+Теперь Вы должны создать модель предмета, Вы можете создать как плоскую модель, примером может послужить яблоко или объёмную модель. Вот пример плоской модели:
+
+```json
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tut:items/key"
+  }
+}
+```
+
+[Объёмная модель](https://yadi.sk/d/JNFq9Y4h3KcrBv)
+
+Если ваша текстура к модели берётся из самого Minecraft, то `tut:`(modid) прописывать не надо! В пример с объёмной моделью я решил использовать текстуру золотого блока из Minecraft.
+
+`key` - регистрируемое имя нашего предмета.
+
+Когда ваша модель готово, добавьте её по пути:
+```md
+└── src    
+    └── main
+        └── resources
+            └── assets
+                └── tut
+                    └── models
+                        └── item
+```
+
+`tut` - modid нашего мода.
 
 Добавим в ClientProxy, в метод init такой код  `ItemsRegister.registerRender();`.
+
+И вот, что в конечном итоге у нас может получится.
+
+![Предмет с моделью от первого лица](images/model_face_first.png)
+![Предмет с моделью от третьего лица](images/model_face_three.png)
