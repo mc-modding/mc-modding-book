@@ -3,6 +3,6 @@ api-name: Forge
 categories-order:
   - base
   - item
-  - block
-  - creativetab
-  - lang
+#  - block
+#  - creativetab
+#  - lang
