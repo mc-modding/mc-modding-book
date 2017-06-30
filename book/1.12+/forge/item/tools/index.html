@@ -2,21 +2,21 @@
 <html>
 <head>
 
-<title>Инструменты - Minecraft Modding</title>
+<title>Инструменты и меч - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Создание собственных инструментов">
+<meta name="description" content="Создание собственных инструментов и меча">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Инструменты - Minecraft Modding">
-<meta property="og:description" content="Создание собственных инструментов">
+<meta property="og:title"       content="Инструменты и меч - Minecraft Modding">
+<meta property="og:description" content="Создание собственных инструментов и меча">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/item/tools">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -139,13 +139,11 @@
                         <select onChange="window.location.href=this.value">
 
                                 <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>1.12+</option>
                                         <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
                                         <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
                                 </optgroup>
 
-                                <optgroup label="Бета">
-                                        <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>1.12+</option>
-                                </optgroup>
 
 
                         </select>
@@ -185,7 +183,9 @@
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
-                            <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article selected">Инструменты</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article selected">Инструменты и меч</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/armor" class="article ">Броня</a>
                     </div>
 
                 </div>
@@ -199,9 +199,75 @@
 
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/item/tools/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="создание-инструментов">Создание инструментов<a title="Ссылка на этот раздел" href="#создание-инструментов"><i class="material-icons">link</i></a></h1>
+        <h1 id="создание-инструментов-и-меча">Создание инструментов и меча<a title="Ссылка на этот раздел" href="#создание-инструментов-и-меча"><i class="material-icons">link</i></a></h1>
 <h2 id="основа">Основа<a title="Ссылка на этот раздел" href="#основа"><i class="material-icons">link</i></a></h2>
-<p>TODO</p>
+<p>Для начала создадим четыре класс: ItemToolAxe, ItemToolHoe, ItemToolPickaxe, ItemToolSpade, ItemBestSword</p>
+<p>Топор</p>
+<pre><code class="java language-java">public class ItemToolAxe extends ItemAxe
+{
+    public ItemToolAxe(String name, ToolMaterial material)
+    {
+        //То что указано как 2, 2 это урон и скорость рубки. Можете задать свои значения, но лучше не оставлять данные поля пустыми.
+        super(material, 2, 2);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+    }
+}
+</code></pre>
+<p>Мотыга</p>
+<pre><code class="java language-java">public class ItemToolHoe extends ItemHoe
+{
+    public ItemToolHoe(String name, ToolMaterial material)
+    {
+        super(material);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+    }
+}
+</code></pre>
+<p>Кирка</p>
+<pre><code class="java language-java">public class ItemToolPickaxe extends ItemPickaxe
+{
+    public ItemToolPickaxe(String name, ToolMaterial material)
+    {
+        super(material);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+    }
+}
+</code></pre>
+<p>Лопата</p>
+<pre><code class="java language-java">public class ItemToolSpade extends ItemSpade
+{
+    public ItemToolSpade(String name, ToolMaterial material)
+    {
+        super(material);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+    }
+}
+</code></pre>
+<p>Меч</p>
+<pre><code class="java language-java">public class ItemBestSword extends ItemSword
+{
+    public ItemBestSword(String name, ToolMaterial material)
+    {
+        super(material);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+    }
+}
+</code></pre>
+<p>Теперь создадим материал.</p>
+<pre><code class="java language-java">public static Item.ToolMaterial toolMaterial = EnumHelper.addToolMaterial("tut:tool", 2, 256, 50.0F, 2.0F, 12);
+</code></pre>
+<p><code>tut:tool</code> - это название нашего материала, лучше указывать ещё modid, чтобы не возникало конфликтов с Minecraft.
+<code>2</code> - это уровень инструмента для уничтожения того или иного блока.
+<code>256</code> - это максимальное число использований(дерево = 59, камень = 131, железо = 250, алмаз = 1561, золото = 32).
+<code>50.0F</code> - это эффективность, чем больше значение, тем быстрее ломается блок.
+<code>2.0F</code> - это урон, который будет наносится сущностям при ударе нашем инструментом(Для топора мы установили своё значение урона).
+<code>12</code> - это уровень который требуется для получения более лучших чар.</p>
+<p>Регистрируем наши инструменты и меч! Заходим в игру и выдаём себе инструменты и меч, пробуем убить или добыть что либо.</p>
 
     </div>
 

@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Сборка мода - Minecraft Modding</title>
+<title>Починка предмета - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Все, что связано с процессом сборки мода в конечный .jar файл: описание процесса, сама сборка, полезные настройки.">
+<meta name="description" content="Починка предмета">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Сборка мода - Minecraft Modding">
-<meta property="og:description" content="Все, что связано с процессом сборки мода в конечный .jar файл: описание процесса, сама сборка, полезные настройки.">
+<meta property="og:title"       content="Починка предмета - Minecraft Modding">
+<meta property="og:description" content="Починка предмета">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/base/build_mod">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/item/repair">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
             </div>
         </div>
 
@@ -164,27 +164,27 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="category-article selected">Основы Forge</a>
+                    <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="article ">Структура мода</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/base/proxy" class="article ">Прокси</a>
-                            <a href="http://mcmodding.ru/book/1.12+/forge/base/build_mod" class="article selected">Сборка мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/build_mod" class="article ">Сборка мода</a>
                     </div>
 
                 </div>
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article ">Предметы</a>
+                    <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article selected">Предметы</a>
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты и меч</a>
-                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article selected">Починка предмета</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/armor" class="article ">Броня</a>
                     </div>
 
@@ -197,65 +197,35 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/base/build_mod/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/item/repair/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="сборка-мода">Сборка мода<a title="Ссылка на этот раздел" href="#сборка-мода"><i class="material-icons">link</i></a></h1>
-<p>Когда работа над модом закончена, необходимо собрать его в готовый конечный .jar файл.</p>
-<h2 id="процесс-сборки">Процесс сборки<a title="Ссылка на этот раздел" href="#процесс-сборки"><i class="material-icons">link</i></a></h2>
-<p>За сборку исходников мода отвечает таск <code>build</code> из одноименной группы. После завершения работы таска в рабочей папке
-появится директория <code>build</code>, в которой будет много разных папок. Нужна нам только одна: <code>libs</code>.</p>
-<p>В ней находятся два .jar файла. Файл без слова <code>sources</code> и является готовым и собранным модом. Однако, вас может удивить
-название этого файла. С найстройками Forge по умолчанию он будет называться как-то так: <code>modid-1.0.jar</code>.</p>
-<p>Дело в том, что название этого файла определяется в файле <code>build.gradle</code>, а конкретно, вот этими двумя строчками ближе к началу
-файла:</p>
-<pre><code class="gradle language-gradle">version = "1.0"
-archivesBaseName = "modid"
+        <h1 id="починка-предмета">Починка предмета<a title="Ссылка на этот раздел" href="#починка-предмета"><i class="material-icons">link</i></a></h1>
+<p>В прошлой статье мы создали материал, но так до конца с ним и не разобрались.</p>
+<p>Материал из прошлой статьи.</p>
+<pre><code class="java language-java">public static Item.ToolMaterial toolMaterial = EnumHelper.addToolMaterial("tut:tool", 2, 256, 50.0F, 2.0F, 12);
 </code></pre>
-<p>Соответсвенно файл будет называться modid-1.0.jar.</p>
-<h3 id="авто-подстановка-в-mcmodinfo">Авто-подстановка в mcmod.info<a title="Ссылка на этот раздел" href="#авто-подстановка-в-mcmodinfo"><i class="material-icons">link</i></a></h3>
-<p>Получается, при выпуске мода нам нужно следить, чтобы и в mcmod.info и в build.gradle была правильная информация. Это не
-очень удобно, ведь нам нужно делать одно и тоже (менять версию мода) в двух разных местах.</p>
-<p>К счастью, именно такие задачи и решают автоматические сборщики, коим и является Gradle. Мы можем настроить автоматическую
-подстановку версии мода и версии Minecraft в файл mcmod.info.</p>
-<p>Внутри build.gradle, прокрутим немного ниже и найдем следующие строки:</p>
-<pre><code class="gradle language-gradle">// replace stuff in mcmod.info, nothing else
-from(sourceSets.main.resources.srcDirs) {
-    include 'mcmod.info'
-
-    // replace version and mcversion
-    expand 'version':project.version, 'mcversion':project.minecraft.version
-}
+<p>Казалось бы, инструменты и меч есть, но всё равно чего-то не хватает? Как раз починки, нам и не хватает!
+Возьмём нашу переменную и добавим к ней метод "setRepairItem()".</p>
+<pre><code class="java language-java">public static Item.ToolMaterial toolMaterial = EnumHelper.addToolMaterial("tut:tool", 2, 256, 50.0F, 2.0F, 12).setRepairItem(new ItemStack(Item.getItemFromBlock(Blocks.GOLD_BLOCK)));
 </code></pre>
-<p>Нас интересует строчка, начинающаяся с <code>expand...</code>. Она позволяет использовать в mcmod.info конструкции вида <code>${version}</code> и
-<code>${mcversion}</code>, которые при сборке автоматически заменятся на переменные, определенные в build.gradle:</p>
-<pre><code class="json language-json">[{
-  "modid": "testmod",
-  "name": "Test Mod",
-  "description": "Description of Test Mod!",
-  "version": "${version}",
-  "mcversion": "${mcversion}"
-}]
+<p>Данный код создаёт новый стак предметов в котором имеется блок золота.</p>
+<pre><code class="java language-java">new ItemStack(Item.getItemFromBlock(Blocks.GOLD_BLOCK));
 </code></pre>
-<p>Заметьте, что переменные подставятся только при сборке через таск <code>build</code>. При обычном запуске Minecraft внутри среды
-разработки замены не будет и вы будете видеть прямо текст <code>${version}</code>.</p>
-<h2 id="установка-мода-на-minecraft">Установка мода на Minecraft<a title="Ссылка на этот раздел" href="#установка-мода-на-minecraft"><i class="material-icons">link</i></a></h2>
-<p>Ранее мы уже устанавливали Forge на Minecraft.</p>
-<p>Теперь надо перейти в папку, где установлен Minecraft. Чаще всего Minecraft располагается по пути: <code>C:\Users\*Пользователь*\AppData\Roaming\.minecraft</code>, где
-<em>Пользователь</em> — имя пользователя данного компьютера.</p>
-<p>Внутри Minecraft директории есть папка <code>mods</code>. В нее и нужно закинуть .jar файл готового мода.</p>
+<p>Таким образом мы добавили к нашему материалу предмет, который будет необходим для починки инструментов и меча.</p>
+<p>Теперь нам остаётся зайти в игру, изрядно потрепать наши инструменты и меч, и попробовать починить их через наковальню используя блок золота.</p>
 
     </div>
 
     <section class="contributors">
 
 
-            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
 
-                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
 
                 <div class="info">
 
-                    <div class="name">CMTV</div>
+                    <div class="name">Ivasik</div>
 
                     <div class="role">Автор</div>
 
@@ -287,7 +257,7 @@ from(sourceSets.main.resources.srcDirs) {
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/base/build_mod';
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/item/repair';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
