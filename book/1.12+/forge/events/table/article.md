@@ -132,7 +132,7 @@
 | LivingSpawnEvent.CheckSpawn     | Срабатывает до спавна сущностей                                                                                            | Нет                |
 | LivingSpawnEvent.SpecialSpawn   | Срабатывает когда сущность заспавнилась.                                                                                   | Да                 |
 | LivingSpawnEvent.AllowDespawn   | Срабатывает каждый тик для деспавна сущности.                                                                              | Нет                |
-| LootingLevelEvent               | Срабатывает при изменение уровня лута в сущности. (?)                                                                      | Нет                |
+| LootingLevelEvent               | Позволяет изменить уровень лута при убийстве сущности.                                                                     | Нет                |
 | PotionColorCalculationEvent     | Срабатывает после расчёта цвета зелья.                                                                                     | Нет                |
 | ZombieEvent.SummonAidEvent      | Срабатывает когда сущность "Зомби" вызывается.                                                                             | Нет                |
 
