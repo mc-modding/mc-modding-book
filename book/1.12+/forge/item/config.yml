@@ -6,6 +6,6 @@ articles-order:
   - tools
   - repair
   - armor
-#  - metadata
-#  - nbt
-#  - loot
+  - metadata
+  - nbt
+  - loot

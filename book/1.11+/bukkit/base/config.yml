@@ -5,8 +5,10 @@ articles-order:
   - events
   - commands
   - config
+  - permissions
   - debug
   - bundle
+  - scoreboard
   - packets
   - database
   - export
