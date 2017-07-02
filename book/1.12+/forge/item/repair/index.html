@@ -2,21 +2,21 @@
 <html>
 <head>
 
-<title>Починка предмета - Minecraft Modding</title>
+<title>Починка инструментов - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Починка предмета">
+<meta name="description" content="Починка инструментов">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Починка предмета - Minecraft Modding">
-<meta property="og:description" content="Починка предмета">
+<meta property="og:title"       content="Починка инструментов - Minecraft Modding">
+<meta property="og:description" content="Починка инструментов">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/item/repair">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -184,8 +184,22 @@
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты и меч</a>
-                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article selected">Починка предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article selected">Починка инструментов</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/armor" class="article ">Броня</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/metadata" class="article ">Метадата</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/nbt" class="article ">Хранение в предмете</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/loot" class="article ">Система лута</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="category-article ">События</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="article ">Использование событий</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/table" class="article ">Таблица событий</a>
                     </div>
 
                 </div>
@@ -199,7 +213,7 @@
 
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/item/repair/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="починка-предмета">Починка предмета<a title="Ссылка на этот раздел" href="#починка-предмета"><i class="material-icons">link</i></a></h1>
+        <h1 id="починка-инструментов">Починка инструментов<a title="Ссылка на этот раздел" href="#починка-инструментов"><i class="material-icons">link</i></a></h1>
 <p>В прошлой статье мы создали материал, но так до конца с ним и не разобрались.</p>
 <p>Материал из прошлой статьи.</p>
 <pre><code class="java language-java">public static Item.ToolMaterial toolMaterial = EnumHelper.addToolMaterial("tut:tool", 2, 256, 50.0F, 2.0F, 12);
@@ -211,7 +225,7 @@
 <p>Данный код создаёт новый стак предметов в котором имеется блок золота.</p>
 <pre><code class="java language-java">new ItemStack(Item.getItemFromBlock(Blocks.GOLD_BLOCK));
 </code></pre>
-<p>Таким образом мы добавили к нашему материалу предмет, который будет необходим для починки инструментов и меча.</p>
+<p>Таким образом мы добавили к нашему материалу предмет, который будет необходим для починки инструментов и меча. Так же вы можете проделать данное действие с ArmorMaterial, задать предмет для починки.</p>
 <p>Теперь нам остаётся зайти в игру, изрядно потрепать наши инструменты и меч, и попробовать починить их через наковальню используя блок золота.</p>
 
     </div>

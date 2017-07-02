@@ -1,4 +1,4 @@
-## События
+# События
 
 События - это то же, что случается с нами в повседневной жизни, но только в minecraft и мы можем предотвратить это событие.
 
@@ -42,9 +42,9 @@ public class EventsHandler implements Listener
 Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 ```
 
-### Таблица всех событий
+# Таблица всех событий
 
-##### Блоки
+## Блоки
 ---
 
 | Событие                  | Описание                                                                                |
@@ -75,7 +75,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | NotePlayEvent            | Срабатывает когда нотный блок используется игроком или активирован красным камнем.      |
 | SignChangeEvent          | Срабатывает когда игрок изменяет табличку.                                              |
 
-##### Чары
+## Чары
 ---
 
 | Событие                 | Описание                                                                                     |
@@ -83,7 +83,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | EnchantItemEvent        | Срабатывает когда предмет был зачарован.                                                     |
 | PrepareItemEnchantEvent | Срабатывает когда ItemStack вставляется в стол зачарования. Может быть вызван несколько раз. |
 
-##### Сущность
+## Сущность
 ---
 
 | Событие                       | Описание                                                                                          |
@@ -135,7 +135,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | VillagerAcquireTradeEvent     | Срабатывает когда житель получает новую профессию.                                                |
 | VillagerReplenishTradeEvent   | Срабатывает когда житель достигает максимум при продаже.                                          |
 
-##### Висящий блок(Только картина и рамка!)
+## Висящий блок(Только картина и рамка!)
 ---
 
 | Событие                   | Описание                                                  |
@@ -144,7 +144,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | HangingBreakEvent         | Срабатывает когда картина/рамка была разрушена.           |
 | HangingPlaceEvent         | Срабатывает когда картина/рамка была установлена.         |
 
-##### Инвентарь
+## Инвентарь
 ---
 
 | Событие                  | Описание                                                                                                 |
@@ -166,7 +166,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | PrepareAnvilEvent        | Срабатывает когда предмет был помещён в слот для ремонта.                                                |
 | PrepareItemCraftEvent    | Срабатывает когда предмет был помещён в слот для крафта.                                                 |
 
-##### Игрок
+## Игрок
 ---
 
 | Событие                         | Описание                                                                                                                     |
@@ -216,7 +216,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | PlayerUnregisterChannelEvent    | Срабатывает когда игрок разрегистрируется в канале плагина.                                                                  |
 | PlayerVelocityEvent             | Срабатывает когда скорость игрока изменяется.                                                                                |
 
-##### Сервер
+## Сервер
 ---
 
 | Событие                  | Описание                                                 |
@@ -231,7 +231,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | ServiceUnregisterEvent   | Срабатывает когда служба не зарегистрирована.            |
 | TabCompleteEvent         | Срабатывает когда игроком (или в консоли) нажимается TAB |
 
-##### Транспорт
+## Транспорт
 ---
 
 | Событие                     | Описание                                              |
@@ -247,7 +247,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | VehicleMoveEvent            | Срабатывает когда транспорт движется.                 |
 | VehicleUpdateEvent          | Срабатывает когда транспорт обновился.                |
 
-##### Погода
+## Погода
 ---
 
 | Событие              | Описание                                   |
@@ -256,7 +256,7 @@ Bukkit.getServer().getPluginManager().registerEvents(new EventsHandler(), this);
 | ThunderChangeEvent   | Хранит данные для изменения грозы в мире.  |
 | WeatherChangeEvent   | Хранит данные для изменения погоды в мире. |
 
-##### Мир
+## Мир
 ---
 
 | Событие            | Описание                                                           |

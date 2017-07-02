@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Таблица событий - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Таблица всех событий доступных в Forge API">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Таблица событий - Minecraft Modding">
+<meta property="og:description" content="Таблица всех событий доступных в Forge API">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/events/table">
+<meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Hammer.js -->
+<script src="http://mcmodding.ru/libs/hammer/hammer.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code, code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.css">
+<script src="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.js"></script>
+<script>
+    $(() => {
+        $('article .inner').magnificPopup({
+            delegate: 'img',
+            type: 'image',
+            callbacks: {
+                elementParse: (item) => { item.src = item.el.attr('src'); }
+            }
+        });
+    });
+</script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>1.12+</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="article ">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/build_mod" class="article ">Сборка мода</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article ">Предметы</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты и меч</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка инструментов</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/armor" class="article ">Броня</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/metadata" class="article ">Метадата</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/nbt" class="article ">Хранение в предмете</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/loot" class="article ">Система лута</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="category-article selected">События</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="article ">Использование событий</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/table" class="article selected">Таблица событий</a>
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+    </div>
+
+</nav><article>
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/events/table/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="таблица-всех-доступных-событий">Таблица всех доступных событий<a title="Ссылка на этот раздел" href="#таблица-всех-доступных-событий"><i class="material-icons">link</i></a></h1>
+<h2 id="клиент">Клиент<a title="Ссылка на этот раздел" href="#клиент"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ClientChatEvent</td>
+<td>Срабатывает клиент отправляет сообщение в чате или команду на сервер.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ClientChatReceivedEvent</td>
+<td>Срабатывает когда сообщение отображается на клиенте.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>DrawBlockHighlightEvent</td>
+<td>Срабатывает когда блок выделяется при наведении мыши.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>EntityViewRenderEvent.FogDensity</td>
+<td>Событие позволяющие настроить плотность тумана, которую будет видеть игрок.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>EntityViewRenderEvent.RenderFogEvent</td>
+<td>Событие позволяющие изменить рендер тумана.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>EntityViewRenderEvent.FogColors</td>
+<td>Событие позволяющие настроить цвет тумана, который будет видеть игрок.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>EntityViewRenderEvent.CameraSetup</td>
+<td>Событие позволяющие изменять углы поворота камеры. Будет полезно для вращения.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>EntityViewRenderEvent.FOVModifier</td>
+<td>Событие позволяющие изменять угол обзора(FOV) игрока. Будет полезно для создания прицела.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FOVUpdateEvent</td>
+<td>Срабатывает когда вызывается FOV множитель.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>GuiOpenEvent</td>
+<td>Срабатывает когда GUI открывается.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.InitGuiEvent.Pre</td>
+<td>Срабатывает после инициализации GuiScreen#MC, GuiScreen#FontRenderer.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.InitGuiEvent.Post</td>
+<td>Срабатывает после инициализации самого initGui().</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.DrawScreenEvent.Pre</td>
+<td>Срабатывает до инициализации drawScreen().</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.DrawScreenEvent.Post</td>
+<td>Срабатывает после инициализации drawScreen().</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.BackgroundDrawnEvent</td>
+<td>Срабатывает в конце drawDefaultBackground(), что позволяет отрисовать текстуру на фоне, но под подсказками.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.PotionShiftEvent</td>
+<td>Срабатывает когда зелье активно и требуется смещение GuiInventory.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.ActionPerformedEvent.Pre</td>
+<td>Срабатывает до нажатия на GuiButton.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.ActionPerformedEvent.Post</td>
+<td>Срабатывает после нажатия на GuiButton.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.MouseInputEvent.Pre</td>
+<td>Срабатывает когда мышка определяется GuiScreen'ом.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.MouseInputEvent.Post</td>
+<td>Срабатывает после GuiScreen#handleMouseInput при условии, что активный экран не изменился.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.KeyboardInputEvent.Pre</td>
+<td>Срабатывает когда клавиатура определяется GuiScreen'ом.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>GuiScreenEvent.KeyboardInputEvent.Post</td>
+<td>Срабатывает после GuiScreen#handleKeyboardInput при условии, что активный экран не изменился.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ModelBakeEvent</td>
+<td>Срабатывает когда ModelManager уведомляет ResourceManager об обновлении/перезагрузке.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ModelRegistryEvent</td>
+<td>Срабатывает когда ModelLoader готов к регистрации моделей.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>MouseEvent</td>
+<td>Срабатывает на любое действие мыши.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderBlockOverlayEvent</td>
+<td>Срабатывает когда текстура блока будет наложена на игрока в HUD.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderGameOverlayEvent.Pre</td>
+<td>Срабатывает когда GuiIngame будет отрисовано.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderGameOverlayEvent.Post</td>
+<td>Срабатывает после отрисовки GuiIngame.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>RenderGameOverlayEvent.BossInfo</td>
+<td>Срабатывает когда информация о боссе будет отрисована в GuiIngame.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderGameOverlayEvent.Text</td>
+<td>Срабатывает когда текст будет отрисован в GuiIngame.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderGameOverlayEvent.Chat</td>
+<td>Срабатывает когда чат будет отрисован в GuiIngame.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderHandEvent</td>
+<td>Срабатывает когда до рендера рук. При отмене руки не отрисовываются!</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderItemInFrameEvent</td>
+<td>Срабатывает когда предмет рендериться в рамке для предмета.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderLivingEvent.Pre, RLE.Specials.Pre</td>
+<td>Срабатывает когда модель сущности рендериться.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderLivingEvent.Post, RLE.Specials.Post</td>
+<td>Срабатывает когда модель сущности зарендерилась.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>RenderPlayerEvent.Pre, RPE.Specials.Pre</td>
+<td>Срабатывает когда модель игрока рендериться.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderPlayerEvent.Post, RPE.Specials.Post</td>
+<td>Срабатывает когда модель игрока зарендерилась.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>RenderPlayerEvent.SetArmorModel</td>
+<td>Срабатывает когда игрок надевает броню.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>RenderSpecificHandEvent</td>
+<td>Срабатывает когда рендериться рука от первого лица.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderTooltipEvent.Pre</td>
+<td>Срабатывает до отрисовки подсказки.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>RenderTooltipEvent.Post</td>
+<td>Срабатывает после отрисовки подсказки.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>RenderTooltipEvent.PostBackground</td>
+<td>Срабатывает после фона подсказки, но до текста.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>RenderTooltipEvent.PostText</td>
+<td>Срабатывает после отрисовки текста, но перед GL States сбрасывается.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>RenderWorldLastEvent</td>
+<td>Срабатывает до того, как мир будет отрисован.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ScreenshotEvent</td>
+<td>Срабатывает до и после того, как был получен скриншот.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>TextureStitchEvent.Pre</td>
+<td>Срабатывает когда TextureMap начинает обновление текстур.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>TextureStitchEvent.Post</td>
+<td>Срабатывает когда TextureMap завершает обновление текстур.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="звуки">Звуки<a title="Ссылка на этот раздел" href="#звуки"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PlaySoundEvent</td>
+<td>Срабатывает когда SoundManager проигрывает звуки.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlaySoundSourceEvent</td>
+<td>Срабатывает когда вызывается метод playSound().</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayStreamingSourceEvent</td>
+<td>Срабатывает когда вызывается метод playSound().</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>SoundLoadEvent</td>
+<td>Срабатывает когда SoundManager загружает звуки.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>SoundSetupEvent</td>
+<td>Срабатывает когда SoundManager производит установку кодеков.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="чанк-менеджер">Чанк менеджер<a title="Ссылка на этот раздел" href="#чанк-менеджер"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ForceChunkEvent</td>
+<td>Срабатывает когда чанк собирается продолжать загрузку без игрока</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>UnforceChunkEvent</td>
+<td>Срабатывает когда чанк не собирается продолжать загрузку</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="остальные-события">Остальные события<a title="Ссылка на этот раздел" href="#остальные-события"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AnvilUpdateEvent</td>
+<td>Срабатывает когда игрок кладёт предметы в правый и левый слот наковальни.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>AttachCapabilitiesEvent</td>
+<td>Срабатывает когда объект (Entity, Player, TileEntity, World) с поддержкой CAP создаётся.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>CommandEvent</td>
+<td>Срабатывает когда команда была выполнена.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>DifficultyChangeEvent</td>
+<td>Срабатывает когда сложность игры изменяется.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>LootTableLoadEvent</td>
+<td>Срабатывает когда данные LootTable загружаются из Json файла.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ServerChatEvent</td>
+<td>Срабатывает когда C01PacketChatMessage обрабатывается.</td>
+<td>Да</td>
+</tr>
+</tbody>
+</table>
+<h2 id="зельеварение">Зельеварение<a title="Ссылка на этот раздел" href="#зельеварение"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PlayerBrewedPotionEvent</td>
+<td>Срабатывает когда игрок достаёт зелье из варочной стойки.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PotionBrewEvent</td>
+<td>Срабатывает когда варочная стойка начинает и заканчивает варку зелий. Используется подкатегория Pre и Post.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="зачаровывание">Зачаровывание<a title="Ссылка на этот раздел" href="#зачаровывание"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EnchantmentLevelSetEvent</td>
+<td>Срабатывает когда уровень зачарования устанавливается для каждого из трёх возможных чар в столе зачарования.</td>
+<td>Да</td>
+</tr>
+</tbody>
+</table>
+<h2 id="сущности">Сущности<a title="Ссылка на этот раздел" href="#сущности"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EntityEvent.EntityConstructing</td>
+<td>Срабатывает когда сущность создаётся.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>EntityEvent.CanUpdate</td>
+<td>Срабатывает когда сущность обновляется/изменяется.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>EntityEvent.EnteringChunk</td>
+<td>Срабатывает когда сущность попадает в чанк.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>EntityJoinWorldEvent</td>
+<td>Срабатывает когда сущность заходит в мир.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>EntityMountEvent</td>
+<td>Срабатывает когда сущностью управляют.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>EntityStruckByLightningEvent</td>
+<td>Срабатывает когда молния попадает по сущности.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>EntityTravelToDimensionEvent</td>
+<td>Срабатывает когда сущность перемещается в другое измерение.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlaySoundAtEntityEvent</td>
+<td>Срабатывает когда звуки проигрываются сами существом.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ThrowableImpactEvent</td>
+<td>Срабатывает до EntityThrowable, вызывая метод onImpact().</td>
+<td>Да</td>
+</tr>
+</tbody>
+</table>
+<h2 id="предмет-как-сущность">Предмет (Как сущность)<a title="Ссылка на этот раздел" href="#предмет-как-сущность"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ItemExpireEvent</td>
+<td>Срабатывает когда время жизни предмета достигает максимум. (Потом предмет удаляется с земли)</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ItemTossEvent</td>
+<td>Срабатывает когда игрок выбрасывает или перемещает предмет.</td>
+<td>Да</td>
+</tr>
+</tbody>
+</table>
+<h2 id="живые-сущности">Живые сущности<a title="Ссылка на этот раздел" href="#живые-сущности"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AnimalTameEvent</td>
+<td>Срабатывает когда животное приручается.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>BabyEntitySpawnEvent</td>
+<td>Срабатывает когда сущность спавнит ребёнка.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>EnderTeleportEvent</td>
+<td>Срабатывает когда эндермен/шалкер телепортируются или используется жемчуг эндера.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingAttackEvent</td>
+<td>Срабатывает когда сущность атакуют.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingDeathEvent</td>
+<td>Срабатывает когда сущность умирает.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingDestroyBlockEvent</td>
+<td>Срабатывает когда сущность уничтожает блок.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingDropsEvent</td>
+<td>Срабатывает когда сущность выбрасывает вещи при смерти.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingEntityUseItemEvent.Start</td>
+<td>Срабатывает когда сущность начинает использовать предмет.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingEntityUseItemEvent.Tick</td>
+<td>Срабатывает каждый тик, когда сущность использует предмет.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingEntityUseItemEvent.Stop</td>
+<td>Срабатывает когда сущность прекращает использовать предмет.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingEntityUseItemEvent.Finish</td>
+<td>Срабатывает когда сущность закончила использовать предмет.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>LivingEquipmentChangeEvent</td>
+<td>Срабатывает когда изменяется экипировка сущности.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>LivingUpdateEvent</td>
+<td>Срабатывает когда сущность обновляется.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingJumpEvent</td>
+<td>Срабатывает когда сущность прыгает.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>LivingExperienceDropEvent</td>
+<td>Срабатывает когда сущность сбрасывает опыт.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingFallEvent</td>
+<td>Срабатывает когда сущность падает.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingHealEvent</td>
+<td>Срабатывает когда сущность исцеляется/восполняет здоровье.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingHurtEvent</td>
+<td>Срабатывает когда сущность получает урон.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingPackSizeEvent</td>
+<td>Срабатывает когда система спавна существ определяет максимальное число сущностей, которые могут заспавниться в тоже время.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>LivingSetAttackTargetEvent</td>
+<td>Срабатывает когда сущность выбирает сущность для атаки.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>LivingSpawnEvent.CheckSpawn</td>
+<td>Срабатывает до спавна сущностей</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>LivingSpawnEvent.SpecialSpawn</td>
+<td>Срабатывает когда сущность заспавнилась.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>LivingSpawnEvent.AllowDespawn</td>
+<td>Срабатывает каждый тик для деспавна сущности.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>LootingLevelEvent</td>
+<td>Срабатывает при изменение уровня лута в сущности. (?)</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PotionColorCalculationEvent</td>
+<td>Срабатывает после расчёта цвета зелья.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ZombieEvent.SummonAidEvent</td>
+<td>Срабатывает когда сущность "Зомби" вызывается.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="вагонетка">Вагонетка<a title="Ссылка на этот раздел" href="#вагонетка"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MinecartCollisionEvent</td>
+<td>Срабатывает когда вагонетка сталкивается с каким либо объектом.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>MinecartInteractEvent</td>
+<td>Срабатывает когда игрок взаимодействует с вагонеткой.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>MinecartUpdateEvent</td>
+<td>Срабатывает когда вагонетка меняет свою позицию.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="игрок">Игрок<a title="Ссылка на этот раздел" href="#игрок"><i class="material-icons">link</i></a></h2>
+<p>TODO</p>
+<h2 id="генерация-ландшафта">Генерация ландшафта<a title="Ссылка на этот раздел" href="#генерация-ландшафта"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BiomeEvent.CreateDecorator</td>
+<td>Срабатывает когда BiomeDecorator создан.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BiomeEvent.BiomeColor</td>
+<td>Срабатывает когда цвет биома меняется.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BiomeEvent.GetVillageBlockID</td>
+<td>Срабатывает когда генератор деревни пытается получить блок на основе биома.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BiomeEvent.GetGrassColor</td>
+<td>Срабатывает когда биом запрашивается по цвету травы.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BiomeEvent.GetFoliageColor</td>
+<td>Срабатывает когда биом запрашивается по цвету листвы.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BiomeEvent.GetWaterColor</td>
+<td>Срабатывает когда биом запрашивается по цвету воды.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ChunkGeneratorEvent.ReplaceBiomeBlocks</td>
+<td>Срабатывает когда изменяются блоки в зависимости от биома.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ChunkGeneratorEvent.InitNoiseField</td>
+<td>Срабатывает до загрузки шумом в чанк местности.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>DecorateBiomeEvent.Pre</td>
+<td>Срабатывает до того как чанк будет украшен под характеристику биома.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>DecorateBiomeEvent.Post</td>
+<td>Срабатывает после того как чанк был украшен под характеристику биома.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>DecorateBiomeEvent.Decorate</td>
+<td>Срабатывает когда чанк был украшен под характеристику биома.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>InitMapGenEvent</td>
+<td>Срабатывает при инициализации генератора мира.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>InitNoiseGensEvent</td>
+<td>Срабатывает при инициализации генератора шумов.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>OreGenEvent.Pre</td>
+<td>Срабатывает до того как руда сгенерируется в блоке.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>OreGenEvent.Post</td>
+<td>Срабатывает после того как руда сгенерируется в блоке.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>OreGenEvent.GenerateMinable</td>
+<td>Срабатывает когда руда сгенерировалась в блоке.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PopulateChunkEvent.Pre</td>
+<td>Срабатывает до того как заполнится характеристика местности.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PopulateChunkEvent.Post</td>
+<td>Срабатывает после того как заполнится характеристика местности.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PopulateChunkEvent.Populate</td>
+<td>Срабатывает когда заполняется характеристика местности.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>SaplingGrowTreeEvent</td>
+<td>Срабатывает когда саженец вырастает в дерево.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>WorldTypeEvent.BiomeSize</td>
+<td>Срабатывает при попытке создания биомов.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>WorldTypeEvent.InitBiomeGens</td>
+<td>Срабатывает при попытке запуска генератора биомов.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="мир">Мир<a title="Ссылка на этот раздел" href="#мир"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BlockEvent.HarvestDropsEvent</td>
+<td>Срабатывает когда растение может сбросить урожай.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BlockEvent.BreakEvent</td>
+<td>Срабатывает когда блок был разрушен.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>BlockEvent.PlaceEvent</td>
+<td>Срабатывает когда блок был поставлен.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>BlockEvent.MultiPlaceEvent</td>
+<td>Срабатывает при размещении более одного блока сразу. (Кровать)</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>BlockEvent.NeighborNotifyEvent</td>
+<td>Срабатывает при взаимодействии физики на блок.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>BlockEvent.CreateFluidSourceEvent</td>
+<td>Срабатывает когда блок может превратиться в жидкость.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BlockEvent.CropGrowEvent</td>
+<td>Срабатывает когда зёрна растут.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BlockEvent.CropGrowEvent.Pre</td>
+<td>Срабатывает когда возраст роста изменяется.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>BlockEvent.CropGrowEvent.Post</td>
+<td>Срабатывает когда зёрна выросли.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ChunkDataEvent.Load</td>
+<td>Срабатывает когда чанк собирается быть загруженным из NBT</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ChunkDataEvent.Unload</td>
+<td>Срабатывает когда чанк собирается быть выгруженным и сохранённым в NBT</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ChunkEvent.Load</td>
+<td>Срабатывает когда чанк загрузился.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ChunkEvent.Unload</td>
+<td>Срабатывает когда чанк выгрузился.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ChunkWatchEvent.Watch</td>
+<td>Срабатывает когда игрок начинает просматривать чанк.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ChunkWatchEvent.UnWatch</td>
+<td>Срабатывает когда игрок перестаёт просматривать чанк.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ExplosionEvent.Start</td>
+<td>Срабатывает до того, как произойдёт взрыв.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ExplosionEvent.Detonate</td>
+<td>Срабатывает после взрыва в списке уязвимых блоков и сущностей.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>GetCollisionBoxesEvent</td>
+<td>Срабатывает в collidesWithAnyBlock() и возвращает getCollisionBoxes()</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>NoteBlockEvent.Play</td>
+<td>Срабатывает когда нотный блок проигрывает ноты.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>NoteBlockEvent.Change</td>
+<td>Срабатывает когда изменяются ноты в нотном блоке.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>WorldEvent.Load</td>
+<td>Срабатывает когда Minecraft загружает мир.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>WorldEvent.Unload</td>
+<td>Срабатывает когда Minecraft выгружает мир.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>WorldEvent.Save</td>
+<td>Срабатывает когда Minecraft сохраняет мир.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>WorldEvent.PotentialSpawns</td>
+<td>Срабатывает для WorldServer, чтобы собрать список всех возможных сущностей, которые могут появиться в указанном месте</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>WorldEvent.CreateSpawnPosition</td>
+<td>Срабатывает когда создаётся новая точка спавна для мира.</td>
+<td>Да</td>
+</tr>
+</tbody>
+</table>
+<h2 id="жидкость">Жидкость<a title="Ссылка на этот раздел" href="#жидкость"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FluidEvent.FluidMotionEvent</td>
+<td>Срабатывает когда жидкость перенесли. (утекла/была залита в ведро)</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FluidEvent.FluidFillingEvent</td>
+<td>Срабатывает когда жидкость была налита в IFuildTank.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FluidEvent.FluidDrainingEvent</td>
+<td>Срабатывает когда жидкость была вылита/взята из IFuildTank.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FluidEvent.FluidSpilledEvent</td>
+<td>Срабатывает когда блок содержащий жидкость ломается и разливает воду.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FluidRegisterEvent</td>
+<td>Срабатывает когда жидкость регистрируется.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="конфигурация">Конфигурация<a title="Ссылка на этот раздел" href="#конфигурация"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConfigChangedEvent.OnConfigChangedEvent</td>
+<td>Срабатывает когда кнопка GuiConfig нажата и выполняются условия: "хотя бы один элемент конфига был изменён"</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ConfigChangedEvent.PostConfigChangedEvent</td>
+<td>Срабатывает после изменения конфигурации мода.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="игровые-события">Игровые события<a title="Ссылка на этот раздел" href="#игровые-события"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InputEvent.MouseInputEvent</td>
+<td>Срабатывает когда нажата кнопка на мыши.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>InputEvent.KeyInputEvent</td>
+<td>Срабатывает когда нажата кнопка на клавиатуре.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.ItemPickupEvent</td>
+<td>Срабатывает когда игрок поднимает предмет(-ы).</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.ItemCraftedEvent</td>
+<td>Срабатывает когда игрок скрафтил предмет.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.ItemSmeltedEvent</td>
+<td>Срабатывает когда игрок выплавил предмет.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.PlayerLoggedInEvent</td>
+<td>Срабатывает когда новый игрок подключился к серверу.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.PlayerLoggedOutEvent</td>
+<td>Срабатывает когда игрок отключился от сервера.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.PlayerRespawnEvent</td>
+<td>Срабатывает когда игрок возродился после смерти.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.PlayerChangedDimensionEvent</td>
+<td>Срабатывает когда игрок переместился в другое измерение.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>TickEvent.ServerTickEvent</td>
+<td>Тики на сервер.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>TickEvent.ClientTickEvent</td>
+<td>Тики на клиенте.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>TickEvent.WorldTickEvent</td>
+<td>Тики в мире.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>TickEvent.PlayerTickEvent</td>
+<td>Тики игрока.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>TickEvent.RenderTickEvent</td>
+<td>Тики рендера.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="пакетная-система">Пакетная система<a title="Ссылка на этот раздел" href="#пакетная-система"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FMLNetworkEvent.ClientConnectedToServerEvent</td>
+<td>Срабатывает на клиенте, когда клиенте подключается к серверу.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FMLNetworkEvent.ServerConnectionFromClientEvent</td>
+<td>Срабатывает на сервере, когда клиент подключается к серверу.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FMLNetworkEvent.ServerDisconnectionFromClientEvent</td>
+<td>Срабатывает на сервере, когда клиент отключается от сервера.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FMLNetworkEvent.ClientDisconnectionFromServerEvent</td>
+<td>Срабатывает на клиенте, когда клиент отключается от сервера.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FMLNetworkEvent.CustomPacketRegistrationEvent</td>
+<td>Срабатывает когда зарегистрирован/разрегистрирован пакет в канале.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FMLNetworkEvent.ClientCustomPacketEvent</td>
+<td>Срабатывает когда клиент получает пользовательский пакет.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FMLNetworkEvent.ServerCustomPacketEvent</td>
+<td>Срабатывает когда сервер получает пользовательский пакет.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>FMLNetworkEvent.CustomNetworkEvent</td>
+<td>Срабатывает когда пользовательское событие вызывается из канала.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+<h2 id="руда">Руда<a title="Ссылка на этот раздел" href="#руда"><i class="material-icons">link</i></a></h2>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OreRegisterEvent</td>
+<td>Срабатывает когда руда регистрируется.</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    <section class="contributors">
+
+
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">Ivasik</div>
+
+                    <div class="role">Автор</div>
+
+                </div>
+
+            </a>
+
+
+    </section>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/events/table';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>

@@ -6,7 +6,7 @@ categories-order:
 #  - block
 #  - creativetab
 #  - lang
-#  - events
+  - events
 #  - keybinds
 #  - sounds
 #  - entities

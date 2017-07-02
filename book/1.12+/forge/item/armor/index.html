@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -184,8 +184,22 @@
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты и меч</a>
-                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка инструментов</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/armor" class="article selected">Броня</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/metadata" class="article ">Метадата</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/nbt" class="article ">Хранение в предмете</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/loot" class="article ">Система лута</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="category-article ">События</a>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="article ">Использование событий</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/table" class="article ">Таблица событий</a>
                     </div>
 
                 </div>
@@ -201,9 +215,86 @@
 
         <h1 id="создание-брони">Создание брони<a title="Ссылка на этот раздел" href="#создание-брони"><i class="material-icons">link</i></a></h1>
 <h2 id="основа">Основа<a title="Ссылка на этот раздел" href="#основа"><i class="material-icons">link</i></a></h2>
-<p>TODO</p>
+<p>Создадим класс брони ItemMagicArmor.</p>
+<pre><code class="java language-java">public class ItemMagicArmor extends ItemArmor
+{
+    public ItemMagicArmor(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
+    {
+        super(materialIn, renderIndexIn, equipmentSlotIn);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+    }
+}
+</code></pre>
+<p><code>ArmorMaterial</code> - это то же, что и ToolMaterial, только для брони.
+<code>renderIndexIn</code> - это индекс рендера, всего существует два индекса. 1 - Отвечает за шлем, нагрудник, ботинки. 2 - Отвечает за штаны.
+<code>equipmentSlotIn</code> - эта переменная задаёт слот в который можно будет положить нашу броню. Всего существует шесть видов слотов и только четыре предназначены исключительно для брони.</p>
+<p>Создадим наш ArmorMaterial</p>
+<pre><code class="java language-java">public static ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial("tut:armor", "tut:armor", 9, new int[]{2, 4, 6, 3}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F).setRepairItem(new ItemStack(Item.getItemFromBlock(Blocks.OBSIDIAN)));
+</code></pre>
+<p><code>tut:armor</code> - это название нашего материала, лучше указывать ещё modid, чтобы не возникало конфликтов с Minecraft.
+<code>tut:armor</code> - это название текстуры которое будет преобразовано в armor<em>layer</em>1 и armor<em>layer</em>2. Цифра обозначает индекс рендера.
+<code>9</code> - это прочность брони.
+<code>int[]</code> - это то на сколько будет быстро убавляться прочность одного из элементов брони. С начала идёт шлем = 2, нагрудник = 4, штаны = 6, ботинки = 3. Получается, что при ударе по нашей броне из прочности будет вычитаться для шлема = 2, нагрудника = 4, штанов = 6, ботинок = 3.
+<code>7</code> - это уровень который требуется для получения более лучших чар для брони.
+<code>SoundEvents</code> - это звуки которые будут проигрываться при надевании брони.
+<code>2.0F</code> - это ударопрочность брони. (Сколько сможет броня поглотить в себя урона)</p>
+<p>Зарегистрируем нашу броню. Примерно должно выглядить так</p>
+<pre><code class="java language-java">public static Item
+            BOOTS = new ItemMagicArmor("boots", armorMaterial, 1, EntityEquipmentSlot.FEET),
+            LEGGS = new ItemMagicArmor("leggs", armorMaterial, 2, EntityEquipmentSlot.LEGS),
+            CHESTPLATE = new ItemMagicArmor("chestplate", armorMaterial, 1, EntityEquipmentSlot.CHEST),
+            HEAD = new ItemMagicArmor("head", armorMaterial, 1, EntityEquipmentSlot.HEAD);
+</code></pre>
+<p><code>boots</code> - это название элемента брони
+<code>armorMaterial</code> - это материал брони
+<code>1</code> - это индекс рендера
+<code>EntityEquipmentSlot</code> - это слот в который можно будет положить наш элемент брони.</p>
+<p>Нам нужно создать текстуру для брони.</p>
+<p><img src="images/armor_layer_1" alt="Броня индекс 1" />
+<img src="images/armor_layer_2.png" alt="Броня индекс 2" /></p>
+<p>Положим наши текстуры по пути:</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        └── resources
+            └── assets
+                └── tut
+                    └── textures
+                        └── models
+                            └── armor
+</code></pre>
+<p>Запускаем игру, выдаём себе броню и надеваем.</p>
+<p><img src="images/equipped_armor.png" alt="Надетая броня" /></p>
 <h2 id="броня-с-моделью">Броня с моделью<a title="Ссылка на этот раздел" href="#броня-с-моделью"><i class="material-icons">link</i></a></h2>
-<p>TODO</p>
+<p>В данном разделе вы научитесь создавать броню с моделью, т.е. не такую как мы в статье выше делали, а именно с моделью.</p>
+<p>Создадим модель брони. Это можно сделать с помощью <a href="https://cubik.studio/get" target="_blank">CubikStudio</a> | <a href="https://mods.curse.com/mc-mods/minecraft/247648-qubble/2344113">Qubble</a> | <a href="http://ichun.me/mods/tabula-minecraft-modeler/">Tabule</a>.</p>
+<p>Добавим в наш класс ItemMagicArmor метод getArmorModel().</p>
+<pre><code class="java language-java">@Override
+@SideOnly(Side.CLIENT)
+public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped model)
+{
+    ModelBiped armorModel = ItemsRegister.armorModels.get(this);
+
+    if (armorModel != null)
+    {
+        armorModel.bipedHead.showModel = armorSlot == EntityEquipmentSlot.HEAD;
+        armorModel.bipedHeadwear.showModel = false;
+        armorModel.bipedBody.showModel = armorSlot == EntityEquipmentSlot.CHEST || armorSlot == EntityEquipmentSlot.LEGS;
+        armorModel.bipedRightArm.showModel = armorSlot == EntityEquipmentSlot.CHEST;
+        armorModel.bipedLeftArm.showModel = armorSlot == EntityEquipmentSlot.CHEST;
+        armorModel.bipedRightLeg.showModel = armorSlot == EntityEquipmentSlot.LEGS || armorSlot == EntityEquipmentSlot.FEET;
+        armorModel.bipedLeftLeg.showModel = armorSlot == EntityEquipmentSlot.LEGS || armorSlot == EntityEquipmentSlot.FEET;
+
+        armorModel.isSneak = entityLiving.isSneaking();
+        armorModel.isRiding = entityLiving.isRiding();
+        armorModel.isChild = entityLiving.isChild();
+    }
+    return armorModel;
+}
+</code></pre>
+<p>Перейдём в класс ItemsRegister и создадим переменную armorModels.</p>
+<pre><code class="java language-java">public static final Map&lt;Item, ModelBiped&gt; armorModels = new HashMap&lt;&gt;();
+</code></pre>
 
     </div>
 
