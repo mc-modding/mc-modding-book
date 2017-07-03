@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -195,6 +195,24 @@
                 <hr>
                 <div class="category">
 
+                    <a href="http://mcmodding.ru/book/1.12+/forge/creativetab/base" class="category-article ">Вкладка в креативе</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/lang/base" class="category-article ">Локализация</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
                     <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="category-article ">События</a>
 
                     <div class="category-articles">
@@ -226,19 +244,23 @@
     }
 }
 </code></pre>
-<p><code>ArmorMaterial</code> - это то же, что и ToolMaterial, только для брони.
-<code>renderIndexIn</code> - это индекс рендера, всего существует два индекса. 1 - Отвечает за шлем, нагрудник, ботинки. 2 - Отвечает за штаны.
-<code>equipmentSlotIn</code> - эта переменная задаёт слот в который можно будет положить нашу броню. Всего существует шесть видов слотов и только четыре предназначены исключительно для брони.</p>
+<ul>
+<li><code>ArmorMaterial</code> - это то же, что и ToolMaterial, только для брони.</li>
+<li><code>renderIndexIn</code> - это индекс рендера, всего существует два индекса. 1 - Отвечает за шлем, нагрудник, ботинки. 2 - Отвечает за штаны.</li>
+<li><code>equipmentSlotIn</code> - эта переменная задаёт слот в который можно будет положить нашу броню. Всего существует шесть видов слотов и только четыре предназначены исключительно для брони.</li>
+</ul>
 <p>Создадим наш ArmorMaterial</p>
 <pre><code class="java language-java">public static ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial("tut:armor", "tut:armor", 9, new int[]{2, 4, 6, 3}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F).setRepairItem(new ItemStack(Item.getItemFromBlock(Blocks.OBSIDIAN)));
 </code></pre>
-<p><code>tut:armor</code> - это название нашего материала, лучше указывать ещё modid, чтобы не возникало конфликтов с Minecraft.
-<code>tut:armor</code> - это название текстуры которое будет преобразовано в armor<em>layer</em>1 и armor<em>layer</em>2. Цифра обозначает индекс рендера.
-<code>9</code> - это прочность брони.
-<code>int[]</code> - это то на сколько будет быстро убавляться прочность одного из элементов брони. С начала идёт шлем = 2, нагрудник = 4, штаны = 6, ботинки = 3. Получается, что при ударе по нашей броне из прочности будет вычитаться для шлема = 2, нагрудника = 4, штанов = 6, ботинок = 3.
-<code>7</code> - это уровень который требуется для получения более лучших чар для брони.
-<code>SoundEvents</code> - это звуки которые будут проигрываться при надевании брони.
-<code>2.0F</code> - это ударопрочность брони. (Сколько сможет броня поглотить в себя урона)</p>
+<ul>
+<li><code>tut:armor</code> - это название нашего материала, лучше указывать ещё modid, чтобы не возникало конфликтов с Minecraft.</li>
+<li><code>tut:armor</code> - это название текстуры которое будет преобразовано в armor<em>layer</em>1 и armor<em>layer</em>2. Цифра обозначает индекс рендера.</li>
+<li><code>9</code> - это прочность брони.</li>
+<li><code>int[]</code> - это то на сколько будет быстро убавляться прочность одного из элементов брони. С начала идёт шлем = 2, нагрудник = 4, штаны = 6, ботинки = 3. Получается, что при ударе по нашей броне из прочности будет вычитаться для шлема = 2, нагрудника = 4, штанов = 6, ботинок = 3.</li>
+<li><code>7</code> - это уровень который требуется для получения более лучших чар для брони.</li>
+<li><code>SoundEvents</code> - это звуки которые будут проигрываться при надевании брони.</li>
+<li><code>2.0F</code> - это ударопрочность брони. (Сколько сможет броня поглотить в себя урона)</li>
+</ul>
 <p>Зарегистрируем нашу броню. Примерно должно выглядить так</p>
 <pre><code class="java language-java">public static Item
             BOOTS = new ItemMagicArmor("boots", armorMaterial, 1, EntityEquipmentSlot.FEET),
@@ -246,10 +268,12 @@
             CHESTPLATE = new ItemMagicArmor("chestplate", armorMaterial, 1, EntityEquipmentSlot.CHEST),
             HEAD = new ItemMagicArmor("head", armorMaterial, 1, EntityEquipmentSlot.HEAD);
 </code></pre>
-<p><code>boots</code> - это название элемента брони
-<code>armorMaterial</code> - это материал брони
-<code>1</code> - это индекс рендера
-<code>EntityEquipmentSlot</code> - это слот в который можно будет положить наш элемент брони.</p>
+<ul>
+<li><code>boots</code> - это название элемента брони</li>
+<li><code>armorMaterial</code> - это материал брони</li>
+<li><code>1</code> - это индекс рендера</li>
+<li><code>EntityEquipmentSlot</code> - это слот в который можно будет положить наш элемент брони.</li>
+</ul>
 <p>Нам нужно создать текстуру для брони.</p>
 <p><img src="images/armor_layer_1.png" alt="Броня индекс 1" />
 <img src="images/armor_layer_2.png" alt="Броня индекс 2" /></p>

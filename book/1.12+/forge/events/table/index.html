@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
             </div>
         </div>
 
@@ -189,6 +189,24 @@
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/metadata" class="article ">Метадата</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/nbt" class="article ">Хранение в предмете</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/loot" class="article ">Система лута</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/creativetab/base" class="category-article ">Вкладка в креативе</a>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <a href="http://mcmodding.ru/book/1.12+/forge/lang/base" class="category-article ">Локализация</a>
+
+                    <div class="category-articles">
                     </div>
 
                 </div>
@@ -850,7 +868,197 @@
 </tbody>
 </table>
 <h2 id="игрок">Игрок<a title="Ссылка на этот раздел" href="#игрок"><i class="material-icons">link</i></a></h2>
-<p>TODO</p>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Описание</th>
+<th>Возможность отмены</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AnvilRepairEvent</td>
+<td>Срабатывает когда игрок забирает отремонтированный предмет.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>ArrowLooseEvent</td>
+<td>Срабатывает когда игрок перестаёт использовать лук. (Стреляет)</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ArrowNockEvent</td>
+<td>Срабатывает когда игрок начинает использовать лук.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>AttackEntityEvent</td>
+<td>Срабатывает когда игрок атакует сущность.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>BonemealEvent</td>
+<td>Срабатывает когда игрок использует костную муку на блоке.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>EntityItemPickupEvent</td>
+<td>Срабатывает когда игрок поднимает предметы с земли.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>FillBucketEvent</td>
+<td>Срабатывает когда игрок заполняет ведро жидкостью.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ItemFishedEvent</td>
+<td>Срабатывает когда игрок поймал рыбу.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>ItemTooltipEvent</td>
+<td>Срабатывает при проверки дополнительной информации в подсказе. (F3+H)</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerContainerEvent.Open</td>
+<td>Срабатывает когда игрок открывает контейнер. (GUI со слотами)</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerContainerEvent.Close</td>
+<td>Срабатывает когда игрок закрывает контейнер.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerDestroyItemEvent</td>
+<td>Срабатывает когда предмет в руке игрока ломается.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerDropsEvent</td>
+<td>Срабатывает когда игрок теряет вещи при смерти.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerEvent.HarvestCheck</td>
+<td>Срабатывает когда игрок собирает урожай.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.BreakSpeed</td>
+<td>Срабатывает для определения скорости ломания блоков игроком.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerEvent.NameFormat</td>
+<td>Срабатывает для определения отображаемого ника игрока.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.Clone</td>
+<td>Срабатывает когда игрок клонируется. (Умер, перешёл в другое измерение)</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.StartTracking</td>
+<td>Срабатывает когда сущность начинает следить за игроком.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.StopTracking</td>
+<td>Срабатывает когда сущность перестаёт следить за игроком.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.LoadFromFile</td>
+<td>Срабатывает когда игрок загружается из мирового хранилища.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.SaveToFile</td>
+<td>Срабатывает когда игрок сохраняется в мировом хранилище.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerEvent.Visibility</td>
+<td>Срабатывает при проверки расстояния на котором можно атаковать игрока.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerFlyableFallEvent</td>
+<td>Срабатывает когда игрок падает будучи в полёте.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerInteractEvent.EntityInteractSpecific</td>
+<td>Срабатывает каждый раз, когда игрок взаимодействует с сущностью.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerInteractEvent.EntityInteract</td>
+<td>Срабатывает когда игрок взаимодействует с сущностью.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerInteractEvent.RightClickBlock</td>
+<td>Срабатывает когда игрок нажимает правой кнопкой мыши по блоку.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerInteractEvent.RightClickItem</td>
+<td>Срабатывает когда игрок нажимает правой кнопкой мыши держа предмет.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerInteractEvent.RightClickEmpty</td>
+<td>Срабатывает когда игрок нажимает правой кнопкой мыши по пустой области, пустой рукой.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerInteractEvent.LeftClickBlock</td>
+<td>Срабатывает когда игрок нажимает левой кнопкой мыши по блоку.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerInteractEvent.LeftClickEmpty</td>
+<td>Срабатывает когда игрок нажимает левой кнопкой мыши по пустой области, пустой рукой.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerPickupXpEvent</td>
+<td>Срабатывает когда игрок поднимает опыт с земли.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerSetSpawnEvent</td>
+<td>Срабатывает когда игрок устанавливает точку спавна.</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>PlayerSleepInBedEvent</td>
+<td>Срабатывает когда игрок спит на кровати.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>PlayerWakeUpEvent</td>
+<td>Срабатывает когда игрок просыпается.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>SleepingLocationCheckEvent</td>
+<td>Срабатывает когда игра проверяет, если игрок спит, то значит он до сих пор в кровати.</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>UseHoeEvent</td>
+<td>Срабатывает когда игрок использует мотыгу на блоке.</td>
+<td>Да</td>
+</tr>
+</tbody>
+</table>
 <h2 id="генерация-ландшафта">Генерация ландшафта<a title="Ссылка на этот раздел" href="#генерация-ландшафта"><i class="material-icons">link</i></a></h2>
 <table>
 <thead>

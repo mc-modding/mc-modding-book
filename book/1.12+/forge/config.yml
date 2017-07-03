@@ -4,8 +4,8 @@ categories-order:
   - base
   - item
 #  - block
-#  - creativetab
-#  - lang
+  - creativetab
+  - lang
   - events
 #  - gui
 #  - keybinds

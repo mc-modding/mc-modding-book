@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Собственный скин - Minecraft Modding</title>
+<title>Создание вкладки в креативе. - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Подключение скина своего оффициального аккаунта при разработке модов.">
+<meta name="description" content="Создание вкладки в креативе.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Собственный скин - Minecraft Modding">
-<meta property="og:description" content="Подключение скина своего оффициального аккаунта при разработке модов.">
+<meta property="og:title"       content="Создание вкладки в креативе. - Minecraft Modding">
+<meta property="og:description" content="Создание вкладки в креативе.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/prep/off_skin">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/creativetab/base">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -85,12 +85,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -111,7 +111,7 @@
                 <i class="material-icons">home</i><span>Главная</span>
             </a>
 
-            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" title="Учебник" class="menu-item">
                 <i class="material-icons">import_contacts</i><span>Учебник</span>
             </a>
 
@@ -139,8 +139,8 @@
                         <select onChange="window.location.href=this.value">
 
                                 <optgroup label="Релиз">
-                                        <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" >1.12+</option>
-                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>1.12+</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
                                         <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
                                 </optgroup>
 
@@ -154,9 +154,7 @@
             <div class="api-choose">
                 <label>API:
                     <select onChange="window.location.href=this.value">
-                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
-                            <option value="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" >BungeeCord</option>
-                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                            <option value="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" selected>Forge</option>
                     </select>
                 </label>
             </div>
@@ -166,50 +164,38 @@
         <div class="categories">
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article selected">Подготовка</a>
+                    <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article selected">Собственный скин</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="article ">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/build_mod" class="article ">Сборка мода</a>
                     </div>
 
                 </div>
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+                    <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article ">Предметы</a>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты и меч</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка инструментов</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/armor" class="article ">Броня</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/metadata" class="article ">Метадата</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/nbt" class="article ">Хранение в предмете</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/loot" class="article ">Система лута</a>
                     </div>
 
                 </div>
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article ">Предмет</a>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="article ">Создание предмета</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article ">JSON файл модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/tools" class="article ">Инструменты</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article ">Импорт 3D модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/metadata" class="article ">Метадата предмета</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/rarity" class="article ">Редкость предметов</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <a href="http://mcmodding.ru/book/1.11+/forge/block/creating_block" class="category-article ">Блок</a>
+                    <a href="http://mcmodding.ru/book/1.12+/forge/creativetab/base" class="category-article selected">Вкладка в креативе</a>
 
                     <div class="category-articles">
                     </div>
@@ -218,7 +204,7 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/local/index" class="category-article ">Локализация</a>
+                    <a href="http://mcmodding.ru/book/1.12+/forge/lang/base" class="category-article ">Локализация</a>
 
                     <div class="category-articles">
                     </div>
@@ -227,9 +213,11 @@
                 <hr>
                 <div class="category">
 
-                    <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
+                    <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="category-article ">События</a>
 
                     <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="article ">Использование событий</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/table" class="article ">Таблица событий</a>
                     </div>
 
                 </div>
@@ -241,38 +229,46 @@
 </nav><article>
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/prep/off_skin/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/creativetab/base/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="скин-с-оффициального-аккаунта">Скин с оффициального аккаунта<a title="Ссылка на этот раздел" href="#скин-с-оффициального-аккаунта"><i class="material-icons">link</i></a></h1>
-<p>Если у вас есть купленная Minecraft лицензия, то вы можете указать в параметрах
-запуска свою почту/пароль. В этом случае, ваш никнейм + скин автоматически загрузятся
-при запуске.</p>
-<h2 id="настройка-в-idea">Настройка в Idea<a title="Ссылка на этот раздел" href="#настройка-в-idea"><i class="material-icons">link</i></a></h2>
-<p>Откройте меню "Run" и выберите пункт "Edit Configurations...".</p>
-<p>В левой части открывшегося окна выберите пункт "Minecraft Client" и введите в поле "Program arguments" следующую строку:</p>
-<p><code>--username=test@mail.ru --password=***</code></p>
-<p>В строке выше укажите почту на которую была куплена копия Minecraft и пароль вместо звездочек.</p>
-<p><img src="images/off_skin_idea.png" alt="Настройка загрузки скина в Idea 2" /></p>
-<h2 id="настройка-в-eclipse">Настройка в Eclipse<a title="Ссылка на этот раздел" href="#настройка-в-eclipse"><i class="material-icons">link</i></a></h2>
-<p>Отройте меню "Run" и выберите пункт "Run Configurations...". В левой части появившегося окна откройте вкладку
-"Java Application". Выберите пункт "[название папки с файлами]_Client". В правой части окна откройте вкладку "Arguments" и
-в поле "Program arguments" вставьте строку:</p>
-<p><code>--username=test@mail.ru --password=***</code></p>
-<p>В строке выше укажите почту на которую была куплена копия Minecraft и пароль вместо звездочек.</p>
-<p><img src="images/off_skin_eclipse.png" alt="Настройка загрузки скина в Eclipse" /></p>
+        <h1 id="создание-вкладки-в-креативе">Создание вкладки в креативе.<a title="Ссылка на этот раздел" href="#создание-вкладки-в-креативе"><i class="material-icons">link</i></a></h1>
+<p>Перейдём в главный класс и добавим переменную:</p>
+<pre><code class="java language-java">public static final CreativeTabs CTAB = new CreativeTabs("tut")
+{
+    @Override
+    public ItemStack getTabIconItem()
+    {
+        return new ItemStack(ItemsRegister.KEY);
+    }
+};
+</code></pre>
+<ul>
+<li><code>tut</code> - это ключ локализации. (см. статью "Локализация")</li>
+<li><code>getTabIconItem</code> - этот метод возвращает как иконку предмет ключа из нашего мода.</li>
+</ul>
+<p><img src="images/tab_1.png" alt="Вкладка 1" /></p>
+<p>Теперь нам нужно добавить туда предметы/блоки. Чтобы это сделать перейдём в класс с предметом, к примеру в <code>ItemKey</code> и пропишем в конструктор такой метод:</p>
+<pre><code class="java language-java">this.setCreativeTab(Tutorial.CTAB);
+</code></pre>
+<ul>
+<li><code>Tutorial</code> - это наш главный класс.</li>
+<li><code>CTAB</code> - это наша переменная.</li>
+</ul>
+<p>Заходим в игру и видим, что наш предмет добавился во вкладку. (С блоками так же)
+<img src="images/tab_2.png" alt="Вкладка 2" /></p>
 
     </div>
 
     <section class="contributors">
 
 
-            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
 
-                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
 
                 <div class="info">
 
-                    <div class="name">CMTV</div>
+                    <div class="name">Ivasik</div>
 
                     <div class="role">Автор</div>
 
@@ -304,7 +300,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/prep/off_skin';
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/creativetab/base';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
