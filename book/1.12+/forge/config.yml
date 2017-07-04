@@ -1,6 +1,7 @@
 api-name: Forge
 
 categories-order:
+  - prep
   - base
   - item
 #  - block

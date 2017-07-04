@@ -1,0 +1,13 @@
+# Title
+title: Собственный скин
+
+# Description (~160 symbols)
+description: >
+  Подключение скина своего оффициального аккаунта при разработке модов.
+
+# Contributors
+contributors:
+  -
+    name: CMTV
+    role: Автор
+    github: https://github.com/CMTV
