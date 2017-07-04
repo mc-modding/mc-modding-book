@@ -9,9 +9,9 @@ let opened_array = [];
 $(() => {
     categories = $('.category');
 
-    if((opened_array = get_opened_array()).length === 0) {
-        init_opened_array();
-    }
+    opened_array = get_opened_array();
+
+    init_opened_array();
 
     init_actual_state();
 
@@ -68,12 +68,12 @@ function toggle_category_visibility(cat_class) {
 
 /**
  * Инициализация и созранение массива индексов закрытых категорий.
- * Закрываются все категории, кроме выбранной в данный момент.
  */
 function init_opened_array() {
     categories.each((index, element) => {
         if($(element).find('.category-article').hasClass('selected')) {
-            opened_array.push(index);
+            if(!opened_array.includes(index))
+                opened_array.push(index);
         }
     });
 
@@ -84,18 +84,18 @@ function init_opened_array() {
  * Сохранение массива индексов закрытых категорий
  */
 function save_opened_array() {
-    localStorage.setItem('opened_array', JSON.stringify(opened_array));
+    localStorage.setItem('opened_array_' + book_id, JSON.stringify(opened_array));
 }
 
 /**
  * Получение массива индексов закртых категорий
  */
 function get_opened_array() {
-    if(localStorage.getItem('opened_array') === null) {
+    if(localStorage.getItem('opened_array_' + book_id) === null) {
         return [];
     }
 
-    return JSON.parse(localStorage.getItem('opened_array'));
+    return JSON.parse(localStorage.getItem('opened_array_' + book_id));
 }
 
 /**
