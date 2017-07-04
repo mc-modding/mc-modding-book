@@ -3,6 +3,11 @@ const fs =              require('fs');
 const showdown =        require('showdown');
 const utils =           require('../../../../tools/modules/utils');
 
+/* Global site config */
+const CONFIG = utils.get_config('./');
+
+if(global.is_local) { CONFIG.url = `${process.cwd()}/compiled`; }
+
 module.exports = (par_version_dir, par_API_dir, par_category_dir, par_article_dir) => {
 
     /* Converting MD to HTML */
@@ -42,7 +47,8 @@ module.exports = (par_version_dir, par_API_dir, par_category_dir, par_article_di
     return {
         link: `https://github.com/mc-modding/mc-modding-book/blob/master/book/${par_version_dir}/${par_API_dir}/${par_category_dir}/${par_article_dir}/article.md`,
         article: utils.add_anchor_links(converter.makeHtml(fs.readFileSync(`book/${par_version_dir}/${par_API_dir}/${par_category_dir}/${par_article_dir}/article.md`, { encoding: 'UTF-8' }))),
-        contributors: contributors
+        contributors: contributors,
+        version: `v${CONFIG.version}`
     };
 
 };

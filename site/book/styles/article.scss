@@ -117,6 +117,36 @@ article {
 	}
 
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+	/* Footer site information */
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+	.site-info {
+		border-top: 1px solid #eee;
+
+		font-family: "Open Sans", sans-serif;
+
+		display: flex;
+		justify-content: center;
+
+		padding: 1em 0;
+
+		.version-link, .copyright {
+			color: #808080;
+			text-decoration: none;
+
+			transition: 0.15s color;
+
+			&:hover {
+				color: #333;
+			}
+		}
+
+		.copyright {
+			padding-right: 1em;
+		}
+	}
+
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 	/* Layouts */
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
