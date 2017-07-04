@@ -31,26 +31,50 @@
 	font-family: "Open Sans", sans-serif;
 
 	.category {
-		.category-article {
-			font-size: 110%;
 
-			display: block;
+		.category-header {
+			display: flex;
+			align-items: center;
 
 			padding: 0.4em 0.5em;
 
-			color: #333;
+			.category-article {
+				flex: 1;
 
-			transition: background 0.15s;
+				font-size: 110%;
 
-			&.selected {
-				color: #3366bb;
-				font-weight: bold;
+				color: #333;
+
+				transition: background 0.15s;
+
+				&.selected {
+					color: #3366bb;
+					font-weight: bold;
+				}
+			}
+
+			.visibility-switcher {
+				cursor: pointer;
+
+				transition: 0.15s fill;
+
+				fill: #999999;
+
+				&:hover {
+					fill: #3366bb;
+				}
 			}
 
 			&:hover {
 				cursor: pointer;
 
-				color: #3366bb;
+				.category-article {
+					color: #3366bb;
+				}
+				.visibility-switcher:not(:hover) {
+					fill: #659DFF;
+				}
+
 				background: #E7F2FF;
 			}
 		}

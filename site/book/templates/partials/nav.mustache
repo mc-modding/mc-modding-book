@@ -56,7 +56,14 @@
             {{#categories}}
                 <div class="category">
 
-                    <a href="{{{link}}}" class="category-article {{#selected}}selected{{/selected}}">{{title}}</a>
+                    <div class="category-header">
+                        <a href="{{{link}}}" class="category-article {{#selected}}selected{{/selected}}">{{title}}</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-{{index}} closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
 
                     <div class="category-articles">
                         {{#articles}}
