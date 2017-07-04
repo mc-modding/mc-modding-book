@@ -56,10 +56,8 @@ $(window).resize(() => {
     nav_width = $(nav).outerWidth();
 
     if (window.matchMedia("(max-width: 850px)").matches) {
-        console.log('ВКЛЮЧАЕМ');
         enable_touch();
     } else {
-        console.log('ВЫКЛЮЧАЕМ');
         disable_touch();
     }
 });

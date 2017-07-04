@@ -97,6 +97,7 @@ module.exports = (par_version_dir, par_API_dir, par_category_dir, par_article_di
 
         let category_obj = {
             title: category_config['category-title'],
+            index: i,
             link: category_link,
             selected: category_dir === par_category_dir,
             separator: i !== categories_config['categories-order'].length,
