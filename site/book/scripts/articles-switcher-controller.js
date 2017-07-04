@@ -67,7 +67,7 @@ function toggle_category_visibility(cat_class) {
 }
 
 /**
- * Инициализация и созранение массива индексов закрытых категорий.
+ * Добавление индекса выбранной в данной момент открытой категории
  */
 function init_opened_array() {
     categories.each((index, element) => {
@@ -81,14 +81,14 @@ function init_opened_array() {
 }
 
 /**
- * Сохранение массива индексов закрытых категорий
+ * Сохранение массива индексов открытых категорий
  */
 function save_opened_array() {
     localStorage.setItem('opened_array_' + book_id, JSON.stringify(opened_array));
 }
 
 /**
- * Получение массива индексов закртых категорий
+ * Получение массива индексов открытых категорий
  */
 function get_opened_array() {
     if(localStorage.getItem('opened_array_' + book_id) === null) {
