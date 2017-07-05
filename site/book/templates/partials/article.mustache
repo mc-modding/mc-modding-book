@@ -1,4 +1,5 @@
 <article>
+
     <div class="inner">
 
         <a href="{{{link}}}" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
@@ -6,6 +7,32 @@
         {{{article}}}
 
     </div>
+
+    {{#next_previous_articles}}
+    <section class="next-previous-articles">
+
+        {{#previous_article_link}}
+        <a class="previous-article" title="Переход на предыдущую статью" href="{{previous_article_link}}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
+                <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
+            </svg>
+            <span class="label">Предыдущая статья</span>
+        </a>
+        {{/previous_article_link}}
+
+        <div class="sep"></div>
+
+        {{#next_article_link}}
+        <a class="next-article" title="Переход на следующую статью" href="{{next_article_link}}">
+            <span class="label">Следующая статья</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
+                <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
+            </svg>
+        </a>
+        {{/next_article_link}}
+
+    </section>
+    {{/next_previous_articles}}
 
     <section class="contributors">
 

@@ -40,6 +40,80 @@ article {
 	}
 
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+	/* Next/Previous article */
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+	.next-previous-articles {
+		display: flex;
+
+		margin: 1.25em;
+
+		.next-article, .previous-article {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			font-family: "Open Sans", sans-serif;
+			text-decoration: none;
+
+			svg {
+				fill: #646464;
+
+				transition: 0.15s fill;
+			}
+
+			.label {
+				font-size: 120%;
+				color: #646464;
+
+				transition: 0.15s color;
+
+				@include layout(mobile) {
+					display: none;
+				}
+			}
+
+			&:hover {
+				svg {
+					fill: #36b;
+				}
+
+				.label {
+					color: #36b;
+				}
+			}
+
+			@include layout(mobile) {
+				padding: 1em;
+				border: 1px solid #dfe2e5;
+				border-radius: 3px;
+
+				transition: 0.15s border-color;
+
+				&:hover {
+					border-color: #36b;
+				}
+			}
+		}
+
+		.next-article {
+			.label {
+				padding-right: 0.7em;
+			}
+		}
+
+		.previous-article {
+			.label {
+				padding-left: 0.7em;
+			}
+		}
+
+		.sep {
+			flex: 1;
+		}
+	}
+
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 	/* Contributors */
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
