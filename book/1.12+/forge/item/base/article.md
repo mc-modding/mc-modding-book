@@ -32,6 +32,7 @@ public class ItemsRegister
         setRegister(KEY);
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerRender()
     {
         setRender(KEY);
@@ -42,6 +43,7 @@ public class ItemsRegister
         ForgeRegistries.ITEMS.register(item);
     }
 
+    @SideOnly(Side.CLIENT)
     private static void setRender(Item item)
     {
 
@@ -82,8 +84,9 @@ Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, 
 
 [Объёмная модель](https://yadi.sk/d/JNFq9Y4h3KcrBv)
 
-Если ваша текстура к модели берётся из самого Minecraft, то `tut:`(modid) прописывать не надо! В пример с объёмной моделью я решил использовать текстуру золотого блока из Minecraft.
+Если ваша текстура к модели берётся из самого Minecraft, то `tut:`(modid) прописывать не надо! В примере с объёмной моделью я решил использовать текстуру золотого блока из Minecraft.
 
+`tut` - modid нашего мода.
 `key` - регистрируемое имя нашего предмета.
 
 Когда ваша модель готово, добавьте её по пути:
@@ -96,8 +99,6 @@ Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, 
                     └── models
                         └── item
 ```
-
-`tut` - modid нашего мода.
 
 Добавим в ClientProxy, в метод init такой код  `ItemsRegister.registerRender();`.
 

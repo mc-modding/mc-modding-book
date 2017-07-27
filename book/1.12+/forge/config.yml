@@ -3,11 +3,13 @@ api-name: Forge
 categories-order:
   - base
   - item
-#  - block
+  - block
   - creativetab
   - lang
   - events
+  - craftsmeltingandbrewing
 #  - gui
-#  - keybinds
 #  - sounds
 #  - entities
+#  - world
+  - advanced
