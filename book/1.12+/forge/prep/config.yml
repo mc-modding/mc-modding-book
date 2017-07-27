@@ -1,0 +1,9 @@
+# Category title
+category-title: Подготовка
+
+# Articles order
+articles-order:
+  - install
+  - setup_idea
+  - setup_eclipse
+  - off_skin
