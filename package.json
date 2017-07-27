@@ -10,7 +10,7 @@
   "author": "CMTV",
   "license": "ISC",
   "dependencies": {
-    "js-yaml": "^3.8.4",
+    "js-yaml": "^3.9.0",
     "mustache": "^2.3.0"
   },
   "devDependencies": {
@@ -19,7 +19,7 @@
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
     "gulp-cache": "^0.4.6",
-    "gulp-clean-css": "^3.5.0",
+    "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^3.3.0",
     "gulp-plumber": "^1.1.0",

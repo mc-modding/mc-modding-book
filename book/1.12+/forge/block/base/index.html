@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Создание блока - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Создание собственного блока">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Создание блока - Minecraft Modding">
+<meta property="og:description" content="Создание собственного блока">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/block/base">
+<meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Hammer.js -->
+<script src="http://mcmodding.ru/libs/hammer/hammer.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code, code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.css">
+<script src="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.js"></script>
+<script>
+    $(() => {
+        $('article .inner').magnificPopup({
+            delegate: 'img',
+            type: 'image',
+            callbacks: {
+                elementParse: (item) => { item.src = item.el.attr('src'); }
+            }
+        });
+    });
+</script>
+
+<!-- Snap.svg -->
+<script src="http://mcmodding.ru/libs/snap.svg/snap.svg-min.js"></script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script>
+    let book_id = '1.12+-forge';
+</script>
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/prep/install" selected>1.12+</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.12+/forge/prep/install" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" class="category-article ">Подготовка</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-0 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" class="article ">Установка программ</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/setup_idea" class="article ">Использование Idea</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/off_skin" class="article ">Собственный скин</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-1 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="article ">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/build_mod" class="article ">Сборка мода</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article ">Предметы</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-2 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты и меч</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка инструментов</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/armor" class="article ">Броня</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/metadata" class="article ">Метадата</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/nbt" class="article ">Хранение в предмете</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/loot" class="article ">Система лута</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/block/base" class="category-article selected">Блоки</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-3 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/creativetab/base" class="category-article ">Вкладка в креативе</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-4 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/lang/base" class="category-article ">Локализация</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-5 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="category-article ">События</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-6 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="article ">Использование событий</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/table" class="article ">Таблица событий</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/craftsmeltingandbrewing/craft" class="category-article ">Рецепты</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-7 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/advanced/layers" class="category-article ">Продвинутые статьи</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-8 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/advanced/layers" class="article ">Слои</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/advanced/keybinds" class="article ">Привязка клавиш</a>
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+    </div>
+
+</nav><article>
+
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/block/base/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="создание-блока">Создание блока<a title="Ссылка на этот раздел" href="#создание-блока"><i class="material-icons">link</i></a></h1>
+<h2 id="основа">Основа<a title="Ссылка на этот раздел" href="#основа"><i class="material-icons">link</i></a></h2>
+<p>Создадим класс для нашего предмета.</p>
+<pre><code class="java language-java">public class BlockBestStone extends Block
+{
+    public BlockBestStone(String name)
+    {
+        super(Material.ROCK);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+}
+</code></pre>
+<ul>
+<li><code>Material.ROCK</code> - задаёт материал блоку, т.е. материал будет влиять на ломание блока, звук хождения по нему, а так же на предметы которые могут ломать данный материал.</li>
+<li><code>setRegistryName(name)</code> - задаёт регистрируемое имя для нашего предмета, т.е. данное имя будет зарегистрировано в игре и его нельзя будет уже использовать более. В игре будет отображаться как <code>modid:*block_name*</code>. Чтобы это увидеть нажмите сочетание клавиш <code>F3+H</code></li>
+<li><code>setUnlocalizedName(name)</code> - задаёт локализационное имя для нашего предмета, т.е. чтобы нам сделать перевод имени для предмета мы задаём имя которое будет в конечном итоге выглядеть вот так <code>tile.*block_name*.name</code>.</li>
+<li><code>isOpaqueCube</code> - этот метод задаёт логическое значение о том, будет ли блок непрозрачным, зададим false чтобы наша модель не создавала эффект X-Ray. Если вы не делаете модель для блока, то можете не переопределять этот метод.</li>
+<li><code>isFullCube</code> - этот метод задаёт логическое значение о том, будет ли блок полным. Если указано true, то блок будет создавать тень, но это нужно лишь когда ваш блок не имеет модели!</li>
+</ul>
+<p>Вы так же можете вынести <code>Material</code> в параметр конструктора, чтобы можно было задавать разные материалы для других блоков.</p>
+<h2 id="регистрация">Регистрация<a title="Ссылка на этот раздел" href="#регистрация"><i class="material-icons">link</i></a></h2>
+<p>Создадим класс BlocksRegister.</p>
+<pre><code class="java language-java">public class BlocksRegister
+{
+    public static Block BEST_STONE = new BlockBestStone("best_stone");
+
+    public static void register()
+    {
+        setRegister(BEST_STONE);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerRender()
+    {
+        setRender(BEST_STONE);
+    }
+
+    private static void setRegister(Block block)
+    {
+        ForgeRegistries.BLOCKS.register(block);
+        ForgeRegistries.ITEMS.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void setRender(Block block)
+    {
+
+    }
+}
+</code></pre>
+<ul>
+<li><code>setRegister(block)</code> - данный метод будет регистрировать наш блок</li>
+<li><code>setRender(block)</code> - данный метод будет регистрировать модель для нашего блока</li>
+</ul>
+<p>Возможно вы заметили, что в методе <code>setRegister</code> появился ещё один регистратор в виде предмета. Начиная с 1.9 версии Minecraft, блоки регистрируются в два этапа. Первый этап это сам блок, который ставится и блок в виде предмета.</p>
+<p>Нам нужно добавить в CommonProxy, в метод preInit такую строку кода <code>BlocksRegister.register();</code>.</p>
+<p>Теперь можете запустить Minecraft нажав на кнопку <code>run</code> и посмотреть свой блок в живую. Чтобы получить блок пропишите <code>/give @p tut:best_stone</code>.
+Вместо <code>tut</code> у Вас должен быть <code>modid</code> вашего мода! Вместо <code>best_stone</code> у Вас должно быть регистрируемое имя вашего блока.</p>
+<p><img src="images/face_first.png" alt="Блок от первого лица" />
+<img src="images/face_three.png" alt="Блок от третьего лица" /></p>
+<h2 id="модель">Модель<a title="Ссылка на этот раздел" href="#модель"><i class="material-icons">link</i></a></h2>
+<p>Для начала добавим такой код в BlocksRegister, в метод setRender</p>
+<pre><code class="java language-java">Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+</code></pre>
+<p>Создадим файл <code>best_stone.json</code>. По пути:</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        └── resources
+            └── assets
+                └── tut
+                    └── blockstates
+</code></pre>
+<pre><code class="json language-json">{
+    "variants": {
+        "normal": { "model": "tut:best_stone" }
+    }
+}
+</code></pre>
+<p>Теперь Вы должны создать тип рендера блока, Вы можете создать как стандартный тип рендера блока, примером может послужить камень, так и тип рендера в виде  модели. Вот пример стандартного типа рендера:</p>
+<pre><code class="json language-json">{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "tut:blocks/best_stone"
+    }
+}
+</code></pre>
+<p>Название файла должно быть таким же как и в <code>blockstates</code> -&gt; <code>best_stone</code>, в переменной <code>model</code>!</p>
+<p><a href="https://yadi.sk/d/n9ehtKYk3LT9qv" target="_blank">Модель</a></p>
+<p>В этом файле будет хранится информация о состояниях блоков. (Подробнее про состояние блоков, вы сможете прочитать в следующей статье)</p>
+<p>Если ваша текстура к модели берётся из самого Minecraft, то <code>tut:</code>(modid) прописывать не надо! В примере с объёмной моделью я решил использовать текстуру камня из Minecraft.</p>
+<p><code>tut</code> - modid нашего мода.
+<code>best_stone</code> - регистрируемое имя нашего блока.</p>
+<p>Когда ваша модель готово, добавьте её по пути:</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        └── resources
+            └── assets
+                └── tut
+                    └── models
+                        └── block
+                        └── item
+</code></pre>
+<p>Добавим в ClientProxy, в метод init такой код  <code>BlocksRegister.registerRender();</code>.</p>
+<p>И вот, что в конечном итоге у нас может получится.</p>
+<p><img src="images/model_face_first.png" alt="Блок с моделью от первого лица" />
+<img src="images/model_face_three.png" alt="Блок с моделью от третьего лица" />
+<img src="images/model_on_ground.png" alt="Блок с моделью на земле" /></p>
+
+    </div>
+
+    <section class="next-previous-articles">
+
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;item&#x2F;base">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
+                <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
+            </svg>
+            <span class="label">Предыдущая статья</span>
+        </a>
+
+        <div class="sep"></div>
+
+        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;creativetab&#x2F;base">
+            <span class="label">Следующая статья</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
+                <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
+            </svg>
+        </a>
+
+    </section>
+
+    <section class="contributors">
+
+
+            <a href="https://github.com/YouTy6bl4" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/YouTy6bl4.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">Ivasik</div>
+
+                    <div class="role">Автор</div>
+
+                </div>
+
+            </a>
+
+
+    </section>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/block/base';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+    <div class="site-info">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/commits/master" target="_blank" class="copyright">mcmodding.ru</a>
+
+        <a class="version-link" title="Последние изменения" href="https://github.com/mc-modding/mc-modding-book/commits/master" target="_blank">v1.1</a>
+
+    </div>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>

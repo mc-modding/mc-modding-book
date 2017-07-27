@@ -4,11 +4,13 @@ categories-order:
   - prep
   - base
   - item
-#  - block
+  - block
   - creativetab
   - lang
   - events
+  - craftsmeltingandbrewing
 #  - gui
-#  - keybinds
 #  - sounds
 #  - entities
+#  - world
+  - advanced
