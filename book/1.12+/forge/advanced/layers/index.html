@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -344,6 +344,7 @@
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/advanced/layers/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
         <h1 id="слои">Слои<a title="Ссылка на этот раздел" href="#слои"><i class="material-icons">link</i></a></h1>
+<p>Создадим класс <code>LayerQuiver</code>.</p>
 <pre><code class="java language-java">public class LayerQuiver implements LayerRenderer&lt;EntityPlayer&gt;
 {
    @Override
@@ -376,7 +377,7 @@
    }
 }
 </code></pre>
-<p>Создадим класс LayersRegister.</p>
+<p>Создадим класс <code>LayersRegister</code>.</p>
 <pre><code class="java language-java">public class LayersRegister
 {
     public static void register()
@@ -391,10 +392,10 @@
     }
 }
 </code></pre>
-<p>Перейдём в ClientProxy и добавим в метод init такой код:</p>
+<p>Перейдём в <code>ClientProxy</code> и добавим в метод <code>init</code> такой код:</p>
 <pre><code class="java language-java">LayersRegister.register();
 </code></pre>
-<p>Заходим в игру и переключаемся на вид от третьего лица и видим, что за спиной у нас колчан.</p>
+<p>Заходим в игру и переключаемся на вид от третьего лица и видим, что за спиной у нас колчан. (Это может быть не только колчан, но и что-то другое, зависит от вашего выбора)</p>
 <p><img src="images/quiver.png" alt="Колчан" /></p>
 
     </div>

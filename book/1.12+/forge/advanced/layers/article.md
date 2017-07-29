@@ -1,5 +1,6 @@
 # Слои
 
+Создадим класс `LayerQuiver`.
 
 ```java
 public class LayerQuiver implements LayerRenderer<EntityPlayer>
@@ -35,7 +36,7 @@ public class LayerQuiver implements LayerRenderer<EntityPlayer>
 }
 ```
 
-Создадим класс LayersRegister.
+Создадим класс `LayersRegister`.
 
 ```java
 public class LayersRegister
@@ -53,11 +54,11 @@ public class LayersRegister
 }
 ```
 
-Перейдём в ClientProxy и добавим в метод init такой код:
+Перейдём в `ClientProxy` и добавим в метод `init` такой код:
 ```java
 LayersRegister.register();
 ```
 
-Заходим в игру и переключаемся на вид от третьего лица и видим, что за спиной у нас колчан.
+Заходим в игру и переключаемся на вид от третьего лица и видим, что за спиной у нас колчан. (Это может быть не только колчан, но и что-то другое, зависит от вашего выбора)
 
 ![Колчан](images/quiver.png)
