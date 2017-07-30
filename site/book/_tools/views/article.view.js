@@ -23,6 +23,7 @@ module.exports = (par_version_dir, par_API_dir, par_category_dir, par_article_di
 
     converter.setOption('ghCompatibleHeaderId', true);
     converter.setOption('tables', true);
+    converter.setOption('literalMidWordUnderscores', true);
 
     /* Looking for contributors */
     let article_config = utils.get_config(`book/${par_version_dir}/${par_API_dir}/${par_category_dir}/${par_article_dir}`);
