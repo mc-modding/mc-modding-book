@@ -10,7 +10,7 @@
   "author": "CMTV",
   "license": "ISC",
   "dependencies": {
-    "js-yaml": "^3.9.0",
+    "js-yaml": "^3.9.1",
     "mustache": "^2.3.0"
   },
   "devDependencies": {

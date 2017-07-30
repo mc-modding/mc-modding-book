@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>Начало - Minecraft Modding</title>
+<title>Создание достижения - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
@@ -15,7 +15,7 @@
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Начало - Minecraft Modding">
+<meta property="og:title"       content="Создание достижения - Minecraft Modding">
 <meta property="og:description" content="Создание собственных достижений.">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/achievments/base">
@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -318,7 +318,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.12+/forge/achievments/base" class="category-article selected">Достижения</a>
+                        <a href="http://mcmodding.ru/book/1.12+/forge/achievments/prep" class="category-article selected">Достижения</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-8 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -327,6 +327,9 @@
                     </div>
 
                     <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/achievments/prep" class="article ">Начало</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/achievments/base" class="article selected">Создание достижения</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/achievments/recipes" class="article ">Выдачи рецептов</a>
                     </div>
 
                 </div>
@@ -359,9 +362,7 @@
 
         <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/achievments/base/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="основное">Основное<a title="Ссылка на этот раздел" href="#основное"><i class="material-icons">link</i></a></h1>
-<p>Начиная с 1.12, система достижений претерпела значительные изменения. Новая система отслеживая, увеличено количество достижений и многое другое, но теперь же у многих, кто пишет моды появился вопрос: "Как же теперь делать достижения? Опять они со своим json...". Всё на много проще чем кажется! Теперь нам достаточно создать <code>root.json</code> и сами достижения в папке с ресурсами игры!</p>
-<p>В данной статье вы научитесь делать основу для вкладки достижений.</p>
+        <h1 id="создание-достижения">Создание достижения<a title="Ссылка на этот раздел" href="#создание-достижения"><i class="material-icons">link</i></a></h1>
 <p>Перейдём по пути:</p>
 <pre><code class="md language-md">└── src    
     └── main
@@ -369,204 +370,44 @@
             └── assets
                 └── tut
                     └── advancements
+                        └── craft
 </code></pre>
-<p>В этой папке у нас будут храниться категории (Категории хранятся в папках!). Создадим к примеру категорию <code>craft</code>, в ней будут достижения связанные с крафтом. Далее создадим файл <code>root.json</code> с таким содержимым:</p>
+<p>Создадим файл <code>key_achievement.json</code>.</p>
 <pre><code class="json language-json">{
     "display": {
         "icon": {
-            "item": "minecraft:stone"
+            "item": "minecraft:wool",
+            "data": 6
         },
         "title": {
-            "translate": "advancements.tutorial.root.title"
+            "translate": "advancements.tutorial.key.title"
         },
         "description": {
-            "translate": "advancements.tutorial.root.description"
+            "translate": "advancements.tutorial.key.description"
         },
-        "background": "tut:textures/gui/advancements/backgrounds/tutorial.png",
-        "show_toast": false,
-        "announce_to_chat": false
+        "frame": "goal"
     },
+    "parent": "tut:craft/root",
     "criteria": {
-        "killed_something": {
-            "trigger": "minecraft:player_killed_entity"
-        },
-        "killed_by_something": {
-            "trigger": "minecraft:entity_killed_player"
+        "recipe_unlocked": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "tut:key"
+            }
         }
-    },
-    "requirements": [["killed_something", "killed_by_something"]]
+    }
 }
 </code></pre>
 <ul>
-<li><code>icon</code> - этот параметр отвечает за иконку нашей вкладки. Помимо переменной <code>item</code> здесь могут быть переменные <code>data</code> и <code>nbt</code>. <code>data</code> - отвечает за метадату предмета, а <code>nbt</code> за данные которые хранятся в предмете.</li>
-<li><code>title</code> - это название вкладки.</li>
-<li><code>description</code> - это описание вкладки.</li>
-<li><code>background</code> - это фон, не рекомендуется использовать иконки предметов, кастомные gui и т.п. Лучше всего подойдёт текстура блока.</li>
-<li><code>show_toast</code> - показывать ли оповещение о том, что открыта вкладка с достижениями.</li>
-<li><code>announce_to_chat</code> - будет ли выводится оповещение в чат о том, что открыта вкладка с достижениями.</li>
-<li><code>criteria</code> - это критерии, которые будут отслеживаться. Так же там содержаться триггеры. (см. таблицу в конце статьи)</li>
-<li><code>requirements</code> - это требования, при выполнении одного из требований будет открыта вкладка. Можно так же не использовать <code>requirements</code>, но тогда больше одного критерия создать нельзя будет. Можно будет потом изменить критерии на такую запись:</li>
+<li><code>frame</code> - это рамка самого достижения, существует всего два вида рамок (если не считать обычную): <code>goal</code> и <code>challenge</code></li>
 </ul>
-<pre><code class="json language-json">"criteria": {
-  "crafting_table": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-            "items": [
-                  {
-                     "item": "minecraft:crafting_table"
-                  }
-            ]
-      }
-  }
-}
-</code></pre>
-<ul>
-<li><code>conditions</code> - это условие при котором будет открыта данная вкладка. В данном случае, если предмет <code>верстак</code> лежит в инвентаре, то открывается вкладка <code>story</code>.</li>
-<li><code>items</code> - массив предметов, можно добавить не только <code>верстак</code>, но и другие предметы. Вот так добавлять:</li>
-</ul>
-<pre><code class="json language-json">"items": [
-      {
-         "item": "minecraft:crafting_table"
-      },
-      {
-         "item": "minecraft:stone"
-      },
-      {
-         "item": "minecraft:dye",
-         "data": 5
-      }
-]
-</code></pre>
-<p>Можно так же использовать <code>nbt</code> и <code>data</code>. Теперь можете зайти в игру и выполнить один из ранее добавленных критериев!</p>
-<p>Таблица критериев:</p>
-<table>
-<thead>
-<tr>
-<th>Критерий</th>
-<th>Описание</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>impossible</td>
-<td>Невозможный критерий. Применяется только в root рецептах Minecraft.</td>
-</tr>
-<tr>
-<td>player_killed_entity</td>
-<td>Критерий который выполняется при убийстве сущности игроком.</td>
-</tr>
-<tr>
-<td>entity_killed_player</td>
-<td>Критерий который выполняется при убийстве игрока сущностью.</td>
-</tr>
-<tr>
-<td>enter_block</td>
-<td>Критерий который выполняется при активации блока.</td>
-</tr>
-<tr>
-<td>inventory_changed</td>
-<td>Критерий который выполняется при добавлении предмета в инвентарь.</td>
-</tr>
-<tr>
-<td>recipe_unlocked</td>
-<td>Критерий который выполняется при открытии нового рецепта.</td>
-</tr>
-<tr>
-<td>player_hurt_entity</td>
-<td>Критерий который выполняется при ударе сущности игроком.</td>
-</tr>
-<tr>
-<td>entity_hurt_player</td>
-<td>Критерий который выполняется при ударе игрока сущностью.</td>
-</tr>
-<tr>
-<td>enchanted_item</td>
-<td>Критерий который выполняется при зачаровывании предмета.</td>
-</tr>
-<tr>
-<td>brewed_potion</td>
-<td>Критерий который выполняется при окончании варки зелья.</td>
-</tr>
-<tr>
-<td>construct_beacon</td>
-<td>Критерий который выполняется при постройке структуры. Например: сделать маяк и установить его.</td>
-</tr>
-<tr>
-<td>used_ender_eye</td>
-<td>Критерий который выполняется при использовании ока эндера.</td>
-</tr>
-<tr>
-<td>summoned_entity</td>
-<td>Критерий который выполняется при призыве голема, возрождении дракона или иссушителя.</td>
-</tr>
-<tr>
-<td>bred_animals</td>
-<td>Критерий который выполняется при скрещивании двух животных.</td>
-</tr>
-<tr>
-<td>location</td>
-<td>Критерий который выполняется при перемещении в другую локацию. Например: найти замок в аду.</td>
-</tr>
-<tr>
-<td>slept_in_bed</td>
-<td>Критерий который выполняется после сна в кровати.</td>
-</tr>
-<tr>
-<td>cured_zombie_villager</td>
-<td>Критерий который выполняется при исцелении зомби жителя.</td>
-</tr>
-<tr>
-<td>villager_trade</td>
-<td>Критерий который выполняется при торговле с жителем.</td>
-</tr>
-<tr>
-<td>item_durability_changed</td>
-<td>Критерий который выполняется при изменении прочности предмета.</td>
-</tr>
-<tr>
-<td>levitation</td>
-<td>Критерий который выполняется при левитации.</td>
-</tr>
-<tr>
-<td>changed_dimension</td>
-<td>Критерий который выполняется при изменении измерения.</td>
-</tr>
-<tr>
-<td>tick</td>
-<td>Критерий который выполняется через определённое количество тиков.</td>
-</tr>
-<tr>
-<td>tame_animal</td>
-<td>Критерий который выполняется при приручении животного.</td>
-</tr>
-<tr>
-<td>placed_block</td>
-<td>Критерий который выполняется при установки блока.</td>
-</tr>
-<tr>
-<td>consume_item</td>
-<td>Критерий который выполняется при потреблении предмета.</td>
-</tr>
-<tr>
-<td>effects_changed</td>
-<td>Критерий который выполняется при изменении эффектов зелий.</td>
-</tr>
-<tr>
-<td>used_totem</td>
-<td>Критерий который выполняется при использовании тотема.</td>
-</tr>
-<tr>
-<td>nether_travel</td>
-<td>Критерий который выполняется при переходе в ад.</td>
-</tr>
-</tbody>
-</table>
+<p>В данном случае достижение будет получено, если мы откроем рецепт.</p>
 
     </div>
 
     <section class="next-previous-articles">
 
-        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;craftsmeltingandbrewing&#x2F;craft">
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;achievments&#x2F;prep">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
                 <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
             </svg>
@@ -575,7 +416,7 @@
 
         <div class="sep"></div>
 
-        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;advanced&#x2F;layers">
+        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;achievments&#x2F;recipes">
             <span class="label">Следующая статья</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
                 <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
