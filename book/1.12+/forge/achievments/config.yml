@@ -1,8 +1,6 @@
 category-title: Достижения
 
 articles-order:
+  - prep
   - base
-#  - craft
-#  - use
-#  - pickup
-#  - kill
+  - recipes
