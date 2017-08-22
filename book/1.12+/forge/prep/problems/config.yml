@@ -1,0 +1,13 @@
+# Title
+title: Решение проблем
+
+# Description (~160 symbols)
+description: >
+  Разбор и решение проблем, возникающих в процессе настройки среды разработки Minecraft модов.
+
+# Contributors
+contributors:
+  -
+    name: CMTV
+    role: Автор
+    github: https://github.com/CMTV
