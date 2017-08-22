@@ -94,6 +94,15 @@ nav {
 		}*/
 	}
 
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+	/* Ad */
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+	section.ad-after-nav {
+		margin-top: 1.5em;
+		overflow: hidden;
+	}
+
 	@include layout-full {
 		width: map_get($nav-width, full);
 		height: calc(100% - #{map_get($header-height, full)});
