@@ -1,0 +1,13 @@
+# Title
+title: Редкость предметов
+
+# Description (~160 symbols)
+description: >
+  Создание группы редкости предметов, с помощью которой можно управлять цветом их названий.
+
+# Contributors
+contributors:
+  -
+    name: CMTV
+    role: Автор
+    github: https://github.com/CMTV
