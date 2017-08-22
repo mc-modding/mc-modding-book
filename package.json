@@ -27,6 +27,6 @@
     "gulp-uglify": "^2.1.2",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.1",
-    "showdown": "^1.7.1"
+    "showdown": "^1.7.2"
   }
 }
