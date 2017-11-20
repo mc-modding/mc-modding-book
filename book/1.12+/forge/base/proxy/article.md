@@ -36,7 +36,7 @@ public class CommonProxy
 
     }
 
-    public void init(FMLInitializationEvent e)
+    public void init(FMLInitializationEvent event)
     {
 
     }
@@ -62,19 +62,19 @@ public class CommonProxy
 public class ClientProxy extends CommonProxy
 {
     @Override
-    public void preInit(FMLPreInitializationEvent e)
+    public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
     }
 
     @Override
-    public void init(FMLInitializationEvent e)
+    public void init(FMLInitializationEvent event)
     {
         super.init(event);
     }
 
     @Override
-    public void postInit(FMLPostInitializationEvent e)
+    public void postInit(FMLPostInitializationEvent event)
     {
         super.postInit(event);
     }
@@ -102,19 +102,19 @@ public static CommonProxy proxy;
 
 ```java
 @EventHandler
-public void preInit(FMLPreInitializationEvent e)
+public void preInit(FMLPreInitializationEvent event)
 {
     proxy.preInit(event);
 }
 
 @EventHandler
-public void init(FMLInitializationEvent e)
+public void init(FMLInitializationEvent event)
 {
     proxy.init(event);
 }
 
 @EventHandler
-public void postInit(FMLPostInitializationEvent e)
+public void postInit(FMLPostInitializationEvent event)
 {
     proxy.postInit(event);
 }
@@ -133,26 +133,29 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "tut")
+@Mod(modid = Tutorial.MODID /* имя мода */, version = Tutorial.VERSION /* его версия */)
 public class Tutorial
 {
+    public static final String MODID = "tut";
+    public static final String VERSION = "1.0";
+    
     @SidedProxy(clientSide = "ru.ivasik.tutorial.proxy.ClientProxy", serverSide = "ru.ivasik.tutorial.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent e)
+    public void preInit(FMLPreInitializationEvent event)
     {
         proxy.preInit(event);
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent e)
+    public void init(FMLInitializationEvent event)
     {
         proxy.init(event);
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent e) 
+    public void postInit(FMLPostInitializationEvent event) 
     {
         proxy.postInit(event);
     }
