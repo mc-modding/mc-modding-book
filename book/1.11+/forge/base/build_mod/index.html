@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -334,7 +334,7 @@ from(sourceSets.main.resources.srcDirs) {
     expand 'version':project.version, 'mcversion':project.minecraft.version
 }
 </code></pre>
-<p>Нас интересует строчка, начинающаяся с <code>expand…</code>. Она позволяет использовать в mcmod.info конструкции вида <code>${version}</code> и
+<p>Нас интересует строчка, начинающаяся с <code>expand...</code>. Она позволяет использовать в mcmod.info конструкции вида <code>${version}</code> и
 <code>${mcversion}</code>, которые при сборке автоматически заменятся на переменные, определенные в build.gradle:</p>
 <pre><code class="json language-json">[{
   "modid": "testmod",

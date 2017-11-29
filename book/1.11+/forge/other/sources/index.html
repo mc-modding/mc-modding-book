@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -348,7 +348,7 @@ public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, 
 </code></pre>
 <p>Вот мы и нашли метод, который надо записать в файле нашего блока. Он будет выполняться, когда по нашему блоку кликнут.</p>
 <p>Теперь про взрывы. Отличный пример — TNT. Все в том же пакете ищем файл <code>BlockTNT.java</code>. Там мы можем найти интересный метод
-<code>explose(…)</code>. Внутри него видим, что при активации TNT он превращается некую сущность <code>entity</code> под названием <code>EntityTNTPrimed</code>.</p>
+<code>explose(...)</code>. Внутри него видим, что при активации TNT он превращается некую сущность <code>entity</code> под названием <code>EntityTNTPrimed</code>.</p>
 <p>Ищем этот файл в пакете <code>net.minecraft.entity</code>. Он будет находиться в пакете <code>net.minecraft.entity.item</code>.</p>
 <p>Внутри него видим следующий метод:</p>
 <pre><code class="java language-java">private void explode()
