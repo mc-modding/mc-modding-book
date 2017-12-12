@@ -123,7 +123,7 @@ public static void registerBlocks()
 
 ```java
 public static void registerItemsRender() {
-    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(BLOCKTEST, 0, new ModelResourceLocation(BLOCKTEST.getRegistryName(), "inventory"));
+    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(BLOCKTEST), 0, new ModelResourceLocation(BLOCKTEST.getRegistryName(), "inventory"));
 }
 ```
 
