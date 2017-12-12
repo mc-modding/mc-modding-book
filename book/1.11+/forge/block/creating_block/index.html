@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
             </div>
         </div>
 
@@ -394,7 +394,7 @@ public class BlockTest extends Block
 <h2 id="модель-и-текстура-блока">Модель и текстура блока<a title="Ссылка на этот раздел" href="#модель-и-текстура-блока"><i class="material-icons">link</i></a></h2>
 <p>В классе <code>Blocks</code> в методе <code>registerBlocksRender()</code> впишите:</p>
 <pre><code class="java language-java">public static void registerItemsRender() {
-    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(BLOCKTEST, 0, new ModelResourceLocation(BLOCKTEST.getRegistryName(), "inventory"));
+    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(BLOCKTEST), 0, new ModelResourceLocation(BLOCKTEST.getRegistryName(), "inventory"));
 }
 </code></pre>
 <p>С помощью этого кода мы зарегистрировали модель для нашего блока. Теперь эту модель необходимо создать.</p>
