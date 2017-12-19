@@ -7,5 +7,6 @@ categories-order:
   - base
   - item
   - block
+  - gui
   - local
   - other

@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Создание своего инвентаря - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="Создание отдельного инвентаря со своими слотами, который можно открыть по нажатию кнопки &quot;H&quot;. Добавим возможность менять кнопку.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Создание своего инвентаря - Minecraft Modding">
+<meta property="og:description" content="Создание отдельного инвентаря со своими слотами, который можно открыть по нажатию кнопки &quot;H&quot;. Добавим возможность менять кнопку.">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/gui/custom_inventory">
+<meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Hammer.js -->
+<script src="http://mcmodding.ru/libs/hammer/hammer.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.css">
+<script src="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.js"></script>
+<script>
+    $(() => {
+        $('article .inner').magnificPopup({
+            delegate: 'img',
+            type: 'image',
+            callbacks: {
+                elementParse: (item) => { item.src = item.el.attr('src'); }
+            }
+        });
+    });
+</script>
+
+<!-- Snap.svg -->
+<script src="http://mcmodding.ru/libs/snap.svg/snap.svg-min.js"></script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script>
+    let book_id = '1.11+-forge';
+</script>
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/prep/install" >1.12+</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
+                            <option value="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" >BungeeCord</option>
+                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-0 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-1 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article ">Предмет</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-2 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="article ">Создание предмета</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article ">JSON файл модели</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/item/tools" class="article ">Инструменты</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article ">Импорт 3D модели</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/item/metadata" class="article ">Метадата предмета</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/item/rarity" class="article ">Редкость предметов</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.11+/forge/block/creating_block" class="category-article ">Блок</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-3 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.11+/forge/gui/custom_inventory" class="category-article selected">GUI</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-4 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.11+/forge/local/index" class="category-article ">Локализация</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-5 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-6 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+        <section class="ad-after-nav">
+
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- MCModding Book - Реклама под навигацией -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8094912170389944"
+                 data-ad-slot="5398483104"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        </section>
+
+    </div>
+
+</nav><article>
+
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/gui/custom_inventory/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="создание-своего-инвентаря">Создание своего инвентаря<a title="Ссылка на этот раздел" href="#создание-своего-инвентаря"><i class="material-icons">link</i></a></h1>
+<p>Автор статьи — <a href="https://forum.mcmodding.ru/resources/%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%B0%D1%81%D1%82%D0%BE%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D0%BD%D0%B2%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D1%8F-%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%B0.5/" target="_blank">Thunder</a>.</p>
+<p>Рабочий тестовый мод с материалами данной статьи можно скачать <a href="images/inventory_src.rar" target="_blank">здесь</a>.</p>
+<p>Туториал предполагает что вы знакомы с использованием прокси и умеете общаться с CAP`ой на уровне жестов(если не умеете то будем учить), а как отправлять пакеты постараюсь пояснить:)</p>
+<p>Мы будем создавать вот такой инвентарь:
+<img src="images/result.png" alt="Что получится в итоге" /></p>
+<p>Это будет отдельный инвентарь(т.е. он не будет перекрывать обычный), который мы сможем открыть по нажатию созданной нами в дальнейшем кнопки Н. Для повышения совместимости кнопку сделаем так, что ее можно будет поменять в настройках управления на другую, таким образом любой пользователь сможет настроить все как ему удобно.</p>
+<h2 id="сам-инвентарь">Сам инвентарь<a title="Ссылка на этот раздел" href="#сам-инвентарь"><i class="material-icons">link</i></a></h2>
+<p>Нам нужно создать четыре "базовых" для нашего инвентаря класса:</p>
+<ol>
+<li>CustomInventory.java - класс который будет управлять содержимым инвентаря, например: хранение, сохранение и восстановление инвентаря, управление предметами и т.д..</li>
+<li>ContainerCustomInv,java - контейнер. В нем будут добавляться слоты и описываться механика перетаскивания предметов из слота в слот при шифт-клике на них.</li>
+<li>StandartSlot.java - кастомные слоты, которые будем добавлять в контейнер. Хотя можно использовать и ванильные, но заодно покажу как использовать свои.</li>
+<li>GUICustomInv.java - то, как будет выглядеть инвентарь(бинд текстуры и прочее).</li>
+</ol>
+<p>Поехали.</p>
+<pre><code class="java language-java">// CustomInventory.java
+
+package com.example.test;
+
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.IInventoryChangedListener;
+import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+
+public class CustomInventory implements IInventory {
+
+    //Константа которая представляет кол-во добавленных кастомных слотов. У нас их будет 8
+    public static final int INV_SIZE = 8;
+
+    //Список в котором хранятся предметы. Если мы кладем предмет в слот в кастомном инвентаре, он добавляется в этот список. Размер списка должен
+    //быть таким же, как и кол-во кастомных слотов, т.е. 8
+    private NonNullList&lt;ItemStack&gt;inventory = NonNullList.&lt;ItemStack&gt;withSize(INV_SIZE, ItemStack.EMPTY);
+
+    //Конструктор
+    public CustomInventory() {}
+
+    /**
+     * Имя инвентаря. Можно потом использовать в GUI
+     */
+    @Override
+    public String getName() {
+
+        return "Inventory";
+    }
+
+    /**
+     * Имеет ли инвентарь свое кастомное имя. Да, имеет.
+     */
+    @Override
+    public boolean hasCustomName() {
+
+        return true;
+    }
+
+    @Override
+    public ITextComponent getDisplayName() {
+
+         return (ITextComponent)(this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]));
+    }
+
+    /**
+     * Возвращает размер инвентаря
+     */
+    @Override
+    public int getSizeInventory() {
+
+        return inventory.size();
+    }
+
+    /**
+     * Возвращает ItemStack что лежит по указанному индексу
+     */
+    @Override
+    public ItemStack getStackInSlot(int index) {
+
+        return index &gt;= 0 &amp;&amp; index &lt; this.inventory.size() ? (ItemStack)this.inventory.get(index) : ItemStack.EMPTY;
+    }
+
+    /**
+     * Возвращает список с хранящимися в инвентаре предметами
+     * @return Список с хранящимися в инвентаре предметами
+     */
+    public NonNullList&lt;ItemStack&gt; getStacks(){
+
+        return this.inventory;
+    }
+
+    /**
+     * Удаляет определенное количество элементов из слота инвентаря и возвращает их в виде нового списка.
+     */
+    @Override
+    public ItemStack decrStackSize(int index, int count) {
+
+        ItemStack itemstack = ItemStackHelper.getAndSplit(this.inventory, index, count);
+
+        if (!itemstack.isEmpty()) {
+            this.markDirty();
+        }
+        return itemstack;
+    }
+
+    /**
+     * Удаляет стак из указанного слота и возвращает его.
+     */
+    @Override
+    public ItemStack removeStackFromSlot(int index) {
+
+         if (!this.inventory.get(index).isEmpty()) {
+                ItemStack itemstack = this.inventory.get(index);
+                this.inventory.set(index, ItemStack.EMPTY);
+                return itemstack;
+            }
+            else {
+                return ItemStack.EMPTY;
+            }
+    }
+
+    /**
+     * Добавляет стак в указанный слот
+     * 
+     */
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack) {
+
+        this.inventory.set(index, stack);
+        if (!stack.isEmpty() &amp;&amp; stack.getCount() &gt; this.getInventoryStackLimit()) {
+
+            stack.setCount(this.getInventoryStackLimit());
+        }
+        this.markDirty();
+    }
+
+    /**
+     * Возвращает true если весь инвентарь пустой. Если не пустой - возвращает false
+     */
+    @Override
+    public boolean isEmpty() {
+
+        for (ItemStack itemstack : this.inventory) {
+            if (!itemstack.isEmpty()) {
+                    return false;
+             }
+        }
+        return true;
+    }
+
+    /**
+     * Возвращает максимальный размер стака в слоте
+     */
+    @Override
+    public int getInventoryStackLimit() {
+
+        return 64;
+    }
+
+    /**
+     * Для тайл энтити. Нам он не надо
+     */
+    @Override
+    public void markDirty() {
+
+    }
+
+    /**
+     * Может ли игрок ипользовать этот инвентарь
+     */
+    @Override
+    public boolean isUsableByPlayer(EntityPlayer player) {
+
+        return true;
+    }
+
+    @Override
+    public void openInventory(EntityPlayer player) {}
+
+    @Override
+    public void closeInventory(EntityPlayer player) {}
+
+    /**
+     * Может ли автоматика класть предметы в слоты с указанным индексом
+     */
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+
+        return true;
+    }
+
+    //Эти три метода ниже пока не нужны
+    @Override
+    public int getField(int id) {
+
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value) {}
+
+    @Override
+    public int getFieldCount() {
+
+        return 0;
+    }
+
+    /**
+     * Очистка инвентаря
+     */
+    @Override
+    public void clear() {
+
+        this.inventory.clear();
+    }
+
+    /**
+     * Этот метод будет вызываться при сохранении инфы в НБТ КАПы, чтобы, например при перезаходе предметы не пропали из инвентаря
+     * @param compound
+     */
+    public void writeToNBT(NBTTagCompound compound) {
+
+         ItemStackHelper.saveAllItems(compound, this.inventory);    
+    }
+
+    /**
+     * Этот метод будет вызываться при чтении инфы из НБТ КАПы. Достаем из НБТ КАПы стаки и заполняем инвентарь
+     * @param compound
+     */
+    public void readFromNBT(NBTTagCompound compound) {
+
+        this.inventory = NonNullList.&lt;ItemStack&gt;withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(compound, this.inventory);
+    }
+
+    /**
+     * Копируем стаки из другого инвентаря в этот. Используется в PlayerEvent.Clone Event, да бы сохранить содержимое инвентаря, например когда игрок проходит через портал в Энд
+     * @param inv
+     */
+    public void copy(CustomInventory inv) {
+
+        for (int i = 0; i &lt; inv.getSizeInventory(); ++i) {
+            ItemStack stack = inv.getStackInSlot(i);
+            inventory.set(i, (stack.isEmpty() ? ItemStack.EMPTY : stack.copy()));
+        }
+    }   
+}
+</code></pre>
+<p>Идем дальше.</p>
+<p>Для того, чтоб вы не путались с индексами слотов когда будете делать или менять контейнер, я прикреплю такую картинку в помощь. На ней все слоты промаркированные:
+<img src="images/slots_indexes.png" alt="Индексы слотов в инвентаре" /></p>
+<p>Теперь нужно настроить контейнер:</p>
+<pre><code class="java language-java">// ContainerCustomInv.java
+
+package com.example.test;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+public class ContainerCustomInv  extends Container {
+
+    //Немного кода из ванилы
+    private static final EntityEquipmentSlot[] VALID_EQUIPMENT_SLOTS = new EntityEquipmentSlot[] {EntityEquipmentSlot.HEAD, EntityEquipmentSlot.CHEST, EntityEquipmentSlot.LEGS, EntityEquipmentSlot.FEET};
+
+    private final EntityPlayer thePlayer;
+
+    /**
+     * Конструктор
+     * @param playerInventory Инвентарь игрока
+     * @param cInventory Кастомный инвентарь
+     * @param player Игрок
+     */
+    public ContainerCustomInv(InventoryPlayer playerInventory, CustomInventory cInventory, EntityPlayer player) {
+
+        this.thePlayer = player;
+
+        //Добавляем 8 кастомных слотов. Аргументы: игрок, инвентарь к которому они относятся, индекс слота, х координата, у координата
+        this.addSlotToContainer(new StandartSlot(player, cInventory, 0, 87, 8));
+        this.addSlotToContainer(new StandartSlot(player, cInventory, 1, 87, 26));
+        this.addSlotToContainer(new StandartSlot(player, cInventory, 2, 87, 44));
+        this.addSlotToContainer(new StandartSlot(player, cInventory, 3, 87, 62));
+        this.addSlotToContainer(new StandartSlot(player, cInventory, 4, 109, 8));
+        this.addSlotToContainer(new StandartSlot(player, cInventory, 5, 109, 26));
+        this.addSlotToContainer(new StandartSlot(player, cInventory, 6, 109, 44));
+        this.addSlotToContainer(new StandartSlot(player, cInventory, 7, 109, 62));
+
+
+
+        //Все что ниже можно взять из net.minecraft.inventory.ContainerPlayer;
+        //Добавляем ванильные слоты для брони
+        for (int k = 0; k &lt; 4; ++k){
+
+            final EntityEquipmentSlot entityequipmentslot = VALID_EQUIPMENT_SLOTS[k];
+            this.addSlotToContainer(new Slot(playerInventory, 36 + (3 - k), 8, 8 + k * 18){
+
+                public int getSlotStackLimit(){
+
+                    return 1;
+                }
+
+                public boolean isItemValid(ItemStack stack){
+
+                    return stack.getItem().isValidArmor(stack, entityequipmentslot, thePlayer);
+                }
+
+                public boolean canTakeStack(EntityPlayer playerIn){
+
+                    ItemStack itemstack = this.getStack();
+                    return !itemstack.isEmpty() &amp;&amp; !playerIn.isCreative() &amp;&amp; EnchantmentHelper.hasBindingCurse(itemstack) ? false : super.canTakeStack(playerIn);
+                }
+                @Nullable
+                @SideOnly(Side.CLIENT)
+                public String getSlotTexture(){
+
+                    return ItemArmor.EMPTY_SLOT_NAMES[entityequipmentslot.getIndex()];
+                }
+            });
+
+        }
+
+        //Добавляем 27 ванильных слотов инвентаря игрока
+        for (int l = 0; l &lt; 3; ++l) {
+
+            for (int j1 = 0; j1 &lt; 9; ++j1) {
+                this.addSlotToContainer(new Slot(playerInventory, j1 + (l + 1) * 9, 8 + j1 * 18, 84 + l * 18));
+            }
+        }
+
+        //А так же добавляем 9 ванильных слотов в хотбар
+        for (int i1 = 0; i1 &lt; 9; ++i1) {
+
+            this.addSlotToContainer(new Slot(playerInventory, i1, 8 + i1 * 18, 142));
+        }
+
+    }
+
+    /**
+     * Этот метод срабатывает когда игрок зажимает Шифт и кликает на слот с целью переместить предмет.
+     * Здесь мы должны задать откуда и куда будут перемещаться предметы из слота по которому кликнули
+     * @param index Индекс слота, на который кликнул игрок
+     */
+    @Nullable
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = (Slot)this.inventorySlots.get(index);
+
+
+        //Если слот существует и он не пуст
+        if (slot != null &amp;&amp; slot.getHasStack()){
+
+            //Достаем стак из слота
+            ItemStack itemstack1 = slot.getStack();
+
+            itemstack = itemstack1.copy();
+
+            //Взаимодействие
+            //Если индекс слота меньше 12, т.е. игрок уликнул на кастомный слот или слот брони
+            if (index &lt; 12){
+
+                //Пытаемся переместить стак в ПЕРВЫЙ свободный слот в хотбаре или инвентаре, т.е. между 12 и 47 слотом
+                if (!this.mergeItemStack(itemstack1, 12, 48, true)) {
+
+                    return ItemStack.EMPTY;
+                }
+
+                slot.onSlotChange(itemstack1, itemstack);
+            }
+
+            //Здесь наоборот. Если игрок кликнул на слот в инвентаре или хотбаре
+            else if (index &gt; 11){
+
+                //Если это броня, то ее надо переместить в первый подходящий для нее слот между 8 и 11 индексом
+                if(itemstack1.getItem() instanceof ItemArmor){
+
+                    //тут один момент. Почему передаем 12 а не 11? Потому что не включительно. Т.е. между 8 и 12 слотом не включительно
+                    if (!this.mergeItemStack(itemstack1, 8, 12, false)){
+                        return ItemStack.EMPTY;
+                    }
+
+                }else 
+                    //Если это не броня и мы в инвентаре но не в хотбаре(т.е. между 12 и 38 слотом), то помещаем предмет в хотбар, т.е. между 39 и 47 слотом
+                    if (index &gt;= 12 &amp;&amp; index &lt; 39){
+
+                        if (!this.mergeItemStack(itemstack1, 39, 48, false)){
+                            return ItemStack.EMPTY;
+                        }
+                }else 
+                    //Если мы в хотбаре(т.е. между 39 и 47 слотом) то пытаемся переместить предмет в инвентарь(т.е. между в ПЕРВЫМ свободным слотом в инвентаре, т.е. между 12 и 38 слотом)
+                    if (index &gt;= 39 &amp;&amp; index &lt; 48 &amp;&amp; !this.mergeItemStack(itemstack1, 12, 39, false)){
+                        return ItemStack.EMPTY;
+                    }
+            }        
+
+
+            //Остальные простые проверки
+            if (itemstack1.getCount() == 0){
+                slot.putStack(ItemStack.EMPTY);
+            }
+            else{
+                slot.onSlotChanged();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount()){
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(playerIn, itemstack1);
+        }
+
+        return itemstack;
+    }
+
+    /**
+     * Может ли игрок взаимодействовать с инвентарем?
+     */
+    @Override
+    public boolean canInteractWith(EntityPlayer playerIn) {
+
+        return true;
+    }
+
+}
+</code></pre>
+<p>Если вы хотите добавить, либо убрать слот, то нужно не забыть уменьшить или увеличить размер списка, в котором хранятся предметы(CustomInventory.java -&gt; INV_SIZE). Так же не забудьте поправить индексы в методе transferStackInSlot, что в классе ContainerCustomInv. Если этого не сделать, то пойдут краши, такие как выход за пределы массива(ArrayIndexOutOfBoundsException) и прочие.</p>
+<p>Пару слов о том, как ориентироваться в размещении слотов. Слоты, которые мы добавляем в инвентарь стандартного размера(16 x 16). Когда добавляем слот(this.addSlotToContainer(new StandartSlot(player, cInventory, 0, x, y)), указываем x и y координаты, на которых этот слот будет размещен. В качестве центра выступает левый верхний угол слота. Думаю, понятнее будет, если посмотреть на картинку ниже:
+<img src="images/slot_size_coords.png" alt="Размеры и координаты слота" /></p>
+<p>Как видно на картинке, желтые точки это точки с координатами x и y, которые указывались при добавлении слота. Красным отмечен контур слота и как он располагается относительно указанной точки. Здесь я добавил два слота, с координатами x = 0, y = 0 и x = 87, y = 8.</p>
+<p>Пишем дальше.</p>
+<pre><code class="java language-java">// StandartSlot.java
+
+package com.example.test;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+public class StandartSlot extends Slot {
+
+    //Это по сути копитя обычного ванильного слота
+
+    private final EntityPlayer thePlayer;
+    private int removeCount;
+
+    public StandartSlot(EntityPlayer player, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition){
+
+        super(inventoryIn, slotIndex, xPosition, yPosition);
+        this.thePlayer = player;
+    }
+
+    /*    Может ли даный стак быть положен в этот слот. Здесь могут быть проверки, например если вы хотите
+        чтоб в слот нельзя было положить яблоко, проверяете равен ли предмет в стаке яблоку, если да, то
+        возвращаем false
+
+    */
+    public boolean isItemValid(@Nullable ItemStack stack){
+
+        //если индекс слота 0 и входящий стак - стак с яблоками, то не разрешить класть в слот.
+        if(this.getSlotIndex() == 0 &amp;&amp; stack.getItem().equals(Items.APPLE)) return false;
+        return true;
+    }
+
+    public ItemStack decrStackSize(int amount){
+
+        if (this.getHasStack()){
+            this.removeCount += Math.min(amount, this.getStack().getCount());
+        }
+
+        return super.decrStackSize(amount);
+    }
+
+    //Что происходит, если забрать предмет из слота
+    public ItemStack onTake(EntityPlayer player, ItemStack stack){
+
+        this.onCrafting(stack);
+        super.onTake(player, stack);
+        return stack;
+    }
+
+    protected void onCrafting(ItemStack stack, int amount){
+
+        this.removeCount += amount;
+        this.onCrafting(stack);
+    }
+
+    protected void onCrafting(ItemStack stack){
+
+        stack.onCrafting(this.thePlayer.world, this.thePlayer, this.removeCount);
+        this.removeCount = 0;    
+    }
+}
+</code></pre>
+<p>Обратите внимание на метод в классе StandartSlot.java - public boolean isItemValid(@Nullable ItemStack stack). Этот метод позволяет нам задавать какие предметы мы хотим чтоб можно было класть в слот, а какие нет. В примере выше можно класть любые предметы. В следующем примере реализации этого метода в слот, который мы добавили с индексом 0, нельзя будет положить яблоко, а все остальное можно будет:</p>
+<pre><code class="java language-java">public boolean isItemValid(@Nullable ItemStack stack){
+    //если индекс слота 0 и входящий стак - стак с яблоками, то не разрешить класть в слот.
+    if(this.getSlotIndex() == 0 &amp;&amp; stack.getItem().equals(Items.APPLE)) return false;
+    return true;
+}
+</code></pre>
+<h2 id="отображение-инвентаря">Отображение инвентаря<a title="Ссылка на этот раздел" href="#отображение-инвентаря"><i class="material-icons">link</i></a></h2>
+<p>Осталось только GUI:</p>
+<pre><code class="java language-java">//GUICustomInv.java
+
+package com.example.test;
+
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
+
+public class GUICustomInv extends GuiContainer{
+
+    private float oldMouseX;
+    private float oldMouseY;
+
+    //Путь к текстуре - MOD_ID + :textures/gui/inventory_gui.png. У меня это src/main/resources/assets/MOD_ID/textures/gui/inventory_gui.png
+    private static final ResourceLocation INVENTORY_GUI_TEXTURE = new ResourceLocation(TestMod.MOD_ID + ":textures/gui/inventory_gui.png");
+
+    public GUICustomInv(EntityPlayer player, InventoryPlayer inventoryPlayer, CustomInventory cInventory) {
+
+        super(new ContainerCustomInv(inventoryPlayer, cInventory, player));
+
+    }
+
+    /**
+     * Рисуем все компоненты на экране
+     */
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.oldMouseX = (float)mouseX;
+        this.oldMouseY = (float)mouseY;
+    }
+
+    /**
+     * Рисуем задний фон(т.е. все, что позади предметов)
+     */
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+
+        //Биндим текстуру INVENTORY_GUI_TEXTURE, а так же добавляем модельку игрока как в ванильном инвентаре
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(INVENTORY_GUI_TEXTURE);
+        int i = this.guiLeft;
+        int j = this.guiTop;
+        this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
+        GuiInventory.drawEntityOnScreen(i + 55, j + 75, 30, (float)(i + 51) - this.oldMouseX, (float)(j + 75 - 50) - this.oldMouseY, this.mc.player);           
+    }
+
+}
+</code></pre>
+<h2 id="capability">Capability<a title="Ссылка на этот раздел" href="#capability"><i class="material-icons">link</i></a></h2>
+<p>Есть. Теперь где-то надо это все хранить. Ибо мало того, что мы просто добавим инвентарь. При первом же перезаходе игрока в мир все вещи пропадут. Для этого будем использовать такую штуку как КАПа, или Capability. Это замена IExtendedEntityProperties для новых версий.</p>
+<p>Для этого надо:</p>
+<ol>
+<li>ICAPCustomInventory.java - интерфейс, в котором опишем основные методы для взаимодействия КАПы с инвентарем.</li>
+<li>CAPCustomInventory.java - класс, реализующий данный интерфейс. Так же в нем будет хранится обьект нашего инвентаря - CustomInventory.</li>
+<li>CAPCustomInventoryProvider.java - в нем располагаются методы для доступа к КАПе а так же проводится вызов методов чтения и сохранения (десериализации и сериализации). Вызов этих методов - это по сути вызов методов writeNBT и readNBT из класса CAPCustomInventoryStorage.java, функционал которого описан пунктом ниже.</li>
+<li>CAPCustomInventoryStorage.java - в этом классе есть всего два метода: writeNBT и readNBT. Мы должны описать в них то, что и как будет записываться и читаться в/из НБТ. Под записью и чтением в/из НБТ подразумевается сохранение нужной нам информации например при выходе игрока из игры, и ее считывание(загрузка), когда игрок заходит обратно в игру. Наши вещи будут в безопасности:)</li>
+</ol>
+<p>Пишем.</p>
+<pre><code class="java language-java">// ICAPCustomInventory.java
+
+package com.example.test;
+
+
+public interface ICAPCustomInventory {
+
+    public void copyInventory(ICAPCustomInventory inventory);
+
+    public CustomInventory getInventory();
+
+}
+</code></pre>
+<pre><code class="java language-java">// CAPCustomInventory.java
+
+package com.example.test;
+
+public class CAPCustomInventory implements ICAPCustomInventory {
+
+    //Реализуем методы, что определены в интерфейсе ICAPCustomInventory
+
+    //Создаем обьект нашего инвентаря. Он будет храниться в этой КАП'е
+    public final CustomInventory inventory = new CustomInventory();
+
+    /**
+     * Метод, который возвращает обьект инвентаря inventory
+     */
+    public CustomInventory getInventory(){
+
+        return this.inventory;
+    }
+
+    /**
+     * Метод, для копировании информации из другого инвентаря, например при клонировании
+     */
+    @Override
+    public void copyInventory(ICAPCustomInventory inventory) {
+
+        this.inventory.copy(inventory.getInventory());
+    }
+
+}
+</code></pre>
+<pre><code class="java language-java">// CAPCustomInventoryProvider.java
+
+package com.example.test;
+
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+
+public class CAPCustomInventoryProvider implements ICapabilitySerializable&lt;NBTBase&gt; {
+
+    //Инициализация КАПы с помощью аннотации
+    @CapabilityInject(ICAPCustomInventory.class)
+    public static final Capability&lt;ICAPCustomInventory&gt; INVENTORY_CAP = null;
+
+    private ICAPCustomInventory instance = INVENTORY_CAP.getDefaultInstance();
+
+    //Метод что осуществляет проверку на наличие КАПы
+    @Override
+    public boolean hasCapability(Capability&lt;?&gt; capability, EnumFacing facing) {
+         return capability == INVENTORY_CAP;
+    }
+
+    //Метод что осуществляет доступ к КАПе
+    @Override
+    public &lt;T&gt; T getCapability(Capability&lt;T&gt; capability, EnumFacing facing) {
+         return capability == INVENTORY_CAP ? INVENTORY_CAP.&lt;T&gt; cast(this.instance) : null;
+    }
+
+    //Метод инициации сохранения информации о инвентаре в НБТ
+    @Override
+    public NBTBase serializeNBT() {
+         return INVENTORY_CAP.getStorage().writeNBT(INVENTORY_CAP, this.instance, null);
+    }
+
+    //Метод инициации чтения информации о инвентаре из НБТ
+    @Override
+    public void deserializeNBT(NBTBase nbt) {
+        INVENTORY_CAP.getStorage().readNBT(INVENTORY_CAP, this.instance, null, nbt);
+    }
+
+}
+</code></pre>
+<pre><code class="java language-java">// CAPCustomInventoryStorage.java
+
+package com.example.test;
+
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.Capability.IStorage;
+
+public class CAPCustomInventoryStorage implements IStorage&lt;ICAPCustomInventory&gt; {
+
+    //Сохранение информации (т.е. предметов, что лежать в инвентаре) с помощью writeToNBT
+
+    @Override
+    public NBTBase writeNBT(Capability&lt;ICAPCustomInventory&gt; capability, ICAPCustomInventory instance, EnumFacing side) {
+
+        NBTTagCompound properties = new NBTTagCompound();
+        //Вызываем метод writeToNBT из инвентаря и записываем инфу о инвентаре с его помощью в тэг
+        instance.getInventory().writeToNBT(properties);
+        return properties;
+    }
+
+    //Чтение информации (т.е. предметов, что лежать в инвентаре) и добавление их в инвентарь с помощью readFromNBT
+    @Override
+    public void readNBT(Capability&lt;ICAPCustomInventory&gt; capability, ICAPCustomInventory instance, EnumFacing side, NBTBase nbt) {
+
+        NBTTagCompound properties = (NBTTagCompound)nbt;
+        //Вызываем метод readFromNBT из инвентаря и кладем в него(инв.) стаки которые хранились в тэге
+        instance.getInventory().readFromNBT(properties);
+    }
+
+}
+</code></pre>
+<p>Готово. Нужно зарегистрировать КАПу. Пишем в коммон прокси в инит стадии:</p>
+<pre><code class="java language-java">// CommonProxy.java
+
+CapabilityManager.INSTANCE.register(ICAPCustomInventory.class, new CAPCustomInventoryStorage(), CAPCustomInventory.class);
+CapabilityEventHandler.register();
+</code></pre>
+<p>Для чего CapabilityEventHandler.register();? При создании игрока нужно ему добавить КАПу. Для этого создаем класс CapabilityEventHandler,java и добавляем в него:</p>
+<pre><code class="java language-java">// CapabilityEventHandler.java
+
+package com.example.test;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+
+public class CapabilityEventHandler {
+
+    public static void register(){
+        MinecraftForge.EVENT_BUS.register(new CapabilityEventHandler());
+    }
+
+    public static final ResourceLocation INVENTORY_CAP = new ResourceLocation(TestMod.MOD_ID, "inventory");
+
+    //ОЧЕНЬ ВАЖНО! Добавляет капу игроку при его первом создании
+    @SubscribeEvent
+    public void attachCapability(AttachCapabilitiesEvent.Entity event) {
+
+        if (event.getEntity() instanceof EntityPlayer){
+            event.addCapability(INVENTORY_CAP, new CAPCustomInventoryProvider());
+        }
+
+    }
+
+    //Копирование инвентаря, если по каким-то причинам произошло клонирование игрока. Иначе вещи пропадут
+    @SubscribeEvent
+    public void onPlayerClone(PlayerEvent.Clone event) {
+
+        EntityPlayer player = event.getEntityPlayer();
+        ICAPCustomInventory newCap = player.getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+        ICAPCustomInventory oldCap = event.getOriginal().getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+
+        newCap.copyInventory(oldCap);
+
+    }
+
+    //Если игрок умрет то ничего не выпадет. Нужно выбросит вещи вручную. Выбрасываем
+    @SubscribeEvent
+    public void onPlayerDeath(LivingDeathEvent event) {
+
+        if(event.getEntity() instanceof EntityPlayer) {
+
+            //Достаем КАПу, затем инвентарь
+            EntityPlayer player = (EntityPlayer)event.getEntity();
+            ICAPCustomInventory cap = player.getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+            CustomInventory inv = cap.getInventory();
+
+            //Выбрасываем все вещи из инвентаря
+            dropAllItems(player, inv);
+            inv.clear();
+        }    
+    }
+
+    private static void dropAllItems(EntityPlayer player, CustomInventory inventory){
+
+        NonNullList&lt;ItemStack&gt; aitemstack = inventory.getStacks();
+        for (int i = 0; i &lt; aitemstack.size(); ++i) {
+            if (!aitemstack.get(i).isEmpty()) {     
+                player.dropItem(aitemstack.get(i), true, false);
+            }
+        } 
+    }
+}
+</code></pre>
+<p>Пример того, как через КАПу получить доступ к нашему инвентарю:</p>
+<pre><code class="java language-java">//Достаем КАПу, затем инвентарь
+EntityPlayer player = ...;//Любым способом достать игрока
+ICAPCustomInventory cap = player.getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+CustomInventory inv = cap.getInventory();
+</code></pre>
+<h2 id="клавиша-на-клавиатуре">Клавиша на клавиатуре<a title="Ссылка на этот раздел" href="#клавиша-на-клавиатуре"><i class="material-icons">link</i></a></h2>
+<p>Такс. Инвентарь есть, КАПа для хранения есть. Теперь самое интересное. Создадим свой кей бинд(т.е. забиндим кнопку), при нажатии на который будем посылать пакет на сервер с просьбой открыть наш GUI-контейнер(инвентарь). Для этого делаем класс KeyHandler.java, в котором ловим событие нажатии кнопки и отправляем пакет:</p>
+<pre><code class="java language-java">// KeyHandler.java
+
+package com.example.test;
+
+import org.lwjgl.input.Keyboard;
+
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+
+public class KeyHandler {
+
+    /*  Создаем бинд. Указываем название - Open Inventory
+        Кнопка поумолчанию, если игрок ничего не менял будет H
+        Название категории - Custom Inventory Keys
+
+    */
+    public static KeyBinding openKey = new KeyBinding("Open Inventory", Keyboard.KEY_H, "Custom Inventory Keys");
+
+    //Регистрируем событие и бинд
+    public static void register() { 
+
+        MinecraftForge.EVENT_BUS.register(new KeyHandler());
+        ClientRegistry.registerKeyBinding(openKey); 
+    }   
+
+    //Событие, которое срабатывает при нажатии игроком кнопки на клавиатуре
+     @SubscribeEvent
+     public void onKey(KeyInputEvent event) {
+
+         //если нажали на нашу кнопку Н то отправляем пакет на сервер с просьбой открыть инвентарь
+         if (openKey.isPressed()) {
+              NetworkHandler.network.sendToServer(new OpenInventoryMessage());
+         }
+     }
+
+}
+</code></pre>
+<p>Обязательно регаем все это дело в клиент прокси (в ините например):</p>
+<pre><code class="java language-java">KeyHandler.register();
+</code></pre>
+<p>Позже в настройках(когда доделаем все и запустим) получим что-то типа такого:
+<img src="images/key_in_settings.png" alt="Наша клавиша в настройках игры" /></p>
+<h2 id="серверное-взаимодействие">Серверное взаимодействие<a title="Ссылка на этот раздел" href="#серверное-взаимодействие"><i class="material-icons">link</i></a></h2>
+<p>В коде выше будут ошибки. Будет ругаться на NetworkHandler.network.sendToServer(new OpenInventoryMessage());. Это какраз и есть отправка пакетов. Чтобы это работало нужно:</p>
+<ol>
+<li>Создать класс NetworkHandler.java, в котором зарегистрируем наш пакет.</li>
+<li>Создать класс OpenInventoryMessage.java - это сам пакет а так же в нем есть вложенный класс-обработчик пакета. Он реализует метод onMessage, который срабатывает когда пакет приходит на сервер(в данном случае).</li>
+</ol>
+<p>Делаем:</p>
+<pre><code class="java language-java">// OpenInventoryMessage.java
+
+package com.example.test;
+
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
+public class OpenInventoryMessage implements IMessage {
+
+    //Наша задача просто открыть GUI с серверной стороны, ничего больше передавать не нужно.
+
+    //ОБЯЗАТЕЛЬНЫЙ конструктор без параметров
+    public OpenInventoryMessage() { }
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+
+    }
+
+    @Override
+    public void toBytes(ByteBuf buf) {
+
+    }
+
+
+    //Класс-обработчик пакета. Реализует метод onMessage, который срабатывает когда пакет приходит на сервер(в данном случае)
+    public static class Handler implements IMessageHandler&lt;OpenInventoryMessage, IMessage&gt; {
+
+        //Пишем тут то, что должно произойти когда пакет дойдет до сервера
+        @Override
+        public IMessage onMessage(OpenInventoryMessage message, MessageContext ctx) {
+            /*В данном случае достаем игрока, который отправил пакет и открываем ГУИ.
+               TestMod.INSTANCE - инстанс главного класса, т.е. его обьект.
+               Допустим имя главного класса TestMod, а modid = "testmod", тогда в главном классе пишем: @Mod.Instance("testmod") public static TestMod INSTANCE;
+               GuiHandler.INVENTORY_GUI_ID - идентификатор нашего ГУИ. Я присвоил значение 0.
+            */
+            EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+            player.openGui(TestMod.INSTANCE, GuiHandler.INVENTORY_GUI_ID, player.getEntityWorld(), (int)player.posX, (int)player.posY, (int)player.posZ);
+            return null;
+        }
+    }
+}
+</code></pre>
+<pre><code class="java language-java">// NetworkHandler.java
+
+package com.example.test;
+
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
+
+public class NetworkHandler {
+
+    public static SimpleNetworkWrapper network;
+
+    public static void init() {
+
+        //инициализируем класс, что занимается передачей и обработкой пакетов между клиентом и сервером. TestMod.MOD_ID - айди мода.
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(TestMod.MOD_ID);
+        /*    Регистрируем пакет. Параметры: класс обработчика(статический класс, который лежит внутри OpenInventoryMessage),
+              класс самого сообщения, идентификатор, сторона, на которой будет обрабатываться пакет.
+              Так как мы посылаем его на сервер, для открытия GUI менно оттуда, то указываем Side.SERVER
+        */
+        network.registerMessage(OpenInventoryMessage.Handler.class, OpenInventoryMessage.class, 0, Side.SERVER);
+    }
+}
+</code></pre>
+<p>Не забываем зарегать это дело. В главном классе в преините пишем:</p>
+<pre><code class="java language-java">NetworkHandler.init();
+</code></pre>
+<p>Готово. Но будут ошибки в OpenInventoryMessage -&gt; player.openGui(…);. Нам нужен класс GuiHandler который при открытии GUI для сервера открывает контейнер, а для клиента GUI:</p>
+<pre><code class="java language-java">// GuiHandler.java
+
+package com.example.test;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+
+public class GuiHandler implements IGuiHandler {
+
+    public static final int INVENTORY_GUI_ID = 0;
+
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        //Обьект инвентаря храниться в КАПе, значит будем брать его из нее
+        ICAPCustomInventory inv = player.getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+        if(ID == INVENTORY_GUI_ID) {
+            return new ContainerCustomInv(player.inventory, inv.getInventory(), player);
+        }
+        return null;
+    }
+
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        //Обьект инвентаря храниться в КАПе, значит будем брать его из нее
+        ICAPCustomInventory inv = player.getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+        if(ID == INVENTORY_GUI_ID) {
+            return new GUICustomInv(player, player.inventory, inv.getInventory());
+        }
+        return null;
+    }
+
+}
+</code></pre>
+<p>Его нужно зарегистрировать в коммон прокси в ините:</p>
+<pre><code class="java language-java">NetworkRegistry.INSTANCE.registerGuiHandler(TestMod.INSTANCE, new GuiHandler());
+</code></pre>
+<p>Воу. Почти все готово. Уже можно даже запускать.</p>
+<p>Но есть пару важных нюансов. При смерти игрока вещи не будут выпадать. При клонировании игрока вещи пропадут. Модифицируем наш ранее созданный класс для событий CapabilityEventHandler.java чтоб он теперь выглядел вот так:</p>
+<pre><code class="java language-java">// CapabilityEventHandler.java
+
+package com.example.test;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+
+public class CapabilityEventHandler {
+
+    public static void register(){
+        MinecraftForge.EVENT_BUS.register(new CapabilityEventHandler());
+    }
+
+    public static final ResourceLocation INVENTORY_CAP = new ResourceLocation(TestMod.MOD_ID, "inventory");
+
+    //ОЧЕНЬ ВАЖНО! Добавляет капу игроку при его первом создании
+    @SubscribeEvent
+    public void attachCapability(AttachCapabilitiesEvent.Entity event) {
+        if (event.getEntity() instanceof EntityPlayer){
+            event.addCapability(INVENTORY_CAP, new CAPCustomInventoryProvider());
+        }
+    }
+
+    //Копирование инвентаря, если по каким-то причинам произошло клонирование игрока. Иначе вещи пропадут
+    @SubscribeEvent
+    public void onPlayerClone(PlayerEvent.Clone event) {
+        EntityPlayer player = event.getEntityPlayer();
+        ICAPCustomInventory newCap = player.getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+        ICAPCustomInventory oldCap = event.getOriginal().getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+        newCap.copyInventory(oldCap);
+    }
+
+    //Если игрок умрет то ничего не выпадет. Нужно выбросит вещи вручную. Выбрасываем
+    @SubscribeEvent
+    public void onPlayerDeath(LivingDeathEvent event) {
+        if(event.getEntity() instanceof EntityPlayer) {
+            //Достаем КАПу, затем инвентарь
+            EntityPlayer player = (EntityPlayer)event.getEntity();
+            ICAPCustomInventory cap = player.getCapability(CAPCustomInventoryProvider.INVENTORY_CAP, null);
+            CustomInventory inv = cap.getInventory();
+            //Выбрасываем все вещи из инвентаря
+            dropAllItems(player, inv);
+            inv.clear();
+        }
+    }
+
+    private static void dropAllItems(EntityPlayer player, CustomInventory inventory){
+        NonNullList&lt;ItemStack&gt; aitemstack = inventory.getStacks();
+        for (int i = 0; i &lt; aitemstack.size(); ++i) {
+            if (!aitemstack.get(i).isEmpty()) {
+                player.dropItem(aitemstack.get(i), true, false);
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="итог">Итог<a title="Ссылка на этот раздел" href="#итог"><i class="material-icons">link</i></a></h2>
+<p>Еще раз проверьте:</p>
+<ol>
+<li>Зарегистрировали вы КАПу</li>
+<li>Зарегистрировали вы кей бинд (KeyHandler)</li>
+<li>Зарегистрировали ли вы обработчики событий (CapabilityEventHandler)</li>
+<li>Зарегистрировали вы GuiHandler</li>
+<li>Зарегистрировали ли вы NetworkHandler и OpenInventoryMessage</li>
+</ol>
+<p>Все. Можно запускать, открывать(жмякать Н, но можно теперь поменять в настройках) и радоваться жизни.</p>
+<h2 id="задний-фон-у-слотов">Задний фон у слотов<a title="Ссылка на этот раздел" href="#задний-фон-у-слотов"><i class="material-icons">link</i></a></h2>
+<p>Но есть еще кое-что. Наши кастомные слоты пустые, без текстуры, не как например слоты брони. Самый простой способ добавить текстуру слоту - это дорисовать ее на картинке:).
+Перерисуем нашу inventory_gui.png и добавим задний фон слотам:</p>
+<p><img src="images/result.png" alt="Что получится в итоге" /></p>
+
+    </div>
+
+    <section class="next-previous-articles">
+
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.11+&#x2F;forge&#x2F;block&#x2F;creating_block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
+                <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
+            </svg>
+            <span class="label">Предыдущая статья</span>
+        </a>
+
+        <div class="sep"></div>
+
+        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.11+&#x2F;forge&#x2F;local&#x2F;index">
+            <span class="label">Следующая статья</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
+                <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
+            </svg>
+        </a>
+
+    </section>
+
+    <section class="contributors">
+
+
+            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">CMTV</div>
+
+                    <div class="role">Перенес с форума</div>
+
+                </div>
+
+            </a>
+
+
+    </section>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/gui/custom_inventory';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+    <div class="site-info">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/commits/master" target="_blank" class="copyright">mcmodding.ru</a>
+
+        <a class="version-link" title="Последние изменения" href="https://github.com/mc-modding/mc-modding-book/commits/master" target="_blank">v1.1.1</a>
+
+    </div>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>
