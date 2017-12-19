@@ -764,8 +764,8 @@ public class ContainerCustomInv  extends Container {
 
 }
 </code></pre>
-<p>Если вы хотите добавить, либо убрать слот, то нужно не забыть уменьшить или увеличить размер списка, в котором хранятся предметы(CustomInventory.java -&gt; INV_SIZE). Так же не забудьте поправить индексы в методе transferStackInSlot, что в классе ContainerCustomInv. Если этого не сделать, то пойдут краши, такие как выход за пределы массива(ArrayIndexOutOfBoundsException) и прочие.</p>
-<p>Пару слов о том, как ориентироваться в размещении слотов. Слоты, которые мы добавляем в инвентарь стандартного размера(16 x 16). Когда добавляем слот(this.addSlotToContainer(new StandartSlot(player, cInventory, 0, x, y)), указываем x и y координаты, на которых этот слот будет размещен. В качестве центра выступает левый верхний угол слота. Думаю, понятнее будет, если посмотреть на картинку ниже:
+<p>Если вы хотите добавить, либо убрать слот, то нужно не забыть уменьшить или увеличить размер списка, в котором хранятся предметы(CustomInventory.java -&gt; INV_SIZE). Так же не забудьте поправить индексы в методе <code>transferStackInSlot</code>, что в классе <code>ContainerCustomInv</code>. Если этого не сделать, то пойдут краши, такие как выход за пределы массива(<code>ArrayIndexOutOfBoundsException</code>) и прочие.</p>
+<p>Пару слов о том, как ориентироваться в размещении слотов. Слоты, которые мы добавляем в инвентарь стандартного размера(16 x 16). Когда добавляем слот(<code>this.addSlotToContainer(new StandartSlot(player, cInventory, 0, x, y)</code>), указываем x и y координаты, на которых этот слот будет размещен. В качестве центра выступает левый верхний угол слота. Думаю, понятнее будет, если посмотреть на картинку ниже:
 <img src="images/slot_size_coords.png" alt="Размеры и координаты слота" /></p>
 <p>Как видно на картинке, желтые точки это точки с координатами x и y, которые указывались при добавлении слота. Красным отмечен контур слота и как он располагается относительно указанной точки. Здесь я добавил два слота, с координатами x = 0, y = 0 и x = 87, y = 8.</p>
 <p>Пишем дальше.</p>
@@ -840,7 +840,7 @@ public class StandartSlot extends Slot {
     }
 }
 </code></pre>
-<p>Обратите внимание на метод в классе StandartSlot.java - public boolean isItemValid(@Nullable ItemStack stack). Этот метод позволяет нам задавать какие предметы мы хотим чтоб можно было класть в слот, а какие нет. В примере выше можно класть любые предметы. В следующем примере реализации этого метода в слот, который мы добавили с индексом 0, нельзя будет положить яблоко, а все остальное можно будет:</p>
+<p>Обратите внимание на метод в классе StandartSlot.java - <code>public boolean isItemValid(@Nullable ItemStack stack)</code>. Этот метод позволяет нам задавать какие предметы мы хотим чтоб можно было класть в слот, а какие нет. В примере выше можно класть любые предметы. В следующем примере реализации этого метода в слот, который мы добавили с индексом 0, нельзя будет положить яблоко, а все остальное можно будет:</p>
 <pre><code class="java language-java">public boolean isItemValid(@Nullable ItemStack stack){
     //если индекс слота 0 и входящий стак - стак с яблоками, то не разрешить класть в слот.
     if(this.getSlotIndex() == 0 &amp;&amp; stack.getItem().equals(Items.APPLE)) return false;
@@ -902,13 +902,13 @@ public class GUICustomInv extends GuiContainer{
 }
 </code></pre>
 <h2 id="capability">Capability<a title="Ссылка на этот раздел" href="#capability"><i class="material-icons">link</i></a></h2>
-<p>Есть. Теперь где-то надо это все хранить. Ибо мало того, что мы просто добавим инвентарь. При первом же перезаходе игрока в мир все вещи пропадут. Для этого будем использовать такую штуку как КАПа, или Capability. Это замена IExtendedEntityProperties для новых версий.</p>
+<p>Есть. Теперь где-то надо это все хранить. Ибо мало того, что мы просто добавим инвентарь. При первом же перезаходе игрока в мир все вещи пропадут. Для этого будем использовать такую штуку как КАПа, или <code>Capability</code>. Это замена <code>IExtendedEntityProperties</code> для новых версий.</p>
 <p>Для этого надо:</p>
 <ol>
 <li>ICAPCustomInventory.java - интерфейс, в котором опишем основные методы для взаимодействия КАПы с инвентарем.</li>
 <li>CAPCustomInventory.java - класс, реализующий данный интерфейс. Так же в нем будет хранится обьект нашего инвентаря - CustomInventory.</li>
-<li>CAPCustomInventoryProvider.java - в нем располагаются методы для доступа к КАПе а так же проводится вызов методов чтения и сохранения (десериализации и сериализации). Вызов этих методов - это по сути вызов методов writeNBT и readNBT из класса CAPCustomInventoryStorage.java, функционал которого описан пунктом ниже.</li>
-<li>CAPCustomInventoryStorage.java - в этом классе есть всего два метода: writeNBT и readNBT. Мы должны описать в них то, что и как будет записываться и читаться в/из НБТ. Под записью и чтением в/из НБТ подразумевается сохранение нужной нам информации например при выходе игрока из игры, и ее считывание(загрузка), когда игрок заходит обратно в игру. Наши вещи будут в безопасности:)</li>
+<li>CAPCustomInventoryProvider.java - в нем располагаются методы для доступа к КАПе а так же проводится вызов методов чтения и сохранения (десериализации и сериализации). Вызов этих методов - это по сути вызов методов <code>writeNBT</code> и <code>readNBT</code> из класса <code>CAPCustomInventoryStorage</code>, функционал которого описан пунктом ниже.</li>
+<li>CAPCustomInventoryStorage.java - в этом классе есть всего два метода: <code>writeNBT</code> и <code>readNBT</code>. Мы должны описать в них то, что и как будет записываться и читаться в/из НБТ. Под записью и чтением в/из НБТ подразумевается сохранение нужной нам информации например при выходе игрока из игры, и ее считывание(загрузка), когда игрок заходит обратно в игру. Наши вещи будут в безопасности:)</li>
 </ol>
 <p>Пишем.</p>
 <pre><code class="java language-java">// ICAPCustomInventory.java
@@ -1039,7 +1039,7 @@ public class CAPCustomInventoryStorage implements IStorage&lt;ICAPCustomInventor
 CapabilityManager.INSTANCE.register(ICAPCustomInventory.class, new CAPCustomInventoryStorage(), CAPCustomInventory.class);
 CapabilityEventHandler.register();
 </code></pre>
-<p>Для чего CapabilityEventHandler.register();? При создании игрока нужно ему добавить КАПу. Для этого создаем класс CapabilityEventHandler,java и добавляем в него:</p>
+<p>Для чего <code>CapabilityEventHandler.register();</code>? При создании игрока нужно ему добавить КАПу. Для этого создаем класс CapabilityEventHandler.java и добавляем в него:</p>
 <pre><code class="java language-java">// CapabilityEventHandler.java
 
 package com.example.test;
@@ -1172,7 +1172,7 @@ public class KeyHandler {
 <p>Позже в настройках(когда доделаем все и запустим) получим что-то типа такого:
 <img src="images/key_in_settings.png" alt="Наша клавиша в настройках игры" /></p>
 <h2 id="серверное-взаимодействие">Серверное взаимодействие<a title="Ссылка на этот раздел" href="#серверное-взаимодействие"><i class="material-icons">link</i></a></h2>
-<p>В коде выше будут ошибки. Будет ругаться на NetworkHandler.network.sendToServer(new OpenInventoryMessage());. Это какраз и есть отправка пакетов. Чтобы это работало нужно:</p>
+<p>В коде выше будут ошибки. Будет ругаться на <code>NetworkHandler.network.sendToServer(new OpenInventoryMessage());</code>. Это какраз и есть отправка пакетов. Чтобы это работало нужно:</p>
 <ol>
 <li>Создать класс NetworkHandler.java, в котором зарегистрируем наш пакет.</li>
 <li>Создать класс OpenInventoryMessage.java - это сам пакет а так же в нем есть вложенный класс-обработчик пакета. Он реализует метод onMessage, который срабатывает когда пакет приходит на сервер(в данном случае).</li>
@@ -1252,7 +1252,7 @@ public class NetworkHandler {
 <p>Не забываем зарегать это дело. В главном классе в преините пишем:</p>
 <pre><code class="java language-java">NetworkHandler.init();
 </code></pre>
-<p>Готово. Но будут ошибки в OpenInventoryMessage -&gt; player.openGui(…);. Нам нужен класс GuiHandler который при открытии GUI для сервера открывает контейнер, а для клиента GUI:</p>
+<p>Готово. Но будут ошибки в OpenInventoryMessage -&gt; <code>player.openGui(...);</code>. Нам нужен класс GuiHandler который при открытии GUI для сервера открывает контейнер, а для клиента GUI:</p>
 <pre><code class="java language-java">// GuiHandler.java
 
 package com.example.test;
