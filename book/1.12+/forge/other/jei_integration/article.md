@@ -481,7 +481,7 @@ registry.handleRecipes(CrafterRecipe.class, recipe -> new CrafterRecipeWrapper(r
 registry.addRecipeCatalyst(new ItemStack(TMRegistry.blockCrafter), CrafterRecipeCategory.UID); // Регистрация показывающихся блоков для Вашего UID.
 ```
 В итоге получаем такую картину:
-![Демонстрация работы механизма в JEI](images/drops_demonstration.png)
+![Демонстрация работы механизма в JEI](images/crafter_demonstration.png)
 
 На этом все. Спасибо за внимание.
 
