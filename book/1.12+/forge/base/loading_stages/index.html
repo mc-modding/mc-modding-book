@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
             </div>
         </div>
 
@@ -404,7 +404,7 @@
 разных целей.</p>
 <h2 id="использование-стадий">Использование стадий<a title="Ссылка на этот раздел" href="#использование-стадий"><i class="material-icons">link</i></a></h2>
 <p>Все стадии загрузки мода могут использоваться <strong>только</strong> в главном файле мода! То есть в файле с аннотацией <code>@Mod</code>. Стадии
-загрузки можно использовать при помощи аннотации <code>@EvenHandler</code>.</p>
+загрузки можно использовать при помощи аннотации <code>@EventHandler</code>.</p>
 <h3 id="преинициализация">Преинициализация<a title="Ссылка на этот раздел" href="#преинициализация"><i class="material-icons">link</i></a></h3>
 <p>Стадия преинициализации используется для того, чтобы дать игре знать о том, что есть в вашем моде: блоках, предметах и так далее.</p>
 <p>Чаще всего в этой стадии выполняются следующие действия:</p>
@@ -465,14 +465,14 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class Tutorial
 {
     @EventHandler
-    public void preInit(FMLPreInitializationEvent e)
+    public void preInit(FMLPreInitializationEvent event)
     {
         // Преинициализация
         System.out.println("\u001B[32m" + "[Starting Test Mod PRE-INITIALIZATION]" + "\u001B[0m");
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent e)
+    public void init(FMLInitializationEvent event)
     {
         // Инициализация
         System.out.println("\u001B[32m" + "[Starting Test Mod INITIALIZATION]" + "\u001B[0m");

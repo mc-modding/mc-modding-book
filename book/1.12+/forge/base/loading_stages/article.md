@@ -8,7 +8,7 @@ Forge загружает моды в 3 стадии: Преинициализа�
 ## Использование стадий
 
 Все стадии загрузки мода могут использоваться **только** в главном файле мода! То есть в файле с аннотацией `@Mod`. Стадии
-загрузки можно использовать при помощи аннотации `@EvenHandler`.
+загрузки можно использовать при помощи аннотации `@EventHandler`.
 
 ### Преинициализация
 
@@ -88,14 +88,14 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class Tutorial
 {
     @EventHandler
-    public void preInit(FMLPreInitializationEvent e)
+    public void preInit(FMLPreInitializationEvent event)
     {
         // Преинициализация
         System.out.println("\u001B[32m" + "[Starting Test Mod PRE-INITIALIZATION]" + "\u001B[0m");
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent e)
+    public void init(FMLInitializationEvent event)
     {
         // Инициализация
         System.out.println("\u001B[32m" + "[Starting Test Mod INITIALIZATION]" + "\u001B[0m");
