@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Локализация - Minecraft Modding</title>
+<title>Access Transformers - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Локализация для вещей">
+<meta name="description" content="Удобный способ для получения доступа к приватным полям и методам без рефлексии">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Локализация - Minecraft Modding">
-<meta property="og:description" content="Локализация для вещей">
+<meta property="og:title"       content="Access Transformers - Minecraft Modding">
+<meta property="og:description" content="Удобный способ для получения доступа к приватным полям и методам без рефлексии">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/local/index">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/other/access_transformers">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -269,7 +269,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/local/index" class="category-article selected">Локализация</a>
+                        <a href="http://mcmodding.ru/book/1.11+/forge/local/index" class="category-article ">Локализация</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-5 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -285,7 +285,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
+                        <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article selected">Дополнительно</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-6 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -295,7 +295,7 @@
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="article ">Исходники Minecraft</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/other/access_transformers" class="article ">Access Transformers</a>
+                            <a href="http://mcmodding.ru/book/1.11+/forge/other/access_transformers" class="article selected">Access Transformers</a>
                     </div>
 
                 </div>
@@ -323,46 +323,62 @@
 
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/local/index/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/other/access_transformers/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="локализация">Локализация<a title="Ссылка на этот раздел" href="#локализация"><i class="material-icons">link</i></a></h1>
-<p>Создадим папку <code>lang</code> в ресурсах мода (<code>resources/assets/*ваш modid*/</code>). В папке <code>lang</code> создадим файл <code>ru_RU.lang</code> и внутри запишем:</p>
-<p>Для предмета:</p>
-<pre><code class="markdown language-markdown">item.*название предмета*.name=Мой предмет
+        <h1 id="access-transformers">Access Transformers<a title="Ссылка на этот раздел" href="#access-transformers"><i class="material-icons">link</i></a></h1>
+<p>Автор статьи — <a href="https://forum.mcmodding.ru/members/dahaka.4288/" target="_blank">Dahaka</a>.</p>
+<p>Файлы, использующиесяв этой статье можно скачать <a href="images/root.zip" target="_blank">здесь</a>.</p>
+<p>Во время написания мода иногда возникают ситуации, когда хочется использовать приватные методы и поля данных, но, к сожалению, IDE нам не позволяет это сделать. Первое, что приходит в голову, это использовать возможности рефлексии (преимущественно <code>ReflectionHelper</code>). И, естественно, это плохое решение проблемы, начиная с того, что падает производительность, заканчивая уродованием кода.</p>
+<p>Но решение есть - трансформеры доступа (Access Transformers - AT). Смысл в том, что они позволяют изменить модификаторы доступа к полям и методам в исходниках майнкрафта сразу при сборке рабочего пространства (проекта), т.е. при выполнении <code>setupDecompWorkspace</code>. И это будет работать в отдельном клиенте из-за того, что forge в runtime (во время выполнения) меняет модификаторы доступа на <code>public</code>.</p>
+<p>Перейдем к практике.
+Необходимо создать файл <code>example_at.cfg</code> в каталоге <code>/src/main/resources/META-INF/</code>. Если <code>META-INF</code> нет, нужно создать вручную. Имя <code>example</code> значения не имеет, можно выбрать любое. Например, <code>&lt;modid&gt;</code>. Но важно, чтобы файл заканчивался на <code>_at.cfg</code>. Сам файл описывает, какие методы и поля должны быть преобразованы.</p>
+<pre><code># Это комментарий.
+
+# Все поля в классе Item станут публичными.
+public net.minecraft.item.Item *
+
+# Суффикс -f позволяет снять модификатор final.
+# Все поля в классе ItemStack станут публичными, изменяемыми.
+public-f net.minecraft.item.ItemStack *
+
+# Все методы в классе ItemStack станут публичными.
+# Так делать нельзя, если класс кем-то наследуется. Возможно может не собраться рабочая среда.
+# Это происходит из-за того, что в целевом классе модификаторы доступа методов изменятся, а в производных - нет.
+# Т.е. будет ошибка компиляции.
+public net.minecraft.item.ItemStack *()
+
+# Для обращения к внутренним классам используется '$'.
+# Все поля в классе ToolMaterial станут публичными.
+public net.minecraft.item.Item$ToolMaterial *
+
+# Поле unlocalizedName в классе Item станет публичным.
+public net.minecraft.item.Item field_77774_bZ
+
+# Метод Item#registerItem(int, String, Item) станет публичным.
+public net.minecraft.item.Item func_179217_a(ILjava/lang/String;Lnet/minecraft/item/Item;)V
 </code></pre>
-<p>Для блока:</p>
-<pre><code class="markdown language-markdown">tile.*название блока*.name=Мой блок
-</code></pre>
-<p>Для вкладки в творческом режиме:</p>
-<pre><code class="markdown language-markdown">itemGroup.*Название вкладки*
-</code></pre>
-<p>Так же если вы пишете свой текст внутри кода, например для подсказки</p>
-<pre><code class="java language-java">   @Override
-   public void addInformation(ItemStack stack, EntityPlayer playerIn, List&lt;String&gt; tooltip, boolean advanced)
-   {
-       tooltip.add("Все будут видеть этот русский текст");
+<p>Магическая строка <code>func_179217_a(ILjava/lang/String;Lnet/minecraft/item/Item;)V</code> это srg имя с дескриптором. Узнать их можно, например, при помощи программки <a href="http://bspk.rs/MC/MCPMappingViewer/index.html" target="_blank">MCP Mapping Viewer</a>. В ней интуитивно понятный интерфейс, так что проблем возникнуть не должно. Выбираем маппинги под нужную версию и через поиск ищем метод или поле.</p>
+<p>После того, как создали и заполнили файл <code>example_at.cfg</code>, необходимо добавить в файл <code>build.gradle</code> следующие строки:</p>
+<pre><code>jar {
+   manifest {
+       attributes 'FMLAT': 'example_at.cfg'
    }
+}
 </code></pre>
-<p>то лучше не делать так. Спросите почему? Потому что ваш текст не смогут прочитать иностранные игроки и таким образом усложнится перевод мода(Если такой будет). Чтобы избежать данной проблемы лучше писать так:</p>
-<pre><code class="java language-java">   @Override
-   public void addInformation(ItemStack stack, EntityPlayer playerIn, List&lt;String&gt; tooltip, boolean advanced)
-   {
-       tooltip.add(I18n.format("tooltip.sphere"));
-   }
-</code></pre>
-<p>и теперь нам достаточно добавить в ru_RU.lang такой код:</p>
-<pre><code class="markdown language-markdown">tooltip.sphere=Этот текст могут видеть только русскоговорящие игроки.
-</code></pre>
-<p>или в en_US.lang:</p>
-<pre><code class="markdown language-markdown">tooltip.sphere=This text can see only English-speaking players.
-</code></pre>
-<p>Остальные коды для других языков можно <a href="http://minecraft.gamepedia.com/Language" target="_blank">найти</a> на официальной Minecraft вики.</p>
+<p>Теперь остается лишь все пересобрать: <code>gradlew clean setupDecompWorkspace --refresh-dependencies</code>. В результате вы увидите, что указанные поля и методы имеют <code>public</code> модификатор.</p>
+<p>Заметки.</p>
+<ol>
+<li>Указывать можно не только <code>public</code> модификатор, но и <code>protected</code>. Правда я не знаю, для чего это может пригодится. И работать это будет только в сторону снятия инкапсуляции, но не наоборот.</li>
+<li>Печально, но иногда трансформер может не примениться, т.е. поле/метод так и останется инкапсулировано. Но это редкость. Зачастую это вставки forge.</li>
+<li>Указанные в примере трансформеры относятся к версии 1.12.</li>
+<li>В прикрепленном архиве лежит исходный <code>build.gradle</code> файл, в который добавлены указанные выше строки, а также файл <code>example_at.cfg</code> в нужной папке. Достаточно лишь скопировать к себе в проект, пересобрать, и все должно работать.</li>
+</ol>
 
     </div>
 
     <section class="next-previous-articles">
 
-        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.11+&#x2F;forge&#x2F;gui&#x2F;custom_inventory">
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.11+&#x2F;forge&#x2F;other&#x2F;sources">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
                 <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
             </svg>
@@ -371,12 +387,6 @@
 
         <div class="sep"></div>
 
-        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.11+&#x2F;forge&#x2F;other&#x2F;sources">
-            <span class="label">Следующая статья</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
-                <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
-            </svg>
-        </a>
 
     </section>
 
@@ -391,22 +401,7 @@
 
                     <div class="name">CMTV</div>
 
-                    <div class="role">Автор</div>
-
-                </div>
-
-            </a>
-
-
-            <a href="https://github.com/Ivasik78" target="_blank" title="К профилю GitHub" class="contributor">
-
-                <img class="avatar" src="https://github.com/Ivasik78.png?size=40">
-
-                <div class="info">
-
-                    <div class="name">Ivasik</div>
-
-                    <div class="role">Автор</div>
+                    <div class="role">Перенес с форума</div>
 
                 </div>
 
@@ -436,7 +431,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/local/index';
+                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/other/access_transformers';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

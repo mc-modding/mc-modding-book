@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Импорт 3D модели - Minecraft Modding</title>
+<title>Access Transformers - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.">
+<meta name="description" content="Удобный способ для получения доступа к приватным полям и методам без рефлексии">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Импорт 3D модели - Minecraft Modding">
-<meta property="og:description" content="Создание и импортирование в Minecraft 3D модели, созданной в 3D редакторах.">
+<meta property="og:title"       content="Access Transformers - Minecraft Modding">
+<meta property="og:description" content="Удобный способ для получения доступа к приватным полям и методам без рефлексии">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.11+/forge/item/importing_model">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.7.10/forge/other/access_transformers">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -74,7 +74,7 @@
 
 <!-- Book JS -->
 <script>
-    let book_id = '1.11+-forge';
+    let book_id = '1.7.10-forge';
 </script>
 <script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
 </head>
@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/cobblestone-mossy/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
             </div>
         </div>
 
@@ -117,7 +117,7 @@
                 <i class="material-icons">home</i><span>Главная</span>
             </a>
 
-            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" title="Учебник" class="menu-item">
+            <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" title="Учебник" class="menu-item">
                 <i class="material-icons">import_contacts</i><span>Учебник</span>
             </a>
 
@@ -146,8 +146,8 @@
 
                                 <optgroup label="Релиз">
                                         <option value="http://mcmodding.ru/book/1.12+/forge/prep/install" >1.12+</option>
-                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>1.11+</option>
-                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" selected>1.7.10</option>
                                 </optgroup>
 
 
@@ -160,9 +160,7 @@
             <div class="api-choose">
                 <label>API:
                     <select onChange="window.location.href=this.value">
-                            <option value="http://mcmodding.ru/book/1.11+/bukkit/prep/install" >Bukkit</option>
-                            <option value="http://mcmodding.ru/book/1.11+/bungeecord/prep/install" >BungeeCord</option>
-                            <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" selected>Forge</option>
+                            <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" selected>Forge</option>
                     </select>
                 </label>
             </div>
@@ -173,7 +171,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="category-article ">Подготовка</a>
+                        <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" class="category-article ">Основы Forge</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-0 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -182,10 +180,9 @@
                     </div>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/install" class="article ">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_idea" class="article ">Использование Idea</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/prep/off_skin" class="article ">Собственный скин</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" class="article ">Первые шаги</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/proxy" class="article ">Клиент и сервер</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/setup" class="article ">Установка forge src</a>
                     </div>
 
                 </div>
@@ -193,7 +190,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+                        <a href="http://mcmodding.ru/book/1.7.10/forge/other/access_transformers" class="category-article selected">Дополнительно</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-1 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -202,100 +199,6 @@
                     </div>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_structure" class="article ">Структура мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/advanced_mcmod_info" class="article ">Продвинутый mcmod.info</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/proxy" class="article ">Прокси</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/base/build_mod" class="article ">Сборка мода</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="category-article selected">Предмет</a>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-2 closed" width="16" height="16" viewBox="0 0 512 512">
-                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
-                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
-                        </svg>
-                    </div>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/creating_item" class="article ">Создание предмета</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/item_model" class="article ">JSON файл модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/tools" class="article ">Инструменты</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/importing_model" class="article selected">Импорт 3D модели</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/metadata" class="article ">Метадата предмета</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/item/rarity" class="article ">Редкость предметов</a>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/block/creating_block" class="category-article ">Блок</a>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-3 closed" width="16" height="16" viewBox="0 0 512 512">
-                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
-                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
-                        </svg>
-                    </div>
-
-                    <div class="category-articles">
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/gui/custom_inventory" class="category-article ">GUI</a>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-4 closed" width="16" height="16" viewBox="0 0 512 512">
-                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
-                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
-                        </svg>
-                    </div>
-
-                    <div class="category-articles">
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/local/index" class="category-article ">Локализация</a>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-5 closed" width="16" height="16" viewBox="0 0 512 512">
-                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
-                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
-                        </svg>
-                    </div>
-
-                    <div class="category-articles">
-                    </div>
-
-                </div>
-                <hr>
-                <div class="category">
-
-                    <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="category-article ">Дополнительно</a>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-6 closed" width="16" height="16" viewBox="0 0 512 512">
-                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
-                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
-                        </svg>
-                    </div>
-
-                    <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.11+/forge/other/sources" class="article ">Исходники Minecraft</a>
-                            <a href="http://mcmodding.ru/book/1.11+/forge/other/access_transformers" class="article ">Access Transformers</a>
                     </div>
 
                 </div>
@@ -323,16 +226,62 @@
 
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.11+/forge/item/importing_model/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.7.10/forge/other/access_transformers/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="импорт-3d-модели">Импорт 3D модели<a title="Ссылка на этот раздел" href="#импорт-3d-модели"><i class="material-icons">link</i></a></h1>
-<p>TODO</p>
+        <h1 id="access-transformers">Access Transformers<a title="Ссылка на этот раздел" href="#access-transformers"><i class="material-icons">link</i></a></h1>
+<p>Автор статьи — <a href="https://forum.mcmodding.ru/members/dahaka.4288/" target="_blank">Dahaka</a>.</p>
+<p>Файлы, использующиесяв этой статье можно скачать <a href="images/root.zip" target="_blank">здесь</a>.</p>
+<p>Во время написания мода иногда возникают ситуации, когда хочется использовать приватные методы и поля данных, но, к сожалению, IDE нам не позволяет это сделать. Первое, что приходит в голову, это использовать возможности рефлексии (преимущественно <code>ReflectionHelper</code>). И, естественно, это плохое решение проблемы, начиная с того, что падает производительность, заканчивая уродованием кода.</p>
+<p>Но решение есть - трансформеры доступа (Access Transformers - AT). Смысл в том, что они позволяют изменить модификаторы доступа к полям и методам в исходниках майнкрафта сразу при сборке рабочего пространства (проекта), т.е. при выполнении <code>setupDecompWorkspace</code>. И это будет работать в отдельном клиенте из-за того, что forge в runtime (во время выполнения) меняет модификаторы доступа на <code>public</code>.</p>
+<p>Перейдем к практике.
+Необходимо создать файл <code>example_at.cfg</code> в каталоге <code>/src/main/resources/META-INF/</code>. Если <code>META-INF</code> нет, нужно создать вручную. Имя <code>example</code> значения не имеет, можно выбрать любое. Например, <code>&lt;modid&gt;</code>. Но важно, чтобы файл заканчивался на <code>_at.cfg</code>. Сам файл описывает, какие методы и поля должны быть преобразованы.</p>
+<pre><code># Это комментарий.
+
+# Все поля в классе Item станут публичными.
+public net.minecraft.item.Item *
+
+# Суффикс -f позволяет снять модификатор final.
+# Все поля в классе ItemStack станут публичными, изменяемыми.
+public-f net.minecraft.item.ItemStack *
+
+# Все методы в классе ItemStack станут публичными.
+# Так делать нельзя, если класс кем-то наследуется. Возможно может не собраться рабочая среда.
+# Это происходит из-за того, что в целевом классе модификаторы доступа методов изменятся, а в производных - нет.
+# Т.е. будет ошибка компиляции.
+public net.minecraft.item.ItemStack *()
+
+# Для обращения к внутренним классам используется '$'.
+# Все поля в классе ToolMaterial станут публичными.
+public net.minecraft.item.Item$ToolMaterial *
+
+# Поле unlocalizedName в классе Item станет публичным.
+public net.minecraft.item.Item field_77774_bZ
+
+# Метод Item#registerItem(int, String, Item) станет публичным.
+public net.minecraft.item.Item func_179217_a(ILjava/lang/String;Lnet/minecraft/item/Item;)V
+</code></pre>
+<p>Магическая строка <code>func_179217_a(ILjava/lang/String;Lnet/minecraft/item/Item;)V</code> это srg имя с дескриптором. Узнать их можно, например, при помощи программки <a href="http://bspk.rs/MC/MCPMappingViewer/index.html" target="_blank">MCP Mapping Viewer</a>. В ней интуитивно понятный интерфейс, так что проблем возникнуть не должно. Выбираем маппинги под нужную версию и через поиск ищем метод или поле.</p>
+<p>После того, как создали и заполнили файл <code>example_at.cfg</code>, необходимо добавить в файл <code>build.gradle</code> следующие строки:</p>
+<pre><code>jar {
+   manifest {
+       attributes 'FMLAT': 'example_at.cfg'
+   }
+}
+</code></pre>
+<p>Теперь остается лишь все пересобрать: <code>gradlew clean setupDecompWorkspace --refresh-dependencies</code>. В результате вы увидите, что указанные поля и методы имеют <code>public</code> модификатор.</p>
+<p>Заметки.</p>
+<ol>
+<li>Указывать можно не только <code>public</code> модификатор, но и <code>protected</code>. Правда я не знаю, для чего это может пригодится. И работать это будет только в сторону снятия инкапсуляции, но не наоборот.</li>
+<li>Печально, но иногда трансформер может не примениться, т.е. поле/метод так и останется инкапсулировано. Но это редкость. Зачастую это вставки forge.</li>
+<li>Указанные в примере трансформеры относятся к версии 1.12.</li>
+<li>В прикрепленном архиве лежит исходный <code>build.gradle</code> файл, в который добавлены указанные выше строки, а также файл <code>example_at.cfg</code> в нужной папке. Достаточно лишь скопировать к себе в проект, пересобрать, и все должно работать.</li>
+</ol>
 
     </div>
 
     <section class="next-previous-articles">
 
-        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.11+&#x2F;forge&#x2F;item&#x2F;tools">
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.7.10&#x2F;forge&#x2F;base&#x2F;first_steps">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
                 <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
             </svg>
@@ -341,12 +290,6 @@
 
         <div class="sep"></div>
 
-        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.11+&#x2F;forge&#x2F;item&#x2F;metadata">
-            <span class="label">Следующая статья</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
-                <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
-            </svg>
-        </a>
 
     </section>
 
@@ -361,7 +304,7 @@
 
                     <div class="name">CMTV</div>
 
-                    <div class="role">Автор</div>
+                    <div class="role">Перенес с форума</div>
 
                 </div>
 
@@ -391,7 +334,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.11+/forge/item/importing_model';
+                this.page.identifier = 'http://mcmodding.ru/book/1.7.10/forge/other/access_transformers';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
