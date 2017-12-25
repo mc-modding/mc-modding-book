@@ -1,0 +1,10 @@
+title: Access Transformers
+
+description: >
+  Удобный способ для получения доступа к приватным полям и методам без рефлексии
+
+contributors:
+  -
+    name: CMTV
+    role: Перенес с форума
+    github: https://github.com/CMTV

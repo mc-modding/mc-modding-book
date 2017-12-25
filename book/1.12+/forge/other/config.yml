@@ -5,3 +5,4 @@ category-title: Дополнительно
 articles-order:
   - sources
   - jei_integration
+  - access_transformers
