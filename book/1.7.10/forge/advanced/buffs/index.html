@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Система временных эффектов - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="В данном туториале описан процесс создания собственной системы временных эффектов (баффов), которая будет работать со всеми существами(наследниками EntityLivingBase). Работают они так же, как и ванильные эффекты зелий, однако имеют ряд улучшений и оптимизаций.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Система временных эффектов - Minecraft Modding">
+<meta property="og:description" content="В данном туториале описан процесс создания собственной системы временных эффектов (баффов), которая будет работать со всеми существами(наследниками EntityLivingBase). Работают они так же, как и ванильные эффекты зелий, однако имеют ряд улучшений и оптимизаций.">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.7.10/forge/advanced/buffs">
+<meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Hammer.js -->
+<script src="http://mcmodding.ru/libs/hammer/hammer.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.css">
+<script src="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.js"></script>
+<script>
+    $(() => {
+        $('article .inner').magnificPopup({
+            delegate: 'img',
+            type: 'image',
+            callbacks: {
+                elementParse: (item) => { item.src = item.el.attr('src'); }
+            }
+        });
+    });
+</script>
+
+<!-- Snap.svg -->
+<script src="http://mcmodding.ru/libs/snap.svg/snap.svg-min.js"></script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script>
+    let book_id = '1.7.10-forge';
+</script>
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/prep/install" >1.12+</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" selected>1.7.10</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" class="category-article ">Основы Forge</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-0 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" class="article ">Первые шаги</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/proxy" class="article ">Клиент и сервер</a>
+                            <a href="http://mcmodding.ru/book/1.7.10/forge/base/setup" class="article ">Установка forge src</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.7.10/forge/advanced/buffs" class="category-article selected">Продвинутые статьи</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-1 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.7.10/forge/other/access_transformers" class="category-article ">Дополнительно</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-2 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+        <section class="ad-after-nav">
+
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- MCModding Book - Реклама под навигацией -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8094912170389944"
+                 data-ad-slot="5398483104"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        </section>
+
+    </div>
+
+</nav><article>
+
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.7.10/forge/advanced/buffs/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="система-временных-эффектов">Система временных эффектов<a title="Ссылка на этот раздел" href="#система-временных-эффектов"><i class="material-icons">link</i></a></h1>
+<p>Автор данной статьи — <a href="https://forum.mcmodding.ru/members/austeretony.7279/" target="_blank">AustereTony</a>.</p>
+<p>Исходники можно посмотреть в <a href="https://github.com/AustereTony/Buffs" target="_blank">GitHub репозитории</a>.</p>
+<p>Здравствуйте. В данном туториале я опишу процесс создания собственной системы временных эффектов (баффов), которая будет работать со всеми существами(наследниками EntityLivingBase). Работают они так же, как и ванильные эффекты зелий, однако имеют ряд улучшений и оптимизаций. В первую очередь статья будет полезна тем, кому требуется возможность создавать множество эффектов с полным контролем над ними.</p>
+<h2 id="основа">Основа<a title="Ссылка на этот раздел" href="#основа"><i class="material-icons">link</i></a></h2>
+<p>Начнём! Первым делом создадим объект-основу для регистрации наших временных эффектов и описания общих свойств. Расположим тут всё необходимое для применения эффектов. Cоздаём поля для описания общих свойств: идентификатор, название, индекс координат иконки и т.п., создаём сеттеры и геттеры для них. Объявляем массив объектов, в который будем добавлять эффекты. Наследники класса должны переопределять методы <code>onActive()</code> и <code>isReady()</code>, определяющие поведение эффекта, эти методы вызываются каждый тик. Здесь же создаём методы, которые будут единожды вызываться при добавлении и удалении временного эффекта, их будем использовать для активности, которую требуется вызывать один раз.</p>
+<p>Этого достаточно для работы с любой сущностью в рамках ванильной игры. Этот объект будет тесно связан с классом, реализующим EEP и общим для всех <code>EntityLivingBase</code>. Такой класс должен содержать только информацию об эффектах. Для остальных EEP создавайте отдельные классы. В Buff для работыс эффектами в методы передаётся EntityLivingBase и если, например, вы создали ещё EEP для игрока и что то вроде "магии", то для создания эффектов, работающих с вашей "магией" просто получите ваши EEP прямо в методах обработки.</p>
+<pre><code class="java language-java">// ru/buffs/main/Buff.java
+
+public class Buff {
+
+    public final int id;
+
+    private String name;
+
+    //Число, определяющее координаты иконки баффа в файле с текстурами.
+    private int iconIndex;
+
+    //keepOnDeath определяет, сохранять ли бафф при смерти.
+    //isPersistent определяет бессрочность эффекта, эффект не исчезнет ни при смерти, ни со временем.
+    private boolean keepOnDeath, isPersistent;
+
+    //Создаём массив объектов.
+    public static List&lt;Buff&gt; buffs = new ArrayList&lt;Buff&gt;();
+
+    public Buff() {
+
+        //Присваеваем идентификатор.
+        this.id = buffs.size();
+
+        //Добавляем созданный объект в массив ArrayList.
+        this.buffs.add(this);
+    }
+
+    public static Buff of(int buffId) {
+
+        return buffs.get(buffId);
+    }
+
+    //Метод, который применяет эффект баффа если isReady() возвращает true.
+    protected void onActive(EntityLivingBase entityLivingBase, World world, ActiveBuff buff) {
+
+        int
+        tier = buff.getTier(),
+        duration = buff.getDuration();
+    }
+
+    //Служебный метод, определяющий возможность применить эффект в onActive().
+    protected boolean isReady(ActiveBuff buff) {
+
+        int
+        tier = buff.getTier(),
+        duration = buff.getDuration();
+
+        return false;
+    }
+
+    //Добавляем эффект баффа на сервере.
+    public void applyBuffEffect(EntityLivingBase entityLivingBase, World world, ActiveBuff buff) {
+
+        if (!world.isRemote) {
+
+            int
+            id = buff.getId(),
+            tier = buff.getTier();
+        }
+    }
+
+
+    //Удаляем эффект баффа на сервере.
+    public void removeBuffEffect(EntityLivingBase entityLivingBase, World world, ActiveBuff buff) {
+
+        if (!world.isRemote) {
+
+            int
+            id = buff.getId(),
+            tier = buff.getTier();
+        }
+    }
+
+    //Сеттеры для описания свойств и геттеры.
+
+    protected Buff setName(String name) {
+
+        this.name = name;
+
+        return this;
+    }
+
+    public String getName() {
+
+        return this.name;
+    }
+
+    protected Buff setIconIndex(int x, int y) {
+
+        this.iconIndex = x + y * 8;
+
+        return this;
+    }
+
+    public int getIconIndex() {
+
+        return this.iconIndex;
+    }
+
+    protected Buff keepOnDeath() {
+
+        this.keepOnDeath = true;
+
+        return this;
+    }
+
+    public boolean shouldKeepOnDeath() {
+
+        return this.keepOnDeath;
+    }
+
+    protected Buff setPersistent() {
+
+        this.isPersistent = true;
+
+        return this;
+    }
+
+    public boolean isPersistent() {
+
+        return this.isPersistent;
+    }
+
+    public String getDurationForDisplay(ActiveBuff buff) {
+
+        //Возвращает оставшееся время до истечения действия баффа в формате "мм:сс".
+        //Если флаг isPersistent = true, то вернёт строку "-:-", так как бафф постоянен.
+
+        int
+        i = buff.getDuration(),
+        j = i / 20,
+        k = j / 60;
+
+        j %= 60;
+
+        return Buff.of(buff.getId()).isPersistent ? "-:-" : j &lt; 10 ? String.valueOf(k) + ":0" + String.valueOf(j) : String.valueOf(k) + ":" + String.valueOf(j);
+    }
+}
+</code></pre>
+<p>Отдельно обращаю внимание на поле <code>iconIndex</code>, оно хранит координаты иконки эффекта в виде одной переменной. Кодируются координаты так:</p>
+<pre><code class="java language-java">iconIndex = x + y * 8
+</code></pre>
+<p>Считываются так:</p>
+<pre><code class="java language-java">x = iconIndex % 8 * 16, y = iconIndex / 8 * 16//где 16 - размер стороны иконки в пикселях.
+</code></pre>
+<h2 id="активный-эффект">Активный эффект<a title="Ссылка на этот раздел" href="#активный-эффект"><i class="material-icons">link</i></a></h2>
+<p>Теперь требуется создать объект, описывающий индивидуальные свойства каждого эффекта.
+Он будет содержать идентификатор, уровень эффекта и время действия. От уровня будет зависеть активность эффекта, он позволит одному эффекту назначить разную активность (например, эффект регенерации в зависимости от уровня может восстанавливать разное кол-во здоровья или восстанавливать здоровье через разные промежутки времени и т.д.). Время действия будем декрементить каждый тик и перезаписывать. Так же создаём методы записи и чтения объекта из <code>NBTTagCompound</code>.</p>
+<pre><code class="java language-java">// ru/buffs/main/ActiveBuff.java
+
+public class ActiveBuff {
+
+    private int id, duration, tier;
+
+    public ActiveBuff(int buffId, int buffTier, int buffDuration) {
+
+        this.id = buffId;
+        this.tier = buffTier;
+        this.duration = buffDuration;
+    }
+
+    public ActiveBuff(int buffId, int buffDuration) {
+
+        this.id = buffId;
+        this.tier = 0;
+        this.duration = buffDuration;
+    }
+
+    //Для удобства наложения постоянных баффов.
+    public ActiveBuff(int buffId) {
+
+        this.id = buffId;
+        this.tier = 0;
+        this.duration = 0;
+    }
+
+
+    //Метод, обновляющий бафф путём декремента продолжительности действия (duration), возвращает true если время действия не истекло.
+    public boolean updateBuff(EntityLivingBase entityLivingBase, World world) {
+
+        if (Buff.of(this.id).isPersistent() || this.duration &gt; 0) {
+
+            //Проверка допустимости применения эффекта (для эффектов с периодическим действием (прим. регенерация, отравление и т.д.).
+            if (Buff.of(this.id).isReady(this)) {
+
+                //Применение эффекта.
+                Buff.of(this.id).onActive(entityLivingBase, world, this);
+            }
+
+            //Уменьшаем оставшееся время действия.
+            if (!Buff.of(this.id).isPersistent()) {
+
+                this.duration--;
+            }
+        }
+
+        //true - время действия ещё не истекло, false - истекло, удаляем бафф.
+        return Buff.of(this.id).isPersistent() || this.duration &gt; 0;
+    }
+
+    //Комбинирование бафов с одинаковыми уровнями.
+    public void combineBuffs(ActiveBuff buff) {
+
+        //Обновляем время действия только если новый бафф будет активен дольше.
+        if (buff.duration &gt; this.duration) {
+
+            this.duration = buff.duration;
+        }
+    }
+
+    //Геттеры свойств.
+
+    public int getId() {
+
+        return this.id;
+    }
+
+    public int getDuration() {
+
+        return this.duration;
+    }
+
+    public int getTier() {
+
+        return this.tier;
+    }
+
+    public String getBuffName() {
+
+        return Buff.of(this.id).getName();
+    }
+
+    //Упаковка баффа в NBTTagCompound.
+    public NBTTagCompound saveBuffToNBT(ActiveBuff buff) {
+
+        NBTTagCompound tagCompound = new NBTTagCompound();
+
+        tagCompound.setByte("id", (byte) buff.getId());
+        tagCompound.setByte("tier", (byte) buff.getTier());
+        tagCompound.setInteger("duration", buff.getDuration());
+
+        return tagCompound;
+    }
+
+    //Распаковка баффа из NBTTagCompound.
+    public static ActiveBuff readBuffFromNBT(NBTTagCompound tagCompound) {
+
+        return new ActiveBuff(tagCompound.getByte("id"), tagCompound.getByte("tier"), tagCompound.getInteger("duration"));
+    }
+}
+</code></pre>
+<h2 id="хранение-и-использование">Хранение и использование<a title="Ссылка на этот раздел" href="#хранение-и-использование"><i class="material-icons">link</i></a></h2>
+<p>Все служебные методы разместим в отдельно созданном классе EEP для <code>EntityLivingBase</code>. Это позволит накладывать наши баффы на любые сущности, унаследованные от <code>EntityLivingBase</code> (игрок, животные, монстры). Данный класс будет использоваться для хранения информации об активных эффектах и содержать все служебные методы для работы с ними.</p>
+<p>Создаём класс с интерфейсом IEEP:</p>
+<pre><code class="java language-java">// ru/buffs/main/BuffsLivingBase.java
+
+public class BuffsLivingBase implements IExtendedEntityProperties {
+
+    public final static String EEP_NAME = "BuffsLivingEEP";
+
+    private EntityLivingBase livingBase;//Создаём поле EntityLivingBase.
+
+    private World world;//Создаём поле World для удобства.
+
+    public BuffsLivingBase() {}
+
+    //Для регистрации.
+    public static final void register(EntityLivingBase entity) {
+
+        entity.registerExtendedProperties(BuffsLivingBase.EEP_NAME, new BuffsLivingBase());
+    }
+
+    //Для доступа к EEP.
+    public static final BuffsLivingBase get(EntityLivingBase entityLiving) {
+
+        return (BuffsLivingBase) entityLiving.getExtendedProperties(EEP_NAME);
+    }
+
+    @Override
+    public void saveNBTData(NBTTagCompound mainCompound) {
+
+        //Во избежание конфликтов с другими модами создаём собственный NBTTagCompound.
+        NBTTagCompound buffsCompound = new NBTTagCompound();
+
+        //Все наши данные храним в нашем компаунде.
+
+        //Сохраняем его в общий NBTTagCompound, используя наш уникальный ключ - имя EEP.
+        mainCompound.setTag(EEP_NAME, buffsCompound);
+    }
+
+    @Override
+    public void loadNBTData(NBTTagCompound mainCompound) {
+
+        //Загружаем наш NBTTagCompound.
+        NBTTagCompound buffsCompound = (NBTTagCompound) mainCompound.getTag(EEP_NAME);
+    }
+
+    //Инициализируем наши поля
+    @Override
+    public void init(Entity entity, World world) {
+
+        this.livingBase = (EntityLivingBase) entity;
+
+        this.world = world;
+    }
+
+    //Создаем для них геттеры.
+    public EntityLivingBase getEntityLiving() {
+
+        return this.livingBase;
+    }
+
+    public World getWorld() {
+
+        return this.world;
+    }
+}
+</code></pre>
+<p>Регистрируем его в <code>EntityJoinWorldEvent</code> для всех <code>EntityLivingBase</code>. Конечно вы можете зарегистрировать его только для конкретных сущностей, например только для игрока.</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onEntityConstructing(EntityConstructing event) {
+
+    //Регистрируем EEP для всех entity, которые наследуются от EntityLivingBase.
+    if (event.entity instanceof EntityLivingBase) {
+
+        if (BuffsLivingBase.get((EntityLivingBase) event.entity) == null) {
+
+            BuffsLivingBase.register((EntityLivingBase) event.entity);
+        }
+    }
+}
+</code></pre>
+<p>Создаём карту (<code>HashMap</code>) активных эффектов. В неё будем помещать эффекты (<code>ActiveBuff</code>) в качестве значений и идентификаторы эффектов в качестве ключей. <code>HashMap</code> выбрана потому, что не может содержать два одинаковых ключа-идентификатора. что не позволит нам иметь два одинаковых активных эффекта. Все служебные методы будут работать с ней. Карту необходимо синхронизировать с клиентом, когда игрок заходит в мир (<code>EntityJoinWorldEvent</code>).</p>
+<pre><code class="java language-java">private final Map&lt;Integer, ActiveBuff&gt; activeBuffs = new HashMap&lt;Integer, ActiveBuff&gt;();
+</code></pre>
+<p>Инкапсулируем её для надёжности. Создаём вспомогательные функции для безопасной работы с ней.</p>
+<pre><code class="java language-java">//Проверка наличия эффектов.
+public boolean haveActiveBuffs() {
+
+    return !this.activeBuffs.isEmpty();
+}
+
+//Быстрая проверка на наличие указанного баффа.
+public boolean isBuffActive(int buffId) {
+
+    return this.activeBuffs.containsKey(buffId);
+}
+
+//Возвращает сет ключей-идентификаторов.
+public Set&lt;Integer&gt; activeBuffsIdSet() {
+
+    return this.activeBuffs.keySet();
+}
+
+//Возвращает коллекцию активных баффов (ActiveBuff).
+public Collection&lt;ActiveBuff&gt; activeBuffsCollection() {
+
+    return this.activeBuffs.values();
+}
+
+//Вспомогательный метод для синхронизационного пакета.
+@SideOnly(Side.CLIENT)
+public void putActiveBuffToMap(ActiveBuff buff) {
+
+    this.activeBuffs.put(buff.getId(), buff);
+}
+
+//Вспомогательный метод для пакета удаления эффекта.
+@SideOnly(Side.CLIENT)
+public void removeActiveBuffFromMap(int buffId) {
+
+    this.activeBuffs.remove(buffId);
+}
+
+//Получение активного баффа.
+public ActiveBuff getActiveBuff(int buffId) {
+
+    return this.activeBuffs.get(buffId);
+}
+</code></pre>
+<p>Для хранения данных об эффектах между сессиями нам потребуется использование NBT. Класс с EEP имеет необходимые методы для хранения и загрузки данных, воспользуемся ими.</p>
+<pre><code class="java language-java">@Override
+public void saveNBTData(NBTTagCompound mainCompound) {
+
+    //Во избежание конфликтов с другими модами создаём собственный NBTTagCompound.
+    NBTTagCompound buffsCompound = new NBTTagCompound();
+
+    //Все наши данные храним в нашем компаунде.
+
+    //Проверка карты на наличие баффов.
+    if (this.haveActiveBuffs()) {
+
+        //Создаём NBTTagList, в который запишем все активные баффы.
+        NBTTagList tagList = new NBTTagList();
+
+        //Перебор элементов коллекции активных эффектов.
+        for (ActiveBuff buff : this.activeBuffsCollection()) {
+
+            //Добавляем бафф в NBTTagList. Для этого предварительно упаковываем бафф в NBTTagCompound.
+            tagList.appendTag(buff.saveBuffToNBT(buff));
+        }
+
+        //Сохраняем NBTTagList в NBTTagCompound.
+        buffsCompound.setTag("buffs", tagList);
+    }
+
+    //Сохраняем его в общий NBTTagCompound, используя наш уникальный ключ - имя EEP.
+    mainCompound.setTag(EEP_NAME, buffsCompound);
+}
+
+@Override
+public void loadNBTData(NBTTagCompound mainCompound) {
+
+    //Загружаем наш NBTTagCompound.
+    NBTTagCompound buffsCompound = (NBTTagCompound) mainCompound.getTag(EEP_NAME);
+
+    //Проверяем, содержит ли NBT данные с указанным ключём. Второй параметр, цифра 9 - идентификатор типа NBTBase, в данном случае NBTTagList.
+    if (buffsCompound.hasKey("buffs", 9)) {
+
+        //Достаём NBTTagList из NBT.
+        NBTTagList tagList = buffsCompound.getTagList("buffs", 10);//10 для NBTTagCompound.
+
+        //Цикл, длиной равный кол-ву элементов в NBTTagList.
+        for (int i = 0; i &lt; tagList.tagCount(); ++i) {
+
+            //Получаем NBTTagCompound по текущему номеру операции в цикле.
+            NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+
+            //Распаковываем бафф из NBTTagCompound.
+            ActiveBuff buff = ActiveBuff.readBuffFromNBT(tagCompound);
+
+            if (buff != null) {
+
+                //Добавляем в карту активных баффов используя идентификатор как ключ и распакованный бафф как значение.
+                this.activeBuffs.put(buff.getId(), buff);
+            }
+        }
+    }
+}
+</code></pre>
+<p>Напишем функцию, обрабатывающую активные эффекты. Она вызывает метод <code>updateBuff()</code> из класса активного эффекта (<code>ActiveBuff</code>), который в свою очередь вызывает метод <code>onActive()</code> из основного класса (<code>Buff</code>) и декрементит оставшееся время действия. Его необходимо вызывать из цикла обновления сущностей для <em><em>обеих</em></em> сторон (<code>LivingUpdateEvent</code>). Обновление эффектов будет происходить для обеих сторон, удалять истёкшие эффекты будем на сервере, игроку дополнительно будем отправлять пакет для удаления его эффектов.</p>
+<pre><code class="java language-java">public void updateBuffs() {
+
+    //Проверка наличия активных баффов.
+    if (this.haveActiveBuffs()) {
+
+        //Итератор по идентификаторам.
+        Iterator buffsIterator = this.activeBuffsIdSet().iterator();
+
+        while (buffsIterator.hasNext()) {
+
+            int buffId = (Integer) buffsIterator.next();
+
+            //Достаём бафф из карты используя идентификатор.
+            ActiveBuff buff = this.getActiveBuff(buffId);
+
+            //Вызов метода обновления баффа и одновременно проверка на истечения времени действия.
+            if (!buff.updateBuff(this.livingBase, this.world)) {
+
+                if (!this.world.isRemote) {
+
+                    //Снимаем эффект.
+                    Buff.of(buffId).removeBuffEffect(this.livingBase, this.world, buff);
+
+                    if (this.livingBase instanceof EntityPlayer) {
+
+                        //Удаляем бафф с игрока на клиенте.
+                        NetworkHandler.sendTo(new RemoveBuff(buffId), (EntityPlayerMP) this.livingBase);
+                    }
+
+                    //Удаляем на сервере.
+                    buffsIterator.remove();
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p>В пакете отправляем идентификатор эффекта для удаления и на клиенте удаляем:</p>
+<pre><code class="java language-java">IBuffs buffs = player.getCapability(BuffsProvider.BUFFS_CAP, null);
+
+if (buffs.isBuffActive(this.buffId)) {
+
+    buffs.removeActiveBuffFromMap(this.buffId);;
+}
+</code></pre>
+<p>Добавление эффекта ентити. Для вызова получаем EEP. В качестве параметра передаём новый экземпляр активного эффекта (<code>ActiveBuff</code>). Если эффект с таким же идентификатором уже активен, происходит комбинирование эффектов.</p>
+<pre><code class="java language-java"> public void addBuff(ActiveBuff buff) {
+
+    //Проверка наличия баффа с идентичным идентификатором.
+    if (this.isBuffActive(buff.getId())) {
+
+        //Если такой есть, достаем бафф из карты и сверяем уровни.
+        //Если уровни совпадают, комбинируем (просто присваеваем активному баффу время действия добовляемого).
+        //Если не совпадают, то во избежание сбоев при удалении эффекта (к примеру с атрибутами) по истечению времени
+        //действия удаляем активный бафф и добавляем новый другого уровня.
+
+        ActiveBuff activeBuff = this.getActiveBuff(buff.getId());
+
+        if (activeBuff.getTier() == buff.getTier()) {
+
+            activeBuff.combineBuffs(buff);
+
+            if (livingBase instanceof EntityPlayer) {
+
+                if (!livingBase.world.isRemote) {
+
+                    //Уедомляем игрока если бафф был добавлен на сервере.
+                    NetworkHandler.sendTo(new SyncBuff(activeBuff), (EntityPlayerMP) livingBase);
+                }
+            }
+        }
+
+        else {
+
+            this.removeBuff(activeBuff.getId());
+
+            this.activeBuffs.put(buff.getId(), buff);
+
+            Buff.of(buff.getId()).applyBuffEffect(this.livingBase, this.world, buff);
+
+            if (livingBase instanceof EntityPlayer) {
+
+                if (!livingBase.world.isRemote) {
+
+                    //Синхронизируем бафф игрока с клиентом если бафф был добавлен на сервере.
+                    NetworkHandler.sendTo(new SyncBuff(buff), (EntityPlayerMP) livingBase);
+                }
+            }
+        }
+    }
+
+    else {
+
+        //Если баффа нет, добавляем в карту.
+        this.activeBuffs.put(buff.getId(), buff);
+
+        //Применяем эффект баффа.
+        Buff.of(buff.getId()).applyBuffEffect(this.livingBase, this.world, buff);
+
+         if (livingBase instanceof EntityPlayer) {
+
+             if (!livingBase.world.isRemote) {
+
+                 //Синхронизируем бафф игрока с клиентом если бафф был добавлен на сервере.
+                 NetworkHandler.sendTo(new SyncBuff(buff), (EntityPlayerMP) livingBase);
+             }
+         }
+    }
+}
+
+//Удаляем бафф и его эффект. Нужен так же для внешнего удаления баффа с флагом isPersistent.
+public void removeBuff(int buffId) {
+
+    if (this.isBuffActive(buffId)) {
+
+        ActiveBuff activeBuff = this.getActiveBuff(buffId);
+
+        Buff.of(buffId).removeBuffEffect(this.livingBase, this.world, activeBuff);
+
+        this.activeBuffs.remove(buffId);
+
+        if (livingBase instanceof EntityPlayer) {
+
+            if (!livingBase.world.isRemote) {
+
+                //Уведомляем игрока об удалении баффа если удаление произошло на сервере.
+                NetworkHandler.sendTo(new RemoveBuff(buffId), (EntityPlayerMP) livingBase);
+            }
+        }
+    }
+}
+</code></pre>
+<p>Дополнительно создадим метод для удаления всех активных эффектов. Добавим ему параметр, который будет отвечать за "режим" очистки. Предположим мы хотим удалять эффекты при смерти (только для игрока), но некоторые могут иметь флаг сохранения <code>keepOnDeath</code> или постоянства <code>isPersistent</code>, такие эффекты не удаляются. Вызов этого метода с параметром true удалит только удаляемые эффекты, <code>false</code> очистит активные эффекты полностью.</p>
+<pre><code class="java language-java">public void clearBuffs(boolean onDeath) {
+
+    if (this.haveActiveBuffs()) {
+
+        Iterator buffsIterator = this.activeBuffsIdSet().iterator();
+
+        while (buffsIterator.hasNext()) {
+
+            int buffId = (Integer) buffsIterator.next();
+
+            ActiveBuff buff = this.getActiveBuff(buffId);
+
+            if (!this.world.isRemote) {                                    
+
+                //Сохранение баффов при смерти доступно только для игрока.
+                if (this.livingBase instanceof EntityPlayer) {
+
+                    //В зависимости от переданного параметра удаляются либо все эффекты, либо только те, которые не сохраняются при смерти.
+                    if (onDeath) {
+
+                        //Удаляем баффы без флага keepOnDeath и isPersistent.
+                        if (!Buff.of(buffId).shouldKeepOnDeath() &amp;&amp; !Buff.of(buffId).isPersistent()) {
+
+                            //Удаляем эффект баффа.
+                            Buff.of(buffId).removeBuffEffect(this.livingBase, this.world, buff);
+
+                            //Удаляем бафф на серверной стороне.
+                            buffsIterator.remove();
+                        }
+                    }
+
+                    else {                                
+
+                        //Если очистка производится по иным причинам, удаляем всё.
+
+                        Buff.of(buffId).removeBuffEffect(this.livingBase, this.world, buff);
+
+                        NetworkHandler.sendTo(new RemoveBuff(buffId), (EntityPlayerMP) this.livingBase);
+
+                        buffsIterator.remove();
+                    }
+                }
+
+                else {
+
+                    //С других ентити снимаем все в любом случае.
+
+                    Buff.of(buffId).removeBuffEffect(this.livingBase, this.world, buff);
+
+                    buffsIterator.remove();
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="события">События<a title="Ссылка на этот раздел" href="#события"><i class="material-icons">link</i></a></h2>
+<p>Для игрока требуется синхронизация активных эффектов (например для визуализации). При смерти игрока эффекты должны сбрасываться и наконец необходимо впихнуть главный метод <code>updateBuffs()</code> в цикл обновления <code>LivingUpdateEvent</code>. Кроме того эффекты должны переносится в новую сущность игрока при смерти и перемещении между мирами. Нам потребуется использовать события.</p>
+<p>Создаём класс, в котором будем работать с событиями.</p>
+<pre><code class="java language-java">// ru/buffs/events/BuffsEvents.java
+
+public class BuffsEvents {
+
+    //Регистрация EEP.
+    @SubscribeEvent
+    public void onEntityConstructing(EntityConstructing event) {
+
+        //Регистрируем EEP для всех entity, которые наследуются от EntityLivingBase.
+        if (event.entity instanceof EntityLivingBase) {
+
+            if (BuffsLivingBase.get((EntityLivingBase) event.entity) == null) {
+
+                BuffsLivingBase.register((EntityLivingBase) event.entity);
+            }
+        }
+    }
+
+    //Синхронизация баффов игрока при входе в мир.
+    @SubscribeEvent
+    public void onEntityJoinWorld(EntityJoinWorldEvent event) {
+
+        if (event.entity instanceof EntityPlayer) {
+
+            if (!event.entity.worldObj.isRemote) {
+
+                EntityPlayer player = (EntityPlayer) event.entity;
+
+                BuffsLivingBase eLivingBase = BuffsLivingBase.get(player);//Получении EEP с эффектами для игрока.
+
+                //Проверка карты на наличие баффов.
+                if (eLivingBase.haveActiveBuffs()) {
+
+                    //Перебор элементов коллекции активных эффектов.
+                    for (ActiveBuff buff : eLivingBase.activeBuffsCollection()) {
+
+                        //Синхронизируем бафф с клиентом.
+                        NetworkHandler.sendTo(new SyncBuff(buff), (EntityPlayerMP) player);
+                    }
+                }
+            }
+        }
+    }
+
+    //Вызов метода обновления эффектов всех ентити.
+    @SubscribeEvent
+    public void onPlayerUpdate(LivingUpdateEvent event) {
+
+        if (event.entityLiving instanceof EntityLivingBase) {
+
+            BuffsLivingBase.get(event.entityLiving).updateBuffs();
+        }
+    }
+
+    //В случае смерти игрока снимаем все удаляемые эффекты.
+    @SubscribeEvent
+    public void onLivingDeath(LivingDeathEvent event) {
+
+        if (event.entityLiving instanceof EntityPlayer) {
+
+            if (!event.entityLiving.worldObj.isRemote) {
+
+                //Вызываем метод удаления баффов.
+                BuffsLivingBase.get(event.entityLiving).clearBuffs(true);
+            }
+        }
+    }
+
+    //В случае смерти или переходе между мирами загружаем наши эффекты для новой сущности игрока.
+    @SubscribeEvent
+    public void onPlayerClone(PlayerEvent.Clone event) {
+
+        BuffsLivingBase eLivingBase = BuffsLivingBase.get(event.entityPlayer);
+
+        NBTTagCompound tagCompound = new NBTTagCompound();
+
+        BuffsLivingBase.get(event.original).saveNBTData(tagCompound);
+        eLivingBase.loadNBTData(tagCompound);
+    }
+}
+</code></pre>
+<p>В пакете синхронизации на сервере получаем описание эффекта:</p>
+<pre><code class="java language-java">private byte buffId, buffTier;
+
+private int buffDuration;
+
+public SyncBuff(EntityPlayer player, ActiveBuff buff) {
+
+    //Разбираем бафф на сервере и отправляем описание на клиент.            
+    this.buffId = (byte) buff.getId();
+    this.buffTier = (byte) buff.getTier();
+
+    this.buffDuration = buff.getDuration();
+}
+</code></pre>
+<p>На клиентской создаём и добавляем игроку:</p>
+<pre><code class="java language-java">IBuffs buffs = player.getCapability(BuffsProvider.BUFFS_CAP, null);
+
+buffs.putActiveBuffToMap(new ActiveBuff(this.buffId, this.buffTier, this.buffDuration));
+</code></pre>
+<p>Не забываем зарегистрировать наш класс с событиями в главном классе вашего проекта в <code>FMLInitializationEvent</code>.</p>
+<pre><code class="java language-java">@EventHandler
+public void init(FMLInitializationEvent event) {
+
+    MinecraftForge.EVENT_BUS.register(new BuffsEvents());
+}
+</code></pre>
+<h2 id="визуализация-активных-эффектов">Визуализация активных эффектов<a title="Ссылка на этот раздел" href="#визуализация-активных-эффектов"><i class="material-icons">link</i></a></h2>
+<p>Отлично, проделано много работы, а ~~потрогать~~ посмотреть всё ещё не на что. Прежде чем мы начнём создавать свои эффекты давайте добавим визуализацию для игрока. Класс, представленный ниже отвечает за отрисовку эффектов в оверлее. Иконки баффов, оставшееся время и уровень будут рисоваться в правом нижнем углу снизу вверх.</p>
+<pre><code class="java language-java">// ru/buffs/gui/BuffsOverlay.java
+
+public class BuffsOverlay {
+
+    private static BuffsOverlay instance = new BuffsOverlay();
+
+    private static Minecraft mc = Minecraft.getMinecraft();
+
+    //Указываем путь к файлу иконок и действительное название.
+    private static final ResourceLocation buffIcons = new ResourceLocation(BuffsMain.MODID, "textures/gui/buffIcons.png");
+
+    private BuffsOverlay() {}
+
+    public static BuffsOverlay getInstance() {
+
+        return instance;
+    }
+
+    public void renderBuffs() {
+
+        if (this.mc.inGameHasFocus) {
+
+            EntityPlayer player = this.mc.thePlayer;
+
+            BuffsLivingBase eLivingBase = BuffsLivingBase.get(player);
+
+            ScaledResolution scaledResolution = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
+
+            int
+            i = scaledResolution.getScaledWidth() / 2 + 240,
+            j = scaledResolution.getScaledHeight() - 30,
+            counter = 0,
+            index = 0;
+
+            if (eLivingBase.haveActiveBuffs()) {
+
+                //Перебор элементов коллекции активных эффектов.
+                for (ActiveBuff buff : eLivingBase.activeBuffsCollection()) {
+
+                    index = Buff.of(buff.getId()).getIconIndex();
+
+                    counter++; 
+
+                    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    GL11.glDisable(GL11.GL_LIGHTING); 
+                    GL11.glEnable(GL11.GL_BLEND);
+
+                    GL11.glPushMatrix();
+
+                    GL11.glTranslatef(i + 5, j + 25 - 24 * counter, 0.0F);
+                    GL11.glScalef(0.5F, 0.5F, 0.5F);
+
+                    this.mc.getTextureManager().bindTexture(buffIcons);
+                    this.drawTexturedRect(0, 0, index % 8 * 32, index / 8 * 32, 32, 32, 32, 32); //Рендерим иконку.
+
+                    GL11.glPopMatrix();
+
+                    GL11.glPushMatrix();
+
+                    GL11.glTranslatef(i + 15, j + 42 - 24 * counter, 0.0F);               
+                    GL11.glScalef(0.7F, 0.7F, 0.7F);
+
+                    int durLength = Buff.of(buff.getId()).getDurationForDisplay(buff).length();
+
+                    this.mc.fontRenderer.drawStringWithShadow(Buff.of(buff.getId()).getDurationForDisplay(buff), - durLength * 3, 0, 8421504);//Рендерим оставшееся время действия.
+
+                    String tier = "";
+
+                    if (buff.getTier() == 0) {
+
+                        tier = "I";
+                    }
+
+                    else if (buff.getTier() == 1) {
+
+                        tier = "II";
+                    }
+
+                    else if (buff.getTier() == 2) {
+
+                        tier = "III";
+                    }
+
+                    this.mc.fontRenderer.drawStringWithShadow(tier, 7 - tier.length() * 3, - 23, 8421504);//И уровень эффекта.
+
+                    GL11.glPopMatrix();
+
+                    GL11.glDisable(GL11.GL_BLEND);                                
+                    GL11.glEnable(GL11.GL_LIGHTING);
+                }
+            }
+        }
+    }
+
+    private void drawTexturedRect(int x, int y, int u, int v, int width, int height, int textureWidth, int textureHeight) {
+
+        float f = 1.0F / (float) textureWidth;
+        float f1 = 1.0F / (float) textureHeight;
+
+        Tessellator tessellator = Tessellator.instance;
+
+        tessellator.startDrawingQuads();
+
+        tessellator.addVertexWithUV((double) (x), (double) (y + height), 0, (double) ((float) (u) * f), (double) ((float) (v + height) * f1));
+        tessellator.addVertexWithUV((double) (x + width), (double) (y + height), 0, (double) ((float) (u + width) * f), (double) ((float) (v + height) * f1));
+        tessellator.addVertexWithUV((double) (x + width), (double) (y), 0, (double) ((float) (u + width) * f), (double) ((float) (v) * f1));
+        tessellator.addVertexWithUV((double) (x), (double) (y), 0, (double) ((float) (u) * f), (double) ((float) (v) * f1));
+
+        tessellator.draw();
+    }
+}
+</code></pre>
+<p>Вызывать рендер будем с помощью события RenderGameOverlay.Post. Добавим это в наш класс с событиями.</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onRenderOverlay(RenderGameOverlayEvent.Post event) {
+
+    if (event.type == ElementType.CHAT) {
+
+        BuffsOverlay.getInstance().renderBuffs();
+    }
+}
+</code></pre>
+<p>Пример текстуры, добавьте её в нужную директорию. Или нарисуйте свою.</p>
+<p><img src="images/buff.png" alt="Иконка тестового бафа" /></p>
+<p>Вы можете реализовать визуализацию как угодно и где угодно.</p>
+<h2 id="создание-тестового-эффекта">Создание тестового эффекта<a title="Ссылка на этот раздел" href="#создание-тестового-эффекта"><i class="material-icons">link</i></a></h2>
+<p>Ну вот, надеюсь вы ~~скопипастили~~ написали всё правильно. Теперь можно проверить работоспособность. Создадим пустой эффект и добавим его игроку.</p>
+<p>Объявляем и создаём экземпляр объекта Buff в нём же. Опишем его свойства.</p>
+<pre><code class="java language-java">public static final Buff
+testBuff = new Buff().setName("buff.testBuff").setIconIndex(0, 0).keepOnDeath();
+</code></pre>
+<p>Допустим мы хотим добавлять игроку этот эффект когда он прыгает. В класс с событиями добавим следующий метод:</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onJump(LivingJumpEvent event) {
+
+    if (event.entityLiving instanceof EntityPlayer) {
+
+    BuffsLivingBase eLivingBase = BuffsLivingBase.get((EntityPlayer) event.entityLiving);
+
+        //Добавляем наш эффект длительностью 300 тиков (15 секунд).
+        eLivingBase .addBuff(new ActiveBuff(Buff.testBuff.id, 300));
+    }
+}
+</code></pre>
+<p>Ничего сложного, да? Заходим в игру и… прыгаем. Если в правом нижнем углу что то появилось - это успех! Эффект будет обновлять время действия (комбинироваться) при каждом прыжке и сохраняться при смерти. И хоть он пользы от него никакой, этот пример наглядно демонстрирует результат проделанной работы.</p>
+<p><img src="images/test-effect-demo.png" alt="Демонстрация работы тестового эффекта" /></p>
+<h2 id="тест-эффекта-на-мобе">Тест эффекта на мобе<a title="Ссылка на этот раздел" href="#тест-эффекта-на-мобе"><i class="material-icons">link</i></a></h2>
+<p>Так, с игроком вроде всё ясно. А что насчёт мобов? Добавление эффектов мобам ничем не отличается.</p>
+<p>Давайте создадим эффект, который будет отравлять любую сущность (<code>EntityLivingBase</code>) на 1 единицу здоровья каждю секунду. В <code>Buff</code>:</p>
+<pre><code class="java language-java">public static final Buff
+intoxicationBuff = new Buff().setName("buff.intoxicationBuff").setIconIndex(5, 0);
+
+protected void onActive(EntityLivingBase entityLivingBase, World world, ActiveBuff buff) {
+
+    int
+    tier = buff.getTier(),
+    duration = buff.getDuration();
+
+    if (this.id == intoxicationBuff.id) {
+
+        if (entityLivingBase.getHealth() &gt; 1.0F) {
+
+            entityLivingBase.attackEntityFrom(DamageSource.magic, 1.0F);
+        }
+    }
+}
+
+protected boolean isReady(ActiveBuff buff) {
+
+    int
+    tier = buff.getTier(),
+    duration = buff.getDuration();
+
+    if (this.id == intoxicationBuff.id) {
+
+        return duration % 20 == 0;
+    }
+
+    return false;
+}
+</code></pre>
+<p>Обновим файл с иконками:</p>
+<p><img src="images/bufficons.png" alt="Обновленный файл с текстурами иконок" /></p>
+<p>Меняем размеры изображения (<code>BuffOverlay#renderBuffs()</code>):</p>
+<pre><code class="java language-java">//Размер изображения с иконками теперь 64*32.
+this.drawTexturedRect(i + 5, j + 25 - 22 * counter, index % 8 * 32, index / 8 * 32, 32, 32, 64, 32);
+</code></pre>
+<p>Пусть эффект накладывается на мобов (и игроков) при атаках гнилой плотью:</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onPlayerAttack(AttackEntityEvent event) {
+
+       if (!event.entity.worldObj.isRemote) {
+
+           if (event.target instanceof EntityLivingBase) {
+
+               if (event.entityPlayer.getCurrentEquippedItem() != null &amp;&amp; event.entityPlayer.getCurrentEquippedItem().getItem() == Items.rotten_flesh) {
+
+                   BuffsLivingBase eEntityLiving = BuffsLivingBase.get((EntityLivingBase) event.target);
+
+                   //Отравление на 5 секунд.
+                   eEntityLiving.addBuff(new ActiveBuff(Buff.intoxicationBuff.id, 100));
+               }
+           }
+       }
+   }
+</code></pre>
+<p>Заходим и лупим по кому попадём. Эффект покажет себя характерным покраснением моба и звуком каждую секунду.</p>
+
+    </div>
+
+    <section class="next-previous-articles">
+
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.7.10&#x2F;forge&#x2F;base&#x2F;first_steps">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
+                <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
+            </svg>
+            <span class="label">Предыдущая статья</span>
+        </a>
+
+        <div class="sep"></div>
+
+        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.7.10&#x2F;forge&#x2F;other&#x2F;access_transformers">
+            <span class="label">Следующая статья</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
+                <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
+            </svg>
+        </a>
+
+    </section>
+
+    <section class="contributors">
+
+
+            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">CMTV</div>
+
+                    <div class="role">Перенес с форума</div>
+
+                </div>
+
+            </a>
+
+
+    </section>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.7.10/forge/advanced/buffs';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+    <div class="site-info">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/commits/master" target="_blank" class="copyright">mcmodding.ru</a>
+
+        <a class="version-link" title="Последние изменения" href="https://github.com/mc-modding/mc-modding-book/commits/master" target="_blank">v1.1.1</a>
+
+    </div>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>
