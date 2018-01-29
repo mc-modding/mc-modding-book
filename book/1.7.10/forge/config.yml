@@ -4,4 +4,5 @@ api-name: Forge
 # Categories order
 categories-order:
   - base
+  - advanced
   - other
