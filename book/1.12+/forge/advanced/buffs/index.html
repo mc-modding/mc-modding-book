@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Система временных эффектов - Minecraft Modding</title>
+
+<meta charset="UTF-8">
+
+<link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
+
+<meta name="description" content="В данном туториале описан процесс создания собственной системы временных эффектов (баффов), которая будет работать со всеми существами(наследниками EntityLivingBase). Работают они так же, как и ванильные эффекты зелий, однако имеют ряд улучшений и оптимизаций.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<meta property="og:title"       content="Система временных эффектов - Minecraft Modding">
+<meta property="og:description" content="В данном туториале описан процесс создания собственной системы временных эффектов (баффов), которая будет работать со всеми существами(наследниками EntityLivingBase). Работают они так же, как и ванильные эффекты зелий, однако имеют ряд улучшений и оптимизаций.">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/advanced/buffs">
+<meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
+<!-- jQuery -->
+<script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
+
+<!-- Hammer.js -->
+<script src="http://mcmodding.ru/libs/hammer/hammer.min.js"></script>
+
+<!-- Include scrollbar width in site width -->
+<script src="http://mcmodding.ru/libs/mq.genie/mq.genie.min.js"></script>
+
+<!-- highlight.js -->
+<link href="http://mcmodding.ru/libs/highlight/styles/idea.css" rel="stylesheet">
+<style>
+    pre code.hljs {
+        display: block;
+    }
+
+    code.hljs {
+        display: inline;
+    }
+</style>
+<script src="http://mcmodding.ru/libs/highlight/highlight.pack.js"></script>
+<script>
+    $(() => {
+        $('pre code').each( (i, element) => {
+            hljs.highlightBlock(element);
+        });
+    });
+</script>
+
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.css">
+<script src="http://mcmodding.ru/libs/magnific-popup/magnific-popup.min.js"></script>
+<script>
+    $(() => {
+        $('article .inner').magnificPopup({
+            delegate: 'img',
+            type: 'image',
+            callbacks: {
+                elementParse: (item) => { item.src = item.el.attr('src'); }
+            }
+        });
+    });
+</script>
+
+<!-- Snap.svg -->
+<script src="http://mcmodding.ru/libs/snap.svg/snap.svg-min.js"></script>
+<!-- Global CSS -->
+<link href="http://mcmodding.ru/g-styles/global.min.css" rel="stylesheet">
+
+<!-- Book CSS -->
+<link href="http://mcmodding.ru/book/styles/book.min.css" rel="stylesheet">
+
+<!-- Book JS -->
+<script>
+    let book_id = '1.12+-forge';
+</script>
+<script src="http://mcmodding.ru/book/scripts/book.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="inner">
+
+        <div class="site-menu show-book-nav">
+            <div title="Оглавление учебника" class="menu-item">
+                <i class="material-icons">menu</i>
+            </div>
+        </div>
+
+        <div id="logotype">
+            <div class="cube">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+            </div>
+        </div>
+
+        <div class="site-info">
+            <div class="title">Minecraft Modding</div>
+            <div class="description">Учебник по созданию Minecraft модов</div>
+        </div>
+
+        <div class="site-menu show-menu">
+            <div class="menu-item">
+                <i title="Меню сайта" class="material-icons">more_horiz</i>
+            </div>
+        </div>
+
+        <div class="site-menu transformable">
+
+            <a href="http://mcmodding.ru" title="Главная" class="menu-item">
+                <i class="material-icons">home</i><span>Главная</span>
+            </a>
+
+            <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" title="Учебник" class="menu-item">
+                <i class="material-icons">import_contacts</i><span>Учебник</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru/newthread.php?fid=23" target="_blank" title="Спросить" class="menu-item">
+                <i class="material-icons">help_outline</i><span>Спросить</span>
+            </a>
+
+            <a href="http://forum.mcmodding.ru" target="_blank" title="Форум" class="menu-item">
+                <i class="material-icons">forum</i><span>Форум</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+<nav>
+
+    <div class="inner">
+
+        <section class="book-choose">
+
+
+                <div class="version-choose">
+                    <label>Версия:
+                        <select onChange="window.location.href=this.value">
+
+                                <optgroup label="Релиз">
+                                        <option value="http://mcmodding.ru/book/1.12+/forge/prep/install" selected>1.12+</option>
+                                        <option value="http://mcmodding.ru/book/1.11+/forge/prep/install" >1.11+</option>
+                                        <option value="http://mcmodding.ru/book/1.7.10/forge/base/first_steps" >1.7.10</option>
+                                </optgroup>
+
+
+
+                        </select>
+                    </label>
+                </div>
+
+
+            <div class="api-choose">
+                <label>API:
+                    <select onChange="window.location.href=this.value">
+                            <option value="http://mcmodding.ru/book/1.12+/forge/prep/install" selected>Forge</option>
+                    </select>
+                </label>
+            </div>
+
+        </section>
+
+        <div class="categories">
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" class="category-article ">Подготовка</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-0 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" class="article ">Установка программ</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/setup_idea" class="article ">Использование Idea</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/off_skin" class="article ">Собственный скин</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/problems" class="article ">Решение проблем</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="category-article ">Основы Forge</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-1 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_structure" class="article ">Структура мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/mod_annotation" class="article ">Аннотация @Mod</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/loading_stages" class="article ">Стадии загрузки мода</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/proxy" class="article ">Прокси</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/base/build_mod" class="article ">Сборка мода</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article ">Предметы</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-2 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты и меч</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка инструментов</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/armor" class="article ">Броня</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/metadata" class="article ">Метадата</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/nbt" class="article ">Хранение в предмете</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/loot" class="article ">Система лута</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/rarity" class="article ">Редкость предметов</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/block/base" class="category-article ">Блоки</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-3 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/creativetab/base" class="category-article ">Вкладка в креативе</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-4 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/lang/base" class="category-article ">Локализация</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-5 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="category-article ">События</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-6 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/base" class="article ">Использование событий</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/events/table" class="article ">Таблица событий</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/craftsmeltingandbrewing/craft" class="category-article ">Рецепты</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-7 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/achievements/prep" class="category-article ">Достижения</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-8 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/achievements/prep" class="article ">Начало</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/achievements/base" class="article ">Создание достижения</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/achievements/recipes" class="article ">Получение рецептов</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/advanced/layers" class="category-article selected">Продвинутые статьи</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-9 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/advanced/layers" class="article ">Слои</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/advanced/keybinds" class="article ">Привязка клавиш</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/advanced/buffs" class="article selected">Система временных эффектов</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="category">
+
+                    <div class="category-header">
+                        <a href="http://mcmodding.ru/book/1.12+/forge/other/sources" class="category-article ">Дополнительно</a>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-10 closed" width="16" height="16" viewBox="0 0 512 512">
+                            <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
+                            <rect class="vertical-rect"   x="192" y="0" width="128" height="512" rx="15" ry="15"/>
+                        </svg>
+                    </div>
+
+                    <div class="category-articles">
+                            <a href="http://mcmodding.ru/book/1.12+/forge/other/sources" class="article ">Исходники Minecraft</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/other/jei_integration" class="article ">Интеграция с Just Enough Items</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/other/access_transformers" class="article ">Access Transformers</a>
+                    </div>
+
+                </div>
+                <hr>
+        </div>
+
+        <section class="ad-after-nav">
+
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- MCModding Book - Реклама под навигацией -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8094912170389944"
+                 data-ad-slot="5398483104"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        </section>
+
+    </div>
+
+</nav><article>
+
+    <div class="inner">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/advanced/buffs/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+
+        <h1 id="система-временных-эффектов">Система временных эффектов<a title="Ссылка на этот раздел" href="#система-временных-эффектов"><i class="material-icons">link</i></a></h1>
+<p>Автор данной статьи — <a href="https://forum.mcmodding.ru/members/austeretony.7279/" target="_blank">AustereTony</a>.</p>
+<p>Исходники можно посмотреть в <a href="https://github.com/AustereTony/Buffs" target="_blank">GitHub репозитории</a>.</p>
+<p>Здравствуйте. В данном туториале я опишу процесс создания собственной системы временных эффектов (баффов), которая будет работать со всеми существами(наследниками EntityLivingBase).</p>
+<p>Работают они так же, как и ванильные эффекты зелий, однако имеют ряд улучшений и оптимизаций. В первую очередь статья будет полезна тем, кому требуется возможность создавать множество эффектов с полным контролем над ними.</p>
+<p>Данная статья является доработкой <a href="http://mcmodding.ru/book/1.7.10/forge/advanced/buffs/" target="_blank">аналогичной статьи</a> для версии 1.7.10 до версий 1.12+.</p>
+<p>Для этой версии нам придётся заменить EEP на Capabilities и подправить пару функций и ещё по мелочам.</p>
+<h2 id="изменения-в-основе">Изменения в основе<a title="Ссылка на этот раздел" href="#изменения-в-основе"><i class="material-icons">link</i></a></h2>
+<p>Основа в виде <code>Buff</code> и <code>ActiveBuff</code> осталась без изменений, смотрите для 1.7.10. Дублировать их тут не буду.</p>
+<h2 id="изменения-в-использовании">Изменения в использовании<a title="Ссылка на этот раздел" href="#изменения-в-использовании"><i class="material-icons">link</i></a></h2>
+<p>Для добавления сущностям кастомных свойств теперь используются Capabilities. Для хранения и работы снашей системой нам придётся создать капу.</p>
+<p>Первым делом создаём интерфейс и объявляем методы, которые нам потребуются. Почти все они аналогичны 1.7.10. Изменения коснулись только функций, работающих с объектом сущности. Если раньше EEP предоставляло им сущность, получаемую при регистрации, теперь нам предётся передовать её вручную.</p>
+<pre><code class="java language-java">// ru/buffs/entity/IBuffs.java
+
+public interface IBuffs {
+
+    //Проверка наличия эффектов.
+    boolean haveActiveBuffs();
+
+    //Быстрая проверка на наличие указанного баффа.
+    boolean isBuffActive(int buffId);
+
+    //Возвращает сет ключей-идентификаторов.
+    Set&lt;Integer&gt; activeBuffsIdSet();
+
+    //Возвращает коллекцию активных баффов (ActiveBuff).
+    Collection&lt;ActiveBuff&gt; activeBuffsCollection();
+
+    //Вспомогательный метод для синхронизационного пакета.
+    void putActiveBuffToMap(ActiveBuff buff);
+
+    //Вспомогательный метод для пакета удаления эффекта.
+    void removeActiveBuffFromMap(int buffId);
+
+    //Копирование баффов из коллекции.
+    void copyActiveBuffs(Collection&lt;ActiveBuff&gt; collection);
+
+    //Получение активного баффа.
+    ActiveBuff getActiveBuff(int buffId);
+
+    //Добавление баффа ентити.
+    void addBuff(ActiveBuff buff, EntityLivingBase livingBase);
+
+    //Удаляем бафф и его эффект. Нужен так же для внешнего удаления баффа с флагом isPersistent.
+    void removeBuff(EntityLivingBase livingBase, int buffId);
+
+    //Метод для очищения активных баффов. Вызывается либо для полной очистки эффектов, либо при смерти.
+    void clearBuffs(EntityLivingBase livingBase, boolean onDeath);
+
+    //Метод обновления активных баффов. Вызывается в LivingUpdateEvent для EntityLivingBase на обеих сторонах.
+    void updateBuffs(EntityLivingBase livingBase);
+}
+</code></pre>
+<p>Теперь объект, предоставляющий реализацию. Реализация ничуть не изменилась. Подробности смотрите для 1.7.10.</p>
+<pre><code class="java language-java">// ru/buffs/entity/Buffs.java
+
+public class Buffs implements IBuffs {
+
+    //Карта активных баффов, которые имеет ентити. В качестве ключа используется идентификатор баффа,
+    //а значением является экземпляр класса ActiveBuff, описывающий идентификатор, уровень и продолжительность эффекта.
+    private final Map&lt;Integer, ActiveBuff&gt; activeBuffs = new HashMap&lt;Integer, ActiveBuff&gt;();
+
+    @Override
+    public boolean haveActiveBuffs() {
+
+        return !this.activeBuffs.isEmpty();
+    }
+
+    @Override
+    public boolean isBuffActive(int buffId) {
+
+        return this.activeBuffs.containsKey(buffId);
+    }
+
+    @Override
+    public Set&lt;Integer&gt; activeBuffsIdSet() {
+
+        return this.activeBuffs.keySet();
+    }
+
+    @Override
+    public Collection&lt;ActiveBuff&gt; activeBuffsCollection() {
+
+        return this.activeBuffs.values();
+    }
+
+    @Override
+    public void putActiveBuffToMap(ActiveBuff buff) {
+
+        this.activeBuffs.put(buff.getId(), buff);
+    }
+
+    @Override
+    public void removeActiveBuffFromMap(int buffId) {
+
+        this.activeBuffs.remove(buffId);
+    }
+
+    @Override
+    public void copyActiveBuffs(Collection&lt;ActiveBuff&gt; collection) {
+
+        for (ActiveBuff buff : collection) {
+
+            this.activeBuffs.put(buff.getId(), buff);
+        }
+    }
+
+    @Override
+    public ActiveBuff getActiveBuff(int buffId) {
+
+        return this.activeBuffs.get(buffId);
+    }
+
+    @Override
+    public void addBuff(ActiveBuff buff, EntityLivingBase livingBase) {
+
+        //Проверка наличия баффа с идентичным идентификатором.
+        if (this.isBuffActive(buff.getId())) {
+
+            //Если такой есть, достаем бафф из карты и сверяем уровни.
+            //Если уровни совпадают, комбинируем (просто присваеваем активному баффу время действия добовляемого).
+            //Если не совпадают, то во избежание сбоев при удалении эффекта (к примеру с атрибутами) по истечению времени
+            //действия удаляем активный бафф и добавляем новый другого уровня.
+
+            ActiveBuff activeBuff = this.getActiveBuff(buff.getId());
+
+            if (activeBuff.getTier() == buff.getTier()) {
+
+                activeBuff.combineBuffs(buff);
+
+                if (livingBase instanceof EntityPlayer) {
+
+                    if (!livingBase.world.isRemote) {
+
+                        //Уедомляем игрока если бафф был добавлен на сервере.
+                        NetworkHandler.sendTo(new SyncBuff(activeBuff), (EntityPlayerMP) livingBase);
+                    }
+                }
+            }
+
+            else {
+
+                this.removeBuff(livingBase, activeBuff.getId());
+
+                this.activeBuffs.put(buff.getId(), buff);
+
+                Buff.of(buff.getId()).applyBuffEffect(livingBase, livingBase.world, buff);
+
+               if (livingBase instanceof EntityPlayer) {
+
+                   if (!livingBase.world.isRemote) {
+
+                       //Синхронизируем бафф игрока с клиентом если бафф был добавлен на сервере.
+                       NetworkHandler.sendTo(new SyncBuff(buff), (EntityPlayerMP) livingBase);
+                   }
+               }
+            }
+        }
+
+        else {
+
+            //Если баффа нет, добавляем в карту.
+            this.activeBuffs.put(buff.getId(), buff);
+
+            //Применяем эффект баффа.
+            Buff.of(buff.getId()).applyBuffEffect(livingBase, livingBase.world, buff);
+
+            if (livingBase instanceof EntityPlayer) {
+
+                if (!livingBase.world.isRemote) {
+
+                    //Синхронизируем бафф игрока с клиентом если бафф был добавлен на сервере.
+                    NetworkHandler.sendTo(new SyncBuff(buff), (EntityPlayerMP) livingBase);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void removeBuff(EntityLivingBase livingBase, int buffId) {
+
+        if (this.isBuffActive(buffId)) {
+
+            ActiveBuff activeBuff = this.getActiveBuff(buffId);
+
+            Buff.of(buffId).removeBuffEffect(livingBase, livingBase.world, activeBuff);
+
+            this.activeBuffs.remove(buffId);
+
+            if (livingBase instanceof EntityPlayer) {
+
+                if (!livingBase.world.isRemote) {
+
+                    //Уведомляем игрока об удалении баффа если удаление произошло на сервере.
+                    NetworkHandler.sendTo(new RemoveBuff(buffId), (EntityPlayerMP) livingBase);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void clearBuffs(EntityLivingBase livingBase, boolean onDeath) {
+
+        if (this.haveActiveBuffs()) {
+
+            Iterator buffsIterator = this.activeBuffsIdSet().iterator();
+
+            while (buffsIterator.hasNext()) {
+
+                int buffId = (Integer) buffsIterator.next();
+
+                ActiveBuff buff = this.getActiveBuff(buffId);
+
+                if (!livingBase.world.isRemote) {                                        
+
+                    //Сохранение баффов при смерти доступно только для игрока.
+                    if (livingBase instanceof EntityPlayer) {
+
+                        //В зависимости от переданного параметра удаляются либо все эффекты, либо только те, которые не сохраняются при смерти.
+                        if (onDeath) {
+
+                            //Удаляем баффы без флага keepOnDeath и isPersistent.
+                            if (!Buff.of(buffId).shouldKeepOnDeath() &amp;&amp; !Buff.of(buffId).isPersistent()) {
+
+                                //Удаляем эффект баффа.
+                                Buff.of(buffId).removeBuffEffect(livingBase, livingBase.world, buff);
+
+                                //Удаляем бафф на клиентской стороне.
+                                NetworkHandler.sendTo(new RemoveBuff(buffId), (EntityPlayerMP) livingBase);
+
+                                //Удаляем бафф на серверной стороне.
+                                buffsIterator.remove();
+                            }
+                        }
+
+                        else {                                    
+
+                            //Если очистка производится по иным причинам, удаляем всё.
+
+                            Buff.of(buffId).removeBuffEffect(livingBase, livingBase.world, buff);
+
+                            NetworkHandler.sendTo(new RemoveBuff(buffId), (EntityPlayerMP) livingBase);
+
+                            buffsIterator.remove();
+                        }
+                    }
+
+                    else {
+
+                        //С других ентити снимаем все в любом случае.
+
+                        Buff.of(buffId).removeBuffEffect(livingBase, livingBase.world, buff);
+
+                        buffsIterator.remove();
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void updateBuffs(EntityLivingBase livingBase) {
+
+        //Проверка наличия активных баффов.
+        if (this.haveActiveBuffs()) {
+
+            //Итератор по идентификаторам.
+            Iterator buffsIterator = this.activeBuffsIdSet().iterator();
+
+            while (buffsIterator.hasNext()) {
+
+                int buffId = (Integer) buffsIterator.next();
+
+                //Достаём бафф из карты используя идентификатор.
+                ActiveBuff buff = this.getActiveBuff(buffId);
+
+                //Вызов метода обновления баффа и одновременно проверка на истечения времени действия.
+                if (!buff.updateBuff(livingBase, livingBase.world)) {
+
+                    if (!livingBase.world.isRemote) {
+
+                        //Снимаем эффект.
+                        Buff.of(buffId).removeBuffEffect(livingBase, livingBase.world, buff);
+
+                        if (livingBase instanceof EntityPlayer) {
+
+                            //Удаляем бафф с игрока на клиенте.
+                            NetworkHandler.sendTo(new RemoveBuff(buffId), (EntityPlayerMP) livingBase);
+                        }
+
+                        //Удаляем на сервере.
+                        buffsIterator.remove();
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p>В пакетах действуем аналогично 1.7.10.</p>
+<p>Хранение между сессиями теперь реализуется в отдельном классе с интерфейсом IStorage, сама процедура чтения/записи данных в NBT аналогична 1.7.10. Создаём объект, реализуем IStorage для IBuffs.</p>
+<pre><code class="java language-java">// ru/buffs/entity/BuffsStorage.java
+
+public class BuffsStorage  implements IStorage&lt;IBuffs&gt; {
+
+    @Override
+    public NBTBase writeNBT(Capability&lt;IBuffs&gt; capability, IBuffs instance, EnumFacing side) {
+
+        NBTTagCompound buffsCompound = new NBTTagCompound();
+
+        //Проверка карты на наличие баффов.
+        if (instance.haveActiveBuffs()) {
+
+            //Создаём NBTTagList, в который запишем все активные баффы.
+            NBTTagList tagList = new NBTTagList();
+
+            //Перебор элементов коллекции активных эффектов.
+            for (ActiveBuff buff : instance.activeBuffsCollection()) {
+
+                //Добавляем бафф в NBTTagList. Для этого предварительно упаковываем бафф в NBTTagCompound.
+                tagList.appendTag(buff.saveBuffToNBT(buff));
+            }
+
+            //Сохраняем NBTTagList в NBTTagCompound.
+            buffsCompound.setTag("buffs", tagList);
+        }
+
+        return buffsCompound;
+    }
+
+    @Override
+    public void readNBT(Capability&lt;IBuffs&gt; capability, IBuffs instance, EnumFacing side, NBTBase nbt) {
+
+        //Загружаем наш NBTTagCompound.
+        NBTTagCompound buffsCompound = (NBTTagCompound) nbt;
+
+        //Проверяем, содержит ли NBT данные с указанным ключём. Второй параметр, цифра 9 - идентификатор типа NBTBase, в данном случае NBTTagList.
+        if (buffsCompound.hasKey("buffs", 9)) {
+
+            //Достаём NBTTagList из NBT.
+            NBTTagList tagList = buffsCompound.getTagList("buffs", 10);//10 для NBTTagCompound.
+
+            //Цикл, длиной равный кол-ву элементов в NBTTagList.
+            for (int i = 0; i &lt; tagList.tagCount(); ++i) {
+
+                //Получаем NBTTagCompound по текущему номеру операции в цикле.
+                NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+
+                //Распаковываем бафф из NBTTagCompound.
+                ActiveBuff buff = ActiveBuff.readBuffFromNBT(tagCompound);
+
+                if (buff != null) {
+
+                    //Добавляем в карту активных баффов используя идентификатор как ключ и распакованный бафф как значение.
+                    instance.putActiveBuffToMap(buff);
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p>Для получения и работы с капой нам нужен класс с интерфейсом <code>ICapabilitySerializable</code>.</p>
+<pre><code class="java language-java">// ru/buffs/entity/BuffsProvider.java
+
+public class BuffsProvider implements ICapabilitySerializable&lt;NBTBase&gt; {
+
+    @CapabilityInject(IBuffs.class)
+    public static final Capability&lt;IBuffs&gt; BUFFS_CAP = null;
+
+    private IBuffs instance = BUFFS_CAP.getDefaultInstance();
+
+    @Override
+    public boolean hasCapability(Capability&lt;?&gt; capability, EnumFacing facing) {
+
+        return capability == BUFFS_CAP;
+    }
+
+    @Override
+    public &lt;T&gt; T getCapability(Capability&lt;T&gt; capability, EnumFacing facing) {
+
+        return capability == BUFFS_CAP ? BUFFS_CAP.&lt;T&gt; cast(this.instance) : null;
+    }
+
+    @Override
+    public NBTBase serializeNBT() {
+
+        return BUFFS_CAP.getStorage().writeNBT(BUFFS_CAP, this.instance, null);
+    }
+
+    @Override
+    public void deserializeNBT(NBTBase nbt) {
+
+        BUFFS_CAP.getStorage().readNBT(BUFFS_CAP, this.instance, null, nbt);
+    }
+}
+</code></pre>
+<p>Для добавления Capabilities сущностям используем <code>AttachCapabilitiesEvent</code>. Вы можете создать отдельный класс для этого эффекта. Опять же, вы можете реализовать систему эффектов лишь для некоторых существ.</p>
+<pre><code class="java language-java">public class BuffsCupRegistrationEvent {
+
+    public static final ResourceLocation BUFFS_CAP = new ResourceLocation(BuffsMain.MODID, "Buffs");
+
+    @SubscribeEvent
+    public void attachCapability(AttachCapabilitiesEvent event) {
+
+        if (event.getObject() instanceof EntityLivingBase){
+
+            event.addCapability(BUFFS_CAP, new BuffsProvider());           
+        }
+    }
+}
+</code></pre>
+<p>Не забываем зарегистрировать его в <code>CommonProxy</code> в фазе <code>FMLInitializationEvent</code>. Там же регистрируем нашу капу.</p>
+<pre><code class="java language-java">public void init(FMLInitializationEvent event) {
+
+    CapabilityManager.INSTANCE.register(IBuffs.class, new BuffsStorage(), Buffs.class);
+
+    MinecraftForge.EVENT_BUS.register(new BuffsCupRegistrationEvent());
+}
+</code></pre>
+<p>Далее нам потребуется использовать ряд событий для выполнения важных функций.</p>
+<p>Внедряем вызов функции обновления (тика) активных эффектов в <code>LivingUpdateEvent</code>.</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onLivingUpdate(LivingUpdateEvent event) {
+
+    if (event.getEntityLiving() instanceof EntityLivingBase) {
+
+        EntityLivingBase livingBase = event.getEntityLiving();
+
+        livingBase.getCapability(BuffsProvider.BUFFS_CAP, null).updateBuffs(livingBase);
+    }
+}
+</code></pre>
+<p>Синхронизация эффектов с клиентом при входе в мир/смерти/перемещении между мирами. Как оказалось EntityJoinWorldEvent для этого теперь не подходит, так как при его срабатывании на сервере (и отправке пакетов) клиентский игрок ещё не заспавнен. ~~Но хрен там~~.</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
+
+    if (event.getEntity() instanceof EntityPlayer) {
+
+        EntityPlayer player = (EntityPlayer) event.getEntity();
+
+        if (player.world.isRemote) {
+
+            //Дожидаемся когда игрок будет полностью загружен на клиенте и шлём запрос
+            //на синхронизацию активных эффектов.
+
+            if (player != null) {
+
+                NetworkHandler.sendToServer(new BuffsSyncRequest());
+            }
+        }
+    }
+}
+</code></pre>
+<p>Пакет-запрос не передаёт на сервер ничего, лишь запускает процесс синхронизации:</p>
+<pre><code class="java language-java">IBuffs buffs = player.getCapability(BuffsProvider.BUFFS_CAP, null);
+
+//Проверка на наличие активных баффов.
+if (buffs.haveActiveBuffs()) {
+
+    for (ActiveBuff buff : buffs.activeBuffsCollection()) {
+
+        //Синхронизируем бафф с клиентом.
+        NetworkHandler.sendTo(new SyncBuff(buff), (EntityPlayerMP) player);
+    }
+}
+</code></pre>
+<p>Пакет синхронизации идентичен 1.7.10, смотрите там.</p>
+<p>Элегантно ;). По крайней мере все отлично синхронизируется.</p>
+<p>Очистка активных эффектов при смерти.</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onPlayerDeath(LivingDeathEvent event) {
+
+    if (event.getEntityLiving() instanceof EntityPlayer) {
+
+        if (!event.getEntityLiving().world.isRemote) {
+
+            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+
+            IBuffs buffs = player.getCapability(BuffsProvider.BUFFS_CAP, null);
+
+            buffs.clearBuffs(player, true);
+        }
+    }
+}
+</code></pre>
+<p>Перенос капы для новой сущности игрока.</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onPlayerClone(PlayerEvent.Clone event) {
+
+    EntityPlayer player = event.getEntityPlayer();
+
+    IBuffs buffs = player.getCapability(BuffsProvider.BUFFS_CAP, null);//Капа новой сущности.
+
+    IBuffs oldBuffs = event.getOriginal().getCapability(BuffsProvider.BUFFS_CAP, null);//Капа старой сушности.
+
+    buffs.copyActiveBuffs(oldBuffs.activeBuffsCollection());//Копируем коллекцию эффектов.
+}
+</code></pre>
+<h2 id="изменения-визуализации">Изменения визуализации<a title="Ссылка на этот раздел" href="#изменения-визуализации"><i class="material-icons">link</i></a></h2>
+<p>Их немного. Класс для рендера идентичен версии 1.7.10, за исключением того, что нужно убрать функции с <code>GL11.GL_LIGHTING</code> и заменить <code>GL11.glColor4f()</code> на <code>GlStateManager.color()</code>, а так же использовать метод <code>Gui#drawModalRectWithCustomSizedTexture()</code> для отрисовки иконки. Имя файла иконок не должно содержать буквы верхнего регистра, поправьте это.</p>
+<p>Ну и работа с коллекцией эффектов:</p>
+<pre><code class="java language-java">IBuffs buffs = player.getCapability(BuffsProvider.BUFFS_CAP, null);
+
+if (buffs.haveActiveBuffs()) {
+
+    for (ActiveBuff buff : buffs.activeBuffsCollection()) {}
+}
+</code></pre>
+<h2 id="тестовый-эффект">Тестовый эффект<a title="Ссылка на этот раздел" href="#тестовый-эффект"><i class="material-icons">link</i></a></h2>
+<p>Самое время испытать наши возможности. В качестве примера создадим эффект вывиха, который игрок может получить при падении. Этот эффект будет значительно замедлять игрока и для того, что бы исцелить его, добавим необходимость поспать ~~(халтура)~~.</p>
+<p>Создаём объект Buff, описываем его. Реализуем эффект умножением entityLivingBase#motionX и entityLivingBase#motionZ на коэффициент замедления (пусть будет 0.4F - потеря 60% скорости) в Buff#onActive, в Buff#isReady() вернём true для применения эффекта каждый тик.</p>
+<pre><code class="java language-java">public static final Buff
+sprain = new Buff().setName("buff.sprain").setIconIndex(1, 0).setPersistent();
+
+protected void onActive(EntityLivingBase entityLivingBase, World world, ActiveBuff buff) {
+
+    int
+    tier = buff.getTier(),
+    duration = buff.getDuration();
+
+    if (this.id == sprain.id) {
+
+        entityLivingBase.motionX *= 0.4F;
+        entityLivingBase.motionZ *= 0.4F;
+    }
+}
+
+protected boolean isReady(ActiveBuff buff) {
+
+    int
+    tier = buff.getTier(),
+    duration = buff.getDuration();
+
+    if (this.id == sprain.id) {
+
+        return true;
+    }
+
+    return false;
+}
+</code></pre>
+<p>Добавим текстуры для иконок. Вот пример:</p>
+<p><img src="images/bufficons.png" alt="Иконки баффов" /></p>
+<p>Воспользуемся событиями <code>LivingFallEvent</code> для добавления и <code>PlayerWakeUpEvent</code> для удаления эффекта:</p>
+<pre><code class="java language-java">@SubscribeEvent
+public void onPlayerFall(LivingFallEvent event) {
+
+    if (!event.getEntity().world.isRemote) {
+
+        if (event.getEntityLiving() instanceof EntityPlayer) {
+
+            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+
+            if (!player.capabilities.isCreativeMode) {
+
+                if (event.getDistance() &gt; 5.0F) {//При падении с высоты больше пяти блоков.
+
+                    IBuffs buffs = player.getCapability(BuffsProvider.BUFFS_CAP, null);
+
+                    if (!buffs.isBuffActive(Buff.sprain.id)) {
+
+                        //Добавляем эффект вывиха.
+                        buffs.addBuff(new ActiveBuff(Buff.sprain.id), player);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@SubscribeEvent
+public void onWakeUp(PlayerWakeUpEvent event) {
+
+    EntityPlayer player = event.getEntityPlayer();
+
+    IBuffs buffs = player.getCapability(BuffsProvider.BUFFS_CAP, null);
+
+    if (buffs.isBuffActive(Buff.sprain.id)) {
+
+        buffs.removeBuff(player, Buff.sprain.id);
+    }
+}
+</code></pre>
+<p>Тестируем. Что бы получить эффект перелома вам нужно упасть с высоты больше пяти блоков. В правом нижнем углу появится иконка эффекта, время действия "-:-" означает что эффект бессрочный, вы не сможете избавиться от него (даже умерев) пока не поспите. При этом требуется действительно лечь в кровать (спам ПКМ по кровати днём вам не поможет). Как то так.</p>
+<p><img src="images/broken-bone.png" alt="Демонстрация дебаффа сломанной кости" /></p>
+
+    </div>
+
+    <section class="next-previous-articles">
+
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;advanced&#x2F;keybinds">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
+                <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
+            </svg>
+            <span class="label">Предыдущая статья</span>
+        </a>
+
+        <div class="sep"></div>
+
+        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;other&#x2F;sources">
+            <span class="label">Следующая статья</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
+                <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
+            </svg>
+        </a>
+
+    </section>
+
+    <section class="contributors">
+
+
+            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
+
+                <img class="avatar" src="https://github.com/CMTV.png?size=40">
+
+                <div class="info">
+
+                    <div class="name">CMTV</div>
+
+                    <div class="role">Перенес с форума</div>
+
+                </div>
+
+            </a>
+
+
+    </section>
+
+    <section class="ad-after-article">
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- McModding Book Под статьей -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8094912170389944"
+             data-ad-slot="4828749197"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </section>
+
+    <section class="disqus">
+
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/advanced/buffs';
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mcmodding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+
+    <div class="site-info">
+
+        <a href="https://github.com/mc-modding/mc-modding-book/commits/master" target="_blank" class="copyright">mcmodding.ru</a>
+
+        <a class="version-link" title="Последние изменения" href="https://github.com/mc-modding/mc-modding-book/commits/master" target="_blank">v1.1.1</a>
+
+    </div>
+
+</article>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21621697 = new Ya.Metrika({
+                    id:21621697,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42024721-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /Google Analytics -->
+</body>
+</html>
