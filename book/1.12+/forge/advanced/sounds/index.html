@@ -2,23 +2,23 @@
 <html>
 <head>
 
-<title>Создание предмета - Minecraft Modding</title>
+<title>Звуки - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Создание собственного предмета">
+<meta name="description" content="Добавление своих звуков в игру">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Создание предмета - Minecraft Modding">
-<meta property="og:description" content="Создание собственного предмета">
+<meta property="og:title"       content="Звуки - Minecraft Modding">
+<meta property="og:description" content="Добавление своих звуков в игру">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/item/base">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/advanced/sounds">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
             </div>
         </div>
 
@@ -213,7 +213,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article selected">Предметы</a>
+                        <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="category-article ">Предметы</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-2 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -222,7 +222,7 @@
                     </div>
 
                     <div class="category-articles">
-                            <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article selected">Создание предмета</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/item/base" class="article ">Создание предмета</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/food" class="article ">Еда</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/tools" class="article ">Инструменты и меч</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/item/repair" class="article ">Починка инструментов</a>
@@ -339,7 +339,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.12+/forge/advanced/layers" class="category-article ">Продвинутые статьи</a>
+                        <a href="http://mcmodding.ru/book/1.12+/forge/advanced/layers" class="category-article selected">Продвинутые статьи</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-9 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -351,7 +351,7 @@
                             <a href="http://mcmodding.ru/book/1.12+/forge/advanced/layers" class="article ">Слои</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/advanced/keybinds" class="article ">Привязка клавиш</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/advanced/buffs" class="article ">Система временных эффектов</a>
-                            <a href="http://mcmodding.ru/book/1.12+/forge/advanced/sounds" class="article ">Звуки</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/advanced/sounds" class="article selected">Звуки</a>
                     </div>
 
                 </div>
@@ -398,98 +398,105 @@
 
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/item/base/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/advanced/sounds/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="создание-предмета">Создание предмета<a title="Ссылка на этот раздел" href="#создание-предмета"><i class="material-icons">link</i></a></h1>
-<h2 id="основа">Основа<a title="Ссылка на этот раздел" href="#основа"><i class="material-icons">link</i></a></h2>
-<p>Создадим класс для нашего предмета.</p>
-<pre><code class="java language-java">public class ItemKey extends Item
-{
-    public ItemKey(String name)
-    {
-        this.setRegistryName(name);
-        this.setUnlocalizedName(name);
-    }
-}
-</code></pre>
-<ul>
-<li><code>setRegistryName(name)</code> - задаёт регистрируемое имя для нашего предмета, т.е. данное имя будет зарегистрировано в игре и его нельзя будет уже использовать более. В игре будет отображаться как <code>modid:*item_name*</code>. Чтобы это увидеть нажмите сочетание клавиш <code>F3+H</code></li>
-<li><code>setUnlocalizedName(name)</code> - задаёт локализационное имя для нашего предмета, т.е. чтобы нам сделать перевод имени для предмета мы задаём имя которое будет в конечном итоге выглядеть вот так <code>item.*item_name*.name</code>.</li>
-</ul>
-<h2 id="регистрация">Регистрация<a title="Ссылка на этот раздел" href="#регистрация"><i class="material-icons">link</i></a></h2>
-<p>Создадим класс ItemsRegister.</p>
-<pre><code class="java language-java">public class ItemsRegister
-{
-    public static Item KEY = new ItemKey("key");
-
-    public static void register()
-    {
-        setRegister(KEY);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void registerRender()
-    {
-        setRender(KEY);
-    }
-
-    private static void setRegister(Item item)
-    {
-        ForgeRegistries.ITEMS.register(item);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void setRender(Item item)
-    {
-
-    }
-}
-</code></pre>
-<ul>
-<li><code>setRegister(item)</code> - данный метод будет регистрировать наш предмет</li>
-<li><code>setRender(item)</code> - данный метод будет регистрировать модель для нашего предмета</li>
-</ul>
-<p>Как Вы уже могли заметить, то теперь вместо GameRegistry используется ForgeRegistries, который делит регистрацию предметов, сущностей, блоков и т.д.</p>
-<p>Далее нам нужно добавить в CommonProxy, в метод preInit такую строку кода <code>ItemsRegister.register();</code>.</p>
-<p>Теперь можете запустить Minecraft нажав на кнопку <code>run</code> и посмотреть свой предмет в живую. Чтобы получить предмет пропишите <code>/give @p tut:key</code>.
-Вместо <code>tut</code> у Вас должен быть <code>modid</code> вашего мода! Вместо <code>key</code> у Вас должно быть регистрируемое имя вашего предмета.</p>
-<p><img src="images/face_first.png" alt="Предмет от первого лица" />
-<img src="images/face_three.png" alt="Предмет от третьего лица" /></p>
-<h2 id="модель">Модель<a title="Ссылка на этот раздел" href="#модель"><i class="material-icons">link</i></a></h2>
-<p>Для начала добавим такой код в ItemsRegister, в метод setRender</p>
-<pre><code class="java language-java">Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-</code></pre>
-<p>Теперь Вы должны создать модель предмета, Вы можете создать как плоскую модель, примером может послужить яблоко или объёмную модель. Вот пример плоской модели:</p>
-<pre><code class="json language-json">{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "tut:items/key"
-  }
-}
-</code></pre>
-<p><a href="https://yadi.sk/d/JNFq9Y4h3KcrBv" target="_blank">Объёмная модель</a></p>
-<p>Если ваша текстура к модели берётся из самого Minecraft, то <code>tut:</code>(modid) прописывать не надо! В примере с объёмной моделью я решил использовать текстуру золотого блока из Minecraft.</p>
-<p><code>tut</code> - modid нашего мода.
-<code>key</code> - регистрируемое имя нашего предмета.</p>
-<p>Когда ваша модель готово, добавьте её по пути:</p>
+        <h1 id="звуки">Звуки<a title="Ссылка на этот раздел" href="#звуки"><i class="material-icons">link</i></a></h1>
+<p>Создадим файл <code>sounds.json</code> и папку <code>sounds</code> по пути:</p>
 <pre><code class="md language-md">└── src    
     └── main
         └── resources
             └── assets
                 └── tut
-                    └── models
-                        └── item
 </code></pre>
-<p>Добавим в ClientProxy, в метод init такой код  <code>ItemsRegister.registerRender();</code>.</p>
-<p>И вот, что в конечном итоге у нас может получится.</p>
-<p><img src="images/model_face_first.png" alt="Предмет с моделью от первого лица" />
-<img src="images/model_face_three.png" alt="Предмет с моделью от третьего лица" /></p>
+<p>У вас в папке <code>tut</code> должен быть создан файл <code>sounds.json</code>!</p>
+<p>Отредактируем его!</p>
+<pre><code class="json language-json">{
+    "test_sound": {
+        "category": "player",
+        "sounds": ["*modid*:myTestSound"]
+    }
+}
+</code></pre>
+<ul>
+<li><code>category</code> - указывает на то, какая категория будет у данного звука, т.е. если мы указали <code>player</code>, то в игре, в настройках звука мы сможем отключить свой звук передвинув ползунок <code>Игроки</code>. Категории звуков в игре:<ul>
+<li><code>master</code> - общие звуки</li>
+<li><code>music</code> - музыка</li>
+<li><code>record</code> - пластинка</li>
+<li><code>weather</code> - погода</li>
+<li><code>block</code> - блоки</li>
+<li><code>hostile</code> - враждебные сущности</li>
+<li><code>neutral</code> - нейтральные или дружелюбные(как написано в игре)</li>
+<li><code>player</code> - игроки</li>
+<li><code>ambient</code> - окружение</li>
+<li><code>voice</code> - голос/речь</li></ul></li>
+<li><code>sounds</code> - массив звуковых файлов, который будет поочерёдно проигрываться.<ul>
+<li><code>name</code> - название звука без формата</li>
+<li><code>volume</code> - громкость. Чем выше значение, тем дальше будет слышимость</li>
+<li><code>pitch</code> - высота звука. Если 1.0, то звук будет нормально проигрываться, если же ниже, то звук будет иметь эффект замедления</li>
+<li><code>weight</code> - шанс воспроизведения звука</li>
+<li><code>stream</code> - имеет два положения <code>true/false</code>, при <code>true</code> проигрывается звук из файла. Это нужно чтобы избежать проблем со звучанием звука в игре, т.е. если ваш звук более одной минуты, то рекомендуется выставить данный параметр на <code>true</code>.</li></ul></li>
+</ul>
+<p>Продвинутый пример:</p>
+<pre><code class="json language-json">{
+    "test_sound": {
+        "category": "player",
+        "sounds": [
+            {
+                "name": "*modid*:myTestSound",
+                "stream": true
+            },
+            {
+                "name": "*modid*:myTestSound2",
+                "pitch": 0.2,
+                "weight": 2.0
+            }
+        ]
+    },
+    "nextSound": {
+        "sounds": ["*modid*:nextSound"]
+    }
+}
+</code></pre>
+<p>Создадим класс <code>Sounds</code>.</p>
+<pre><code class="java language-java">public class Sounds
+{
+    //Это наш звук, `test_sound` это название звука указанного в sounds.json
+    public static final SoundEvent test = reg("test_sound")
+
+    @SubscribeEvent
+    public void regSound(RegistryEvent.Register&lt;SoundEvent&gt; e)
+    {
+        //Регистрация звука
+        ForgeRegistries.SOUND_EVENTS.register(lvlUp)
+    }
+
+    //Упрощённая регистрация звука
+    private SoundEvent reg(String name)
+    {
+        ResourceLocation rl = new ResourceLocation(*modid*, name)
+        return new SoundEvent(rl).setRegistryName(rl)
+    }
+}
+</code></pre>
+<p><code>*modid*</code> - это modid вашего мода</p>
+<p>Чтобы проиграть наш звук, где либо добавим такой код:</p>
+<pre><code class="java language-java">/**
+ *  blockPos - это позиция на которой будет проигрываться звук
+ *  Sounds.test - это наш звук из ранее созданного класса Sounds
+ *  SoundCategory.PLAYERS - категория звука
+ *  1.0 - громкость
+ *  1.0 - высота
+ *  false - задержка
+ */
+world.playSound(blockPos, Sounds.test, SoundCategory.PLAYERS, 1.0F, 1.0F, false)
+</code></pre>
+<p>Затем зарегистрируем данный класс в MinecraftForge.EVENT_BUS и зайдём в игру!</p>
 
     </div>
 
     <section class="next-previous-articles">
 
-        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;base&#x2F;mod_structure">
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;advanced&#x2F;buffs">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
                 <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
             </svg>
@@ -498,7 +505,7 @@
 
         <div class="sep"></div>
 
-        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;item&#x2F;food">
+        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;other&#x2F;sources">
             <span class="label">Следующая статья</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
                 <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
@@ -548,7 +555,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/item/base';
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/advanced/sounds';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

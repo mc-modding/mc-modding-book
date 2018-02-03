@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/emerald/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -351,6 +351,7 @@
                             <a href="http://mcmodding.ru/book/1.12+/forge/advanced/layers" class="article ">Слои</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/advanced/keybinds" class="article ">Привязка клавиш</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/advanced/buffs" class="article ">Система временных эффектов</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/advanced/sounds" class="article ">Звуки</a>
                     </div>
 
                 </div>
@@ -407,7 +408,8 @@
             └── assets
                 └── tut
 </code></pre>
-<p>Создадим папку <code>lang</code>, а в ней файл <code>ru_RU</code> формата <code>.lang</code>.</p>
+<p>Создадим папку <code>lang</code>, а в ней файл <code>ru_ru</code> формата <code>.lang</code>.
+<code>Обратите внимание, что с 1.12+ все файлы ресурсов должны быть в нижнем регистре в противном случаи придётся использовать pack.mcmeta!</code></p>
 <p>Содержание файла:</p>
 <pre><code class="text language-text">itemGroup.tut=Tutorial
 
@@ -421,7 +423,7 @@ tile.best_stone.name=Лучший Камень
 <li><p><code>tile.*BlockName*.name</code> - такой вид используется для локализации блока.</p></li>
 <li><p><code>*TabName*</code> - название вашей вкладки.</p></li>
 <li><p><code>*ItemName*</code> - UnlocalizedName вашего предмета.</p></li>
-<li><p><code>*BlockName*</code> - UnlocalizedName вышего блока.</p></li>
+<li><p><code>*BlockName*</code> - UnlocalizedName вашего блока.</p></li>
 </ul>
 <p>Перейдём в игру и сменим язык на русский. Теперь предметы которые мы указали в файле переведены. Для других языков делается также.</p>
 
