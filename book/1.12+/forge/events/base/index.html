@@ -91,12 +91,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/diamond/all.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -434,6 +434,34 @@
 <p>Приступим к регистрации, перейдём в CommonProxy и в метод preInit добавим шину регистрации. Рекомендуется использовать именно эту шину, а не FMLCommonHandler, который устарела и используется только на 1.7 и ниже версиях!</p>
 <pre><code class="java language-java">MinecraftForge.EVENT_BUS.register(new EventsHandler());
 </code></pre>
+<p>Так же с приходом 1.12 версии события можно регистрировать автоматически, без добавления <code>MinecraftForge.EVENT_BUS</code>, для этого нужно:</p>
+<ol>
+<li>В начале класса добавить аннотацию <code>@Mod.EventBusSubscriber</code>, должно получиться так:</li>
+</ol>
+<pre><code class="java language-java">@Mod.EventBusSubscriber
+public class EventsHandler
+{
+    //что-то делаем
+}
+</code></pre>
+<ol start="2">
+<li>Методы должны быть статичными, пример:</li>
+</ol>
+<pre><code class="java language-java">@SubscribeEvent
+public static void onJoin(EntityJoinWorldEvent e)
+{
+    //Что-то делаем
+}
+</code></pre>
+<p>В аннотации <code>@Mod.EventBusSubscriber</code>, так же есть параметры:</p>
+<ul>
+<li><code>side</code> - сторона на которой будет зарегистрировано событие. Доступные стороны: Client, Server</li>
+<li><code>modid</code> - modid вашего мода, этот параметр нужен лишь для того, чтобы избежать ошибки в регистрации, если используется несколько модов.
+Пример использования:</li>
+</ul>
+<pre><code class="java language-java">@Mod.EventBusSubscriber(Side.SERVER, modid = "myModid")
+</code></pre>
+<p>Данный способ работает не со всеми событиями!</p>
 <p>Переходим в игру и смотрим на получившийся результат!</p>
 
     </div>
