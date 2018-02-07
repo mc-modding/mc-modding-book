@@ -39,4 +39,30 @@ public class EventsHandler
 MinecraftForge.EVENT_BUS.register(new EventsHandler());
 ```
 
+Так же с приходом 1.12 версии события можно регистрировать автоматически, без добавления `MinecraftForge.EVENT_BUS`, для этого нужно:
+1. В начале класса добавить аннотацию `@Mod.EventBusSubscriber`, должно получиться так:
+```java
+@Mod.EventBusSubscriber
+public class EventsHandler
+{
+    //что-то делаем
+}
+```
+2. Методы должны быть статичными, пример:
+```java
+@SubscribeEvent
+public static void onJoin(EntityJoinWorldEvent e)
+{
+    //Что-то делаем
+}
+```
+В аннотации `@Mod.EventBusSubscriber`, так же есть параметры:
+* `side` - сторона на которой будет зарегистрировано событие. Доступные стороны: Client, Server
+* `modid` - modid вашего мода, этот параметр нужен лишь для того, чтобы избежать ошибки в регистрации, если используется несколько модов.
+Пример использования:
+```java
+@Mod.EventBusSubscriber(Side.SERVER, modid = "myModid")
+```
+Данный способ работает не со всеми событиями!
+
 Переходим в игру и смотрим на получившийся результат!
