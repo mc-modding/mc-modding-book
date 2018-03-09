@@ -2,13 +2,13 @@
 <html>
 <head>
 
-<title>Создание достижения - Minecraft Modding</title>
+<title>Tile Entity - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Создание собственных достижений.">
+<meta name="description" content="Обычный блок не может уникальные данные. Если мы хотим что бы наш блок содержал уникальные данные для каждого отдельно взятого экземпляра нам нужно использовать TileEntity.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,10 +27,10 @@
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Создание достижения - Minecraft Modding">
-<meta property="og:description" content="Создание собственных достижений.">
+<meta property="og:title"       content="Tile Entity - Minecraft Modding">
+<meta property="og:description" content="Обычный блок не может уникальные данные. Если мы хотим что бы наш блок содержал уникальные данные для каждого отдельно взятого экземпляра нам нужно использовать TileEntity.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/achievements/base">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/tileentity/base">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -103,12 +103,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/classic/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/classic/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/classic/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/classic/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/classic/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/classic/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -267,7 +267,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.12+/forge/tileentity/base" class="category-article ">Tile Entity</a>
+                        <a href="http://mcmodding.ru/book/1.12+/forge/tileentity/base" class="category-article selected">Tile Entity</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-4 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -349,7 +349,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.12+/forge/achievements/prep" class="category-article selected">Достижения</a>
+                        <a href="http://mcmodding.ru/book/1.12+/forge/achievements/prep" class="category-article ">Достижения</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-9 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -359,7 +359,7 @@
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.12+/forge/achievements/prep" class="article ">Начало</a>
-                            <a href="http://mcmodding.ru/book/1.12+/forge/achievements/base" class="article selected">Создание достижения</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/achievements/base" class="article ">Создание достижения</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/achievements/recipes" class="article ">Получение рецептов</a>
                     </div>
 
@@ -451,54 +451,251 @@
         </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/achievements/base/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/tileentity/base/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="создание-достижения">Создание достижения<a title="Ссылка на этот раздел" href="#создание-достижения"><i class="material-icons">link</i></a></h1>
-<p>Перейдём по пути:</p>
-<pre><code class="md language-md">└── src    
-    └── main
-        └── resources
-            └── assets
-                └── tut
-                    └── advancements
-                        └── craft
+        <h1 id="tile-entities">Tile Entities<a title="Ссылка на этот раздел" href="#tile-entities"><i class="material-icons">link</i></a></h1>
+<p><em>Гайд перевел и дополнил пользователь форума — <a href="https://forum.mcmodding.ru/members/austeretony.7279/" target="_blank">AustereTony</a>.</em></p>
+<p>В данной статье я предоставляю свой перевод гайда с сайта shadowfacts по работе с TileEntity. Исходники примера доступны <a href="https://github.com/AustereTony/Guides/tree/master/1.12.2/Tile%20Entities/Counter" target="_blank">тут</a>.</p>
+<p>В Майнкрафте класс <code>Block</code> используется для представления не просто единичного блока в мире, а блока как типа. Инстанс (экземпляр) <code>Block</code> содержит свойства для каждого экземпляра вашего блока, существующего в мире. Если мы хотим что бы наш блок содержал уникальные данные для каждого отдельно взятого экземпляра нам нужно использовать <code>TileEntity</code>.</p>
+<p>Существует распространённый миф что <code>TileEntity</code> это плохо, особенно для производительности. Это не так. Они могут негативно влиять на производительность если они реализованы не умело, как в прочем и любые другие объекты.</p>
+<p>Тайлы бывают двух типов: обновляющиеся (<em>ticking</em>) и не обновляющиеся (<em>non-ticking</em>). Обновляющиеся тайлы обновляются каждый игровой тик (обычно 20 раз в секунду). Они влияют на производительность интенсивнее и требуют аккуратной реализации. Не обновляющиеся тайлы существуют для простого хранения данных и в этом туториале мы создадим простой, не обновляющийся <code>TileEntity</code>.</p>
+<h2 id="вспомогательные-средства">Вспомогательные средства<a title="Ссылка на этот раздел" href="#вспомогательные-средства"><i class="material-icons">link</i></a></h2>
+<p>Прежде чем мы создадим тайл, мы добавим класс, который упростит их создание в будущем.</p>
+<p>В первую очередь создадим класс <code>BlockTileEntity</code>:</p>
+<pre><code class="java language-java">// ru.austeretony.counter.block.tile.BlockTileEntity.java
+
+public abstract class BlockTileEntity&lt;T extends TileEntity&gt; extends BaseBlock {
+
+    public BlockTileEntity(String name, Material material, float hardness, float resistanse, SoundType soundType) {
+
+        super(name, material, hardness, resistanse, soundType);
+    }
+
+    public abstract Class&lt;T&gt; getTileEntityClass();
+
+    public T getTileEntity(IBlockAccess world, BlockPos position) {
+
+        return (T) world.getTileEntity(position);
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState blockState) {
+
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public abstract T createTileEntity(World world, IBlockState blockState);
+}
 </code></pre>
-<p>Создадим файл <code>key_achievement.json</code>.</p>
-<pre><code class="json language-json">{
-    "display": {
-        "icon": {
-            "item": "minecraft:wool",
-            "data": 6
-        },
-        "title": {
-            "translate": "advancements.tutorial.key.title"
-        },
-        "description": {
-            "translate": "advancements.tutorial.key.description"
-        },
-        "frame": "goal"
-    },
-    "parent": "tut:craft/root",
-    "criteria": {
-        "recipe_unlocked": {
-            "trigger": "minecraft:recipe_unlocked",
-            "conditions": {
-                "recipe": "tut:key"
-            }
-        }
+<p>Этот класс предоставляет нам следующее:</p>
+<ul>
+<li>Он расширяет <code>BaseBlock</code>, содержащий нашу удобную базовую реализацию <code>Block</code></li>
+</ul>
+<pre><code class="java language-java">// ru.austeretony.counter.block.base.BaseBlock.java
+
+public class BaseBlock extends Block {
+
+    public BaseBlock(String name, Material material, float hardness, float resistanse, SoundType soundType) {
+
+        super(material);
+
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+        this.setHardness(hardness);
+        this.setResistance(resistanse);
+        this.setSoundType(soundType);
     }
 }
 </code></pre>
 <ul>
-<li><code>frame</code> - это рамка самого достижения, существует всего два вида рамок (если не считать обычную): <code>goal</code> и <code>challenge</code></li>
+<li>Он содержит обобщение, представляющее наш класс <code>TileEntity</code>. Он будет использован для создания вспомогательных средств для уменьшения количества необходимых приведений типов для получения экземпляра нашего тайла на определённой позиции и для уверенности в том, что созданный тайл имеет корректный тип.</li>
+<li>Он переопределяет <code>hasTileEntity(IBlockState)</code> из <code>Block</code> и возвращает <code>true</code>. Это даёт понять Майнкрафту что у нашего блока есть тайл и его нужно создать.</li>
+<li>Он содежит два абстрактных метода: 1) <code>getTileEntityClass()</code> - тут мы будем возвращать класс нашего <code>TileEntity</code>, что позволит ему быть зарегистрированным вместе с блоком, 2) <code>createTileEntity()</code> - более специфичная версия стандартного метода из <code>Block</code>. Майнкрафт вызывает его каждый раз когда нужно создать новый экземпляр тайла, например когда мы устанавливаем наш блок.</li>
 </ul>
-<p>В данном случае достижение будет получено, если мы откроем рецепт.</p>
+<h2 id="блок">Блок<a title="Ссылка на этот раздел" href="#блок"><i class="material-icons">link</i></a></h2>
+<p>Теперь когда у нас есть удобная основа самое время создать блок.</p>
+<p>Создадим <code>BlockCounter</code>, расширяющий <code>BlockTileEntity</code>.</p>
+<pre><code class="java language-java">// ru.austeretony.counter.block.BlockCounter.java
+
+public class BlockCounter extends BlockTileEntity&lt;TileEntityCounter&gt; {
+
+    public BlockCounter(String name, Material material, float hardness, float resistanse, SoundType soundType) {
+
+        super(name, material, hardness, resistanse, soundType);
+
+        this.setHarvestLevel("pickaxe", 3);
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos position, IBlockState blockState, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+
+        if (!world.isRemote) {
+
+            TileEntityCounter tileEntity = getTileEntity(world, position);
+
+            if (side == EnumFacing.DOWN) {
+
+                tileEntity.decrementCount();
+
+            }
+
+            else if (side == EnumFacing.UP) {
+
+                tileEntity.incrementCount();
+            }
+
+            player.sendMessage(new TextComponentString("Count: " + tileEntity.getCount()));
+        }
+
+        return true;
+    }
+
+    @Override
+    public Class&lt;TileEntityCounter&gt; getTileEntityClass() {
+
+        return TileEntityCounter.class;
+    }
+
+    @Override
+    public TileEntityCounter createTileEntity(World world, IBlockState blockState) {
+
+        return new TileEntityCounter();
+    }
+}
+</code></pre>
+<p>Наш блок расширяет <code>BlockTileEntity</code> и содержит обобщение <code>TileEntityCounter</code> (который предстоит создать), так как этот тайл принадлежит этому блоку.</p>
+<p>В конструкторе мы просто напросто вызываем суперконструктор и передаём туда все параметры, которые будем указывать при создании блока.</p>
+<p>В методе <code>getTileEntityClass()</code> вернём <code>TileEntityCounter.class</code> (мы ещё создадим его).
+Это позволит зарегистрировать его ассоциировав с именем блока.</p>
+<p>В <code>createTileEntity()</code> мы возвращаем новый экземпляр класса <code>TileEntityCounter</code>.</p>
+<p>Ну и в конце концов в <code>onBlockActivated()</code>, вызываемый при правом клике по блоку мы делаем следующее:</p>
+<ul>
+<li>Проверяем, что действия производятся на сервере (это очень важно при работе с <code>TileEntity</code>!).</li>
+<li>Достаём экземпляр <code>TileEntityCounter</code>.</li>
+<li>Если игрок кликнул по нижней стороне - уменьшаем значение счётчика.</li>
+<li>Если клик по верхней стороне - увеличиваем значение.</li>
+<li>Отправляем сообщение в чат, содержащие значение счётчика.</li>
+<li>Возвращаем <code>true</code>.</li>
+</ul>
+<h2 id="разделение-клиент-и-сервер">Разделение: клиент и сервер<a title="Ссылка на этот раздел" href="#разделение-клиент-и-сервер"><i class="material-icons">link</i></a></h2>
+<p>Как было подмечено выше, перед тем как работать со счётчиком тайла, мы должны удостовериться, что действия происходят на сервере. Делаем мы это потому как в Майнкрафте клиент и сервер полностью разделены и некоторые методы вызываются для обеих сторон.</p>
+<p>В многопользовательской игре множество клиентов подключены к одному серверу. В этом случае разделение между сторонами очевидно, но в одиночной игре всё немного сложнее. В многопользовательской игре сервер, к которому происходит подключение, отражает <em>физический сервер</em> и все отдельные подключенные клиенты являются <em>физическими клиентами</em>.</p>
+<p>В одиночной игре клиент и сервер тоже разделены даже несмотря на то, что они исполняются на одном компьютере (на одной JVM, но в разных потоках). В одиночной игре клиент подключается к локальному, приватному серверу, функции которого схожи с физическим сервером. В этом случае серверный поток отражает <em>логический сервер</em>, а клиентский поток отражает <em>логический клиент</em>, так как обе логические стороны выполняются на одной физической стороне.</p>
+<p>Поле <code>World.isRemote</code> используется для проверки стороны, на которой происходит выполнение (будь она логической или физической). Оно равно <code>true</code> для <em>физического клиента</em> в многопользовательской игре и для <em>логического клиента</em> в одиночной игре. Это поле равно <code>false</code> для <em>физического сервера</em> в многопользовательской игре и для <em>логического сервера</em> в одиночной.</p>
+<p>Делая проверку в условии <code>!world.isRemote</code>, мы обеспечиваем уверенность что действия будут производится на сервере (физическом или логическом).</p>
+<h2 id="создание-тайла-для-блока">Создание тайла для блока<a title="Ссылка на этот раздел" href="#создание-тайла-для-блока"><i class="material-icons">link</i></a></h2>
+<p>Теперь когда у нас есть блок, мы должны создать тайл для него.</p>
+<p>Создадим класс <code>TileEntityCounter</code>:</p>
+<pre><code class="java language-java">// ru.austeretony.counter.block.tile.TileEntityCounter.java
+
+public class TileEntityCounter extends TileEntity {
+
+    private int count;
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
+
+        tagCompound.setInteger("count", this.count);
+
+        return super.writeToNBT(tagCompound);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+
+        this.count = tagCompound.getInteger("count");
+
+        super.readFromNBT(tagCompound);
+    }
+
+    public int getCount() {
+
+        return this.count;
+    }
+
+    public void incrementCount() {
+
+        this.count++;
+
+        this.markDirty();
+    }
+
+    public void decrementCount() {
+
+        this.count--;
+
+        this.markDirty();
+    }
+}
+</code></pre>
+<p>Содержимое весьма не хитрое:</p>
+<ul>
+<li>Класс расширяет стандартный <code>TileEntity</code></li>
+<li>Содержит приватное поле <code>count</code>, содержащее значение счётчика.</li>
+<li>Переопределяет <code>writeToNBT()</code> и <code>readFromNBT()</code> что бы наши данные были сохранены и загружены с диска.</li>
+<li>Предоставляет методы <code>getCount()</code>, <code>incrementCount()</code>, <code>decrementCount()</code> для работы с полем <code>count</code>.
+Кроме того, в методах, изменяющих значение счётчика (<code>count</code>) происходит вызов <code>markDirty()</code> из <code>TileEntity</code>. Он даёт игре понять что данные были изменены с момента последнего сохранения и их нужно перезаписать.</li>
+</ul>
+<h2 id="nbt-формат">NBT формат<a title="Ссылка на этот раздел" href="#nbt-формат"><i class="material-icons">link</i></a></h2>
+<p>Данный формат используется для хранения данных в виде пар ключ-значение, которые легко сериализуется в байты и сохраняется на диск. Вы можете ознакомиться с классом NBTTagCompound для представления о типах данных, которые он может хранить. Ванильный код содержит множество хороших примеров по сохранению и чтению сложных структур данных.</p>
+<p>В нашем случае мы сохраняем значение поля count как целочисленный тип <code>Integer</code> с ключём в виде строки "<code>count</code>" в NBT в методе <code>writeToNBT()</code> и читаем его в <code>readFromNBT()</code>.</p>
+<h2 id="регистрация">Регистрация<a title="Ссылка на этот раздел" href="#регистрация"><i class="material-icons">link</i></a></h2>
+<p>Тайл нашего блока нужно зарегистрировать. Делать мы это будем там же, где регистрируем наши блоки.</p>
+<p>Регистрацию будем производить через вызов <code>GameRegistry.registerTileEntity()</code>
+и передавать в него класс тайла и его регистрационное имя. Это требуется для того, что бы при загрузке Майнкрафт определял какой <code>TileEntity</code> к какому блоку принадлежит и пересоздавал его загружая из NBT.</p>
+<pre><code class="java language-java">// ru.austeretony.counter.main.BlockRegistry.java
+
+public class BlockRegistry {
+
+    public static final Block
+    BLOCK_COUNTER = new BlockCounter("block_counter", Material.ROCK, 10.0F, 10.0F, SoundType.STONE).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+
+    public static void register() {
+
+        setBlockRegister(BLOCK_COUNTER);
+        setItemBlockRegister(BLOCK_COUNTER);
+        GameRegistry.registerTileEntity(((BlockCounter) BLOCK_COUNTER).getTileEntityClass(), BLOCK_COUNTER.getRegistryName().toString());
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerRender() {
+
+        setItemBlockRender(BLOCK_COUNTER);
+    }
+
+    private static void setBlockRegister(Block block) {
+
+        ForgeRegistries.BLOCKS.register(block);
+    }
+
+    private static void setItemBlockRegister(Block block) {
+
+        ForgeRegistries.ITEMS.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void setItemBlockRender(Block block) {
+
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+    }
+}
+</code></pre>
+<p>Не забывайте, регистрация <code>Block</code>, <code>ItemBlock</code> и <code>TileEntity</code> происходит во время преинициализации в <code>CommonProxy</code>, а регистрация рендера для <code>ItemBlock</code> происходит в процессе преинициализации в <code>ClientProxy</code> (для рендера через <code>ModelLoader</code>).</p>
+<h2 id="финал">Финал<a title="Ссылка на этот раздел" href="#финал"><i class="material-icons">link</i></a></h2>
+<p>Теперь, когда все сделано, запускаем игру и достаем наш блок-счётчик из вкладки "блоки".
+Установив его, кликните ПКМ по верхней стороне блока - счётчик увеличит значение и в чате появится сообщение.</p>
+<p><img src="images/incremented.png" alt="Увеличение значения счетчика" /></p>
+<p>Нажав ПКМ по нижней стороне несколько раз вы увидите это:</p>
+<p><img src="images/decremented.png" alt="Уменьшение значения счетчика" /></p>
+<p>Клик ПКМ по другим сторонам выведет в чат сообщение с текущим значением счётчика.</p>
 
     </div>
 
     <section class="next-previous-articles">
 
-        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;achievements&#x2F;prep">
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;block&#x2F;base">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
                 <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
             </svg>
@@ -507,7 +704,7 @@
 
         <div class="sep"></div>
 
-        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;achievements&#x2F;recipes">
+        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;creativetab&#x2F;base">
             <span class="label">Следующая статья</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
                 <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
@@ -519,15 +716,15 @@
     <section class="contributors">
 
 
-            <a href="https://github.com/Ivasik78" target="_blank" title="К профилю GitHub" class="contributor">
+            <a href="https://github.com/CMTV" target="_blank" title="К профилю GitHub" class="contributor">
 
-                <img class="avatar" src="https://github.com/Ivasik78.png?size=40">
+                <img class="avatar" src="https://github.com/CMTV.png?size=40">
 
                 <div class="info">
 
-                    <div class="name">Ivasik</div>
+                    <div class="name">CMTV</div>
 
-                    <div class="role">Автор</div>
+                    <div class="role">Перенес с форума</div>
 
                 </div>
 
@@ -557,7 +754,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/achievements/base';
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/tileentity/base';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE

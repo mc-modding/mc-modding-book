@@ -1,0 +1,10 @@
+title: Tile Entity
+
+description: >
+  Обычный блок не может уникальные данные. Если мы хотим что бы наш блок содержал уникальные данные для каждого отдельно взятого экземпляра нам нужно использовать TileEntity.
+
+contributors:
+  -
+    name: CMTV
+    role: Перенес с форума
+    github: https://github.com/CMTV
