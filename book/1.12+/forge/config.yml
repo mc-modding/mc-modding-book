@@ -5,6 +5,7 @@ categories-order:
   - base
   - item
   - block
+  - tileentity
   - creativetab
   - lang
   - events
