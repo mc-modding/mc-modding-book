@@ -2,13 +2,13 @@
 <html>
 <head>
 
-<title>Использование Idea - Minecraft Modding</title>
+<title>Агрокультуры - Minecraft Modding</title>
 
 <meta charset="UTF-8">
 
 <link rel="icon" href="http://mcmodding.ru/favicon_standart.png">
 
-<meta name="description" content="Настройка рабочего пространства для разраобтки модов с помощью IDE Idea.">
+<meta name="description" content="В этой статье речь пойдёт о создании собственных агрокультур. Будут рассмотрены примеры создания блока культуры, семян для выращивания и урожая - предмета, который будет выпадать с растения.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,10 +24,10 @@
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<meta property="og:title"       content="Использование Idea - Minecraft Modding">
-<meta property="og:description" content="Настройка рабочего пространства для разраобтки модов с помощью IDE Idea.">
+<meta property="og:title"       content="Агрокультуры - Minecraft Modding">
+<meta property="og:description" content="В этой статье речь пойдёт о создании собственных агрокультур. Будут рассмотрены примеры создания блока культуры, семян для выращивания и урожая - предмета, который будет выпадать с растения.">
 <meta property="og:type"        content="article">
-<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/prep/setup_idea">
+<meta property="og:url"         content="http://mcmodding.ru/book/1.12+/forge/plant/base">
 <meta property="og:image"       content="http://mcmodding.ru/favicon_standart.png">
 <!-- jQuery -->
 <script src="http://mcmodding.ru/libs/jQuery/jquery-3.2.0.min.js"></script>
@@ -180,7 +180,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" class="category-article selected">Подготовка</a>
+                        <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" class="category-article ">Подготовка</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-0 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -190,7 +190,7 @@
 
                     <div class="category-articles">
                             <a href="http://mcmodding.ru/book/1.12+/forge/prep/install" class="article ">Установка программ</a>
-                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/setup_idea" class="article selected">Использование Idea</a>
+                            <a href="http://mcmodding.ru/book/1.12+/forge/prep/setup_idea" class="article ">Использование Idea</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/prep/setup_eclipse" class="article ">Использование Eclipse</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/prep/off_skin" class="article ">Собственный скин</a>
                             <a href="http://mcmodding.ru/book/1.12+/forge/prep/problems" class="article ">Решение проблем</a>
@@ -349,7 +349,7 @@
                 <div class="category">
 
                     <div class="category-header">
-                        <a href="http://mcmodding.ru/book/1.12+/forge/plant/base" class="category-article ">Растения</a>
+                        <a href="http://mcmodding.ru/book/1.12+/forge/plant/base" class="category-article selected">Растения</a>
 
                         <svg xmlns="http://www.w3.org/2000/svg" title="Раскрыть/скрыть категорию" class="visibility-switcher switcher-9 closed" width="16" height="16" viewBox="0 0 512 512">
                             <rect class="horizontal-rect" x="0" y="192" width="512" height="128" rx="15" ry="15"/>
@@ -424,47 +424,318 @@
 
     <div class="inner">
 
-        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/prep/setup_idea/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
+        <a href="https://github.com/mc-modding/mc-modding-book/blob/master/book/1.12+/forge/plant/base/article.md" target="_blank" class="edit-article"><i class="material-icons">mode_edit</i><span>Редактировать</span></a>
 
-        <h1 id="использование-idea">Использование Idea<a title="Ссылка на этот раздел" href="#использование-idea"><i class="material-icons">link</i></a></h1>
-<p>Итак, у нас есть папка со следующими файлами внутри:</p>
+        <h1 id="агрокультуры">Агрокультуры<a title="Ссылка на этот раздел" href="#агрокультуры"><i class="material-icons">link</i></a></h1>
+<p><em>Гайд перевел и дополнил пользователь форума — <a href="https://forum.mcmodding.ru/members/austeretony.7279/" target="_blank">AustereTony</a>.</em></p>
+<p>Приветствую. В этой статье речь пойдёт о создании собственных агрокультур. Будут рассмотрены примеры создания блока культуры, семян для выращивания и урожая - предмета, который будет выпадать с растения.</p>
+<p>Я позволил внести себе некоторые правки в перевод и добавить дополнительной информации. Исходники доступны <a href="https://github.com/AustereTony/Guides/tree/master/1.12.2/Crops" target="_blank">здесь</a>. Приятного чтения.</p>
+<p>Для большей ясности данный туториал будет разделён на три основные части:</p>
 <ul>
-<li>build.gradle</li>
-<li>gradlew (.bat и .sh)</li>
-<li>папка gradle</li>
+<li>Блок агрокультуры</li>
+<li>Семена</li>
+<li>Урожай (выпадающий предмет)</li>
 </ul>
-<p>Запустите Idea и в стартовом окне кликните по кнопке "Import Project". Импортируйте файл "build.gradle".</p>
-<p><img src="images/importing.png" alt="Демонстрация импорта" /></p>
-<p>Убедитесь, что у вас выбран пункт "Use default gradle wrapper (recommended)". Все остальные настройки оставьте
-по умолчанию и нажмите ОК.</p>
-<p><img src="images/import_settings.png" alt="Демонстрация настроек импорта" /></p>
-<p>Потребуется подождать около минуты, пока среда разработки полностью выполнит все импортирует.
-За процессом импорта можно следить в правом нижнем углу среды разработки.</p>
-<p>Теперь откройте меню "View" в верхней части экрана и выберите пункты "Tools Windows &gt; Gradle".</p>
-<p>У вас откроется окно с Gradle задачами. Gradle — популярная система автоматической сборки, которая из исходников
-собирает готовые программы и делает еще много других необходимых, но <strong>рутинных</strong> дел. Эти самые дела называются
-задачами/заданиями/тасками — <strong>tasks</strong>. Мы как раз и открыли окно тасков.</p>
-<p>Выглядит оно примерно так:</p>
-<p><img src="images/gradle_tasks.png" alt="Демнострация Gradle тасков" /></p>
-<p>Выполните таск <code>setupDecompWorkspace</code> из группы <code>forgegradle</code>. После его завершения выполните таск <code>genIntellijRuns</code> из
-той же группы.</p>
-<p>Этими двумя командами мы автоматически и без лишних хлопот настроили рабочее пространство. Чувствуете мощь автоматических
-сборщиков?</p>
-<h3 id="для-idea-2016-или-старше">Для Idea 2016 или старше<a title="Ссылка на этот раздел" href="#для-idea-2016-или-старше"><i class="material-icons">link</i></a></h3>
-<p>Откройте меню "Run" в верхней части экрана и выберите пункт "Edit configurations…".</p>
-<p>В левой части появившегося окна откройте вкладку "Application". По очереди выберите "Minecraft Client" и в "Minecraft Server"
-и уже в правой части окна, в раскрывающемся списке "Use classpath of module" выберите тот пункт, который заканчивается на _main.</p>
-<p><img src="images/run_config.png" alt="Демонстрация настройки конфигураций запуска" /></p>
-<h3 id="тестовый-запуск">Тестовый запуск<a title="Ссылка на этот раздел" href="#тестовый-запуск"><i class="material-icons">link</i></a></h3>
-<p>Вы только что настроили рабочее пространство для создания собственного мода. Если хотите, можете запустить
-клиент или сервер и удостовериться, что все работает, как надо.</p>
-<p>Для запуска опять откройте меню "Run" и выберите пункт "Run…". Появится окно с выбором, что запустить.</p>
+<p>Каждая часть будет рассмотрена независимо и код будет содержать ошибки, так как будут присутствовать ссылки на ещё не созданные объекты, но в конце они будут устранены.</p>
+<p>В качестве примера создадим растение кукурузу, зёрна и початки. Приступим.</p>
+<h2 id="блок-агрокультуры">Блок агрокультуры<a title="Ссылка на этот раздел" href="#блок-агрокультуры"><i class="material-icons">link</i></a></h2>
+<p>Давайте создадим класс под названием <code>BlockCropCorn</code>, который будет унаследован от ванильного <code>BlockCrops</code> и в связи с этим по своей механике будет схож с пшеницей. Что бы сделать агрокультуру более уникальной вы можете ознакомиться с суперклассом и поработать с добавляемыми им методами, их не так много. Наша агрокультура не будет иметь <code>ItemBlock</code> как и все остальные, а значит у неё не будет модели для предмета.</p>
+<p>В этом классе нам необходимо переопределить два метода: <code>getSeed()</code> и <code>getCrop()</code>. Первый отвечает за выпадающие семена, второй за предмет-урожай, выпадающий при разрушении растения на финальной стадии созревания.</p>
+<pre><code class="java language-java">// ru.austeretony.crops.block.BlockCropCorn.java
+
+public class BlockCropCorn extends BlockCrops {
+
+    private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[] {
+
+            new AxisAlignedBB(0.4375D, 0.0D, 0.4375D, 0.5625D, 0.25D, 0.5625D),
+            new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.375D, 0.625D),
+            new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5D, 0.625D),
+            new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.5625D, 0.625D),
+            new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.6875D, 0.625D),
+            new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.875D, 0.625D),
+            new AxisAlignedBB(0.3125D, 0.0D, 0.3125D, 0.6875D, 1.0D, 0.6875D),
+            new AxisAlignedBB(0.3125D, 0.0D, 0.3125D, 0.6875D, 1.0D, 0.6875D)
+    };
+
+    public BlockCropCorn(String cropName) {
+
+        this.setUnlocalizedName(cropName);
+        this.setRegistryName(cropName);
+    }
+
+    public AxisAlignedBB getBoundingBox(IBlockState blockState, IBlockAccess source, BlockPos position) {
+
+        return CROPS_AABB[(blockState.getValue(this.getAgeProperty())).intValue()];
+    }
+
+    @Override
+    protected Item getSeed() {
+
+        return ItemsRegistry.CORN_SEED;
+    }
+
+    @Override
+    protected Item getCrop() {
+
+        return ItemsRegistry.CORN;
+    }
+
+    protected int getBonemealAgeIncrease(World world) {
+
+        return MathHelper.getInt(world.rand, 1, 2);
+    }
+
+    public EnumPlantType getPlantType(IBlockAccess world, BlockPos position) {
+
+        return EnumPlantType.Crop;     
+    }
+}
+</code></pre>
+<p>Как видно конструктор имеет стандартный вид, методы регистрации имён получают их параметром из конструктора блока. Имя мы будем задавать во время регистрации.</p>
+<p>Как было отмечено, <code>getSeed()</code> и <code>getCrop()</code> ссылаются но новые объекты, которые будут созданы позже.</p>
+<p>Наш класс переопределяет <code>getBoundingBox()</code>, который возвращает разные AABB (объект, отвечающий за физические габариты блока) для каждого <code>Property</code> (свойства) из <code>IBlockState</code> (регистр свойств) блока. Наша агрокультура содержит одно унаследованное <code>Property</code> - "age", представляющее стадии роста - всего их восемь. Если вы хотите изменить количество стадий - создайте собственное <code>Property</code> и верните его в переопредлелённом <code>getAgeProperty()</code>. На каждой стадии роста растение имеет разные размеры и AABB различаются, <code>getBoundingBox()</code> возвращает нужную из массива, созданного в начале класса. Границы AABB в нашем случае определяются размером текстуры блока на разных стадиях роста.</p>
+<p>Еще в этом классе переопределён <code>getBonemealAgeIncrease()</code>, отвечающий за то, на сколько стадий роста будет ускорено созревание при применении костной муки. В данном случае он рандомно вернёт значение ускорения на одну или две стадии.</p>
+<p>Чтобы при затаптывании грядки с кукурузой она разрушалась, необходимо переопределить <code>getPlantType()</code> и вернуть <code>EnumPlantType#Crop</code>.</p>
+<p>Теперь регистрация блока.</p>
+<pre><code class="java language-java">// ru.austeretony.crops.main.BlockRegistry.java
+
+public class BlocksRegistry {
+
+    public static final Block
+    CROP_CORN = new BlockCropCorn("crop_corn");
+
+    public static void register() {
+
+        setBlockRegister(CROP_CORN);
+    }
+
+    private static void setBlockRegister(Block block) {
+
+        ForgeRegistries.BLOCKS.register(block);   
+    }
+}
+</code></pre>
+<p>Не забудьте вызвать метод <code>register()</code> в преините <code>CommonProxy</code>.</p>
+<p>Теперь нужно создать файл блокстейта для нашей кукурузы. Создайте JSON файл <code>crop_corn.json</code> по пути "src/main/resources/assets/ваш modid/blockstates/"</p>
+<pre><code class="json language-json">{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cross"
+    },
+    "variants": {
+        "age": { "0": { "textures": { "cross": "crops:blocks/corn/stage_0" }},
+                 "1": { "textures": { "cross": "crops:blocks/corn/stage_1" }},
+                 "2": { "textures": { "cross": "crops:blocks/corn/stage_2" }},
+                 "3": { "textures": { "cross": "crops:blocks/corn/stage_3" }},
+                 "4": { "textures": { "cross": "crops:blocks/corn/stage_4" }},
+                 "5": { "textures": { "cross": "crops:blocks/corn/stage_5" }},
+                 "6": { "textures": { "cross": "crops:blocks/corn/stage_6" }},
+                 "7": { "textures": { "cross": "crops:blocks/corn/stage_7" }}
+        }
+    }
+}
+</code></pre>
+<p>Рассмотрим его содержимое подробнее.</p>
+<p><code>forge_marker</code> определяет версию блокстейта, всегда равен 1.</p>
+<p>Блок <code>defaults</code> содержит указание на используемую модель. Мы будем использовать одну из ванильных моделей. Модель <code>cross</code> представляет собой две скрещенные текстуры (аналогично блокам травы). Вы можете использовать в качестве модели <code>crop</code> которую используют ванильные агрокультуры (в нашем случае для кукурузы лучше смотрится <code>cross</code>).</p>
+<p>Блок <code>variants</code> используется для определения текстур, которые должен использовать блок с разными свойствами. В нашем случае свойство "age" использует разные текстуры для всех своих вариантов (восьми стадий роста).</p>
+<p>Наша кукуруза использует ванильную модель блока и нет нужды создавать собственную.</p>
+<p>Теперь нужно добавить текстуры. В соответствии с блокстейтом их должно быть восемь, скачайте их <a href="https://github.com/AustereTony/Guides/tree/master/1.12.2/Crops/src/main/resources/assets/crops/textures/blocks/corn" target="_blank">отсюда</a> и разместите по пути "src/main/resources/assets/ваш modid/textures/blocks/corn/". Всё, с блоком разобрались.</p>
+<h2 id="семена">Семена<a title="Ссылка на этот раздел" href="#семена"><i class="material-icons">link</i></a></h2>
+<p>Давайте создадим семена для нашей кукурузы. Создадим класс <code>ItemCornSeed</code>, унаследуем его от <code>ItemSeeds</code>, содержать он будет только конструктор.</p>
+<pre><code class="java language-java">// ru.austeretony.crops.items.ItemCornSeeds.java
+
+public class ItemCornSeeds extends ItemSeeds {
+
+    public ItemCornSeeds(String name) {
+
+        super(BlocksRegistry.CROP_CORN, Blocks.FARMLAND);
+
+        setUnlocalizedName(name);
+        setRegistryName(name);
+    }
+}
+</code></pre>
+<p>В суперконструктор требуется передать объект блока агрокультуры, для которой эти семена предназначены, и "почву", на которой она должна расти. Опытным путём проверено, что второй параметр игрой успешно игнорируется и, независимо от того какой блок мы туда передадим, агрокультуру можно будет посадить только на блок грядки (<code>Blocks#FARMLAND</code>). В конце данного туториала я покажу как можно назначить свой блок для посадки. В остальном конструктор аналогичен конструктору блока.</p>
+<p>Регистрируем предмет:</p>
+<pre><code class="java language-java">// ru.austeretony.crops.main.ItemsRegistry.java
+
+public class ItemsRegistry {
+
+    public static final Item
+    CORN_SEED = new ItemCornSeeds("corn_seed").setCreativeTab(CreativeTabs.FOOD);
+
+    public static void register() {
+
+        setItemRegister(CORN_SEED);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerRender() {
+
+        setItemRender(CORN_SEED);
+    }
+
+    private static void setItemRegister(Item item) {
+
+        ForgeRegistries.ITEMS.register(item);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void setItemRender(Item item) {
+
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(CropsMain.MODID, item.getUnlocalizedName().substring(5)), "inventory"));
+    }
+}
+</code></pre>
+<p>Не забудьте вызвать метод <code>register()</code> в преините <code>CommonProxy</code> и <code>registerRender()</code> в преините <code>ClientProxy</code>.</p>
+<p>Семенам требуется модель. Создайте JSON файл <code>corn_seed.json</code> в "models/item"</p>
+<pre><code class="json language-json">{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "crops:items/corn/corn_seed"
+    }
+}
+</code></pre>
+<p>В нём указывается что необходимо использовать стандартно генерируемую модель и указанную текстуру для одного слоя.</p>
+<p>Скачайте текстуру и разместите её по пути "src/main/resources/assets/ваш modid/textures/items/corn".
+Заметьте, мы создаём отдельную папку "corn" в папке текстур для предметов, связанных с кукурузой.</p>
+<p><img src="images/corn_seed.png" alt="Текстура семян кукурузы" /></p>
+<p>Что ж, идём дальше.</p>
+<h2 id="урожай">Урожай<a title="Ссылка на этот раздел" href="#урожай"><i class="material-icons">link</i></a></h2>
+<p>В качестве дропа с кукурузы создадим… початок. Создаём ItemCorn и наследуем его от <code>ItemFood</code>, что бы он был полноценной едой.</p>
+<pre><code class="java language-java">// ru.austeretony.crops.items.ItemCorn.java
+
+public class ItemCorn extends ItemFood {
+
+    public ItemCorn(String name, int hungerPointsRestoration, float saturationPointsRestoration, boolean isSuitableForWolves) {
+
+        super(hungerPointsRestoration, saturationPointsRestoration, isSuitableForWolves);
+
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
+    }
+}
+</code></pre>
+<p>В суперконструктор <code>ItemFood</code> нужно передать три параметра: кол-во единиц восстанавливаемого голода, значение насыщения и логическую переменную, которая определяет подходит ли данная еда для волков. Всё это будет определено в конструкторе при регистрации предмета.</p>
+<p>Регистрируем предмет в классе регистрации предметов. При создании <code>ItemCorn</code> передаём имя, значение восполняемого голода (2 единицы), насыщение и <code>false</code>, если не хотим иметь возможность кормить волков кукурузой.</p>
+<pre><code class="java language-java">// ru.austeretony.crops.main.ItemsRegistry.java
+
+public class ItemsRegistry {
+
+    public static final Item
+    CORN_SEED = new ItemCornSeeds("corn_seed").setCreativeTab(CreativeTabs.FOOD),
+    CORN = new ItemCorn("corn", 2, 0.6F, false).setCreativeTab(CreativeTabs.FOOD);
+
+    public static void register() {
+
+        setItemRegister(CORN_SEED);
+        setItemRegister(CORN);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerRender() {
+
+        setItemRender(CORN_SEED);
+        setItemRender(CORN);
+    }
+
+    private static void setItemRegister(Item item) {
+
+        ForgeRegistries.ITEMS.register(item);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void setItemRender(Item item) {
+
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(CropsMain.MODID, item.getUnlocalizedName().substring(5)), "inventory"));
+    }
+}
+</code></pre>
+<p>Теперь создаём модель и текстуру. Создайте JSON файл corn.json.</p>
+<pre><code class="json language-json">{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "crops:items/corn/corn"
+    }
+}
+</code></pre>
+<p>Текстура:</p>
+<p><img src="images/corn.png" alt="Текстура кукурузы" /></p>
+<p>Размещение аналогично семенам.</p>
+<h2 id="локализация">Локализация<a title="Ссылка на этот раздел" href="#локализация"><i class="material-icons">link</i></a></h2>
+<p>Не забудьте локализовать ваши предметы. В файл <code>ru_ru.lang</code> добавьте:</p>
+<pre><code>item.corn_seed.name=Семена кукурузы
+item.corn.name=Початок кукурузы
+</code></pre>
+<h2 id="итоги">Итоги<a title="Ссылка на этот раздел" href="#итоги"><i class="material-icons">link</i></a></h2>
+<p>Вот так, теперь вы научились создавать агрокультуры. Зайдите в игру, достаньте семена из вкладки "еда" и посадите их на вскопанную грядку. Вырастите их мукой, сломайте - должны выпасть зёрна и початки. Початки вдобавок можно есть.</p>
+<p><img src="images/demonstration.png" alt="Демонстрация" /></p>
+<h2 id="дополнительно">Дополнительно<a title="Ссылка на этот раздел" href="#дополнительно"><i class="material-icons">link</i></a></h2>
+<h3 id="собственная-почва-для-посадки">Собственная почва для посадки<a title="Ссылка на этот раздел" href="#собственная-почва-для-посадки"><i class="material-icons">link</i></a></h3>
+<p>Как было отмечено стандартный способ указать подходящую для посадки почву (блок) не работает. Если мы всё же хотим это сделать, то в первую очередь необходимо переопределить <code>onItemUse()</code> в классе семян. Рассмотрим его для начала:</p>
+<pre><code class="java language-java">public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos position, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+    ItemStack itemStack = player.getHeldItem(hand);
+
+    IBlockState blockState = world.getBlockState(position);
+
+    if (facing == EnumFacing.UP &amp;&amp; player.canPlayerEdit(position.offset(facing), facing, itemStack) &amp;&amp; blockState.getBlock().canSustainPlant(blockState, world, position, EnumFacing.UP, this) &amp;&amp; world.isAirBlock(position.up())) {
+
+        world.setBlockState(position.up(), this.getPlant(world, position));
+
+        if (player instanceof EntityPlayerMP) {
+
+            CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, position.up(), itemStack);
+        }
+
+        itemStack.shrink(1);
+
+        return EnumActionResult.SUCCESS;
+    }
+
+    return EnumActionResult.FAIL;
+}
+</code></pre>
+<p>Нас интерисует часть условия <code>state.getBlock().canSustainPlant()</code>. Вызов метода <code>canSustainPlant()</code> для блока на который мы ходим посадить наши семена вернёт true только для блока грядки. Просто вырезаем эту часть (или добавляем дополнительно нашу проверку) и заменяем сравнением блока с нужным. В итоге метод выглядит примерно так:</p>
+<pre><code class="java language-java">public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos position, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+    ItemStack itemStack = player.getHeldItem(hand);
+
+    IBlockState blockState = world.getBlockState(position);
+
+    if (facing == EnumFacing.UP &amp;&amp; player.canPlayerEdit(position.offset(facing), facing, itemStack) &amp;&amp; blockState.getBlock() == Blocks.GRASS &amp;&amp; world.isAirBlock(position.up())) {
+
+        world.setBlockState(position.up(), this.getPlant(world, position));
+
+        if (player instanceof EntityPlayerMP) {
+
+            CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, position.up(), itemStack);
+        }
+
+        itemStack.shrink(1);
+
+        return EnumActionResult.SUCCESS;
+    }
+
+    return EnumActionResult.FAIL;
+}
+</code></pre>
+<p>Теперь необходимо удостоверить нашу агрокультуру, что она может расти на указанном блоке. В классе блока переопределяем <code>canBlockStay()</code> и заменяем аналогичный вызов проверки на сравнение блока со своим. Итог:</p>
+<pre><code class="java language-java">public boolean canBlockStay(World world, BlockPos position, IBlockState state) {
+
+    IBlockState soil = world.getBlockState(position.down());
+
+    return (world.getLight(position) &gt;= 8 || world.canSeeSky(position)) &amp;&amp; soil.getBlock() == Blocks.GRASS;
+}
+</code></pre>
+<p>Теперь вы можете сажать свою агрокультуру только на траву.</p>
 
     </div>
 
     <section class="next-previous-articles">
 
-        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;prep&#x2F;install">
+        <a class="previous-article" title="Переход на предыдущую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;achievements&#x2F;prep">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="previous-icon">
                 <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
             </svg>
@@ -473,7 +744,7 @@
 
         <div class="sep"></div>
 
-        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;prep&#x2F;setup_eclipse">
+        <a class="next-article" title="Переход на следующую статью" href="http:&#x2F;&#x2F;mcmodding.ru&#x2F;book&#x2F;1.12+&#x2F;forge&#x2F;advanced&#x2F;layers">
             <span class="label">Следующая статья</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="32" heigth="32" viewBox="0 0 512 512" class="next-icon">
                 <path d="M496 256l-240-240v144h-256v192h256v144z"></path>
@@ -493,7 +764,7 @@
 
                     <div class="name">CMTV</div>
 
-                    <div class="role">Автор</div>
+                    <div class="role">Перенес с форума</div>
 
                 </div>
 
@@ -523,7 +794,7 @@
         <script>
 
             var disqus_config = function () {
-                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/prep/setup_idea';
+                this.page.identifier = 'http://mcmodding.ru/book/1.12+/forge/plant/base';
             };
 
             (function() { // DON'T EDIT BELOW THIS LINE
