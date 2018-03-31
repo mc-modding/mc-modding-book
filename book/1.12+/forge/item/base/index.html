@@ -103,12 +103,12 @@
 
         <div id="logotype">
             <div class="cube">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/front.png" class="side front">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/back.png" class="side back">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/left.png" class="side left">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/right.png" class="side right">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/top.png" class="side top">
-                    <img src="http://mcmodding.ru/logotype/mc-modding/bottom.png" class="side bottom">
+                    <img src="http://mcmodding.ru/logotype/piston/front.png" class="side front">
+                    <img src="http://mcmodding.ru/logotype/piston/back.png" class="side back">
+                    <img src="http://mcmodding.ru/logotype/piston/left.png" class="side left">
+                    <img src="http://mcmodding.ru/logotype/piston/right.png" class="side right">
+                    <img src="http://mcmodding.ru/logotype/piston/top.png" class="side top">
+                    <img src="http://mcmodding.ru/logotype/piston/bottom.png" class="side bottom">
             </div>
         </div>
 
@@ -515,7 +515,15 @@
 }
 </code></pre>
 <p><a href="https://yadi.sk/d/JNFq9Y4h3KcrBv" target="_blank">Объёмная модель</a></p>
-<p>Если ваша текстура к модели берётся из самого Minecraft, то <code>tut:</code>(modid) прописывать не надо! В примере с объёмной моделью я решил использовать текстуру золотого блока из Minecraft.</p>
+<p>Если ваша текстура к модели берётся из самого Minecraft, то <code>tut:</code>(modid) прописывать не надо! В примере с объёмной моделью я решил использовать текстуру золотого блока из Minecraft. Текстуру необходимо добавить по пути:</p>
+<pre><code class="md language-md">└── src    
+    └── main
+        └── resources
+            └── assets
+                └── tut
+                    └── textures
+                        └── items
+</code></pre>
 <p><code>tut</code> - modid нашего мода.
 <code>key</code> - регистрируемое имя нашего предмета.</p>
 <p>Когда ваша модель готово, добавьте её по пути:</p>
