@@ -84,7 +84,16 @@ Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, 
 
 [Объёмная модель](https://yadi.sk/d/JNFq9Y4h3KcrBv)
 
-Если ваша текстура к модели берётся из самого Minecraft, то `tut:`(modid) прописывать не надо! В примере с объёмной моделью я решил использовать текстуру золотого блока из Minecraft.
+Если ваша текстура к модели берётся из самого Minecraft, то `tut:`(modid) прописывать не надо! В примере с объёмной моделью я решил использовать текстуру золотого блока из Minecraft. Текстуру необходимо добавить по пути:
+```md
+└── src    
+    └── main
+        └── resources
+            └── assets
+                └── tut
+                    └── textures
+                        └── items
+```
 
 `tut` - modid нашего мода.
 `key` - регистрируемое имя нашего предмета.
