@@ -46,7 +46,8 @@ public static Item
 * `1` - это индекс рендера
 * `EntityEquipmentSlot` - это слот в который можно будет положить наш элемент брони.
 
-Нам нужно создать текстуру для брони.
+Нам нужно создать текстуру для брони. Чтобы сделать текстуру как показано ниже, зайдите в корневую папку .minecraft --> version --> файл 1.12.2.jar (открыть с помощью WinRar) и идём по пути:
+1.12.2.jar\assets\minecraft\textures\models\armor и выбираем любой слот кроме chainmail_layer_1 и в Photoshop или в Paint перерисовываем по своему вкусу.
 
 ![Броня индекс 1](images/armor_layer_1.png)
 ![Броня индекс 2](images/armor_layer_2.png)
