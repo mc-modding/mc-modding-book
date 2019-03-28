@@ -3,11 +3,12 @@
 
 Для начала необходимо создать класс для Gui и наследовать для него класс `GuiScreen`
 ```java
-public class GuiShopper extends GuiScreen{
+public class GuiName extends GuiScreen{
   int xSize = 176;
   int ySize = 166;
 }
 ```
+``xSize и ySize`` - константы, которые можно изменять под себя.
 
 Теперь начинаем его заполнять базовыми элементами:
 
@@ -22,8 +23,6 @@ public void initGui(){
 `0` - это id кнопки, на которое мы вешаем действие.
 
 `(this.width - this.xSize) / 2 + 5` - X координата.
-
-``xSize и ySize`` - константы, которые можно изменять под себя.
 
 `this.height / 2  + 55` - Y координата.
 
@@ -57,8 +56,12 @@ public void drawScreen(int mouseX, int mouseY, float partialTicks){
 	}
 ```
 В `this.drawTexturedModalRect` параметры задаются основываясь на ваш задний фон
-
+!['Гуй'](images/1.png)
 Если понадобилось отобразить это-же Гуи(т.е. обновить) - вешаем на кнопку: 
 ```java
 this.mc.displayGuiScreen(this);
+```
+Открытие самой гуи из любого(почти) участка кода(Нарпимер через бинд на кнопку):
+```java
+Minecraft.getMinecraft().displayGuiScreen(new GuiName());
 ```
