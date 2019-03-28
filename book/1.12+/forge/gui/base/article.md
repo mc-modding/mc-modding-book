@@ -5,10 +5,9 @@
 ```java
 public class GuiShopper extends GuiScreen{
   int xSize = 176;
-	int ySize = 166;
+  int ySize = 166;
 }
 ```
-Переменные x и y тут на всякий случай.
 
 Теперь начинаем его заполнять базовыми элементами:
 
