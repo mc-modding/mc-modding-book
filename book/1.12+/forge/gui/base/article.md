@@ -56,3 +56,8 @@ public void drawScreen(int mouseX, int mouseY, float partialTicks){
 	}
 ```
 В `this.drawTexturedModalRect` параметры задаются основываясь на ваш задний фон
+
+Если понадобилось отобразить это-же Гуи(т.е. обновить) - вешаем на кнопку: 
+```java
+this.mc.displayGuiScreen(this);
+```
