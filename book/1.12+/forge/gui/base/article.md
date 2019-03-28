@@ -52,6 +52,7 @@ public void drawScreen(int mouseX, int mouseY, float partialTicks){
 		GL11.glDisable(2896);
 		super.mc.renderEngine.bindTexture(new ResourceLocation(Main.MODID + ":textures/gui/backGui.png")); //Достаём нашу текстурку
 		this.drawTexturedModalRect(x -30, y - 60, 0, 0, this.xSize +80, this.ySize+90); //Рисуем её в нужном месте
+		drawString(this.mc.fontRenderer, "Hello World!", x+ 65, y+125, 16777215);//Рисуем текст в гуи
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 ```
