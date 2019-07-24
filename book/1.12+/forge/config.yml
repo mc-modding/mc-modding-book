@@ -12,7 +12,7 @@ categories-order:
   - craftsmeltingandbrewing
   - achievements
   - plant
-  - gui
+#  - gui
 #  - sounds
 #  - entities
 #  - world
