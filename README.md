@@ -1,3 +1,13 @@
+# Устарело!
+
+# Используйте [актуальный учебник](https://github.com/mc-modding/book)!
+
+<br>
+<br>
+<br>
+
+---
+
 # Minecraft Modding Book [![Build Status](https://travis-ci.org/mc-modding/mc-modding-book.svg?branch=master)](https://travis-ci.org/mc-modding/mc-modding-book)
 
 В этом репозитории находятся исходники статей и движка сайта.
